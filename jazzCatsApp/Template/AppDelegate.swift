@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  jazzCatsApp
+//  colorSwitch
 //
-//  Created by Emily Xie on 5/1/20.
+//  Created by Emily Xie on 4/10/20.
 //  Copyright © 2020 Emily Xie. All rights reserved.
 //
 

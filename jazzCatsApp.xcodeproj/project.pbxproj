@@ -9,25 +9,54 @@
 /* Begin PBXBuildFile section */
 		AD3826C3245D0F610027849D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826C2245D0F610027849D /* AppDelegate.swift */; };
 		AD3826C5245D0F610027849D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD3826C4245D0F610027849D /* GameScene.sks */; };
-		AD3826C7245D0F610027849D /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD3826C6245D0F610027849D /* Actions.sks */; };
 		AD3826C9245D0F610027849D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826C8245D0F610027849D /* GameScene.swift */; };
 		AD3826CB245D0F610027849D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826CA245D0F610027849D /* GameViewController.swift */; };
 		AD3826CE245D0F610027849D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3826CC245D0F610027849D /* Main.storyboard */; };
 		AD3826D0245D0F630027849D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD3826CF245D0F630027849D /* Assets.xcassets */; };
 		AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3826D1245D0F630027849D /* LaunchScreen.storyboard */; };
+		AD3826E2245D104E0027849D /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826E1245D104E0027849D /* GameCamera.swift */; };
+		AD3826E4245D106A0027849D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826E3245D106A0027849D /* Note.swift */; };
+		AD3826E6245D10930027849D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826E5245D10930027849D /* Button.swift */; };
+		AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD3826E7245D10C40027849D /* measureBarTileSet.sks */; };
+		AD3826EA245D11920027849D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826E9245D11920027849D /* Configuration.swift */; };
+		AD3826ED245D20700027849D /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3826EC245D20700027849D /* AudioKit.framework */; };
+		AD3826EE245D20700027849D /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD3826EC245D20700027849D /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F0245D20DC0027849D /* Default-568h@2x.png */; };
+		AD3826F3245D22530027849D /* kitten-meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F2245D22530027849D /* kitten-meow.wav */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AD3826EF245D20710027849D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AD3826EE245D20700027849D /* AudioKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AD3826BF245D0F610027849D /* jazzCatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jazzCatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3826C2245D0F610027849D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD3826C4245D0F610027849D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		AD3826C6245D0F610027849D /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		AD3826C8245D0F610027849D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		AD3826CA245D0F610027849D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AD3826CD245D0F610027849D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD3826CF245D0F630027849D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD3826D2245D0F630027849D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD3826D4245D0F630027849D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD3826E1245D104E0027849D /* GameCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCamera.swift; sourceTree = "<group>"; };
+		AD3826E3245D106A0027849D /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		AD3826E5245D10930027849D /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		AD3826E7245D10C40027849D /* measureBarTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = measureBarTileSet.sks; sourceTree = "<group>"; };
+		AD3826E9245D11920027849D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		AD3826EC245D20700027849D /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
+		AD3826F0245D20DC0027849D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AD3826F2245D22530027849D /* kitten-meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kitten-meow.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD3826ED245D20700027849D /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,8 +74,10 @@
 		AD3826B6245D0F610027849D = {
 			isa = PBXGroup;
 			children = (
+				AD3826F0245D20DC0027849D /* Default-568h@2x.png */,
 				AD3826C1245D0F610027849D /* jazzCatsApp */,
 				AD3826C0245D0F610027849D /* Products */,
+				AD3826EB245D20700027849D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,17 +92,86 @@
 		AD3826C1245D0F610027849D /* jazzCatsApp */ = {
 			isa = PBXGroup;
 			children = (
-				AD3826C2245D0F610027849D /* AppDelegate.swift */,
-				AD3826C4245D0F610027849D /* GameScene.sks */,
-				AD3826C6245D0F610027849D /* Actions.sks */,
-				AD3826C8245D0F610027849D /* GameScene.swift */,
+				AD3826D4245D0F630027849D /* Info.plist */,
+				AD3826DF245D0FF40027849D /* Template */,
+				AD3826DE245D0FE70027849D /* Scene */,
+				AD3826DD245D0FE10027849D /* ViewController */,
+				AD3826DC245D0FD80027849D /* Tilesets */,
+				AD3826DB245D0FCB0027849D /* CustomNodes */,
+				AD3826DA245D0FC60027849D /* Sounds */,
+				AD3826E0245D0FF90027849D /* Assets */,
+			);
+			path = jazzCatsApp;
+			sourceTree = "<group>";
+		};
+		AD3826DA245D0FC60027849D /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				AD3826F2245D22530027849D /* kitten-meow.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		AD3826DB245D0FCB0027849D /* CustomNodes */ = {
+			isa = PBXGroup;
+			children = (
+				AD3826E1245D104E0027849D /* GameCamera.swift */,
+				AD3826E3245D106A0027849D /* Note.swift */,
+				AD3826E5245D10930027849D /* Button.swift */,
+			);
+			path = CustomNodes;
+			sourceTree = "<group>";
+		};
+		AD3826DC245D0FD80027849D /* Tilesets */ = {
+			isa = PBXGroup;
+			children = (
+				AD3826E7245D10C40027849D /* measureBarTileSet.sks */,
+			);
+			path = Tilesets;
+			sourceTree = "<group>";
+		};
+		AD3826DD245D0FE10027849D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AD3826DE245D0FE70027849D /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				AD3826C4245D0F610027849D /* GameScene.sks */,
+				AD3826C8245D0F610027849D /* GameScene.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		AD3826DF245D0FF40027849D /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				AD3826C2245D0F610027849D /* AppDelegate.swift */,
+				AD3826E9245D11920027849D /* Configuration.swift */,
+			);
+			path = Template;
+			sourceTree = "<group>";
+		};
+		AD3826E0245D0FF90027849D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
 				AD3826CC245D0F610027849D /* Main.storyboard */,
 				AD3826CF245D0F630027849D /* Assets.xcassets */,
 				AD3826D1245D0F630027849D /* LaunchScreen.storyboard */,
-				AD3826D4245D0F630027849D /* Info.plist */,
 			);
-			path = jazzCatsApp;
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		AD3826EB245D20700027849D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD3826EC245D20700027849D /* AudioKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +184,7 @@
 				AD3826BB245D0F610027849D /* Sources */,
 				AD3826BC245D0F610027849D /* Frameworks */,
 				AD3826BD245D0F610027849D /* Resources */,
+				AD3826EF245D20710027849D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,11 +233,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
+				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD3826C5245D0F610027849D /* GameScene.sks in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
 				AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */,
-				AD3826C7245D0F610027849D /* Actions.sks in Resources */,
+				AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +250,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD3826E4245D106A0027849D /* Note.swift in Sources */,
+				AD3826E6245D10930027849D /* Button.swift in Sources */,
+				AD3826EA245D11920027849D /* Configuration.swift in Sources */,
 				AD3826C9245D0F610027849D /* GameScene.swift in Sources */,
 				AD3826CB245D0F610027849D /* GameViewController.swift in Sources */,
+				AD3826E2245D104E0027849D /* GameCamera.swift in Sources */,
 				AD3826C3245D0F610027849D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,11 +402,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 89QV5N66V7;
+				FRAMEWORK_SEARCH_PATHS = "/Users/emilyxie/Projects/udemy/AudioKit-iOS";
 				INFOPLIST_FILE = jazzCatsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exie.jazzcats.jazzCatsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -312,11 +423,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 89QV5N66V7;
+				FRAMEWORK_SEARCH_PATHS = "/Users/emilyxie/Projects/udemy/AudioKit-iOS";
 				INFOPLIST_FILE = jazzCatsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exie.jazzcats.jazzCatsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
