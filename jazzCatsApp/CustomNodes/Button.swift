@@ -1,26 +1,19 @@
-//
-//  Button.swift
-//  colorSwitch
-//
-//  Created by Emily Xie on 4/21/20.
-//  Copyright © 2020 Emily Xie. All rights reserved.
-//
-
 import SpriteKit
+import UIKit
 
-class Button: SKSpriteNode {
+public class Button: SKSpriteNode {
     
-    var defaultButton: SKSpriteNode
-    var action: (Int) -> Void
-    var index: Int
+    public var defaultButton: SKTexture
+    public var action: (Int) -> Void
+    public var index: Int
     
-    init(defaultButtonImage: UIColor, action: @escaping (Int) -> Void, index: Int, buttonName: String) {
-        defaultButton = SKSpriteNode(color: defaultButtonImage, size:
-        CGSize(width: 30, height: 30))
+    public init(defaultButtonImage: String, action: @escaping (Int) -> Void, index: Int, buttonName: String) {
+        //defaultButton = SKSpriteNode(color: defaultButtonImage, size: CGSize(width: 30, height: 30))
+        defaultButton = SKTexture(imageNamed: defaultButtonImage)
         self.action = action
         self.index = index
         
-        super.init(texture: nil, color: defaultButton.color, size: defaultButton.size)
+        super.init(texture: defaultButton, color: UIColor.clear, size: CGSize(width: 50, height: 50))
         self.name = buttonName
         
         isUserInteractionEnabled = true
@@ -30,9 +23,7 @@ class Button: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         action(index)
     }
-    
-    
 }

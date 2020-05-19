@@ -5,6 +5,7 @@
 //  Created by Emily Xie on 4/10/20.
 //  Copyright © 2020 Emily Xie. All rights reserved.
 //
+/*
 
 import SpriteKit
 import AudioKit
@@ -158,6 +159,8 @@ class GameScene: SKScene {
     
     func setUpButtons() {
         
+        /*
+        
         addButton(buttonImage: UIColor.orange, buttonAction: enterMode, buttonIndex: 0, name: "addButton")
         addButton(buttonImage: UIColor.systemPink, buttonAction: enterMode, buttonIndex: 1, name: "eraseButton")
         addButton(buttonImage: UIColor.purple, buttonAction: enterMode, buttonIndex: 2, name: "navigateButton")
@@ -168,6 +171,8 @@ class GameScene: SKScene {
         addButton(buttonImage: UIColor.blue, buttonAction: selectNoteType, buttonIndex: 1, name: "bassButton")
         addButton(buttonImage: UIColor.green, buttonAction: selectNoteType, buttonIndex: 2, name: "snareButton")
         addButton(buttonImage: UIColor.yellow, buttonAction: selectNoteType, buttonIndex: 3, name: "hihatButton")
+ 
+ */
     }
     
     func setUpSound() {
@@ -190,7 +195,7 @@ class GameScene: SKScene {
         }
     }
     
-    func addButton(buttonImage: UIColor, buttonAction: @escaping (Int) -> (), buttonIndex: Int, name: String) {
+    func addButton(buttonImage: String, buttonAction: @escaping (Int) -> (), buttonIndex: Int, name: String) {
         let buttonYPosition = Int(barsNode.position.y - 50)
         let newButton = Button(defaultButtonImage: buttonImage, action: buttonAction, index: buttonIndex, buttonName: name)
         newButton.position = CGPoint(x: buttonXPosition, y: buttonYPosition)
@@ -422,3 +427,4 @@ extension GameScene {
     }
  */
 }
+*/

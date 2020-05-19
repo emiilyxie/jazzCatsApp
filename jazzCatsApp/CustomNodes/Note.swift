@@ -1,41 +1,132 @@
-//
-//  Note.swift
-//  colorSwitch
-//
-//  Created by Emily Xie on 4/16/20.
-//  Copyright © 2020 Emily Xie. All rights reserved.
-//
-
 import SpriteKit
-import AVFoundation
+import UIKit
 
-class Note: SKSpriteNode {
+public enum NoteType: String {
+    case piano, bass, snare, hihat, cat
+    static var allTypes: [NoteType] = [.piano, .bass, .snare, .hihat, .cat]
+}
 
-    let noteType: NoteType
-    var positionInTileMap = [0,0]
+public class Note: SKSpriteNode {
     
-    init(type: NoteType) {
+    public let noteType: NoteType
+    public var positionInStaff = [0,0]
+    public var soundBase: String
+    public var isSharp = false
+    public var isFlat = false
+    
+    public init(type: NoteType) {
         noteType = type
         
-        let color: UIColor!
+        let noteTexture: SKTexture!
         switch type {
         case .piano:
-            color = UIColor.red
+            noteTexture = SKTexture(imageNamed: "piano.png")
+            soundBase = "piano"
         case .bass:
-            color = UIColor.blue
+            noteTexture = SKTexture(imageNamed: "bass.png")
+            soundBase = "bass"
         case .snare:
-            color = UIColor.green
+            noteTexture = SKTexture(imageNamed: "snare.png")
+            soundBase = "snare"
         case .hihat:
-            color = UIColor.yellow
+            noteTexture = SKTexture(imageNamed: "hihat.png")
+            soundBase = "hihat"
+        case .cat:
+            noteTexture = SKTexture(imageNamed: "cat.png")
+            soundBase = "cat"
         }
         
-        super.init(texture: nil, color: color, size: CGSize(width: 30, height: 30))
+        super.init(texture: noteTexture, color: UIColor.clear, size: CGSize(width: 30, height: 30))
         
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func getAudioFile() -> String {
+        let noteVal = getNoteName()
+        
+        if soundBase == "snare" {
+            return "\(soundBase)/\(soundBase).mp3"
+        }
+        /*
+        if isSharp {
+            return "\(soundBase)/\(soundBase)\(noteVal)s.mp3"
+        }
+        if isFlat {
+            noteVal = trebleNotes[positionInStaff[1]]
+            return "\(soundBase)/\(soundBase)\(noteVal)s.mp3"
+        }
+ */
+        return "\(soundBase)/\(soundBase)\(noteVal).mp3"
+    }
+    
+    public func toggleSharp() {
+        if !self.isSharp {
+            self.isSharp = true
+        }
+        else {
+            self.isSharp = false
+        }
+    }
+    
+    public func toggleFlat() {
+        if !self.isFlat {
+            self.isFlat = true
+        }
+        else {
+            self.isFlat = false
+        }
+    }
+    
+    public func getNoteName() -> String {
+        if positionInStaff[1] == 0 && isFlat { // C4 flat is B3
+            return "\(trebleNotes[0])"
+        }
+        if (positionInStaff[1] == 3 || positionInStaff[1] == 7 || positionInStaff[1] == 10) && isFlat { // for enharmonics
+            return "\(trebleNotes[positionInStaff[1]])"
+        }
+        if isSharp {
+            return "\(trebleNotes[positionInStaff[1] + 13])"
+        }
+        if isFlat {
+            return "\(trebleNotes[positionInStaff[1] + 12])"
+        }
+        return "\(trebleNotes[positionInStaff[1] + 1])"
+    }
+    
+    public func getMidiVal() -> Int {
+        var midiVal = middleCMidi
+        let distFromMiddleC = positionInStaff[1] - middleCPos
+        if distFromMiddleC > 0 {
+            let octaveNums = Int((Double(distFromMiddleC) / 7.0).rounded(.down))
+            midiVal += octaveNums * octaveSize
+            let remainderNotes = distFromMiddleC - (octaveNums * 7)
+            if remainderNotes > 0 {
+                for i in 0...remainderNotes-1 {
+                    midiVal += octaveStepSizes[i]
+                }
+            }
+        }
+        else if distFromMiddleC < 0 {
+            let octaveNums = Int((Double(-distFromMiddleC) / 7.0).rounded(.down))
+            midiVal -= octaveNums * octaveSize
+            let remainderNotes = -distFromMiddleC - (octaveNums * 7)
+            if remainderNotes > 0 {
+                for i in 0...remainderNotes-1 {
+                    midiVal -= reversedOctaveStepSizes[i]
+                }
+            }
+        }
+        if isSharp {
+            midiVal += 1
+        }
+        else if isFlat {
+            midiVal -= 1
+        }
+        return midiVal
     }
     
 }
