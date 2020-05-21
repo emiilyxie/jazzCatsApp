@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4gq-Lp-7HN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dec-BY-2yf">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,10 +7,45 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Welcome-->
+        <!--Welcome Screen-->
+        <scene sceneID="PMF-k5-oVf">
+            <objects>
+                <viewController id="dec-BY-2yf" customClass="WelcomeScreen" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hhp-mo-ldP">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7lT-ZH-nOs">
+                                <rect key="frame" x="433" y="192" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="goToLevelSelect:" destination="dec-BY-2yf" eventType="touchUpInside" id="Cnx-3y-GDy"/>
+                                    <segue destination="4gq-Lp-7HN" kind="presentation" identifier="goToLevelSelectSegue" id="AAj-VV-yx7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fd-0C-cez">
+                                <rect key="frame" x="417" y="265" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Freestyle"/>
+                                <connections>
+                                    <action selector="goToFreestyle:" destination="dec-BY-2yf" eventType="touchUpInside" id="umH-7J-8mq"/>
+                                    <segue destination="uKC-AO-KPp" kind="presentation" identifier="goToFreestyleSegue" id="tm6-kG-lE5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="GyB-rx-roN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7HT-fr-dfd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="39" y="-1072"/>
+        </scene>
+        <!--Level Select-->
         <scene sceneID="Nn8-A1-Mdv">
             <objects>
-                <viewController storyboardIdentifier="welcome" id="4gq-Lp-7HN" customClass="Welcome" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="welcome" id="4gq-Lp-7HN" customClass="LevelSelect" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qH1-D2-I13">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,12 +142,14 @@
                         <viewLayoutGuide key="safeArea" id="nGk-aJ-aHf"/>
                     </view>
                     <connections>
-                        <segue destination="uKC-AO-KPp" kind="presentation" identifier="goToLevel" modalTransitionStyle="crossDissolve" id="V9W-if-qAv"/>
+                        <segue destination="uKC-AO-KPp" kind="presentation" identifier="goToLevelSegue" modalTransitionStyle="crossDissolve" id="V9W-if-qAv"/>
+                        <segue destination="CcP-9C-EW7" kind="unwind" identifier="levelSelectToWelcomeSegue" unwindAction="backAtWelcomeScreenWithSegue:" id="HM2-oe-uTd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfb-PF-67I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="CcP-9C-EW7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="39" y="-207"/>
+            <point key="canvasLocation" x="-50" y="-191"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="Nob-v2-Xgg">
@@ -125,13 +162,17 @@
                         <viewLayoutGuide key="safeArea" id="x0r-Fd-XmQ"/>
                     </view>
                     <connections>
-                        <segue destination="22u-Uf-Opf" kind="unwind" identifier="unwindToMainMenu" unwindAction="backAtMainMenuWithSegue:" id="rWd-Qr-bDy"/>
+                        <segue destination="CZD-oz-aex" kind="unwind" identifier="gameToWelcomeScreenSegue" unwindAction="backAtWelcomeScreenWithSegue:" id="x2A-Zc-Jsh"/>
+                        <segue destination="CZD-oz-aex" kind="unwind" identifier="gameToLevelSelectSegue" unwindAction="backAtLevelSelectWithSegue:" id="mEE-1m-FEe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRa-Zk-2Eb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="22u-Uf-Opf" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="CZD-oz-aex" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="39" y="654"/>
+            <point key="canvasLocation" x="39" y="688"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="V9W-if-qAv"/>
+    </inferredMetricsTieBreakers>
 </document>

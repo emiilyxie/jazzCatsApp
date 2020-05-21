@@ -10,16 +10,13 @@ import UIKit
 import SpriteKit
 import AudioKit
 
-public let staffBarHeight = 32
-public let staffBarNumber = 12
-
-public let indentLength = 100
-
 public class LevelTemplate: SKScene {
 
     weak var viewController: UIViewController?
     let gameCamera = GameCamera()
     
+    public var staffBarHeight: Int!
+    public var staffBarNumber: Int!
     public var staffTotalHeight: Int!
     public var staffHeightFromGround: Int!
 
@@ -87,7 +84,7 @@ public class LevelTemplate: SKScene {
         
         // creating the staff
         for i in 0...staffBarNumber - 1 {
-            let staffBar = StaffBar(barIndex: i)
+            let staffBar = StaffBar(barIndex: i, barHeight: staffBarHeight)
             staffBar.anchorPoint = CGPoint(x: 0, y: 0)
             staffBar.position = CGPoint(x: 0, y: (i * Int(staffBar.size.height)))
             staffBar.name = "staffBar"
@@ -569,7 +566,7 @@ public class LevelTemplate: SKScene {
         guard let gameVC = self.viewController as! GameViewController? else {
             return
         }
-        gameVC.goBackToMainMenu(gameVC)
+        gameVC.returnToLevelSelect(gameVC)
         print("bye bitch")
     }
 }

@@ -4,10 +4,10 @@ import UIKit
 public class StaffBar: SKSpriteNode {
     public let index: Int
     
-    public init(barIndex: Int) {
+    public init(barIndex: Int, barHeight: Int) {
         index = barIndex
         
-        super.init(texture: nil, color: UIColor.clear, size: CGSize(width: Int(sceneWidth), height: staffBarHeight))
+        super.init(texture: nil, color: UIColor.clear, size: CGSize(width: Int(sceneWidth), height: barHeight))
     }
     
     required init?(coder aDecoder: NSCoder) {

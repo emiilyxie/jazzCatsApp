@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Welcome: UIViewController {
+class LevelSelect: UIViewController {
     
     var whichLevel: Int!
 
@@ -20,40 +20,42 @@ class Welcome: UIViewController {
     
     @IBAction func selectLevel1(_ sender: Any) {
         whichLevel = 1
-        performSegue(withIdentifier: "goToLevel", sender: self)
+        performSegue(withIdentifier: "goToLevelSegue", sender: self)
     }
     
     @IBAction func selectLevel2(_ sender: Any) {
         whichLevel = 1
-        performSegue(withIdentifier: "goToLevel", sender: self)
+        performSegue(withIdentifier: "goToLevelSegue", sender: self)
     }
     
     @IBAction func selectLevel3(_ sender: Any) {
         whichLevel = 3
-        performSegue(withIdentifier: "goToLevel", sender: self)
+        performSegue(withIdentifier: "goToLevelSegue", sender: self)
     }
     
     @IBAction func selectLevel4(_ sender: Any) {
         whichLevel = 1
-        performSegue(withIdentifier: "goToLevel", sender: self)
+        performSegue(withIdentifier: "goToLevelSegue", sender: self)
     }
     
     @IBAction func selectLevel5(_ sender: Any) {
         whichLevel = 1
-        performSegue(withIdentifier: "goToLevel", sender: self)
+        performSegue(withIdentifier: "goToLevelSegue", sender: self)
     }
     
     @IBAction func selectLevel6(_ sender: Any) {
         whichLevel = 1
-        performSegue(withIdentifier: "goToLevel", sender: self)
+        performSegue(withIdentifier: "goToLevelSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let gameVC = segue.destination as! GameViewController
         gameVC.selectedLevel = whichLevel
     }
+
+    @IBAction func backAtLevelSelect(segue: UIStoryboardSegue) {}
     
-    @IBAction func backAtMainMenu(segue: UIStoryboardSegue) {}
+
     /*
     // MARK: - Navigation
 
