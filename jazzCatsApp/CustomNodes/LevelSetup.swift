@@ -13,6 +13,17 @@ public var lvl1Ans = [[Set(["D5"]), Set([]), Set(["G4"]), Set(["A4"]), Set(["B4"
 
 public var lvl3Ans = [[Set(["A4"]), Set(["C5"]), Set(["E5"]), Set(["G5"]), Set(["F5s"]), Set([]), Set([]), Set(["E5"]), Set(["D5"]), Set(["B4"]), Set(["G4"]), Set([]), Set(["A4s"]), Set(["C5"]), Set(["D5"]), Set(["F5"])], [Set(["D5s"]), Set(["A4s"]), Set(["G4"]), Set([]), Set(["G4s"]), Set(["E4"]), Set(["D4s"]), Set(["C4s"]), Set(["B3"]), Set(["C4s"]), Set(["D4s"]), Set(["E4"]), Set(["F4s"]), Set(["G4s"]), Set(["A4s"]), Set(["B4"])], [Set(["C5"]), Set(["G4s"]), Set(["F4"]), Set(["D4s"]), Set(["D4"]), Set(["B4"]), Set(["A4s"]), Set(["G4s"]), Set(["G4"]), Set(["A4s"]), Set(["D5s"]), Set(["G5"]), Set(["A4s"]), Set(["C5s"]), Set(["E5"]), Set(["G5s"])], [Set(["B4"]), Set(["C5s"]), Set(["D5s"]), Set(["F5s"]), Set(["C5"]), Set(["E5"]), Set(["F5s"]), Set(["G5s"]), Set(["F5s"]), Set([]), Set(["E5"]), Set(["D5"]), Set([]), Set([]), Set([]), Set([])]]
 
+public func prepareLevel(level: LevelTemplate, levelNum: Int) {
+    switch levelNum {
+    case 1:
+        setUpLevel(level: level, numberOfMeasures: 2, bpm: 3, subdivision: 2, maxPages: 1, lvlAns: lvl1Ans)
+    case 3:
+        setUpLevel(level: level, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 4, lvlAns: lvl3Ans)
+    default:
+        setUpLevel(level: level, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 1, lvlAns: lvl1Ans)
+    }
+}
+
 public func setUpLevel(level: LevelTemplate, numberOfMeasures: Int, bpm: Int, subdivision: Int, maxPages: Int, lvlAns: Array<[Set<String>]>) {
     
     sceneWidth = CGFloat(level.size.width)

@@ -17,6 +17,7 @@ public let indentLength = 100
 
 public class LevelTemplate: SKScene {
 
+    weak var viewController: UIViewController?
     let gameCamera = GameCamera()
     
     public var staffTotalHeight: Int!
@@ -54,6 +55,10 @@ public class LevelTemplate: SKScene {
         setUpPhysics()
         setUpButtons()
         setUpSound()
+    }
+    
+    deinit {
+        print("deinitialized")
     }
 
     /*
@@ -201,6 +206,7 @@ public class LevelTemplate: SKScene {
         let topY = Int(view.bounds.size.height) * 0.75
         let bottomY = Int(view.bounds.size.height) * -0.75
         
+        addButton(buttonImage: "play.png", buttonAction: returnToMainMenu, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: Double(frame.minX), y: topY))
         addButton(buttonImage: "play.png", buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: Int(frame.minX) + 50, y: topY))
         addButton(buttonImage: "pause.png", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: Int(frame.minX) + 100, y: topY))
         addButton(buttonImage: "stop.png", buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: Int(frame.minX) + 150, y: topY))
@@ -265,7 +271,12 @@ public class LevelTemplate: SKScene {
         case "addMode": // if in addMode
             if barsNode.contains(location) {
                 location = touch.location(in: barsNode)
-                if location.x >= CGFloat(indentLength) {
+                //print(location.x)
+                //print(resultWidth)
+                //print(frame.maxX)
+                //print(divisionWidth)
+                let maxX = CGFloat(indentLength + resultWidth - divisionWidth/2)
+                if location.x >= CGFloat(indentLength) && location.x < maxX {
                     let arrayVal = getStaffPosition(notePosition: location)
                     let noteVal = trebleNotes[arrayVal[1] + 1]
                     if !myAns[pageIndex][arrayVal[0]].contains(noteVal) {
@@ -534,6 +545,33 @@ public class LevelTemplate: SKScene {
             }
         }
     }
+    
+    func returnToMainMenu(index: Int) {
+        do {
+            try AudioKit.stop()
+        }
+        catch {
+            print(error)
+        }
+
+        for child in self.children {
+            child.removeAllActions()
+        }
+        self.removeAllActions()
+        self.removeAllChildren()
+        self.removeFromParent()
+        self.view?.presentScene(nil)
+ 
+        //var vc: UIViewController = UIViewController()
+        //vc = self.view!.window!.rootViewController!
+        //viewController?.performSegue(withIdentifier: "levelSelectMenu", sender: viewController)
+        //self.viewController?.dismiss(animated: true, completion: nil)
+        guard let gameVC = self.viewController as! GameViewController? else {
+            return
+        }
+        gameVC.goBackToMainMenu(gameVC)
+        print("bye bitch")
+    }
 }
 
 extension LevelTemplate: SKPhysicsContactDelegate {
@@ -542,9 +580,9 @@ extension LevelTemplate: SKPhysicsContactDelegate {
         
         if contactMask == PhysicsCategories.noteCategory | PhysicsCategories.measureBarCategory {
             if let hitInstrument = contact.bodyA.node?.name != nil ? contact.bodyA.node as? Note : contact.bodyB.node as? Note {
-                print(hitInstrument.noteType)
-                print(hitInstrument.positionInStaff[1])
-                print(hitInstrument.getMidiVal())
+                //print(hitInstrument.noteType)
+                //print(hitInstrument.positionInStaff[1])
+                //print(hitInstrument.getMidiVal())
                 let whichNote = hitInstrument.getMidiVal()
                 do {
                     try sampler.play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)

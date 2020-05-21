@@ -29,6 +29,8 @@
 		AD3826F3245D22530027849D /* kitten-meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F2245D22530027849D /* kitten-meow.wav */; };
 		AD9395AC24746C6B0037E307 /* WelcomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AB24746C6B0037E307 /* WelcomeScene.swift */; };
 		AD9395AE247478250037E307 /* LevelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AD247478250037E307 /* LevelSetup.swift */; };
+		AD9395B024747CD10037E307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9395AF24747CD10037E307 /* Main.storyboard */; };
+		AD9395B224747D3F0037E307 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395B124747D3F0037E307 /* Welcome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +71,8 @@
 		AD3826F2245D22530027849D /* kitten-meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kitten-meow.wav"; sourceTree = "<group>"; };
 		AD9395AB24746C6B0037E307 /* WelcomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScene.swift; sourceTree = "<group>"; };
 		AD9395AD247478250037E307 /* LevelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSetup.swift; sourceTree = "<group>"; };
+		AD9395AF24747CD10037E307 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AD9395B124747D3F0037E307 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
+				AD9395AF24747CD10037E307 /* Main.storyboard */,
+				AD9395B124747D3F0037E307 /* Welcome.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -157,10 +163,10 @@
 			children = (
 				AD3826C4245D0F610027849D /* GameScene.sks */,
 				AD3826C8245D0F610027849D /* GameScene.swift */,
-				AD08F5692473397900863204 /* LevelTemplate.swift */,
 				AD08F5672473371A00863204 /* FreestyleScene.swift */,
-				AD08F56B24734F5200863204 /* LevelTemplate.sks */,
 				AD9395AB24746C6B0037E307 /* WelcomeScene.swift */,
+				AD08F5692473397900863204 /* LevelTemplate.swift */,
+				AD08F56B24734F5200863204 /* LevelTemplate.sks */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 				AD3826C5245D0F610027849D /* GameScene.sks in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
+				AD9395B024747CD10037E307 /* Main.storyboard in Resources */,
 				AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */,
 				AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */,
 			);
@@ -275,6 +282,7 @@
 				AD3826E6245D10930027849D /* Button.swift in Sources */,
 				AD08F56224732A0300863204 /* StaffBar.swift in Sources */,
 				AD3826EA245D11920027849D /* Configuration.swift in Sources */,
+				AD9395B224747D3F0037E307 /* Welcome.swift in Sources */,
 				AD3826C9245D0F610027849D /* GameScene.swift in Sources */,
 				AD3826CB245D0F610027849D /* GameViewController.swift in Sources */,
 				AD9395AE247478250037E307 /* LevelSetup.swift in Sources */,
