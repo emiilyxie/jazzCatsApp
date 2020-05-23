@@ -17,15 +17,33 @@ class WelcomeScreen: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    /*
     @IBAction func goToLevelSelect(_ sender: Any) {
-        performSegue(withIdentifier: "goToLevelSelectSegue", sender: self)
+        goingToFreestyle = false
+        performSegue(withIdentifier: "fromWelcomeToLevelSelectSegue", sender: self)
+    }
+ */
+    
+    @IBAction func goToLevelSelect(_ sender: Any) {
+        goingToFreestyle = false
+        performSegue(withIdentifier: "fromWelcomeToLevelSelectSegue", sender: self)
     }
     
     @IBAction func goToFreestyle(_ sender: Any) {
         goingToFreestyle = true
-        performSegue(withIdentifier: "goToFreestyleSegue", sender: self)
+        performSegue(withIdentifier: "fromWelcomeToFreestyleSegue", sender: self)
+    }
+    
+    
+    /*
+    
+    @IBAction func goToFreestyle(_ sender: Any) {
+        goingToFreestyle = true
+        performSegue(withIdentifier: "fromWelcomeToFreestyleSegue", sender: self)
         
     }
+ */
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if goingToFreestyle == true {
@@ -34,6 +52,8 @@ class WelcomeScreen: UIViewController {
         }
     }
     
-    @IBAction func backAtWelcomeScreen(segue: UIStoryboardSegue) {}
+    //@IBAction func backToWelcomeFromLevelSelect(segue: UIStoryboardSegue) {}
+    
+    @IBAction func backToWelcomeFromGame(segue: UIStoryboardSegue) {}
 
 }

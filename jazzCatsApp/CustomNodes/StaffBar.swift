@@ -8,6 +8,14 @@ public class StaffBar: SKSpriteNode {
         index = barIndex
         
         super.init(texture: nil, color: UIColor.clear, size: CGSize(width: Int(sceneWidth), height: barHeight))
+        
+        /*
+        if let staffBarWidth = self.parent?.frame.width {
+            print(staffBarWidth)
+            self.size.width = staffBarWidth
+        }
+ */
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

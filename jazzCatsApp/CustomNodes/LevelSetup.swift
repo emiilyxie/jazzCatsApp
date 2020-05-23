@@ -28,13 +28,13 @@ public func prepareLevel(level: LevelTemplate, levelNum: Int) {
 
 public func setUpLevel(level: LevelTemplate, staffBarHeight: Int, staffBarNumber: Int, numberOfMeasures: Int, bpm: Int, subdivision: Int, maxPages: Int, lvlAns: Array<[Set<String>]>) {
     
-    sceneWidth = CGFloat(level.size.width)
-    sceneHeight = CGFloat(level.size.height)
+    //print(sceneWidth)
+    //print(sceneHeight)
     
     level.staffBarHeight = staffBarHeight
     level.staffBarNumber = staffBarNumber
     level.staffTotalHeight = staffBarHeight * staffBarNumber
-    let halfHeight = Int(sceneHeight) / 2
+    let halfHeight = Int(level.size.height) / 2
     let halfStaffHeight = level.staffTotalHeight / 2
     let staffHeightFromGround = halfHeight - halfStaffHeight
     level.staffHeightFromGround = staffHeightFromGround
@@ -44,7 +44,7 @@ public func setUpLevel(level: LevelTemplate, staffBarHeight: Int, staffBarNumber
     level.subdivision = subdivision
     level.totalDivision = numberOfMeasures * bpm * subdivision
     
-    level.resultWidth = Int(sceneWidth) - indentLength
+    level.resultWidth = Int(level.size.width) - indentLength
     level.divisionWidth = level.resultWidth / level.totalDivision
     
     level.maxPages = maxPages
@@ -70,6 +70,7 @@ public func prepareFreestyle(freestyleLevel: Freestyle) {
     freestyleLevel.numberOfMeasures = 2
     freestyleLevel.bpm = 5
     freestyleLevel.subdivision = 2
+    freestyleLevel.oldSubdivision = 2
     freestyleLevel.totalDivision = freestyleLevel.numberOfMeasures * freestyleLevel.bpm * freestyleLevel.subdivision
     
     freestyleLevel.resultWidth = Int(sceneWidth) - indentLength

@@ -18,20 +18,26 @@ class GameViewController: UIViewController {
     var selectedLevel: Int!
     var freestyleMode = false
     var totalLevels = 3
+    var currentScene: SKScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
+            
             if !freestyleMode {
                 //loading a level
                 if let scene = LevelTemplate(fileNamed: "LevelTemplate.sks") {
                     scene.viewController = self
+                    scene.scaleMode = .aspectFill
+                    sceneWidth = scene.size.width
+                    sceneHeight = scene.size.height
+                    //scene.size = view.bounds.size
                     prepareLevel(level: scene, levelNum: selectedLevel)
-
-                    scene.scaleMode = .resizeFill
+                    
                     // Present the scene
                     view.presentScene(scene)
+                    currentScene = scene
                     view.ignoresSiblingOrder = true
                     view.showsFPS = true
                     view.showsNodeCount = true
@@ -43,9 +49,13 @@ class GameViewController: UIViewController {
                     scene.viewController = self
                     prepareFreestyle(freestyleLevel: scene)
 
-                    scene.scaleMode = .resizeFill
+                    scene.scaleMode = .aspectFill
+                    sceneWidth = scene.size.width
+                    sceneHeight = scene.size.height
+                    
                     // Present the scene
                     view.presentScene(scene)
+                    currentScene = scene
                     view.ignoresSiblingOrder = true
                     view.showsFPS = true
                     view.showsNodeCount = true
@@ -55,16 +65,28 @@ class GameViewController: UIViewController {
         }
     }
     
-    func dismissVC() {
-        dismiss(animated: true, completion: nil)
+    @IBAction func unwindFromGameToWelcome(_ sender: Any) {
+        performSegue(withIdentifier: "fromGameToWelcomeUSegue", sender: nil)
     }
     
-    @IBAction func returnToLevelSelect(_ sender: Any) {
-        performSegue(withIdentifier: "gameToLevelSelectSegue", sender: self)
+    @IBAction func unwindFromGameToLevelSelect(_ sender: Any) {
+        performSegue(withIdentifier: "fromGameToLevelSelectUSegue", sender: nil)
     }
-    
-    @IBAction func returnToWelcomeScreen(_ sender: Any) {
-        performSegue(withIdentifier: "gameToWelcomeScreenSegue", sender: self)
+
+    @IBAction func showSettingsPopover(_ sender: Any) {
+        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "settingsPopoverID") as! SettingsPopupVC
+        self.addChild(popoverVC)
+        popoverVC.view.frame = self.view.frame
+        /*
+        guard let freestyleScene = currentScene as! Freestyle? else {return}
+        print("max pages: \(freestyleScene.maxPages)")
+        popoverVC.currentPgs = freestyleScene.maxPages
+        popoverVC.currentMPP = freestyleScene.numberOfMeasures
+        popoverVC.currentBPM = freestyleScene.bpm
+        popoverVC.currentSPB = freestyleScene.subdivision
+ */
+        self.view.addSubview(popoverVC.view)
+        popoverVC.didMove(toParent: self)
     }
 
 }

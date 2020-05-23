@@ -9,8 +9,9 @@
 import UIKit
 import SpriteKit
 import AudioKit
+//import AVFoundation.AVAudioMix
 
-public class Freestyle: SKScene {
+public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
 
     weak var viewController: UIViewController?
     let gameCamera = GameCamera()
@@ -30,6 +31,7 @@ public class Freestyle: SKScene {
     public var maxPages: Int!
     public var pages: Array<Array<Note>>!
     public var pageIndex = 0
+    var pgCountLabel: SKLabelNode!
     
     var bgNode: SKSpriteNode!
     let barsNode = SKNode()
@@ -39,6 +41,31 @@ public class Freestyle: SKScene {
     
     var file: AKAudioFile!
     var sampler = AKAppleSampler()
+    
+    /*
+    
+     //vars for avaudio recording
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder!
+    var recordButton: Button!
+    var playRecordingButton: Button!
+    var currentlyRecording = false
+ */
+    
+    /*
+    
+    //vars for audiokit recording
+    var micMixer: AKMixer!
+    var recorder: AKNodeRecorder!
+    var player: AKPlayer!
+    var tape: AKAudioFile!
+    var micBooster: AKBooster!
+    let mic = AKMicrophone()
+    var recordButton: Button!
+    var playRecordingButton: Button!
+    var currentlyRecording = false
+ 
+ */
     
     public override func didMove(to view: SKView) {
         //setUpVars()
@@ -158,7 +185,7 @@ public class Freestyle: SKScene {
         let topY = Int(view.bounds.size.height) * 0.75
         let bottomY = Int(view.bounds.size.height) * -0.75
         
-        addButton(buttonImage: "play.png", buttonAction: returnToMainMenu, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: Double(frame.minX), y: topY))
+        addButton(buttonImage: "play.png", buttonAction: returnToWelcomeScreen, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: Double(frame.minX), y: topY))
         addButton(buttonImage: "play.png", buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: Int(frame.minX) + 50, y: topY))
         addButton(buttonImage: "pause.png", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: Int(frame.minX) + 100, y: topY))
         addButton(buttonImage: "stop.png", buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: Int(frame.minX) + 150, y: topY))
@@ -172,9 +199,33 @@ public class Freestyle: SKScene {
         
         addButton(buttonImage: "rightArrow.png", buttonAction: nextPage, buttonIndex: 0, name: "nextPage", buttonPosition: CGPoint(x: Int(frame.midX) + 250, y: bottomY))
         addButton(buttonImage: "leftArrow.png", buttonAction: prevPage, buttonIndex: 0, name: "prevPage", buttonPosition: CGPoint(x: Int(frame.midX) + 200, y: bottomY))
+        pgCountLabel = SKLabelNode(text: "page: \(pageIndex+1)/\(maxPages!)")
+        pgCountLabel.fontColor = UIColor.black
+        pgCountLabel.fontSize = 30
+        pgCountLabel.fontName = "Hiragino Mincho ProN"
+        pgCountLabel.position = CGPoint(x: Int(frame.midX) + 200, y: bottomY - 70)
+        addChild(pgCountLabel)
+        
+        /*
+        //buttons for audiokit recording
+        recordButton = Button(defaultButtonImage: "stop.png", action: record, index: 0, buttonName: "recordButton")
+        recordButton.isUserInteractionEnabled = true
+        addButton(button: recordButton, buttonPosition: CGPoint(x: Int(frame.midX) + 250, y: topY))
+        
+        playRecordingButton = Button(defaultButtonImage: "audio.png", action: playRecording, index: 0, buttonName: "playRecordingButton")
+        playRecordingButton.isUserInteractionEnabled = false
+        addButton(button: playRecordingButton, buttonPosition: CGPoint(x: Int(frame.midX) + 200, y: topY))
+ */
+        /*
+        //vars for avaudio recording
+        recordButton = Button(defaultButtonImage: "stop.png", action: startRecording, index: 0, buttonName: "recordButton")
+        recordButton.isUserInteractionEnabled = true
+        addButton(button: recordButton, buttonPosition: CGPoint(x: Int(frame.midX) + 250, y: topY))
+ */
     }
     
     func setUpSound() {
+        
         do {
             file = try AKAudioFile(readFileName: "kitten-meow.wav")
             //player = try AKAudioPlayer(file: file!)
@@ -192,7 +243,173 @@ public class Freestyle: SKScene {
         catch {
             print(error)
         }
+        /*
+        //audio setup for avaudio recording
+        recordingSession = AVAudioSession.sharedInstance()
+        do {
+            try recordingSession.setCategory(.playAndRecord, mode: .default)
+            try recordingSession.setActive(true)
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        print("allowed!!!")
+                        self.loadRecordingUI()
+                    } else {
+                        // failed to record!
+                    }
+                }
+            }
+        } catch {
+            print(error)
+        }
+ */
+        
+        /*
+        //audio setup for audiokit recording
+        // Clean tempFiles !
+        AKAudioFile.cleanTempDirectory()
+
+        // Session settings
+        AKSettings.bufferLength = .medium
+
+        do {
+            try AKSettings.setSession(category: .playAndRecord, with: .allowBluetoothA2DP)
+        } catch {
+            AKLog("Could not set session category.")
+        }
+
+        AKSettings.defaultToSpeaker = true
+        
+        let monoToStereo = AKStereoFieldLimiter(mic, amount: 1)
+        micMixer = AKMixer(monoToStereo)
+        micBooster = AKBooster(micMixer)
+        
+        recorder = try? AKNodeRecorder(node: micMixer)
+        if let recordFile = recorder.audioFile {
+            player = AKPlayer(audioFile: recordFile)
+        }
+        player.isLooping = false
+        player.completionHandler = playingEnded
+        
+        do {
+            file = try AKAudioFile(readFileName: "kitten-meow.wav")
+            //player = try AKAudioPlayer(file: file!)
+            try sampler.loadAudioFile(file)
+        }
+        catch {
+            print(error)
+            return
+        }
+        
+        let mainMixer = AKMixer(micBooster, player, sampler)
+        
+        AudioKit.output = mainMixer
+        do {
+            try AudioKit.start()
+        }
+        catch {
+            print(error)
+        }
+        
+        micBooster.gain = 0
+ */
     }
+    
+    /*
+    //funcs for audiokit recording
+    func record(index: Int) {
+        if !currentlyRecording {
+            if AKSettings.headPhonesPlugged {
+                micBooster.gain = 1
+            }
+            do {
+                try recorder.record()
+            } catch { AKLog("Errored recording.") }
+            currentlyRecording = true
+        }
+        else {
+            // Microphone monitoring is muted
+            micBooster.gain = 0
+            tape = recorder.audioFile!
+            player.load(audioFile: tape)
+
+            if let _ = player.audioFile?.duration {
+                recorder.stop()
+                tape.exportAsynchronously(name: "TempTestFile.m4a",
+                                          baseDir: .documents,
+                                          exportFormat: .m4a) {_, exportError in
+                    if let error = exportError {
+                        AKLog("Export Failed \(error)")
+                    } else {
+                        AKLog("Export succeeded")
+                    }
+                }
+                setupUIForPlaying()
+            }
+            currentlyRecording = false
+            playRecordingButton.isUserInteractionEnabled = true
+        }
+    }
+    
+    func playRecording(index: Int) {
+        player.play()
+    }
+    
+    func playingEnded() {
+        DispatchQueue.main.async {
+            print("playing has ended")
+            self.setupUIForPlaying()
+        }
+    }
+    
+    func setupUIForPlaying() {
+        recordButton.color = UIColor.white
+    }
+ */
+    /*
+     //funcs for avaudio recording
+    func loadRecordingUI() {
+        print("recording UI loaded")
+    }
+    
+    func startRecording(index: Int) {
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+
+        do {
+            try audioRecorder =  AVAudioRecorder(url: audioFilename, settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.record()
+
+            print("started recording")
+        } catch {
+            finishRecording(success: false)
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func finishRecording(success: Bool) {
+        audioRecorder.stop()
+        audioRecorder = nil
+
+        if success {
+            print("finished recording")
+        } else {
+            print("recording failed agh")
+            // recording failed :(
+        }
+    }
+ */
     
     func addButton(buttonImage: String, buttonAction: @escaping (Int) -> (), buttonIndex: Int, name: String, buttonPosition: CGPoint) {
         //let buttonYPosition = staffHeightFromGround - 20
@@ -200,6 +417,11 @@ public class Freestyle: SKScene {
         newButton.position = CGPoint(x: buttonPosition.x, y: buttonPosition.y)
         //buttonXPosition += 40
         addChild(newButton)
+    }
+    
+    func addButton(button: Button, buttonPosition: CGPoint) {
+        button.position = CGPoint(x: buttonPosition.x, y: buttonPosition.y)
+        addChild(button)
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -366,6 +588,7 @@ public class Freestyle: SKScene {
                 note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
             }
         }
+        updatePgCount()
     }
     
     func prevPage(index: Int) {
@@ -381,11 +604,20 @@ public class Freestyle: SKScene {
                 note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
             }
         }
+        updatePgCount()
+    }
+    
+    func updatePgCount() {
+        pgCountLabel.text = "page: \(pageIndex+1)/\(maxPages!)"
     }
         
-    func returnToMainMenu(index: Int) {
+    func returnToWelcomeScreen(index: Int) {
         do {
-            try AudioKit.stop()
+            try sampler.stop()
+            sampler.detach()
+            AudioKit.disconnectAllInputs()
+            try AudioKit.shutdown()
+            AudioKit.output = nil
         }
         catch {
             print(error)
@@ -393,33 +625,29 @@ public class Freestyle: SKScene {
 
         for child in self.children {
             child.removeAllActions()
+            child.removeFromParent()
         }
-        self.removeAllActions()
-        self.removeAllChildren()
-        self.removeFromParent()
+        self.scene!.removeAllActions()
+        self.scene!.removeAllChildren()
+        self.scene!.removeFromParent()
         self.view?.presentScene(nil)
- 
-        //var vc: UIViewController = UIViewController()
-        //vc = self.view!.window!.rootViewController!
-        //viewController?.performSegue(withIdentifier: "levelSelectMenu", sender: viewController)
-        //self.viewController?.dismiss(animated: true, completion: nil)
+        
         guard let gameVC = self.viewController as! GameViewController? else {
             return
         }
-        gameVC.returnToWelcomeScreen(gameVC)
+
+        gameVC.unwindFromGameToWelcome(gameVC)
+
         print("bye bitch")
     }
 }
 
-extension Freestyle: SKPhysicsContactDelegate {
+extension FreestyleRecordingFails: SKPhysicsContactDelegate {
     public func didBegin(_ contact: SKPhysicsContact) {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if contactMask == PhysicsCategories.noteCategory | PhysicsCategories.measureBarCategory {
             if let hitInstrument = contact.bodyA.node?.name != nil ? contact.bodyA.node as? Note : contact.bodyB.node as? Note {
-                //print(hitInstrument.noteType)
-                //print(hitInstrument.positionInStaff[1])
-                //print(hitInstrument.getMidiVal())
                 let whichNote = hitInstrument.getMidiVal()
                 do {
                     try sampler.play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)

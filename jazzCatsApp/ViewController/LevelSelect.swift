@@ -53,7 +53,7 @@ class LevelSelect: UIViewController {
         gameVC.selectedLevel = whichLevel
     }
 
-    @IBAction func backAtLevelSelect(segue: UIStoryboardSegue) {}
+    @IBAction func backToLevelSelectFromGame(segue: UIStoryboardSegue) {}
     
 
     /*
