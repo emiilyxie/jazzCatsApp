@@ -110,7 +110,8 @@ extension LevelTemplate {
     }
     
     func playSample(index: Int) {
-        barsNode.run(SKAction.playSoundFileNamed("lvl3song.mp3", waitForCompletion: false))
+        //barsNode.run(SKAction.playSoundFileNamed("lvl3song.mp3", waitForCompletion: false))
+        ansSongPlayer.play()
     }
     
     func generateHint(index: Int) {
@@ -227,6 +228,7 @@ extension LevelTemplate {
     
     func returnToMainMenu(index: Int) {
            do {
+                ansSongPlayer.stop()
                AudioKit.disconnectAllInputs()
                try AudioKit.shutdown()
                AudioKit.output = nil

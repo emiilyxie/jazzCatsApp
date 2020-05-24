@@ -18,18 +18,17 @@ public var lvl3Ans = [[Set(["A4"]), Set(["C5"]), Set(["E5"]), Set(["G5"]), Set([
 public func prepareLevel(level: LevelTemplate, levelNum: Int) {
     switch levelNum {
     case 1:
-        setUpLevel(level: level, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 3, subdivision: 2, maxPages: 1, lvlAns: lvl1Ans)
+        setUpLevel(level: level, levelNum: levelNum,staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 3, subdivision: 2, maxPages: 1, lvlAns: lvl1Ans)
     case 3:
-        setUpLevel(level: level, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 4, lvlAns: lvl3Ans)
+        setUpLevel(level: level, levelNum: levelNum, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 4, lvlAns: lvl3Ans)
     default:
-        setUpLevel(level: level, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 1, lvlAns: lvl1Ans)
+        setUpLevel(level: level, levelNum: levelNum, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 1, lvlAns: lvl1Ans)
     }
 }
 
-public func setUpLevel(level: LevelTemplate, staffBarHeight: Int, staffBarNumber: Int, numberOfMeasures: Int, bpm: Int, subdivision: Int, maxPages: Int, lvlAns: Array<[Set<String>]>) {
+public func setUpLevel(level: LevelTemplate, levelNum: Int, staffBarHeight: Int, staffBarNumber: Int, numberOfMeasures: Int, bpm: Int, subdivision: Int, maxPages: Int, lvlAns: Array<[Set<String>]>) {
     
-    //print(sceneWidth)
-    //print(sceneHeight)
+    level.whichLevel = levelNum
     
     level.staffBarHeight = staffBarHeight
     level.staffBarNumber = staffBarNumber
@@ -51,6 +50,7 @@ public func setUpLevel(level: LevelTemplate, staffBarHeight: Int, staffBarNumber
     level.pages = [[Note]](repeating: [], count: maxPages)
     
     //lvlAns = Array(repeating: [Set<String>](repeating: [], count: totalDivision), count: maxPages)
+    level.lvlAnsSong = "lvl\(levelNum)song.mp3"
     level.lvlAns = lvlAns
     level.myAns = Array(repeating: [Set<String>](repeating: [], count: level.totalDivision), count: maxPages)
 }

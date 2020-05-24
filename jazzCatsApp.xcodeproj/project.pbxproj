@@ -45,6 +45,9 @@
 		ADFC5CED247893DE00225610 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEC247893DE00225610 /* piano.mp3 */; };
 		ADFC5CEF247893F800225610 /* cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEE247893F800225610 /* cat.mp3 */; };
 		ADFC5CF12478945300225610 /* snare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF02478945300225610 /* snare.mp3 */; };
+		ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF42479E9E600225610 /* lvl1song.mp3 */; };
+		ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */; };
+		ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF82479E9F400225610 /* lvl3song.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +104,9 @@
 		ADFC5CEC247893DE00225610 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
 		ADFC5CEE247893F800225610 /* cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat.mp3; sourceTree = "<group>"; };
 		ADFC5CF02478945300225610 /* snare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snare.mp3; sourceTree = "<group>"; };
+		ADFC5CF42479E9E600225610 /* lvl1song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl1song.mp3; sourceTree = "<group>"; };
+		ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl2song.mp3; sourceTree = "<group>"; };
+		ADFC5CF82479E9F400225610 /* lvl3song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl3song.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +157,9 @@
 		AD3826DA245D0FC60027849D /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				ADFC5CF42479E9E600225610 /* lvl1song.mp3 */,
+				ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */,
+				ADFC5CF82479E9F400225610 /* lvl3song.mp3 */,
 				ADFC5CF02478945300225610 /* snare.mp3 */,
 				ADFC5CEE247893F800225610 /* cat.mp3 */,
 				ADFC5CEC247893DE00225610 /* piano.mp3 */,
@@ -315,12 +324,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */,
+				ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
 				ADFC5CEF247893F800225610 /* cat.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
 				ADFC5CF12478945300225610 /* snare.mp3 in Resources */,
+				ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
 				AD9395B024747CD10037E307 /* Main.storyboard in Resources */,
 				ADFC5CED247893DE00225610 /* piano.mp3 in Resources */,

@@ -38,7 +38,6 @@ extension LevelTemplate: SKPhysicsContactDelegate {
                     default:
                         try samplers[0].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
                     }
-                    //try samplers[0].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
                 }
                 catch {
                     print(error)

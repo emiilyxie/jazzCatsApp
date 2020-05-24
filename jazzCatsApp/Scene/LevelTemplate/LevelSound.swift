@@ -13,24 +13,27 @@ import AudioKit
 extension LevelTemplate {
     
     func setUpSound() {
-        /*
-        do {
-            file = try AKAudioFile(readFileName: "kitten-meow.wav")
-            try sampler.loadAudioFile(file)
-        }
-        catch {
-            print(error)
-            return
-        }
+        setUpSamples()
+        setUpPlayer()
         
-        AudioKit.output = sampler
+        var AKNodeArray: [AKNode] = []
+        for sample in samplers {
+            AKNodeArray.append(sample)
+        }
+        AKNodeArray.append(ansSongPlayer)
+        
+        mixer = AKMixer(AKNodeArray)
+        //AudioKit.output = answerSong
+        AudioKit.output = mixer
         do {
             try AudioKit.start()
         }
         catch {
             print(error)
         }
- */
+    }
+    
+    func setUpSamples() {
         let audioArray = getAvailableAudioFiles()
         var akSampleFile: AKAudioFile!
         var akSampleSampler: AKAppleSampler!
@@ -42,25 +45,22 @@ extension LevelTemplate {
                 try akSampleSampler.loadAudioFile(akSampleFile!)
                 samplers[i] = akSampleSampler
             }
-            //file = try AKAudioFile(readFileName: "snare.mp3")
-            //try sampler.loadAudioFile(file)
         }
         catch {
             print(error)
-            return
         }
-        
-        mixer = AKMixer(samplers)
-        AudioKit.output = mixer
-        //gloablSampler = akSampleSampler
-        //AudioKit.output = gloablSampler
-        //AudioKit.output = sampler
+    }
+    
+    func setUpPlayer() {
+        var sampleSong: AKAudioFile!
         do {
-            try AudioKit.start()
+            sampleSong = try AKAudioFile(readFileName: lvlAnsSong)
+            ansSongPlayer = try AKAudioPlayer(file: sampleSong)
         }
         catch {
             print(error)
         }
+        ansSongPlayer.looping = false
     }
     
     func getAvailableAudioFiles() -> Array<String> {

@@ -14,6 +14,7 @@ public class LevelTemplate: SKScene {
 
     weak var viewController: UIViewController?
     let gameCamera = GameCamera()
+    var whichLevel: Int!
     
     public var staffBarHeight: Int!
     public var staffBarNumber: Int!
@@ -40,11 +41,11 @@ public class LevelTemplate: SKScene {
     var yayYouDidIt: SKSpriteNode!
     var sorryTryAgain: SKSpriteNode!
     
-    //var file: AKAudioFile!
-    //var sampler = AKAppleSampler()
     var samplers: Array<AKAppleSampler>!
     var mixer: AKMixer!
+    var ansSongPlayer: AKAudioPlayer!
     
+    var lvlAnsSong: String!
     var lvlAns: Array<[Set<String>]>!
     var myAns: Array<[Set<String>]>!
     var hintNum = 0
