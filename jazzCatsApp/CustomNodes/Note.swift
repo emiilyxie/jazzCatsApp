@@ -135,4 +135,8 @@ public class Note: SKSpriteNode {
         return midiVal
     }
     
+    public func getAnsArray() -> [Int] {
+        return [positionInStaff[0], getMidiVal()]
+    }
+    
 }

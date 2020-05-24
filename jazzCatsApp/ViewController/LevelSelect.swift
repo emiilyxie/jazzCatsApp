@@ -24,7 +24,7 @@ class LevelSelect: UIViewController {
     }
     
     @IBAction func selectLevel2(_ sender: Any) {
-        whichLevel = 1
+        whichLevel = 2
         performSegue(withIdentifier: "goToLevelSegue", sender: self)
     }
     

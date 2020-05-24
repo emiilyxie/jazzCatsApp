@@ -46,8 +46,11 @@ public class LevelTemplate: SKScene {
     var ansSongPlayer: AKAudioPlayer!
     
     var lvlAnsSong: String!
-    var lvlAns: Array<[Set<String>]>!
-    var myAns: Array<[Set<String>]>!
+    //var lvlAns: Array<[Set<String>]>!
+    //var lvlAns: Array<Set<[Int]>>!
+    var lvlAns: [Set<[Int]>] = []
+    //var myAns: Array<[Set<String>]>!
+    var myAns: [Set<[Int]>] = []
     var hintNum = 0
     
     public override func didMove(to view: SKView) {

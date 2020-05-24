@@ -115,8 +115,37 @@ extension LevelTemplate {
     }
     
     func generateHint(index: Int) {
-        if hintNum < lvlAns[pageIndex].count && !lvlAns[pageIndex][hintNum].isEmpty {
-            for pitches in lvlAns[pageIndex][hintNum] {
+        if hintNum < lvlAns[pageIndex].count && !lvlAns[pageIndex].isEmpty {
+            for noteAnswer in lvlAns[pageIndex] {
+                if !myAns[pageIndex].contains(noteAnswer) {
+                    let currNotePos = ansArrayToScenePos(ansVal: noteAnswer)
+                    //addNote(noteType: selectedNoteType, notePosition: currNotePos)
+                    //let currentNote = pages[pageIndex].last!
+                    let currentNote = Note(type: selectedNoteType)
+                    currentNote.name = "note"
+                    currentNote.position = currNotePos
+                    currentNote.positionInStaff = getStaffPosition(notePosition: currNotePos)
+                    currentNote.physicsBody = SKPhysicsBody(rectangleOf: currentNote.size)
+                    currentNote.physicsBody?.isDynamic = false
+                    currentNote.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
+                    currentNote.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
+                    currentNote.physicsBody?.collisionBitMask = PhysicsCategories.none
+                    if shouldBeFlatted(midiVal: noteAnswer[1]) {
+                    //if currentNote.getNoteName().contains("s") {
+                        currentNote.toggleFlat()
+                        let flat = SKSpriteNode(imageNamed: "flat.png")
+                        flat.size = scaleNode(size: flat.size, factor: Double(0.05))
+                        flat.position = CGPoint(x: -20, y: 0)
+                        currentNote.addChild(flat)
+                    //}
+                    }
+                    barsNode.addChild(currentNote)
+                    myAns[pageIndex].insert(currentNote.getAnsArray())
+                    pages[pageIndex].append(currentNote)
+                    hintNum += 1
+                    return
+                }
+                /*
                 if !pitches.isEmpty && hintNum < lvlAns[pageIndex].count {
                     let xPos = hintNum * divisionWidth + indentLength
                     var yPos = (trebleNotes.firstIndex(of: pitches)! - 1) * staffBarHeight + 10
@@ -129,8 +158,8 @@ extension LevelTemplate {
                         flat.size = scaleNode(size: flat.size, factor: Double(0.05))
                         flat.position = CGPoint(x: -20, y: 0)
                         currentNote.addChild(flat)
-                        myAns[pageIndex][hintNum].remove("C4")
-                        myAns[pageIndex][hintNum].insert(currentNote.getNoteName())
+                        //myAns[pageIndex][hintNum].remove("C4")
+                        //myAns[pageIndex][hintNum].insert(currentNote.getNoteName())
                     }
                     else if pitches.contains("s") {
                         yPos = (trebleNotes.firstIndex(of: pitches)! - 13) * staffBarHeight + 10
@@ -142,22 +171,24 @@ extension LevelTemplate {
                         sharp.position = CGPoint(x: -20, y: 0)
                         currentNote.addChild(sharp)
                         let naturalNote = String(pitches.prefix(2))
-                        myAns[pageIndex][hintNum].remove(naturalNote)
-                        myAns[pageIndex][hintNum].insert(currentNote.getNoteName())
+                        //myAns[pageIndex][hintNum].remove(naturalNote)
+                        //myAns[pageIndex][hintNum].insert(currentNote.getNoteName())
                     }
                     else {
                         addNote(noteType: selectedNoteType, notePosition: CGPoint(x: xPos, y: yPos))
                         let currentNote = pages[pageIndex].last!
                         myAns[pageIndex][hintNum].insert(currentNote.getNoteName())
                     }
-                }
+ */
+                
             }
-            hintNum += 1
-            return
-         }
-        hintNum += 1
+        }
+        else {
+            print("no more hints")
+        }
     }
     
+    /*
     func generatePage(index: Int) {
         var count = 0
         let noteSet = lvlAns[pageIndex]
@@ -175,6 +206,7 @@ extension LevelTemplate {
             }
         }
     }
+ */
     
     func submitAns(index: Int) {
         if myAns.elementsEqual(lvlAns) {
@@ -188,6 +220,7 @@ extension LevelTemplate {
                 self.sorryTryAgain.zPosition = -100
             }
         }
+        print(myAns)
     }
     
     func nextPage(index: Int) {

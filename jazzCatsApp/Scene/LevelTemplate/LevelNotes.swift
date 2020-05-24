@@ -28,12 +28,22 @@ extension LevelTemplate {
                 location = touch.location(in: barsNode)
                 let maxX = CGFloat(indentLength + resultWidth - divisionWidth/2)
                 if location.x >= CGFloat(indentLength) && location.x < maxX {
+                    let tempNote = Note(type: selectedNoteType)
+                    let snappedLocation = snapNoteLocation(touchedPoint: location)
+                    tempNote.positionInStaff = getStaffPosition(notePosition: snappedLocation)
+                    let noteAns = tempNote.getAnsArray()
+                    if !myAns[pageIndex].contains(noteAns) {
+                        addNote(noteType: selectedNoteType, notePosition: snappedLocation)
+                        //myAns[pageIndex].insert(noteAns)
+                    }
+                    /*
                     let arrayVal = getStaffPosition(notePosition: location)
                     let noteVal = trebleNotes[arrayVal[1] + 1]
                     if !myAns[pageIndex][arrayVal[0]].contains(noteVal) {
                         let snappedLocation = snapNoteLocation(touchedPoint: location)
                         addNote(noteType: selectedNoteType, notePosition: snappedLocation)
                     }
+ */
                 }
                 
             }
@@ -41,7 +51,8 @@ extension LevelTemplate {
             for node in touchedNodes {
                 if let noteNode = node as? Note {
                     noteNode.removeFromParent()
-                    myAns[pageIndex][noteNode.positionInStaff[0]].remove(noteNode.getNoteName())
+                    //myAns[pageIndex][noteNode.positionInStaff[0]].remove(noteNode.getNoteName())
+                    myAns[pageIndex].remove(noteNode.getAnsArray())
                     pages[pageIndex].removeAll { $0 == noteNode }
                 }
             }
@@ -52,7 +63,7 @@ extension LevelTemplate {
                     noteNode.toggleFlat()
                     noteNode.removeAllChildren()
                 }
-                let prevNoteVal = noteNode.getNoteName()
+                let prevNoteAns = noteNode.getAnsArray()
                 noteNode.toggleSharp()
                 if noteNode.isSharp {
                     //let arrayVal = getStaffPosition(notePosition: location)
@@ -68,8 +79,10 @@ extension LevelTemplate {
                 else {
                     noteNode.removeAllChildren()
                 }
-                myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
-                myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
+                //myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
+                myAns[pageIndex].insert(noteNode.getAnsArray())
+                //myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
+                myAns[pageIndex].remove(prevNoteAns)
             }
         case "flatMode":
             let topNode = touchedNodes.first
@@ -78,21 +91,23 @@ extension LevelTemplate {
                     noteNode.toggleSharp()
                     noteNode.removeAllChildren()
                 }
-                let prevNoteVal = noteNode.getNoteName()
+                let prevNoteAns = noteNode.getAnsArray()
                 noteNode.toggleFlat()
                 if noteNode.isFlat {
-                    myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
-                    myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
+                    //myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
+                    //myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
                     let flat = SKSpriteNode(imageNamed: "flat.png")
                     flat.size = scaleNode(size: flat.size, factor: Double(0.025))
                     flat.position = CGPoint(x: -20, y: 0)
                     noteNode.addChild(flat)
                 }
                 else {
-                    myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
-                    myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
+                    //myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
+                    //myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
                     noteNode.removeAllChildren()
                 }
+                myAns[pageIndex].insert(noteNode.getAnsArray())
+                myAns[pageIndex].remove(prevNoteAns)
             }
         default: // not selected or navigateMode
             return
@@ -109,7 +124,8 @@ extension LevelTemplate {
         note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
         note.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
         note.physicsBody?.collisionBitMask = PhysicsCategories.none
-        myAns[pageIndex][note.positionInStaff[0]].insert(trebleNotes[note.positionInStaff[1] + 1])
+        //myAns[pageIndex][note.positionInStaff[0]].insert(trebleNotes[note.positionInStaff[1] + 1])
+        myAns[pageIndex].insert(note.getAnsArray())
         pages[pageIndex].append(note)
         barsNode.addChild(note)
     }
@@ -128,6 +144,87 @@ extension LevelTemplate {
         let xPos = (Int(notePosition.x) - indentLength + 15) / divisionWidth
         let yPos = Int(notePosition.y) / staffBarHeight
         return [xPos, yPos]
+    }
+    
+    func midiValToNotePos(midiVal: Int) -> Int {
+        let distFromC = midiVal - middleCMidi
+        var notePos = 0
+        // handling c flat for now
+        if midiVal == 59 {
+            return 0
+        }
+        if distFromC > 0 {
+            //print("midival: \(midiVal)")
+            let whichOctave = Int(floor(Double(distFromC / octaveSize)))
+            let whichPos = distFromC % octaveSize
+            let octavePos = whichOctave * 7
+            if whichPos == 0 {
+                return octavePos
+            }
+            notePos += octavePos
+            var counter = 0
+            for staffDist in 0...octaveStepSizes.count-1 {
+                counter += octaveStepSizes[staffDist]
+                if counter >= whichPos {
+                    notePos += staffDist
+                    break
+                }
+            }
+            //print("note pos: \(notePos)")
+            return notePos + 1 + middleCPos
+        }
+        else if distFromC < 0 {
+            print("aah less than C")
+            let absDist = abs(distFromC)
+            let whichOctave = Int(floor(Double(absDist / octaveSize)))
+            let whichPos = absDist % octaveSize
+            let octavePos = whichOctave * 7
+            notePos += octavePos
+            var counter = 0
+            for staffDist in 0...reversedOctaveStepSizes.count-1 {
+                counter += reversedOctaveStepSizes[staffDist]
+                if counter >= whichPos {
+                    notePos += staffDist
+                    break
+                }
+            }
+            return middleCPos - notePos - 1
+        }
+        else {return 0}
+    }
+    
+     func staffPosToScenePos(staffPos: [Int]) -> CGPoint {
+        let xPos = indentLength + staffPos[0] * divisionWidth
+        let yPos = staffPos[1] * staffBarHeight + (staffBarHeight / 2)
+        return CGPoint(x: xPos, y: yPos)
+    }
+    
+     func ansArrayToScenePos(ansVal: [Int]) -> CGPoint {
+        let noteWhere = ansVal[0]
+        let whichNote = midiValToNotePos(midiVal: ansVal[1])
+        let scenePos = staffPosToScenePos(staffPos: [noteWhere, whichNote])
+        return scenePos
+    }
+    
+    func shouldBeFlatted(midiVal: Int) -> Bool {
+        if midiVal == 59 { return true } // handling c flat for now
+        if midiVal <= middleCMidi { return false }
+        let whichNote = (midiVal - middleCMidi) % octaveSize
+        print("midival: \(midiVal)")
+        print("which note: \(whichNote)")
+        var counter = 0
+        if whichNote == 0 { return false }
+        for i in 0...octaveStepSizes.count-1 {
+            counter += octaveStepSizes[i]
+            if counter > whichNote {
+                return true
+            }
+            else if whichNote == counter {
+                return false
+            }
+        }
+        print("hmm uh oh cant determine flat")
+        return false
     }
     
 }

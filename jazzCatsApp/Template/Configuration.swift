@@ -25,7 +25,7 @@ public var middleCMidi = 60
 public let octaveSize = 12
 public let octaveStepSizes = [2, 2, 1, 2, 2, 2, 1]
 public let reversedOctaveStepSizes = [1, 2, 2, 2, 1, 2, 2]
-public let middleCPos = 0
+public var middleCPos = 0
 
 public var midiNoteDict = [("F2", 41), ("G2", 43), ("A2", 45), ("B2", 47), ("C3", 48), ("D3", 50), ("E3", 52), ("F3", 53), ("G3", 55), ("A3", 57), ("B3", 59), ("C4", 60), ("D4", 62), ("E4", 64), ("F4", 65), ("G4", 67), ("A4", 69), ("B4", 71), ("C5", 72), ("D5", 74), ("E5", 76), ("F5", 77), ("G5", 79)]
 
