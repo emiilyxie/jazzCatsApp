@@ -95,6 +95,8 @@ class SettingsPopupVC: UIViewController {
         freestyleScene.numberOfMeasures = newMPP
         freestyleScene.bpm = newBPM
         freestyleScene.subdivision = newSPB
+        freestyleScene.oldNumOfMeasures = currentMPP
+        freestyleScene.oldBpm = currentBPM
         freestyleScene.oldSubdivision = currentSPB
         freestyleScene.reloadLayout()
     }

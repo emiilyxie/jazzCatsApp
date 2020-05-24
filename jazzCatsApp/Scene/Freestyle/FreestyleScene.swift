@@ -21,7 +21,9 @@ public class Freestyle: SKScene {
     public var staffHeightFromGround: Int!
 
     public var numberOfMeasures: Int!
+    public var oldNumOfMeasures: Int!
     public var bpm: Int!
+    public var oldBpm: Int!
     public var subdivision: Int!
     public var oldSubdivision: Int!
     public var totalDivision: Int!

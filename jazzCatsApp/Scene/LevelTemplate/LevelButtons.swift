@@ -220,7 +220,7 @@ extension LevelTemplate {
                 self.sorryTryAgain.zPosition = -100
             }
         }
-        print(myAns)
+        //print(myAns)
     }
     
     func nextPage(index: Int) {

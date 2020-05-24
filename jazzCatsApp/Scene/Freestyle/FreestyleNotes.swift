@@ -111,4 +111,10 @@ extension Freestyle {
         let yPos = Int(notePosition.y) / staffBarHeight
         return [xPos, yPos]
     }
+    
+    func staffPosToScenePos(staffPos: [Int]) -> CGPoint {
+        let xPos = indentLength + staffPos[0] * divisionWidth
+        let yPos = staffPos[1] * staffBarHeight + (staffBarHeight / 2)
+        return CGPoint(x: xPos, y: yPos)
+    }
 }

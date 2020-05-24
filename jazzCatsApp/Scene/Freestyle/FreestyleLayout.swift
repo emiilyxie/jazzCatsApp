@@ -17,7 +17,7 @@ extension Freestyle {
         setUpStaff()
         setUpMeasureBar()
         setUpButtons()
-        setUpPopups()
+        //setUpPopups()
     }
     
     func setUpBackground() {
@@ -105,6 +105,8 @@ extension Freestyle {
         barsNode.addChild(trebleClef)
     }
     
+    /*
+    
     func setUpPopups() {
         settingsPopup = SKShapeNode(rect: CGRect(width: frame.width/2, height: frame.height*0.75), cornerRadius: CGFloat(5))
         settingsPopup.fillColor = UIColor(red: 0.97, green: 0.84, blue: 0.58, alpha: 1.00)
@@ -160,6 +162,7 @@ extension Freestyle {
         labelNode.addChild(minusNumCtrl)
         labelNode.addChild(plusNumCtrl)
     }
+ */
     
     func reloadLayout() {
         totalDivision = numberOfMeasures * bpm * subdivision
@@ -169,12 +172,12 @@ extension Freestyle {
         setUpStaff()
         pageIndex = 0
         updatePgCount()
-        updatePgArray()
+        repositionNotes()
     }
     
-    func updatePgArray() {
+    func repositionNotes() {
         let oldDivision = numberOfMeasures * bpm * oldSubdivision
-        let oldDivWidth = (Int(self.frame.width) - indentLength) / oldDivision
+        //let oldDivWidth = (Int(self.frame.width) - indentLength) / oldDivision
         var newPgArray = [[Note]](repeating: [], count: maxPages)
         for i in 0...pages.count-1 {
             for j in 0...pages[i].count {
@@ -182,19 +185,31 @@ extension Freestyle {
                 let currentNote = pages[i][j-1]
                 let maxNewArrayPos = maxPages * oldDivision
                 if currentNote.positionInStaff[0]*(i+1) < maxNewArrayPos {
-                    let universalNoteLocation = currentNote.positionInStaff[0] * (i+1)
-                    let newPgNum = Int(floor(universalNoteLocation/oldDivision))
-                    let newPos = currentNote.positionInStaff[0]*(i+1) % oldDivision
+                    let universalNoteLocation = (currentNote.positionInStaff[0]) + (i * oldNumOfMeasures * oldBpm * oldSubdivision)
+                    //print("universal note loc: \(universalNoteLocation)")
+                    let newPgNum = Int(floor(universalNoteLocation/(oldDivision*numberOfMeasures)))
+                    //print("new pg num: \(newPgNum)")
+                    let newPos = universalNoteLocation % oldDivision
+                    //print("new pos: \(newPos)")
                     currentNote.positionInStaff[0] = newPos
-                    let newXpos = indentLength + newPos * oldDivWidth
-                    let newYPos = currentNote.positionInStaff[1] * staffBarHeight
-                    currentNote.position = CGPoint(x: newXpos, y: newYPos)
+                    //let newXpos = indentLength + newPos * oldDivWidth
+                    //let newYPos = currentNote.positionInStaff[1] * staffBarHeight + (staffBarHeight / 2)
+                    let newScenePos = staffPosToScenePos(staffPos: currentNote.positionInStaff)
+                    currentNote.position = newScenePos
                     barsNode.addChild(currentNote)
                     newPgArray[newPgNum].append(currentNote)
                 }
             }
         }
         pages = newPgArray
+        for page in pages {
+            for note in page {
+                note.isHidden = true
+            }
+        }
+        for note in pages[0] {
+            note.isHidden = false
+        }
     }
     
     func addCamera() {
