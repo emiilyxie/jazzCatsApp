@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,7 @@
 		AD9395AE247478250037E307 /* LevelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AD247478250037E307 /* LevelSetup.swift */; };
 		AD9395B024747CD10037E307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9395AF24747CD10037E307 /* Main.storyboard */; };
 		AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395B124747D3F0037E307 /* LevelSelect.swift */; };
+		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
 		ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */; };
 		ADFA24322477A1FE008BC384 /* NumberControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA24312477A1FE008BC384 /* NumberControls.swift */; };
@@ -48,6 +49,7 @@
 		ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF42479E9E600225610 /* lvl1song.mp3 */; };
 		ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */; };
 		ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF82479E9F400225610 /* lvl3song.mp3 */; };
+		D7102F5BAC4B7E69ACB26ECA /* Pods_jazzCatsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +89,7 @@
 		AD9395AD247478250037E307 /* LevelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSetup.swift; sourceTree = "<group>"; };
 		AD9395AF24747CD10037E307 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AD9395B124747D3F0037E307 /* LevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelect.swift; sourceTree = "<group>"; };
+		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleRecordingFails.swift; sourceTree = "<group>"; };
 		ADFA24312477A1FE008BC384 /* NumberControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberControls.swift; sourceTree = "<group>"; };
@@ -107,6 +110,9 @@
 		ADFC5CF42479E9E600225610 /* lvl1song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl1song.mp3; sourceTree = "<group>"; };
 		ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl2song.mp3; sourceTree = "<group>"; };
 		ADFC5CF82479E9F400225610 /* lvl3song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl3song.mp3; sourceTree = "<group>"; };
+		B4D4512561694B850C9F9BD4 /* Pods-jazzCatsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jazzCatsApp.release.xcconfig"; path = "Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp.release.xcconfig"; sourceTree = "<group>"; };
+		CED5AB26DDBF3FB455552657 /* Pods-jazzCatsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jazzCatsApp.debug.xcconfig"; path = "Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jazzCatsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,12 +121,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD3826ED245D20700027849D /* AudioKit.framework in Frameworks */,
+				D7102F5BAC4B7E69ACB26ECA /* Pods_jazzCatsApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67F3F04F77298D7A153213EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CED5AB26DDBF3FB455552657 /* Pods-jazzCatsApp.debug.xcconfig */,
+				B4D4512561694B850C9F9BD4 /* Pods-jazzCatsApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AD3826B6245D0F610027849D = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +144,7 @@
 				AD3826C1245D0F610027849D /* jazzCatsApp */,
 				AD3826C0245D0F610027849D /* Products */,
 				AD3826EB245D20700027849D /* Frameworks */,
+				67F3F04F77298D7A153213EC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +159,7 @@
 		AD3826C1245D0F610027849D /* jazzCatsApp */ = {
 			isa = PBXGroup;
 			children = (
+				ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */,
 				AD3826D4245D0F630027849D /* Info.plist */,
 				AD3826DF245D0FF40027849D /* Template */,
 				AD3826DE245D0FE70027849D /* Scene */,
@@ -233,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				AD3826EC245D20700027849D /* AudioKit.framework */,
+				F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -272,10 +291,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD3826D7245D0F630027849D /* Build configuration list for PBXNativeTarget "jazzCatsApp" */;
 			buildPhases = (
+				247397944AA46249C4DA9E15 /* [CP] Check Pods Manifest.lock */,
 				AD3826BB245D0F610027849D /* Sources */,
 				AD3826BC245D0F610027849D /* Frameworks */,
 				AD3826BD245D0F610027849D /* Resources */,
 				AD3826EF245D20710027849D /* Embed Frameworks */,
+				C4A9266A7758926A767EED68 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -326,6 +347,7 @@
 			files = (
 				ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */,
 				ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */,
+				ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
 				ADFC5CEF247893F800225610 /* cat.mp3 in Resources */,
@@ -342,6 +364,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		247397944AA46249C4DA9E15 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jazzCatsApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4A9266A7758926A767EED68 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD3826BB245D0F610027849D /* Sources */ = {
@@ -514,18 +578,25 @@
 		};
 		AD3826D8245D0F630027849D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CED5AB26DDBF3FB455552657 /* Pods-jazzCatsApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 89QV5N66V7;
-				FRAMEWORK_SEARCH_PATHS = "/Users/emilyxie/Projects/udemy/AudioKit-iOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/emilyxie/Projects/udemy/AudioKit-iOS",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = jazzCatsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "-lc++";
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.exie.jazzcats.jazzCatsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -535,18 +606,25 @@
 		};
 		AD3826D9245D0F630027849D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4D4512561694B850C9F9BD4 /* Pods-jazzCatsApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 89QV5N66V7;
-				FRAMEWORK_SEARCH_PATHS = "/Users/emilyxie/Projects/udemy/AudioKit-iOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/emilyxie/Projects/udemy/AudioKit-iOS",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = jazzCatsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "-lc++";
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.exie.jazzcats.jazzCatsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

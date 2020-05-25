@@ -10,6 +10,7 @@ public class Note: SKSpriteNode {
     
     public let noteType: NoteType
     public var positionInStaff = [0,0]
+    public var universalTimePos: Double?
     public var soundBase: String
     public var audioFile: String
     public var isSharp = false
@@ -57,15 +58,6 @@ public class Note: SKSpriteNode {
         if soundBase == "snare" {
             return "\(soundBase)/\(soundBase).mp3"
         }
-        /*
-        if isSharp {
-            return "\(soundBase)/\(soundBase)\(noteVal)s.mp3"
-        }
-        if isFlat {
-            noteVal = trebleNotes[positionInStaff[1]]
-            return "\(soundBase)/\(soundBase)\(noteVal)s.mp3"
-        }
- */
         return "\(soundBase)/\(soundBase)\(noteVal).mp3"
     }
     
@@ -139,4 +131,26 @@ public class Note: SKSpriteNode {
         return [positionInStaff[0], getMidiVal()]
     }
     
+    public func setPositions() {
+        
+        //print(self.parent?.parent)
+        
+        if let scene = self.parent?.parent as? LevelTemplate {
+            self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
+            let conversion = Double(scene.subdivision / (scene.pageIndex + 1))
+            self.universalTimePos = Double(self.positionInStaff[0]) / conversion
+        }
+        else {
+            //print("parent is not level template")
+        }
+        
+        if let scene = self.parent?.parent as? Freestyle {
+            self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
+            let conversion = Double(scene.subdivision / (scene.pageIndex + 1))
+            self.universalTimePos = Double(self.positionInStaff[0]) / conversion
+        }
+        else {
+            //print("parent is not freestyle")
+        }
+    }
 }

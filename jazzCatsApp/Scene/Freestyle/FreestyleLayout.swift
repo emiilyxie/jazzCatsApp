@@ -166,7 +166,7 @@ extension Freestyle {
     
     func reloadLayout() {
         totalDivision = numberOfMeasures * bpm * subdivision
-        divisionWidth = (Int(self.frame.width) - indentLength) / totalDivision
+        divisionWidth = resultWidth / totalDivision
         barsNode.removeAllChildren()
         barsNode.removeFromParent()
         setUpStaff()
@@ -177,27 +177,35 @@ extension Freestyle {
     
     func repositionNotes() {
         let oldDivision = numberOfMeasures * bpm * oldSubdivision
-        //let oldDivWidth = (Int(self.frame.width) - indentLength) / oldDivision
+        //let oldDivWidth = staffWidth / oldDivision
         var newPgArray = [[Note]](repeating: [], count: maxPages)
+        let maxNewArrayPos = maxPages * oldDivision
+        
+        // get each note
         for i in 0...pages.count-1 {
             for j in 0...pages[i].count {
                 if j == 0 {continue}
                 let currentNote = pages[i][j-1]
-                let maxNewArrayPos = maxPages * oldDivision
                 if currentNote.positionInStaff[0]*(i+1) < maxNewArrayPos {
-                    let universalNoteLocation = (currentNote.positionInStaff[0]) + (i * oldNumOfMeasures * oldBpm * oldSubdivision)
+                    //let universalNoteLocation = (currentNote.positionInStaff[0]) + (i * oldNumOfMeasures * oldBpm * oldSubdivision)
+                    let universalNoteLocation = currentNote.universalTimePos!
                     //print("universal note loc: \(universalNoteLocation)")
-                    let newPgNum = Int(floor(universalNoteLocation/(oldDivision*numberOfMeasures)))
-                    //print("new pg num: \(newPgNum)")
-                    let newPos = universalNoteLocation % oldDivision
+                    //let newPgNum = Int(floor(universalNoteLocation/(oldDivision*numberOfMeasures)))
+                    let newPgNum = Int(floor(universalNoteLocation/(bpm*numberOfMeasures)))
+                    print("new pg num: \(newPgNum)")
+                    let newPos = (Int(universalNoteLocation * oldSubdivision)) % oldDivision
                     //print("new pos: \(newPos)")
                     currentNote.positionInStaff[0] = newPos
                     //let newXpos = indentLength + newPos * oldDivWidth
-                    //let newYPos = currentNote.positionInStaff[1] * staffBarHeight + (staffBarHeight / 2)
-                    let newScenePos = staffPosToScenePos(staffPos: currentNote.positionInStaff)
-                    currentNote.position = newScenePos
-                    barsNode.addChild(currentNote)
-                    newPgArray[newPgNum].append(currentNote)
+                    let universalPageLoc = universalNoteLocation - (newPgNum * numberOfMeasures * bpm)
+                    let newXpos = indentLength + universalPageLoc * (resultWidth / bpm / numberOfMeasures)
+                    let newYPos = currentNote.positionInStaff[1] * staffBarHeight + (staffBarHeight / 2)
+                    //let newScenePos = staffPosToScenePos(staffPos: currentNote.positionInStaff)
+                    currentNote.position = CGPoint(x: newXpos, y: Double(newYPos))
+                    if newPgNum < maxPages {
+                        barsNode.addChild(currentNote)
+                        newPgArray[newPgNum].append(currentNote)
+                    }
                 }
             }
         }

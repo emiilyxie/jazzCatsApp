@@ -30,7 +30,8 @@ extension LevelTemplate {
                 if location.x >= CGFloat(indentLength) && location.x < maxX {
                     let tempNote = Note(type: selectedNoteType)
                     let snappedLocation = snapNoteLocation(touchedPoint: location)
-                    tempNote.positionInStaff = getStaffPosition(notePosition: snappedLocation)
+                    tempNote.position = snappedLocation
+                    tempNote.setPositions()
                     let noteAns = tempNote.getAnsArray()
                     if !myAns[pageIndex].contains(noteAns) {
                         addNote(noteType: selectedNoteType, notePosition: snappedLocation)
@@ -118,7 +119,7 @@ extension LevelTemplate {
         let note = Note(type: noteType)
         note.name = "note"
         note.position = notePosition
-        note.positionInStaff = getStaffPosition(notePosition: notePosition)
+        //note.positionInStaff = getStaffPosition(notePosition: notePosition)
         note.physicsBody = SKPhysicsBody(rectangleOf: note.size)
         note.physicsBody?.isDynamic = false
         note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
@@ -128,6 +129,7 @@ extension LevelTemplate {
         myAns[pageIndex].insert(note.getAnsArray())
         pages[pageIndex].append(note)
         barsNode.addChild(note)
+        note.setPositions()
     }
     
     func snapNoteLocation(touchedPoint: CGPoint) -> CGPoint {
@@ -139,6 +141,9 @@ extension LevelTemplate {
         let yPos = Int(round(touchedPoint.y / staffBarHeightFloat) * staffBarHeightFloat - (staffBarHeightFloat / 2))
         return CGPoint(x: xPos, y: yPos)
     }
+    
+    
+    // Conversion Functions
     
     func getStaffPosition(notePosition: CGPoint) -> Array<Int> {
         let xPos = (Int(notePosition.x) - indentLength + 15) / divisionWidth

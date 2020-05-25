@@ -84,7 +84,7 @@ extension Freestyle {
         let note = Note(type: noteType)
         note.name = "note"
         note.position = notePosition
-        note.positionInStaff = getStaffPosition(notePosition: notePosition)
+        //note.positionInStaff = getStaffPosition(notePosition: notePosition)
         note.physicsBody = SKPhysicsBody(rectangleOf: note.size)
         note.physicsBody?.isDynamic = false
         note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
@@ -92,6 +92,7 @@ extension Freestyle {
         note.physicsBody?.collisionBitMask = PhysicsCategories.none
         pages[pageIndex].append(note)
         barsNode.addChild(note)
+        note.setPositions()
     }
     
     func snapNoteLocation(touchedPoint: CGPoint) -> CGPoint {
