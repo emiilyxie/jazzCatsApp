@@ -90,9 +90,10 @@ extension Freestyle {
         note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
         note.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
         note.physicsBody?.collisionBitMask = PhysicsCategories.none
-        pages[pageIndex].append(note)
+        
         barsNode.addChild(note)
         note.setPositions()
+        pages[pageIndex].append(note)
     }
     
     func snapNoteLocation(touchedPoint: CGPoint) -> CGPoint {

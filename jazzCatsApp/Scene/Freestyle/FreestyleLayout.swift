@@ -105,65 +105,6 @@ extension Freestyle {
         barsNode.addChild(trebleClef)
     }
     
-    /*
-    
-    func setUpPopups() {
-        settingsPopup = SKShapeNode(rect: CGRect(width: frame.width/2, height: frame.height*0.75), cornerRadius: CGFloat(5))
-        settingsPopup.fillColor = UIColor(red: 0.97, green: 0.84, blue: 0.58, alpha: 1.00)
-        settingsPopup.position = CGPoint(x: 0, y: 0)
-        settingsPopup.zPosition = -100
-        
-        //let leftColX = CGFloat(10)
-        //let rightColX = settingsPopup.frame.maxX-40
-        
-        createLabelNode(text: "pages: ", yPos: CGFloat(50))
-        createLabelNode(text: "measures per page: ", yPos: CGFloat(100))
-        createLabelNode(text: "beats per measure: ", yPos: CGFloat(150))
-        createLabelNode(text: "subdivision per beat: ", yPos: CGFloat(200))
-
-        createNumbersAndCtrls(num: maxPages, yPos: CGFloat(50), minNum: 1, maxNum: 8)
-        createNumbersAndCtrls(num: numberOfMeasures, yPos: CGFloat(100), minNum: 1, maxNum: 4)
-        createNumbersAndCtrls(num: bpm, yPos: CGFloat(150), minNum: 1, maxNum: 9)
-        createNumbersAndCtrls(num: subdivision, yPos: CGFloat(200), minNum: 1, maxNum: 12)
-        
-        addChild(settingsPopup)
-        settingsPopup.isHidden = true
-        settingsPopup.isUserInteractionEnabled = false
-    }
-    
-    func createLabelNode(text: String, yPos: CGFloat) {
-        let leftColX = CGFloat(10)
-        let labelNode = SKLabelNode(text: text)
-        labelNode.fontColor = UIColor.black
-        labelNode.fontSize = 30
-        labelNode.fontName = "Hiragino Mincho ProN"
-        labelNode.position = CGPoint(x: leftColX, y: yPos)
-        settingsPopup.addChild(labelNode)
-    }
-    
-    func createLabelNode(text: String, xPos: CGFloat, yPos: CGFloat) -> SKLabelNode {
-        let labelNode = SKLabelNode(text: text)
-        labelNode.fontColor = UIColor.black
-        labelNode.fontSize = 30
-        labelNode.fontName = "Hiragino Mincho ProN"
-        labelNode.position = CGPoint(x: xPos, y: yPos)
-        settingsPopup.addChild(labelNode)
-        return labelNode
-    }
-    
-    func createNumbersAndCtrls(num: Int, yPos: CGFloat, minNum: Int, maxNum: Int) {
-        let rightColX = settingsPopup.frame.maxX-40
-        let xDisplacement = CGFloat(10)
-        let labelNode = createLabelNode(text: "\(String(describing: num))",xPos: rightColX, yPos: yPos)
-        let minusNumCtrl = NumberControls(minVal: minNum, maxVal: maxNum, isPlus: false)
-        let plusNumCtrl = NumberControls(minVal: minNum, maxVal: maxNum, isPlus: true)
-        minusNumCtrl.position = CGPoint(x: -xDisplacement, y: 0)
-        plusNumCtrl.position = CGPoint(x: xDisplacement, y: 0)
-        labelNode.addChild(minusNumCtrl)
-        labelNode.addChild(plusNumCtrl)
-    }
- */
-    
     func reloadLayout() {
         totalDivision = numberOfMeasures * bpm * subdivision
         divisionWidth = resultWidth / totalDivision
@@ -177,7 +118,6 @@ extension Freestyle {
     
     func repositionNotes() {
         let oldDivision = numberOfMeasures * bpm * oldSubdivision
-        //let oldDivWidth = staffWidth / oldDivision
         var newPgArray = [[Note]](repeating: [], count: maxPages)
         let maxNewArrayPos = maxPages * oldDivision
         
@@ -187,20 +127,15 @@ extension Freestyle {
                 if j == 0 {continue}
                 let currentNote = pages[i][j-1]
                 if currentNote.positionInStaff[0]*(i+1) < maxNewArrayPos {
-                    //let universalNoteLocation = (currentNote.positionInStaff[0]) + (i * oldNumOfMeasures * oldBpm * oldSubdivision)
+
                     let universalNoteLocation = currentNote.universalTimePos!
-                    //print("universal note loc: \(universalNoteLocation)")
-                    //let newPgNum = Int(floor(universalNoteLocation/(oldDivision*numberOfMeasures)))
                     let newPgNum = Int(floor(universalNoteLocation/(bpm*numberOfMeasures)))
                     print("new pg num: \(newPgNum)")
                     let newPos = (Int(universalNoteLocation * oldSubdivision)) % oldDivision
-                    //print("new pos: \(newPos)")
-                    currentNote.positionInStaff[0] = newPos
-                    //let newXpos = indentLength + newPos * oldDivWidth
+                    currentNote.positionInStaff[0] = newPos // position is rounded
                     let universalPageLoc = universalNoteLocation - (newPgNum * numberOfMeasures * bpm)
                     let newXpos = indentLength + universalPageLoc * (resultWidth / bpm / numberOfMeasures)
                     let newYPos = currentNote.positionInStaff[1] * staffBarHeight + (staffBarHeight / 2)
-                    //let newScenePos = staffPosToScenePos(staffPos: currentNote.positionInStaff)
                     currentNote.position = CGPoint(x: newXpos, y: Double(newYPos))
                     if newPgNum < maxPages {
                         barsNode.addChild(currentNote)
@@ -209,6 +144,7 @@ extension Freestyle {
                 }
             }
         }
+        // refresh which notes are displayed
         pages = newPgArray
         for page in pages {
             for note in page {

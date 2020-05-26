@@ -28,14 +28,22 @@ extension LevelTemplate {
                 location = touch.location(in: barsNode)
                 let maxX = CGFloat(indentLength + resultWidth - divisionWidth/2)
                 if location.x >= CGFloat(indentLength) && location.x < maxX {
+                    
+                    // simulating a temporary note to get its position, and seeing if it overlaps with a current note
                     let tempNote = Note(type: selectedNoteType)
                     let snappedLocation = snapNoteLocation(touchedPoint: location)
                     tempNote.position = snappedLocation
+                    barsNode.addChild(tempNote)
                     tempNote.setPositions()
                     let noteAns = tempNote.getAnsArray()
                     if !myAns[pageIndex].contains(noteAns) {
                         addNote(noteType: selectedNoteType, notePosition: snappedLocation)
+                        tempNote.removeFromParent()
                         //myAns[pageIndex].insert(noteAns)
+                        //print(myAns[pageIndex])
+                    }
+                    else {
+                        tempNote.removeFromParent()
                     }
                     /*
                     let arrayVal = getStaffPosition(notePosition: location)
@@ -126,10 +134,11 @@ extension LevelTemplate {
         note.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
         note.physicsBody?.collisionBitMask = PhysicsCategories.none
         //myAns[pageIndex][note.positionInStaff[0]].insert(trebleNotes[note.positionInStaff[1] + 1])
-        myAns[pageIndex].insert(note.getAnsArray())
-        pages[pageIndex].append(note)
         barsNode.addChild(note)
         note.setPositions()
+        myAns[pageIndex].insert(note.getAnsArray())
+        pages[pageIndex].append(note)
+        print(pages!)
     }
     
     func snapNoteLocation(touchedPoint: CGPoint) -> CGPoint {

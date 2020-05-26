@@ -225,11 +225,14 @@ extension LevelTemplate {
     
     func nextPage(index: Int) {
         if pageIndex < maxPages - 1 {
+           // print(pages[pageIndex])
             for note in pages[pageIndex] {
                 note.isHidden = true
+                print(note.isHidden)
                 note.physicsBody?.categoryBitMask = PhysicsCategories.none
             }
             pageIndex += 1
+            //print(pages[pageIndex])
             hintNum = 0
             for note in pages[pageIndex] {
                 note.isHidden = false
