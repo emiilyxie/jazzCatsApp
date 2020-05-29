@@ -329,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfb-PF-67I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-384" y="-174"/>
+            <point key="canvasLocation" x="-402" y="-191"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="Nob-v2-Xgg">
@@ -349,7 +349,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRa-Zk-2Eb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="CZD-oz-aex" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="38.839285714285715" y="718.84057971014499"/>
+            <point key="canvasLocation" x="39" y="664"/>
         </scene>
         <!--Settings PopupVC-->
         <scene sceneID="Jh0-xZ-8Te">
@@ -511,10 +511,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fI-9r-0wi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="259" y="1468"/>
+            <point key="canvasLocation" x="39" y="1446"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GLW-ER-AVP"/>
+        <segue reference="Lga-rB-OrQ"/>
     </inferredMetricsTieBreakers>
 </document>

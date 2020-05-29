@@ -20,39 +20,22 @@ class GameViewController: UIViewController {
     var totalLevels = 3
     var currentScene: SKScene!
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        
-        let db = Firestore.firestore()
-        let docRef = db.collection("levels").document("level2")
-
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                print("Document data: \(dataDescription)")
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
             
             if !freestyleMode {
+                
                 //loading a level
                 if let scene = LevelTemplate(fileNamed: "LevelTemplate.sks") {
                     scene.viewController = self
                     scene.scaleMode = .aspectFill
                     sceneWidth = scene.size.width
                     sceneHeight = scene.size.height
-                    //scene.size = view.bounds.size
-                    //print(1)
+
                     LevelSetup.prepareLevel(level: scene, levelNum: selectedLevel) {
-                        //print(8)
-                        // Present the scene
+                        // Present the scene as completion func
                         view.presentScene(scene)
                         self.currentScene = scene
                         view.ignoresSiblingOrder = true
@@ -83,6 +66,15 @@ class GameViewController: UIViewController {
         }
     }
     
+    @IBAction func showSettingsPopover(_ sender: Any) {
+        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "settingsPopoverID") as! SettingsPopupVC
+        self.addChild(popoverVC)
+        popoverVC.view.frame = self.view.frame
+        self.view.addSubview(popoverVC.view)
+        popoverVC.didMove(toParent: self)
+    }
+    
+    // unwind segues
     @IBAction func unwindFromGameToWelcome(_ sender: Any) {
         performSegue(withIdentifier: "fromGameToWelcomeUSegue", sender: nil)
     }
@@ -91,21 +83,6 @@ class GameViewController: UIViewController {
         performSegue(withIdentifier: "fromGameToLevelSelectUSegue", sender: nil)
     }
 
-    @IBAction func showSettingsPopover(_ sender: Any) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "settingsPopoverID") as! SettingsPopupVC
-        self.addChild(popoverVC)
-        popoverVC.view.frame = self.view.frame
-        /*
-        guard let freestyleScene = currentScene as! Freestyle? else {return}
-        print("max pages: \(freestyleScene.maxPages)")
-        popoverVC.currentPgs = freestyleScene.maxPages
-        popoverVC.currentMPP = freestyleScene.numberOfMeasures
-        popoverVC.currentBPM = freestyleScene.bpm
-        popoverVC.currentSPB = freestyleScene.subdivision
- */
-        self.view.addSubview(popoverVC.view)
-        popoverVC.didMove(toParent: self)
-    }
-
+    
 }
 

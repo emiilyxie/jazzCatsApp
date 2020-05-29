@@ -19,15 +19,14 @@ class WelcomeScreen: UIViewController {
     }
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
     }
 
     @IBOutlet weak var userIDLabel: UILabel!
     
     func isSignedInResponse() {
+        
         let signInHandler = Auth.auth().addStateDidChangeListener { (auth, user) in
-            
             if let user = user {
                 // if user is signed in, then cool
                 self.userIDLabel.text = user.uid
@@ -36,17 +35,8 @@ class WelcomeScreen: UIViewController {
                 self.goToSignIn(self)
             }
         }
+        
         Auth.auth().removeStateDidChangeListener(signInHandler)
-    }
-    
-    /*
-    func goToCreateAcc(_ sender: Any ) {
-        performSegue(withIdentifier: "fromWelcomeToCreateAccSegue", sender: self)
-    }
- */
-    
-    func goToSignIn(_ sender: Any) {
-        performSegue(withIdentifier: "fromWelcomeToSignInSegue", sender: self)
     }
     
     @IBAction func signOut(_ sender: Any) {
@@ -60,6 +50,19 @@ class WelcomeScreen: UIViewController {
         goToSignIn(self)
     }
     
+    // segue code
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if goingToFreestyle == true {
+            if let gameVC = segue.destination as? GameViewController {
+                gameVC.freestyleMode = true
+            }
+        }
+    }
+    
+    func goToSignIn(_ sender: Any) {
+        performSegue(withIdentifier: "fromWelcomeToSignInSegue", sender: self)
+    }
+    
     @IBAction func goToLevelSelect(_ sender: Any) {
         goingToFreestyle = false
         performSegue(withIdentifier: "fromWelcomeToLevelSelectSegue", sender: self)
@@ -70,20 +73,12 @@ class WelcomeScreen: UIViewController {
         performSegue(withIdentifier: "fromWelcomeToFreestyleSegue", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if goingToFreestyle == true {
-            if let gameVC = segue.destination as? GameViewController {
-                gameVC.freestyleMode = true
-            }
-        }
-    }
-    
+    // unwind segue destinations
     @IBAction func backToWelcomeFromGame(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromCreateAcc(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {}
     
     func anonSignIn() {
-        
         let handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             Auth.auth().signInAnonymously { (authResult, error) in
                 guard let user = authResult?.user else { return }

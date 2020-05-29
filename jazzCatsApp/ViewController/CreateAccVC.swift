@@ -81,10 +81,7 @@ class CreateAccVC: UIViewController {
         if !isValidEmail(emailTextField.text!){
             return "please put an actually valid email"
         }
-        
-        
         return nil
-        
     }
     
     func isValidEmail(_ email: String) -> Bool {
@@ -106,6 +103,7 @@ class CreateAccVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    // unwind segues
     @IBAction func unwindFromCreateAccToWelcome(_ sender: Any) {
         performSegue(withIdentifier: "fromCreateAccToWelcomeUSegue", sender: nil)
     }
@@ -113,15 +111,5 @@ class CreateAccVC: UIViewController {
     @IBAction func unwindFromCreateAccToSignIn(_ sender: Any) {
         performSegue(withIdentifier: "fromCreateAccToSignInUSegue", sender: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
