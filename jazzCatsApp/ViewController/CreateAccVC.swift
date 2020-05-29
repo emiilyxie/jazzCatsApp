@@ -98,7 +98,7 @@ class CreateAccVC: UIViewController {
         let user = Auth.auth().currentUser
         let uid = user?.uid
         let usersRef = Firestore.firestore().collection("users")
-        usersRef.document(uid!).setData(["email" : email, "password" : password, "nickname" : self.nameTextField.text!, "uid" : uid!], merge: true)
+        usersRef.document(uid!).setData(["email" : email, "password" : password, "nickname" : self.nameTextField.text!, "uid" : uid!, "levels-completed" : 0, "game-currency" : 0], merge: true)
     }
     
     func dismissKeyboard() {
@@ -109,6 +109,11 @@ class CreateAccVC: UIViewController {
     @IBAction func unwindFromCreateAccToWelcome(_ sender: Any) {
         performSegue(withIdentifier: "fromCreateAccToWelcomeUSegue", sender: nil)
     }
+    
+    @IBAction func unwindFromCreateAccToSignIn(_ sender: Any) {
+        performSegue(withIdentifier: "fromCreateAccToSignInUSegue", sender: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -15,19 +15,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWG-6L-O5K">
-                                <rect key="frame" x="385" y="192" width="126" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign-in With Email"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWG-6L-O5K">
+                                <rect key="frame" x="415" y="261" width="66" height="30"/>
+                                <state key="normal" title="Let's jam!"/>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="5qc-HS-yo8" eventType="touchUpInside" id="3C7-E6-aNI"/>
+                                </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSa-qi-kX1">
+                                <rect key="frame" x="347.5" y="318" width="201" height="30"/>
+                                <state key="normal" title="create a new account instead"/>
+                                <connections>
+                                    <action selector="newAccButtonPressed:" destination="5qc-HS-yo8" eventType="touchUpInside" id="rcp-i2-uhD"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="caH-a2-lox">
+                                <rect key="frame" x="403" y="176" width="90" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LV4-BC-jQU">
+                                <rect key="frame" x="422" y="32" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="err" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIB-1G-3vS">
+                                <rect key="frame" x="437" y="61" width="22" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CLG-vq-qaP">
+                                <rect key="frame" x="417" y="99" width="62.5" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.97254902119999997" green="0.92156863209999995" blue="0.91372549530000002" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="LV4-BC-jQU" firstAttribute="centerX" secondItem="lSK-Ur-ksn" secondAttribute="centerX" id="1kc-Dm-YPn"/>
+                            <constraint firstItem="RSa-qi-kX1" firstAttribute="centerX" secondItem="lSK-Ur-ksn" secondAttribute="centerX" id="2Dv-xW-q89"/>
+                            <constraint firstItem="iIB-1G-3vS" firstAttribute="centerX" secondItem="lSK-Ur-ksn" secondAttribute="centerX" id="3X2-UD-4tc"/>
+                            <constraint firstItem="CLG-vq-qaP" firstAttribute="top" secondItem="iIB-1G-3vS" secondAttribute="bottom" constant="17" id="FBZ-eO-wGz"/>
+                            <constraint firstItem="caH-a2-lox" firstAttribute="centerX" secondItem="lSK-Ur-ksn" secondAttribute="centerX" id="FIv-gx-79n"/>
+                            <constraint firstItem="caH-a2-lox" firstAttribute="top" secondItem="CLG-vq-qaP" secondAttribute="bottom" constant="43" id="JLj-Sd-QV8"/>
+                            <constraint firstItem="dWG-6L-O5K" firstAttribute="centerX" secondItem="lSK-Ur-ksn" secondAttribute="centerX" id="KE8-qd-6uR"/>
+                            <constraint firstItem="iIB-1G-3vS" firstAttribute="top" secondItem="LV4-BC-jQU" secondAttribute="bottom" constant="8" id="QD7-Vw-SNf"/>
+                            <constraint firstItem="RSa-qi-kX1" firstAttribute="top" secondItem="dWG-6L-O5K" secondAttribute="bottom" constant="27" id="YZ5-TC-P5T"/>
+                            <constraint firstItem="dWG-6L-O5K" firstAttribute="top" secondItem="caH-a2-lox" secondAttribute="bottom" constant="51" id="bRR-Lj-0wp"/>
+                            <constraint firstItem="CLG-vq-qaP" firstAttribute="centerX" secondItem="lSK-Ur-ksn" secondAttribute="centerX" id="ia3-Gd-naC"/>
+                            <constraint firstItem="dWG-6L-O5K" firstAttribute="top" secondItem="zzN-7N-QRd" secondAttribute="top" constant="261" id="psC-h4-7pR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zzN-7N-QRd"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="CLG-vq-qaP" id="mMv-wB-Bds"/>
+                        <outlet property="errMessage" destination="iIB-1G-3vS" id="8hY-LZ-ccY"/>
+                        <outlet property="passwordTextField" destination="caH-a2-lox" id="1vf-0w-x6U"/>
+                        <segue destination="4Cg-PU-IFr" kind="unwind" identifier="backToWelcomeFromSignInUSegue" unwindAction="backToWelcomeFromSignInSegue:" id="F7E-VM-jwK"/>
+                        <segue destination="wtM-ry-7rg" kind="presentation" identifier="fromSignInToCreateAccSegue" id="Abc-mp-LBp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tay-Er-3hg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="4Cg-PU-IFr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-252" y="-2186"/>
+            <point key="canvasLocation" x="717" y="-1770"/>
         </scene>
         <!--Create AccVC-->
         <scene sceneID="QMt-fp-E04">
@@ -71,6 +124,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNw-0V-DVu">
+                                <rect key="frame" x="398.5" y="354" width="99" height="30"/>
+                                <state key="normal" title="sign in instead"/>
+                                <connections>
+                                    <action selector="unwindFromCreateAccToSignIn:" destination="wtM-ry-7rg" eventType="touchUpInside" id="Zs7-0T-2jQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97254902119999997" green="0.92156863209999995" blue="0.91372549530000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -78,6 +138,7 @@
                             <constraint firstItem="9bb-uo-pJW" firstAttribute="centerY" secondItem="p4r-CQ-pk1" secondAttribute="centerY" id="ADS-8V-OLw"/>
                             <constraint firstItem="SwM-HL-oLP" firstAttribute="top" secondItem="emW-ps-YBc" secondAttribute="bottom" constant="26" id="Bg0-pq-JEb"/>
                             <constraint firstItem="PGK-bl-sdO" firstAttribute="top" secondItem="p4r-CQ-pk1" secondAttribute="top" constant="76" id="Ck8-6c-lWz"/>
+                            <constraint firstItem="wNw-0V-DVu" firstAttribute="top" secondItem="SwM-HL-oLP" secondAttribute="bottom" constant="8" id="EcE-5u-SEW"/>
                             <constraint firstItem="PGK-bl-sdO" firstAttribute="centerX" secondItem="T2P-1d-sTn" secondAttribute="centerX" id="K2n-n6-Shg"/>
                             <constraint firstItem="PGK-bl-sdO" firstAttribute="centerX" secondItem="p4r-CQ-pk1" secondAttribute="centerX" id="Obx-lH-eHJ"/>
                             <constraint firstItem="SwM-HL-oLP" firstAttribute="centerX" secondItem="9bb-uo-pJW" secondAttribute="centerX" id="Q77-jR-kS3"/>
@@ -85,6 +146,7 @@
                             <constraint firstItem="SwM-HL-oLP" firstAttribute="top" secondItem="9bb-uo-pJW" secondAttribute="bottom" constant="92" id="fGQ-uL-tfx"/>
                             <constraint firstItem="9bb-uo-pJW" firstAttribute="centerX" secondItem="p4r-CQ-pk1" secondAttribute="centerX" id="oiZ-Ff-OOh"/>
                             <constraint firstItem="emW-ps-YBc" firstAttribute="centerX" secondItem="p4r-CQ-pk1" secondAttribute="centerX" id="qdS-WF-XXQ"/>
+                            <constraint firstItem="wNw-0V-DVu" firstAttribute="centerX" secondItem="p4r-CQ-pk1" secondAttribute="centerX" id="rZs-yD-fuA"/>
                             <constraint firstItem="PGK-bl-sdO" firstAttribute="top" secondItem="BQf-R1-iRz" secondAttribute="bottom" constant="8" id="vhf-0T-YKC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fp7-1I-9S6"/>
@@ -95,12 +157,13 @@
                         <outlet property="nameTextField" destination="T2P-1d-sTn" id="uEe-ck-vCg"/>
                         <outlet property="passwordTextField" destination="emW-ps-YBc" id="Lot-R1-SpE"/>
                         <segue destination="wb8-yw-hpJ" kind="unwind" identifier="fromCreateAccToWelcomeUSegue" unwindAction="backToWelcomeFromCreateAccWithSegue:" id="aYn-xv-adM"/>
+                        <segue destination="wb8-yw-hpJ" kind="unwind" identifier="fromCreateAccToSignInUSegue" unwindAction="backToSignInFromCreateAccWithSegue:" id="RYD-eH-NQW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXD-gC-kzo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="wb8-yw-hpJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="704" y="-2110"/>
+            <point key="canvasLocation" x="717" y="-857"/>
         </scene>
         <!--Welcome Screen-->
         <scene sceneID="PMF-k5-oVf">
@@ -154,7 +217,7 @@
                         <outlet property="userIDLabel" destination="xwI-vr-1dK" id="B0X-KY-8Y4"/>
                         <segue destination="uKC-AO-KPp" kind="presentation" identifier="fromWelcomeToFreestyleSegue" id="GLW-ER-AVP"/>
                         <segue destination="4gq-Lp-7HN" kind="presentation" identifier="fromWelcomeToLevelSelectSegue" id="vav-ul-C7h"/>
-                        <segue destination="wtM-ry-7rg" kind="presentation" identifier="fromWelcomeToCreateAccSegue" id="2kX-vV-3nd"/>
+                        <segue destination="5qc-HS-yo8" kind="presentation" identifier="fromWelcomeToSignInSegue" id="mba-eb-Z7X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HT-fr-dfd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

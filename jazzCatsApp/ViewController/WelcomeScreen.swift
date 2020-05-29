@@ -21,7 +21,6 @@ class WelcomeScreen: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
     }
 
     @IBOutlet weak var userIDLabel: UILabel!
@@ -34,14 +33,20 @@ class WelcomeScreen: UIViewController {
                 self.userIDLabel.text = user.uid
             }
             else {
-                self.goToCreateAcc(self)
+                self.goToSignIn(self)
             }
         }
         Auth.auth().removeStateDidChangeListener(signInHandler)
     }
     
+    /*
     func goToCreateAcc(_ sender: Any ) {
         performSegue(withIdentifier: "fromWelcomeToCreateAccSegue", sender: self)
+    }
+ */
+    
+    func goToSignIn(_ sender: Any) {
+        performSegue(withIdentifier: "fromWelcomeToSignInSegue", sender: self)
     }
     
     @IBAction func signOut(_ sender: Any) {
@@ -52,7 +57,7 @@ class WelcomeScreen: UIViewController {
         catch let signOutError as NSError{
             print(signOutError)
         }
-        goToCreateAcc(self)
+        goToSignIn(self)
     }
     
     @IBAction func goToLevelSelect(_ sender: Any) {
@@ -75,6 +80,7 @@ class WelcomeScreen: UIViewController {
     
     @IBAction func backToWelcomeFromGame(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromCreateAcc(segue: UIStoryboardSegue) {}
+    @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {}
     
     func anonSignIn() {
         
@@ -89,33 +95,10 @@ class WelcomeScreen: UIViewController {
         
         let user = Auth.auth().currentUser
         let uid = user?.uid
-        //print(user?.uid)
         userIDLabel.text = uid
         
         let usersRef = Firestore.firestore().collection("users")
-        //let uidDoc = usersRef.document(uid!)
-        /*
-        uidDoc.getDocument { (document, err) in
-            if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                print("document data: \(dataDescription)")
-            }
-            else {
-                print("document currently doesn't exist")
-                uidDoc.collection("users").document(uid!).setData(["uid" : uid!]) {
-                    err in
-                    if let err = err {
-                        print("error writing doc: \(err)")
-                    }
-                    else {
-                        print("wrote new doc!!")
-                    }
-                }
-            }
-        }
- */
         usersRef.document(uid!).setData(["uid": uid!], merge: true)
-        
         Auth.auth().removeStateDidChangeListener(handle)
     }
 

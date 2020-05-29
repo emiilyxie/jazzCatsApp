@@ -16,20 +16,13 @@ public class LevelSetup {
     
     static public let indentLength = 100
 
-    static public var lvl1Ans = [Set(arrayLiteral: [0, 74], [2, 67], [3, 69], [4, 71], [5, 72], [6, 74], [8, 67], [10, 67])]
-
-    static public var lvl2Ans = [Set(arrayLiteral: [1, 69], [2, 65], [3, 74], [4, 72], [6, 69], [7, 65], [9, 62], [10, 67]), Set(arrayLiteral: [0, 65], [1, 67], [2, 69], [3, 74], [5, 76], [6, 77], [7, 72])]
-
-    static public var lvl3Ans = [Set([[2, 76], [3, 79], [1, 72], [13, 72], [7, 76], [8, 74], [10, 67], [0, 69], [12, 70], [15, 77], [14, 74], [4, 78], [9, 71]]), Set([[11, 64], [1, 70], [0, 75], [13, 68], [10, 63], [4, 68], [15, 71], [9, 61], [2, 67], [5, 64], [7, 61], [8, 59], [14, 70], [12, 66], [6, 63]]), Set([[8, 67], [3, 63], [6, 70], [7, 68], [1, 68], [11, 79], [12, 70], [5, 71], [4, 62], [15, 80], [13, 73], [9, 70], [14, 76], [2, 65], [10, 75], [0, 72]]), Set([[11, 74], [0, 71], [8, 78], [4, 72], [5, 76], [2, 75], [7, 81], [10, 76], [1, 73], [3, 78], [6, 78]])]
-
     static public func prepareLevel(level: LevelTemplate, levelNum: Int, showScene: @escaping () -> Void) {
         
-        //print(2)
         getLvlAns(levelNum: levelNum) {
             //print(5)
             switch levelNum {
             case 1:
-                setUpLevel(level: level, levelNum: levelNum,staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 3, subdivision: 2, maxPages: 1, lvlAns: lvl1Ans)
+                setUpLevel(level: level, levelNum: levelNum,staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 3, subdivision: 2, maxPages: 1, lvlAns: lvlAns)
             case 2:
                 setUpLevel(level: level, levelNum: levelNum, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 2, lvlAns: lvlAns)
             case 3:
