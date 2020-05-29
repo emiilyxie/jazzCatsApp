@@ -8,7 +8,7 @@
 
 import UIKit
 import SpriteKit
-//import AVFoundation
+import FirebaseFirestore
 
 public var sceneWidth: CGFloat!
 public var sceneHeight: CGFloat!
@@ -19,6 +19,22 @@ class GameViewController: UIViewController {
     var freestyleMode = false
     var totalLevels = 3
     var currentScene: SKScene!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("levels").document("level2")
+
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,21 +49,23 @@ class GameViewController: UIViewController {
                     sceneWidth = scene.size.width
                     sceneHeight = scene.size.height
                     //scene.size = view.bounds.size
-                    prepareLevel(level: scene, levelNum: selectedLevel)
-                    
-                    // Present the scene
-                    view.presentScene(scene)
-                    currentScene = scene
-                    view.ignoresSiblingOrder = true
-                    view.showsFPS = true
-                    view.showsNodeCount = true
-                    //view.showsPhysics = true
+                    //print(1)
+                    LevelSetup.prepareLevel(level: scene, levelNum: selectedLevel) {
+                        //print(8)
+                        // Present the scene
+                        view.presentScene(scene)
+                        self.currentScene = scene
+                        view.ignoresSiblingOrder = true
+                        view.showsFPS = true
+                        view.showsNodeCount = true
+                        //view.showsPhysics = true
+                    }
                 }
              }
             else {
                 if let scene = Freestyle(fileNamed: "LevelTemplate.sks") {
                     scene.viewController = self
-                    prepareFreestyle(freestyleLevel: scene)
+                    LevelSetup.prepareFreestyle(freestyleLevel: scene)
 
                     scene.scaleMode = .aspectFill
                     sceneWidth = scene.size.width

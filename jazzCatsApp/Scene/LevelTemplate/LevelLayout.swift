@@ -59,7 +59,7 @@ extension LevelTemplate {
                 continue
             }
             else {
-                let xPos = indentLength + i * divisionWidth
+                let xPos = LevelSetup.indentLength + i * divisionWidth
                 let measureLine = SKShapeNode(rect: CGRect(x: xPos, y: 0, width: lineWidth, height: staffTotalHeight))
                 measureLine.fillColor = UIColor.black
                 measureLine.strokeColor = UIColor.clear
@@ -70,7 +70,7 @@ extension LevelTemplate {
         // final bar with physics
         let finalBar = SKSpriteNode(color: UIColor.black, size: CGSize(width: 6, height: staffTotalHeight))
         finalBar.anchorPoint = CGPoint(x: 1, y: 0)
-        finalBar.position = CGPoint(x: indentLength + totalDivision * divisionWidth, y: 0)
+        finalBar.position = CGPoint(x: LevelSetup.indentLength + totalDivision * divisionWidth, y: 0)
         finalBar.physicsBody = SKPhysicsBody(rectangleOf: finalBar.size)
         finalBar.physicsBody?.isDynamic = false
         finalBar.physicsBody?.categoryBitMask = PhysicsCategories.finalBarCategory
@@ -83,7 +83,7 @@ extension LevelTemplate {
     func setUpMeasureBar() {
         // adding white measure bar to hit notes
         measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: staffTotalHeight + 30))
-        measureBar.position.x = CGFloat(Int(bgNode.frame.minX) + indentLength - 20)
+        measureBar.position.x = CGFloat(Int(bgNode.frame.minX) + LevelSetup.indentLength - 20)
         measureBar.position.y = barsNode.position.y + measureBar.size.height/2
         measureBar.zPosition = 20
         measureBar.physicsBody = SKPhysicsBody(rectangleOf: measureBar.size)

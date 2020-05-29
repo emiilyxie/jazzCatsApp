@@ -60,8 +60,8 @@ extension LevelTemplate {
     }
     
     func enterMode(index: Int) {
-        let measureBarResetPos = CGPoint(x: CGFloat(Int(bgNode.frame.minX) + indentLength - 20), y: barsNode.position.y + measureBar.size.height/2)
-        let measureBarContinuePos = CGPoint(x: CGFloat(Int(bgNode.frame.minX) + indentLength), y: barsNode.position.y + measureBar.size.height/2)
+        let measureBarResetPos = CGPoint(x: CGFloat(Int(bgNode.frame.minX) + LevelSetup.indentLength - 20), y: barsNode.position.y + measureBar.size.height/2)
+        let measureBarContinuePos = CGPoint(x: CGFloat(Int(bgNode.frame.minX) + LevelSetup.indentLength), y: barsNode.position.y + measureBar.size.height/2)
         let resetPostion = SKAction.move(to: measureBarResetPos, duration: 0)
         let continuePos = SKAction.move(to: measureBarContinuePos, duration: 0)
         
@@ -110,7 +110,6 @@ extension LevelTemplate {
     }
     
     func playSample(index: Int) {
-        //barsNode.run(SKAction.playSoundFileNamed("lvl3song.mp3", waitForCompletion: false))
         ansSongPlayer.play()
     }
     
@@ -118,9 +117,9 @@ extension LevelTemplate {
         if hintNum < lvlAns[pageIndex].count && !lvlAns[pageIndex].isEmpty {
             for noteAnswer in lvlAns[pageIndex] {
                 if !myAns[pageIndex].contains(noteAnswer) {
+                    
+                    // adding the note to the scene
                     let currNotePos = ansArrayToScenePos(ansVal: noteAnswer)
-                    //addNote(noteType: selectedNoteType, notePosition: currNotePos)
-                    //let currentNote = pages[pageIndex].last!
                     let currentNote = Note(type: selectedNoteType)
                     currentNote.name = "note"
                     currentNote.position = currNotePos
@@ -130,57 +129,23 @@ extension LevelTemplate {
                     currentNote.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
                     currentNote.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
                     currentNote.physicsBody?.collisionBitMask = PhysicsCategories.none
+                    
+                    // add a flat if it should be flatted
                     if shouldBeFlatted(midiVal: noteAnswer[1]) {
-                    //if currentNote.getNoteName().contains("s") {
                         currentNote.toggleFlat()
                         let flat = SKSpriteNode(imageNamed: "flat.png")
                         flat.size = scaleNode(size: flat.size, factor: Double(0.05))
                         flat.position = CGPoint(x: -20, y: 0)
                         currentNote.addChild(flat)
-                    //}
                     }
+                    
+                    // add the note to the bar
                     barsNode.addChild(currentNote)
                     myAns[pageIndex].insert(currentNote.getAnsArray())
                     pages[pageIndex].append(currentNote)
                     hintNum += 1
                     return
                 }
-                /*
-                if !pitches.isEmpty && hintNum < lvlAns[pageIndex].count {
-                    let xPos = hintNum * divisionWidth + indentLength
-                    var yPos = (trebleNotes.firstIndex(of: pitches)! - 1) * staffBarHeight + 10
-                    if pitches.contains("3") { // if it's gonna be B3 or C flat
-                        yPos = 10
-                        addNote(noteType: selectedNoteType, notePosition: CGPoint(x: xPos, y: yPos))
-                        let currentNote = pages[pageIndex].last!
-                        currentNote.toggleFlat()
-                        let flat = SKSpriteNode(imageNamed: "flat.png")
-                        flat.size = scaleNode(size: flat.size, factor: Double(0.05))
-                        flat.position = CGPoint(x: -20, y: 0)
-                        currentNote.addChild(flat)
-                        //myAns[pageIndex][hintNum].remove("C4")
-                        //myAns[pageIndex][hintNum].insert(currentNote.getNoteName())
-                    }
-                    else if pitches.contains("s") {
-                        yPos = (trebleNotes.firstIndex(of: pitches)! - 13) * staffBarHeight + 10
-                        addNote(noteType: selectedNoteType, notePosition: CGPoint(x: xPos, y: yPos))
-                        let currentNote = pages[pageIndex].last!
-                        currentNote.toggleSharp()
-                        let sharp = SKSpriteNode(imageNamed: "sharp.png")
-                        sharp.size = scaleNode(size: sharp.size, factor: Double(0.05))
-                        sharp.position = CGPoint(x: -20, y: 0)
-                        currentNote.addChild(sharp)
-                        let naturalNote = String(pitches.prefix(2))
-                        //myAns[pageIndex][hintNum].remove(naturalNote)
-                        //myAns[pageIndex][hintNum].insert(currentNote.getNoteName())
-                    }
-                    else {
-                        addNote(noteType: selectedNoteType, notePosition: CGPoint(x: xPos, y: yPos))
-                        let currentNote = pages[pageIndex].last!
-                        myAns[pageIndex][hintNum].insert(currentNote.getNoteName())
-                    }
- */
-                
             }
         }
         else {
@@ -210,10 +175,14 @@ extension LevelTemplate {
     
     func submitAns(index: Int) {
         if myAns.elementsEqual(lvlAns) {
+            
+            //display the "yay!"
             yayYouDidIt.zPosition = 100
             yayYouDidIt.run(SKAction.fadeIn(withDuration: 0.5))
         }
         else {
+            
+            // display the "nah"
             sorryTryAgain.zPosition = 100
             let fadeInOut = SKAction.sequence([SKAction.fadeIn(withDuration: 0.5), SKAction.fadeOut(withDuration: 0.5)])
             sorryTryAgain.run(fadeInOut) {
@@ -224,15 +193,17 @@ extension LevelTemplate {
     }
     
     func nextPage(index: Int) {
+        
+        // hide all current notes
         if pageIndex < maxPages - 1 {
-           // print(pages[pageIndex])
             for note in pages[pageIndex] {
                 note.isHidden = true
                 print(note.isHidden)
                 note.physicsBody?.categoryBitMask = PhysicsCategories.none
             }
+            
+            // add a page, show all notes on next page
             pageIndex += 1
-            //print(pages[pageIndex])
             hintNum = 0
             for note in pages[pageIndex] {
                 note.isHidden = false
@@ -243,6 +214,8 @@ extension LevelTemplate {
     }
     
     func prevPage(index: Int) {
+        
+        //has the same sort of logic as nextPage func
         if pageIndex >= 1 {
             for note in pages[pageIndex] {
                 note.isHidden = true
@@ -259,33 +232,36 @@ extension LevelTemplate {
     }
     
     func updatePgCount() {
+        //updating the label
         pgCountLabel.text = "page: \(pageIndex+1)/\(maxPages!)"
     }
     
     func returnToMainMenu(index: Int) {
-           do {
-                ansSongPlayer.stop()
-               AudioKit.disconnectAllInputs()
-               try AudioKit.shutdown()
-               AudioKit.output = nil
-           }
-           catch {
-               print(error)
-           }
+        
+        // bye bye audiokit
+        do {
+            ansSongPlayer.stop()
+            AudioKit.disconnectAllInputs()
+            try AudioKit.shutdown()
+            AudioKit.output = nil
+        }
+        catch {
+            print(error)
+        }
+        
+        // killing the kids
+        for child in self.children {
+            child.removeAllActions()
+        }
+        self.removeAllActions()
+        self.removeAllChildren()
+        self.removeFromParent()
+        self.view?.presentScene(nil)
 
-           for child in self.children {
-               child.removeAllActions()
-           }
-           self.removeAllActions()
-           self.removeAllChildren()
-           self.removeFromParent()
-           self.view?.presentScene(nil)
-    
-           guard let gameVC = self.viewController as! GameViewController? else {
-               return
-           }
-           gameVC.unwindFromGameToLevelSelect(gameVC)
-           
-           print("bye bitch")
+        // calling the segue func
+        guard let gameVC = self.viewController as! GameViewController? else {
+            return
+        }
+        gameVC.unwindFromGameToLevelSelect(gameVC)
        }
 }

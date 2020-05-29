@@ -117,7 +117,7 @@ public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
                 continue
             }
             else {
-                let xPos = indentLength + i * divisionWidth
+                let xPos = LevelSetup.indentLength + i * divisionWidth
                 let measureLine = SKShapeNode(rect: CGRect(x: xPos, y: 0, width: lineWidth, height: staffTotalHeight))
                 measureLine.fillColor = UIColor.black
                 measureLine.strokeColor = UIColor.clear
@@ -127,7 +127,7 @@ public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
         
         // final bar with physics
         let finalBar = SKSpriteNode(color: UIColor.black, size: CGSize(width: 6, height: staffTotalHeight))
-        finalBar.position = CGPoint(x: indentLength + totalDivision * divisionWidth, y: Int(finalBar.size.height) / 2)
+        finalBar.position = CGPoint(x: LevelSetup.indentLength + totalDivision * divisionWidth, y: Int(finalBar.size.height) / 2)
         finalBar.physicsBody = SKPhysicsBody(rectangleOf: finalBar.size)
         finalBar.physicsBody?.isDynamic = false
         finalBar.physicsBody?.categoryBitMask = PhysicsCategories.finalBarCategory
@@ -140,7 +140,7 @@ public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
         
         // adding white measure bar to hit notes
         measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: staffTotalHeight + 30))
-        measureBar.position.x = CGFloat(Int(bgNode.frame.minX) + indentLength - 20)
+        measureBar.position.x = CGFloat(Int(bgNode.frame.minX) + LevelSetup.indentLength - 20)
         measureBar.position.y = barsNode.position.y + measureBar.size.height/2
         measureBar.zPosition = 20
         measureBar.physicsBody = SKPhysicsBody(rectangleOf: measureBar.size)
@@ -438,8 +438,8 @@ public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
         case "addMode": // if in addMode
             if barsNode.contains(location) {
                 location = touch.location(in: barsNode)
-                let maxX = CGFloat(indentLength + resultWidth - divisionWidth/2)
-                if location.x >= CGFloat(indentLength) && location.x < maxX {
+                let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
+                if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
                     let snappedLocation = snapNoteLocation(touchedPoint: location)
                     addNote(noteType: selectedNoteType, notePosition: snappedLocation)
                 }
@@ -508,8 +508,8 @@ public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
     
     func snapNoteLocation(touchedPoint: CGPoint) -> CGPoint {
         let divisionWidthFloat = CGFloat(divisionWidth)
-        let indentLengthFloat = CGFloat(indentLength)
-        let xPos = Int(round((touchedPoint.x - indentLengthFloat) / divisionWidthFloat) * divisionWidthFloat) + indentLength
+        let indentLengthFloat = CGFloat(LevelSetup.indentLength)
+        let xPos = Int(round((touchedPoint.x - indentLengthFloat) / divisionWidthFloat) * divisionWidthFloat) + LevelSetup.indentLength
         
         let staffBarHeightFloat = CGFloat(staffBarHeight)
         //print("before: \(touchedPoint.y)")
@@ -519,14 +519,14 @@ public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
     }
     
     func getStaffPosition(notePosition: CGPoint) -> Array<Int> {
-        let xPos = (Int(notePosition.x) - indentLength + 15) / divisionWidth
+        let xPos = (Int(notePosition.x) - LevelSetup.indentLength + 15) / divisionWidth
         let yPos = Int(notePosition.y) / staffBarHeight
         return [xPos, yPos]
     }
     
     func enterMode(index: Int) {
-        let measureBarResetPos = CGPoint(x: CGFloat(Int(bgNode.frame.minX) + indentLength - 20), y: barsNode.position.y + measureBar.size.height/2)
-        let measureBarContinuePos = CGPoint(x: CGFloat(Int(bgNode.frame.minX) + indentLength), y: barsNode.position.y + measureBar.size.height/2)
+        let measureBarResetPos = CGPoint(x: CGFloat(Int(bgNode.frame.minX) + LevelSetup.indentLength - 20), y: barsNode.position.y + measureBar.size.height/2)
+        let measureBarContinuePos = CGPoint(x: CGFloat(Int(bgNode.frame.minX) + LevelSetup.indentLength), y: barsNode.position.y + measureBar.size.height/2)
         let resetPostion = SKAction.move(to: measureBarResetPos, duration: 0)
         let continuePos = SKAction.move(to: measureBarContinuePos, duration: 0)
         

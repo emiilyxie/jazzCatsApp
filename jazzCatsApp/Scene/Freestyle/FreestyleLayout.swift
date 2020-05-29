@@ -17,7 +17,6 @@ extension Freestyle {
         setUpStaff()
         setUpMeasureBar()
         setUpButtons()
-        //setUpPopups()
     }
     
     func setUpBackground() {
@@ -59,7 +58,7 @@ extension Freestyle {
                 continue
             }
             else {
-                let xPos = indentLength + i * divisionWidth
+                let xPos = LevelSetup.indentLength + i * divisionWidth
                 let measureLine = SKShapeNode(rect: CGRect(x: xPos, y: 0, width: lineWidth, height: staffTotalHeight))
                 measureLine.fillColor = UIColor.black
                 measureLine.strokeColor = UIColor.clear
@@ -69,7 +68,7 @@ extension Freestyle {
         
         // final bar with physics
         let finalBar = SKSpriteNode(color: UIColor.black, size: CGSize(width: 6, height: staffTotalHeight))
-        finalBar.position = CGPoint(x: indentLength + totalDivision * divisionWidth, y: Int(finalBar.size.height) / 2)
+        finalBar.position = CGPoint(x: LevelSetup.indentLength + totalDivision * divisionWidth, y: Int(finalBar.size.height) / 2)
         finalBar.physicsBody = SKPhysicsBody(rectangleOf: finalBar.size)
         finalBar.physicsBody?.isDynamic = false
         finalBar.physicsBody?.categoryBitMask = PhysicsCategories.finalBarCategory
@@ -82,7 +81,7 @@ extension Freestyle {
     func setUpMeasureBar() {
         // adding white measure bar to hit notes
         measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: staffTotalHeight + 30))
-        measureBar.position.x = CGFloat(Int(bgNode.frame.minX) + indentLength - 20)
+        measureBar.position.x = CGFloat(Int(bgNode.frame.minX) + LevelSetup.indentLength - 20)
         measureBar.position.y = barsNode.position.y + measureBar.size.height/2
         measureBar.zPosition = 20
         measureBar.physicsBody = SKPhysicsBody(rectangleOf: measureBar.size)
@@ -134,7 +133,7 @@ extension Freestyle {
                     let newPos = (Int(universalNoteLocation * oldSubdivision)) % oldDivision
                     currentNote.positionInStaff[0] = newPos // position is rounded
                     let universalPageLoc = universalNoteLocation - (newPgNum * numberOfMeasures * bpm)
-                    let newXpos = indentLength + universalPageLoc * (resultWidth / bpm / numberOfMeasures)
+                    let newXpos = LevelSetup.indentLength + universalPageLoc * (resultWidth / bpm / numberOfMeasures)
                     let newYPos = currentNote.positionInStaff[1] * staffBarHeight + (staffBarHeight / 2)
                     currentNote.position = CGPoint(x: newXpos, y: Double(newYPos))
                     if newPgNum < maxPages {

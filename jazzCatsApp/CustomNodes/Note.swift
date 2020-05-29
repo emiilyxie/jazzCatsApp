@@ -61,6 +61,30 @@ public class Note: SKSpriteNode {
         return "\(soundBase)/\(soundBase)\(noteVal).mp3"
     }
     
+    // MUST place note in staff before calling
+    public func setPositions() {
+        
+        //print(self.parent?.parent)
+        
+        if let scene = self.parent?.parent as? LevelTemplate {
+            self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
+            let conversion = Double(scene.subdivision / (scene.pageIndex + 1))
+            self.universalTimePos = Double(self.positionInStaff[0]) / conversion
+        }
+        else {
+            //print("parent is not level template")
+        }
+        
+        if let scene = self.parent?.parent as? Freestyle {
+            self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
+            let conversion = Double(scene.subdivision / (scene.pageIndex + 1))
+            self.universalTimePos = Double(self.positionInStaff[0]) / conversion
+        }
+        else {
+            //print("parent is not freestyle")
+        }
+    }
+    
     public func toggleSharp() {
         if !self.isSharp {
             self.isSharp = true
@@ -131,26 +155,4 @@ public class Note: SKSpriteNode {
         return [positionInStaff[0], getMidiVal()]
     }
     
-    public func setPositions() {
-        
-        //print(self.parent?.parent)
-        
-        if let scene = self.parent?.parent as? LevelTemplate {
-            self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
-            let conversion = Double(scene.subdivision / (scene.pageIndex + 1))
-            self.universalTimePos = Double(self.positionInStaff[0]) / conversion
-        }
-        else {
-            //print("parent is not level template")
-        }
-        
-        if let scene = self.parent?.parent as? Freestyle {
-            self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
-            let conversion = Double(scene.subdivision / (scene.pageIndex + 1))
-            self.universalTimePos = Double(self.positionInStaff[0]) / conversion
-        }
-        else {
-            //print("parent is not freestyle")
-        }
-    }
 }

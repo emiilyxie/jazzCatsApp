@@ -25,6 +25,8 @@
 		AD3826EE245D20700027849D /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD3826EC245D20700027849D /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F0245D20DC0027849D /* Default-568h@2x.png */; };
 		AD3826F3245D22530027849D /* kitten-meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F2245D22530027849D /* kitten-meow.wav */; };
+		AD92D0FE247F0BC500F8F807 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FD247F0BC500F8F807 /* SignInVC.swift */; };
+		AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */; };
 		AD9395AE247478250037E307 /* LevelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AD247478250037E307 /* LevelSetup.swift */; };
 		AD9395B024747CD10037E307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9395AF24747CD10037E307 /* Main.storyboard */; };
 		AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395B124747D3F0037E307 /* LevelSelect.swift */; };
@@ -86,6 +88,8 @@
 		AD3826EC245D20700027849D /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		AD3826F0245D20DC0027849D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AD3826F2245D22530027849D /* kitten-meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kitten-meow.wav"; sourceTree = "<group>"; };
+		AD92D0FD247F0BC500F8F807 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
 		AD9395AD247478250037E307 /* LevelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSetup.swift; sourceTree = "<group>"; };
 		AD9395AF24747CD10037E307 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AD9395B124747D3F0037E307 /* LevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelect.swift; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				AD9395B124747D3F0037E307 /* LevelSelect.swift */,
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
 				ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */,
+				AD92D0FD247F0BC500F8F807 /* SignInVC.swift */,
+				AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -412,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */,
 				ADFC5CEB2478847D00225610 /* SettingsPopupVC.swift in Sources */,
 				ADFA24322477A1FE008BC384 /* NumberControls.swift in Sources */,
 				ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */,
@@ -430,6 +437,7 @@
 				AD3826EA245D11920027849D /* Configuration.swift in Sources */,
 				AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */,
 				AD3826CB245D0F610027849D /* GameViewController.swift in Sources */,
+				AD92D0FE247F0BC500F8F807 /* SignInVC.swift in Sources */,
 				AD9395AE247478250037E307 /* LevelSetup.swift in Sources */,
 				AD3826E2245D104E0027849D /* GameCamera.swift in Sources */,
 				ADFC5CDD247850DC00225610 /* FreestyleButtons.swift in Sources */,

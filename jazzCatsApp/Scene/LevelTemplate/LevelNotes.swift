@@ -26,8 +26,8 @@ extension LevelTemplate {
         case "addMode": // if in addMode
             if barsNode.contains(location) {
                 location = touch.location(in: barsNode)
-                let maxX = CGFloat(indentLength + resultWidth - divisionWidth/2)
-                if location.x >= CGFloat(indentLength) && location.x < maxX {
+                let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
+                if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
                     
                     // simulating a temporary note to get its position, and seeing if it overlaps with a current note
                     let tempNote = Note(type: selectedNoteType)
@@ -143,8 +143,8 @@ extension LevelTemplate {
     
     func snapNoteLocation(touchedPoint: CGPoint) -> CGPoint {
         let divisionWidthFloat = CGFloat(divisionWidth)
-        let indentLengthFloat = CGFloat(indentLength)
-        let xPos = Int(round((touchedPoint.x - indentLengthFloat) / divisionWidthFloat) * divisionWidthFloat) + indentLength
+        let indentLengthFloat = CGFloat(LevelSetup.indentLength)
+        let xPos = Int(round((touchedPoint.x - indentLengthFloat) / divisionWidthFloat) * divisionWidthFloat) + LevelSetup.indentLength
         
         let staffBarHeightFloat = CGFloat(staffBarHeight)
         let yPos = Int(round(touchedPoint.y / staffBarHeightFloat) * staffBarHeightFloat - (staffBarHeightFloat / 2))
@@ -155,7 +155,7 @@ extension LevelTemplate {
     // Conversion Functions
     
     func getStaffPosition(notePosition: CGPoint) -> Array<Int> {
-        let xPos = (Int(notePosition.x) - indentLength + 15) / divisionWidth
+        let xPos = (Int(notePosition.x) - LevelSetup.indentLength + 15) / divisionWidth
         let yPos = Int(notePosition.y) / staffBarHeight
         return [xPos, yPos]
     }
@@ -208,7 +208,7 @@ extension LevelTemplate {
     }
     
      func staffPosToScenePos(staffPos: [Int]) -> CGPoint {
-        let xPos = indentLength + staffPos[0] * divisionWidth
+        let xPos = LevelSetup.indentLength + staffPos[0] * divisionWidth
         let yPos = staffPos[1] * staffBarHeight + (staffBarHeight / 2)
         return CGPoint(x: xPos, y: yPos)
     }
