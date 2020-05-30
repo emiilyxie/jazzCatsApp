@@ -16,7 +16,7 @@ public class LevelTemplate: SKScene {
     let gameCamera = GameCamera()
     var whichLevel: Int!
     
-    public var staffBarHeight: Int!
+    public var staffBarHeight = 32
     public var staffBarNumber: Int!
     public var staffTotalHeight: Int!
     public var staffHeightFromGround: Int!

@@ -12,26 +12,75 @@ import FirebaseFirestore
 
 public class LevelSetup {
 
-    static public var lvlAns: Array<Set<[Int]>>!
-    
     static public let indentLength = 100
+    
+    static let defaultStaffBarHeight = 32
+    static let defaultStaffBarNumber = 12
+    static let defaultNumberOfMeasures = 2
+    static let defaultBpm = 4
+    static let defaultSubdivision = 2
+    static let defaultMaxPages = 2
+    
+    static var lvlAns: Array<Set<[Int]>>!
 
     static public func prepareLevel(level: LevelTemplate, levelNum: Int, showScene: @escaping () -> Void) {
         
-        getLvlAns(levelNum: levelNum) {
-            //print(5)
-            switch levelNum {
-            case 1:
-                setUpLevel(level: level, levelNum: levelNum,staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 3, subdivision: 2, maxPages: 1, lvlAns: lvlAns)
-            case 2:
-                setUpLevel(level: level, levelNum: levelNum, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 2, lvlAns: lvlAns)
-            case 3:
-                setUpLevel(level: level, levelNum: levelNum, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 4, lvlAns: lvlAns)
-            default:
-                setUpLevel(level: level, levelNum: levelNum, staffBarHeight: 32, staffBarNumber: 12, numberOfMeasures: 2, bpm: 4, subdivision: 2, maxPages: 1, lvlAns: [])
-            }
-            //print(7)
+        getLvlInfo(level: level, levelNum: levelNum) {
             showScene()
+        }
+        
+    }
+    
+    static public func getLvlInfo(level: LevelTemplate, levelNum: Int, showTheScene: @escaping () -> Void) {
+        
+        let db = Firestore.firestore()
+        
+        let docRef = db.collection("levels").document("level\(levelNum)")
+
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                
+                var staffBarHeight = defaultStaffBarHeight
+                var staffBarNumber = defaultStaffBarNumber
+                var numberOfMeasures = defaultNumberOfMeasures
+                var bpm = defaultBpm
+                var subdivision = defaultSubdivision
+                var maxPages = defaultMaxPages
+                
+                if document.get("staffbar-height") != nil {
+                    staffBarHeight = document.get("staffbar-height") as! Int
+                }
+                if document.get("staffbar-number") != nil {
+                    staffBarNumber = document.get("staffbar-number") as! Int
+                }
+                if document.get("number-of-measures") != nil {
+                    numberOfMeasures = document.get("staffbar-height") as! Int
+                }
+                if document.get("bpm") != nil {
+                    bpm = document.get("bpm") as! Int
+                }
+                if document.get("subdivision") != nil {
+                    subdivision = document.get("subdivision") as! Int
+                }
+                if document.get("maxpages") != nil {
+                    maxPages = document.get("maxpages") as! Int
+                }
+                                
+                if let lvlAnsString = document.get("answer") as? String {
+                    lvlAns = parseLvlAns(json: lvlAnsString, maxPages: maxPages)
+                    setUpLevel(level: level, levelNum: levelNum, staffBarHeight: staffBarHeight, staffBarNumber: staffBarNumber, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: lvlAns)
+                    showTheScene()
+                    return
+                }
+                else {
+                    print("couldn't get the level answer from the doc")
+                    return
+                }
+            }
+            else {
+                print("doc doesn't exist")
+                return
+            }
         }
     }
 
@@ -91,42 +140,7 @@ public class LevelSetup {
         freestyleLevel.pages = [[Note]](repeating: [], count: freestyleLevel.maxPages)
         
     }
-    
-    static public func getLvlAns(levelNum: Int, setUpTheLevel: @escaping () -> Void) {
-        //print(3)
-        let db = Firestore.firestore()
-        
-        let docRef = db.collection("levels").document("level\(levelNum)")
 
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                //print("Document data: \(dataDescription)")
-                print("\(dataDescription)")
-                if let lvlAnsString = document.get("answer") as? String, let maxPages = document.get("maxpages") as? Int {
-                    lvlAns = parseLvlAns(json: lvlAnsString, maxPages: maxPages)
-                    //print(lvlAns)
-                    //print(3.1)
-                    setUpTheLevel()
-                    //print(3.2)
-                    return
-                }
-                else {
-                    print("couldn't get the data from the doc")
-                    return
-                }
-            }
-            else {
-                //print("Document does not exist")
-                print("doc doesn't exist")
-                //completion()
-                return
-            }
-        }
-        
-        //print(4)
-    }
-    
     static public func parseLvlAns(json: String, maxPages: Int) -> Array<Set<[Int]>> {
         let data = Data(json.utf8)
         var lvlAnsArray: Array<Array<Array<Int>>> = []
