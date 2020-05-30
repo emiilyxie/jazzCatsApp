@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD042DAA24819ACD00CB2310 /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD042DA924819ACD00CB2310 /* LevelCell.swift */; };
 		AD08F56224732A0300863204 /* StaffBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD08F56124732A0300863204 /* StaffBar.swift */; };
 		AD08F5682473371A00863204 /* FreestyleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD08F5672473371A00863204 /* FreestyleScene.swift */; };
 		AD08F56A2473397900863204 /* LevelTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD08F5692473397900863204 /* LevelTemplate.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AD042DA924819ACD00CB2310 /* LevelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		AD08F56124732A0300863204 /* StaffBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffBar.swift; sourceTree = "<group>"; };
 		AD08F5672473371A00863204 /* FreestyleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleScene.swift; sourceTree = "<group>"; };
 		AD08F5692473397900863204 /* LevelTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTemplate.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				AD9395AF24747CD10037E307 /* Main.storyboard */,
 				ADFA240B247646DD008BC384 /* WelcomeScreen.swift */,
 				AD9395B124747D3F0037E307 /* LevelSelect.swift */,
+				AD042DA924819ACD00CB2310 /* LevelCell.swift */,
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
 				ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */,
 				AD92D0FD247F0BC500F8F807 /* SignInVC.swift */,
@@ -432,6 +435,7 @@
 				AD3826E6245D10930027849D /* Button.swift in Sources */,
 				ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */,
 				AD08F56224732A0300863204 /* StaffBar.swift in Sources */,
+				AD042DAA24819ACD00CB2310 /* LevelCell.swift in Sources */,
 				ADFC5CD42478345100225610 /* LevelSound.swift in Sources */,
 				ADFC5CE12478524000225610 /* FreestyleSound.swift in Sources */,
 				AD3826EA245D11920027849D /* Configuration.swift in Sources */,

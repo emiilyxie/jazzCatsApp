@@ -74,6 +74,7 @@ class WelcomeScreen: UIViewController {
     }
     
     // unwind segue destinations
+    @IBAction func backToWelcomeFromLevelSelect(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromGame(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromCreateAcc(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {}
