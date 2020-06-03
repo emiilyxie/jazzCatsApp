@@ -21,21 +21,23 @@ public class LevelSetup {
     static let defaultSubdivision = 2
     static let defaultMaxPages = 2
     
+    static var lvlGroup: String!
     static var lvlAns: Array<Set<[Int]>>!
 
-    static public func prepareLevel(level: LevelTemplate, levelNum: Int, showScene: @escaping () -> Void) {
+    static public func prepareLevel(level: LevelTemplate, levelGroup: String, levelNum: Int, showScene: @escaping () -> Void) {
         
-        getLvlInfo(level: level, levelNum: levelNum) {
+        getLvlInfo(level: level, levelGroup: levelGroup, levelNum: levelNum) {
             showScene()
         }
         
     }
     
-    static public func getLvlInfo(level: LevelTemplate, levelNum: Int, showTheScene: @escaping () -> Void) {
+    static public func getLvlInfo(level: LevelTemplate, levelGroup: String, levelNum: Int, showTheScene: @escaping () -> Void) {
         
         let db = Firestore.firestore()
+        let docPath = "/level-groups/\(levelGroup)/levels"
         
-        let docRef = db.collection("levels").document("level\(levelNum)")
+        let docRef = db.collection(docPath).document("level\(levelNum)")
 
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -86,7 +88,6 @@ public class LevelSetup {
 
     static public func setUpLevel(level: LevelTemplate, levelNum: Int, staffBarHeight: Int, staffBarNumber: Int, numberOfMeasures: Int, bpm: Int, subdivision: Int, maxPages: Int, lvlAns: Array<Set<[Int]>>) {
         
-        //print(6)
         level.whichLevel = levelNum
         
         level.staffBarHeight = staffBarHeight

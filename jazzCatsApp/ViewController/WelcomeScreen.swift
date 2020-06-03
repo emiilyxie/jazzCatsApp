@@ -14,7 +14,8 @@ class WelcomeScreen: UIViewController {
     
     var goingToFreestyle = false
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         isSignedInResponse()
     }
 
@@ -63,6 +64,11 @@ class WelcomeScreen: UIViewController {
         performSegue(withIdentifier: "fromWelcomeToSignInSegue", sender: self)
     }
     
+    @IBAction func goToLevelGroups(_ sender: Any) {
+        performSegue(withIdentifier: "fromWelcomeToLevelGroupsSegue", sender: self)
+    }
+    
+    
     @IBAction func goToLevelSelect(_ sender: Any) {
         goingToFreestyle = false
         performSegue(withIdentifier: "fromWelcomeToLevelSelectSegue", sender: self)
@@ -76,8 +82,15 @@ class WelcomeScreen: UIViewController {
     // unwind segue destinations
     @IBAction func backToWelcomeFromLevelSelect(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromGame(segue: UIStoryboardSegue) {}
-    @IBAction func backToWelcomeFromCreateAcc(segue: UIStoryboardSegue) {}
-    @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {}
+    @IBAction func backToWelcomeFromCreateAcc(segue: UIStoryboardSegue) {
+        isSignedInResponse()
+    }
+    @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {
+        isSignedInResponse()
+    }
+    @IBAction func backToWelcomeFromLevelGroups(segue: UIStoryboardSegue) {
+        
+    }
     
     func anonSignIn() {
         let handle = Auth.auth().addStateDidChangeListener({ (auth, user) in

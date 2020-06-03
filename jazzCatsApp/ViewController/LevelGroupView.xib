@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LevelGroupView" customModule="jazzCatsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFI-Ib-rNK">
+                    <rect key="frame" x="198" y="82" width="500" height="250"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.84313725490000002" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="B27-uR-gMs"/>
+                        <constraint firstAttribute="width" constant="500" id="FZb-Rq-0f1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="levelButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="m31-eg-Q9I"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.97254902119999997" green="0.92156863209999995" blue="0.91372549530000002" alpha="1" colorSpace="deviceRGB"/>
+            <constraints>
+                <constraint firstItem="uFI-Ib-rNK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="WvV-6f-Z0p"/>
+                <constraint firstItem="uFI-Ib-rNK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="x7q-hV-hh9"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="levelGroupCard" destination="uFI-Ib-rNK" id="Xg9-3O-MQS"/>
+            </connections>
+            <point key="canvasLocation" x="140.625" y="95.652173913043484"/>
+        </view>
+    </objects>
+</document>

@@ -34,7 +34,9 @@
 		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
 		ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */; };
-		ADFA24322477A1FE008BC384 /* NumberControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA24312477A1FE008BC384 /* NumberControls.swift */; };
+		ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */; };
+		ADFAD4A62483185F00C3779C /* LevelGroupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADFAD4A52483185F00C3779C /* LevelGroupView.xib */; };
+		ADFAD4A82483187200C3779C /* LevelGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFAD4A72483187200C3779C /* LevelGroupView.swift */; };
 		ADFC5CD02478312100225610 /* LevelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CCF2478312100225610 /* LevelLayout.swift */; };
 		ADFC5CD2247832EF00225610 /* LevelButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CD1247832EF00225610 /* LevelButtons.swift */; };
 		ADFC5CD42478345100225610 /* LevelSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CD32478345100225610 /* LevelSound.swift */; };
@@ -98,7 +100,9 @@
 		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleRecordingFails.swift; sourceTree = "<group>"; };
-		ADFA24312477A1FE008BC384 /* NumberControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberControls.swift; sourceTree = "<group>"; };
+		ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupsVC.swift; sourceTree = "<group>"; };
+		ADFAD4A52483185F00C3779C /* LevelGroupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LevelGroupView.xib; sourceTree = "<group>"; };
+		ADFAD4A72483187200C3779C /* LevelGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupView.swift; sourceTree = "<group>"; };
 		ADFC5CCF2478312100225610 /* LevelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelLayout.swift; sourceTree = "<group>"; };
 		ADFC5CD1247832EF00225610 /* LevelButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelButtons.swift; sourceTree = "<group>"; };
 		ADFC5CD32478345100225610 /* LevelSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSound.swift; sourceTree = "<group>"; };
@@ -199,7 +203,6 @@
 				AD3826E3245D106A0027849D /* Note.swift */,
 				AD3826E5245D10930027849D /* Button.swift */,
 				AD08F56124732A0300863204 /* StaffBar.swift */,
-				ADFA24312477A1FE008BC384 /* NumberControls.swift */,
 				AD9395AD247478250037E307 /* LevelSetup.swift */,
 			);
 			path = CustomNodes;
@@ -218,6 +221,9 @@
 			children = (
 				AD9395AF24747CD10037E307 /* Main.storyboard */,
 				ADFA240B247646DD008BC384 /* WelcomeScreen.swift */,
+				ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */,
+				ADFAD4A72483187200C3779C /* LevelGroupView.swift */,
+				ADFAD4A52483185F00C3779C /* LevelGroupView.xib */,
 				AD9395B124747D3F0037E307 /* LevelSelect.swift */,
 				AD042DA924819ACD00CB2310 /* LevelCell.swift */,
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
@@ -357,6 +363,7 @@
 				ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */,
 				ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */,
 				ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */,
+				ADFAD4A62483185F00C3779C /* LevelGroupView.xib in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
 				ADFC5CEF247893F800225610 /* cat.mp3 in Resources */,
@@ -423,12 +430,12 @@
 			files = (
 				AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */,
 				ADFC5CEB2478847D00225610 /* SettingsPopupVC.swift in Sources */,
-				ADFA24322477A1FE008BC384 /* NumberControls.swift in Sources */,
 				ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */,
 				ADFC5CD6247834CB00225610 /* LevelNotes.swift in Sources */,
 				AD08F56A2473397900863204 /* LevelTemplate.swift in Sources */,
 				ADFC5CD02478312100225610 /* LevelLayout.swift in Sources */,
 				ADFC5CDB24784F1A00225610 /* FreestyleLayout.swift in Sources */,
+				ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */,
 				ADFC5CD2247832EF00225610 /* LevelButtons.swift in Sources */,
 				ADFC5CDF247851E600225610 /* FreestyleNotes.swift in Sources */,
 				AD3826E4245D106A0027849D /* Note.swift in Sources */,
@@ -444,6 +451,7 @@
 				AD92D0FE247F0BC500F8F807 /* SignInVC.swift in Sources */,
 				AD9395AE247478250037E307 /* LevelSetup.swift in Sources */,
 				AD3826E2245D104E0027849D /* GameCamera.swift in Sources */,
+				ADFAD4A82483187200C3779C /* LevelGroupView.swift in Sources */,
 				ADFC5CDD247850DC00225610 /* FreestyleButtons.swift in Sources */,
 				ADFC5CD82478352700225610 /* LevelPhysics.swift in Sources */,
 				AD08F5682473371A00863204 /* FreestyleScene.swift in Sources */,

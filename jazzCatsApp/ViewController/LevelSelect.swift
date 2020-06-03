@@ -7,15 +7,57 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var levels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    var levels: Array<Int>!
+    var levelGroup: String!
+    var numOfLevels: Int!
+    var maxUnlockedLevel = 1
     
     var whichLevel: Int!
-
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // set up the datasource, an array of ints
+        levels = Array<Int>(repeating: 0, count: numOfLevels)
+        for i in 0..<numOfLevels {
+            levels[i] = i+1
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set up the max unlocked level
+        refreshCollection() {
+            print("refreshed collection")
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func refreshCollection(completion: @escaping () -> ()) {
+        let currentUserID = Auth.auth().currentUser!.uid
+        let userRef = Firestore.firestore().collection("/users").document(currentUserID)
+        userRef.getDocument { (document, err) in
+            if let document = document, document.exists {
+                if let userData = document.data()!["level-progress"] as? NSDictionary {
+                    if userData[self.levelGroup!] != nil {
+                        let userProgress = userData[self.levelGroup!] as! Int
+                        print(userProgress)
+                        self.maxUnlockedLevel = userProgress
+                    }
+                }
+                else {
+                    self.maxUnlockedLevel = 1
+                }
+                completion()
+            }
+        }
     }
     
     // setting up the collection view funcs
@@ -24,16 +66,30 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "level", for: indexPath) as! LevelCell
 
         cell.levelCellLabel.text = String(levels[indexPath.row])
+        
+        if Int(cell.levelCellLabel.text!) ?? 0 > maxUnlockedLevel {
+            cell.backgroundColor = UIColor.gray
+        }
+        else {
+            cell.backgroundColor = UIColor.purple
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(levels[indexPath.row])
         whichLevel = levels[indexPath.row]
-        performSegue(withIdentifier: "goToLevelSegue", sender: self)
+        if whichLevel <= maxUnlockedLevel {
+            performSegue(withIdentifier: "goToLevelSegue", sender: self)
+        }
+        else {
+            print("level not unlocked yet!!")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -53,6 +109,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let gameVC = segue.destination as? GameViewController {
+            gameVC.levelGroup = levelGroup
             gameVC.selectedLevel = whichLevel
         }
     }

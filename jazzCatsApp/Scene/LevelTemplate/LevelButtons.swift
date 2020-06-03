@@ -179,6 +179,13 @@ extension LevelTemplate {
             //display the "yay!"
             yayYouDidIt.zPosition = 100
             yayYouDidIt.run(SKAction.fadeIn(withDuration: 0.5))
+            
+            // update level progress
+            guard let gameVC = self.viewController as? GameViewController else {
+                return
+            }
+            gameVC.updateUserValue(field: "level-progress", count: 1)
+            
         }
         else {
             
