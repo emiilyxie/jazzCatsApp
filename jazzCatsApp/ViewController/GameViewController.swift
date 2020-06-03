@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
     var selectedLevel: Int!
     var freestyleMode = false
     var currentScene: SKScene!
+    var maxUnlockedLevel: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,39 +72,17 @@ class GameViewController: UIViewController {
         let currentUserID = Auth.auth().currentUser!.uid
         let userRef = Firestore.firestore().collection("/users").document(currentUserID)
         
-        // this code is kinda messy & repeats itself, dw i'll clean it later tho
         if field == "level-progress" {
-            userRef.getDocument { (document, err) in
-                if let document = document, document.exists {
-                    
-                    if let userData = document.data()![field] as? NSDictionary {
-                        if userData[self.levelGroup!] != nil {
-                            let userProgress = userData[self.levelGroup!] as! Int
-                            let nextLevel = self.selectedLevel + 1
-                            if userProgress < nextLevel {
-                                print("updating level progress")
-                                userRef.setData([
-                                field : [self.levelGroup : self.selectedLevel + 1]], merge: true)
-                            }
-                            else {
-                                print("you've already completed this level")
-                            }
-                        }
-                        else {
-                            print("initializing the key in the field")
-                            userRef.setData([
-                                field : [self.levelGroup : self.selectedLevel + 1]], merge: true)
-                        }
-                    }
-                    else {
-                        print("initializing the field")
-                        userRef.setData([
-                            field : [self.levelGroup : self.selectedLevel + 1]], merge: true)
-                    }
-                }
+            if maxUnlockedLevel > selectedLevel+1 {
+                print("wont change val bc youve already completed this")
+            }
+            else {
+                print("updating progress")
+                userRef.setData([
+                    field : [self.levelGroup : self.selectedLevel + 1]], merge: true)
+                maxUnlockedLevel += 1
             }
         }
-        
         else {
             print("updating hints or currency")
             userRef.setData([
