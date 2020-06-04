@@ -31,6 +31,9 @@ class WelcomeScreen: UIViewController {
             if let user = user {
                 // if user is signed in, then cool
                 self.userIDLabel.text = user.uid
+                
+                // set data for the user struct
+                self.setUpUser()
             }
             else {
                 self.goToSignIn(self)
@@ -49,6 +52,33 @@ class WelcomeScreen: UIViewController {
             print(signOutError)
         }
         goToSignIn(self)
+    }
+    
+    func setUpUser() {
+        guard let uid = Auth.auth().currentUser?.uid
+        else {
+            print("no current user uh oh")
+            return
+        }
+        let userRef = Firestore.firestore().collection("/users").document(uid)
+        userRef.getDocument { (document, err) in
+            if let err = err {
+                print(err.localizedDescription)
+                return
+            }
+            if let document = document, document.exists {
+                GameUser.uid = document.get("uid") as? String ?? nil
+                GameUser.email = document.get("email") as? String ?? nil
+                GameUser.nickname = document.get("nickname") as? String ?? nil
+                GameUser.levelProgress = document.get("level-progress") as? Dictionary ?? [:]
+                GameUser.gameCurrency = document.get("game-currency") as? Int ?? 0
+                GameUser.hints = document.get("hints") as? Int ?? 0
+                print(GameUser.levelProgress)
+            }
+            else {
+                print("user doc doesn't exist")
+            }
+        }
     }
     
     // segue code
@@ -92,6 +122,8 @@ class WelcomeScreen: UIViewController {
         
     }
     
+    // for when you dont wanna sign in yet
+    /*
     func anonSignIn() {
         let handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             Auth.auth().signInAnonymously { (authResult, error) in
@@ -110,5 +142,6 @@ class WelcomeScreen: UIViewController {
         usersRef.document(uid!).setData(["uid": uid!], merge: true)
         Auth.auth().removeStateDidChangeListener(handle)
     }
+ */
 
 }

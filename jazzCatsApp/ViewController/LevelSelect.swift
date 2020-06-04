@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
+//import FirebaseAuth
+//import FirebaseFirestore
 
 class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -34,30 +34,17 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
         
         // set up the max unlocked level
-        refreshCollection() {
-            print("refreshed collection")
-            self.collectionView.reloadData()
-        }
+        refreshCollection()
     }
     
-    func refreshCollection(completion: @escaping () -> ()) {
-        let currentUserID = Auth.auth().currentUser!.uid
-        let userRef = Firestore.firestore().collection("/users").document(currentUserID)
-        userRef.getDocument { (document, err) in
-            if let document = document, document.exists {
-                if let userData = document.data()!["level-progress"] as? NSDictionary {
-                    if userData[self.levelGroup!] != nil {
-                        let userProgress = userData[self.levelGroup!] as! Int
-                        print(userProgress)
-                        self.maxUnlockedLevel = userProgress
-                    }
-                }
-                else {
-                    self.maxUnlockedLevel = 1
-                }
-                completion()
-            }
+    func refreshCollection() {
+        if let maxUnlockedLevel = GameUser.levelProgress[levelGroup] {
+            self.maxUnlockedLevel = maxUnlockedLevel
         }
+        else {
+            self.maxUnlockedLevel = 1
+        }
+        collectionView.reloadData()
     }
     
     // setting up the collection view funcs
@@ -108,10 +95,11 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // pass on info
         if let gameVC = segue.destination as? GameViewController {
             gameVC.levelGroup = levelGroup
             gameVC.selectedLevel = whichLevel
-            gameVC.maxUnlockedLevel = maxUnlockedLevel
+            //gameVC.maxUnlockedLevel = maxUnlockedLevel
         }
     }
     
@@ -128,14 +116,13 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func backToLevelSelectFromGame(segue: UIStoryboardSegue) {
         
         // updating level progress
+        /*
         if let gameVC = segue.source as? GameViewController {
             self.maxUnlockedLevel =  gameVC.maxUnlockedLevel
         }
+ */
         
-        refreshCollection() {
-            print("refreshed collection")
-            self.collectionView.reloadData()
-        }
+        refreshCollection()
     }
     
 }

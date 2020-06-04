@@ -31,6 +31,7 @@
 		AD9395AE247478250037E307 /* LevelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AD247478250037E307 /* LevelSetup.swift */; };
 		AD9395B024747CD10037E307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9395AF24747CD10037E307 /* Main.storyboard */; };
 		AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395B124747D3F0037E307 /* LevelSelect.swift */; };
+		ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC59C9C248824D6007D99A9 /* GameUser.swift */; };
 		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
 		ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */; };
@@ -97,6 +98,7 @@
 		AD9395AD247478250037E307 /* LevelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSetup.swift; sourceTree = "<group>"; };
 		AD9395AF24747CD10037E307 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AD9395B124747D3F0037E307 /* LevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelect.swift; sourceTree = "<group>"; };
+		ADC59C9C248824D6007D99A9 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleRecordingFails.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				AD3826E5245D10930027849D /* Button.swift */,
 				AD08F56124732A0300863204 /* StaffBar.swift */,
 				AD9395AD247478250037E307 /* LevelSetup.swift */,
+				ADC59C9C248824D6007D99A9 /* GameUser.swift */,
 			);
 			path = CustomNodes;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				ADFC5CD02478312100225610 /* LevelLayout.swift in Sources */,
 				ADFC5CDB24784F1A00225610 /* FreestyleLayout.swift in Sources */,
 				ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */,
+				ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */,
 				ADFC5CD2247832EF00225610 /* LevelButtons.swift in Sources */,
 				ADFC5CDF247851E600225610 /* FreestyleNotes.swift in Sources */,
 				AD3826E4245D106A0027849D /* Note.swift in Sources */,
