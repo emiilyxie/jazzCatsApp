@@ -184,8 +184,8 @@ extension LevelTemplate {
             guard let gameVC = self.viewController as? GameViewController else {
                 return
             }
-            gameVC.updateUserValue(field: "level-progress", count: 1)
-            
+            //gameVC.updateUserValue(field: "level-progress", count: 1)
+            GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel)
         }
         else {
             

@@ -14,8 +14,8 @@ struct GameUser {
     static var email: String?
     static var nickname: String?
     static var levelProgress: Dictionary<String, Int> = [:]
-    static var gameCurrency = 0
-    static var hints = 0
+    static var gameCurrency = 100
+    static var hints = 10
     
     static func updateField(field: String, text: String) {
         guard let uid = uid else {
@@ -40,11 +40,15 @@ struct GameUser {
         
         switch field {
         case "game-currency":
-            self.gameCurrency = gameCurrency + count
-            userRef.setData(["game-currency" : self.gameCurrency], merge: true)
+            if enoughValue(field: field, count: count) {
+                self.gameCurrency = gameCurrency + count
+                userRef.setData(["game-currency" : self.gameCurrency], merge: true)
+            }
         case "hints":
-            self.hints = hints + count
-            userRef.setData(["hints" : self.hints], merge: true)
+            if enoughValue(field: field, count: count) {
+                self.hints = hints + count
+                userRef.setData(["hints" : self.hints], merge: true)
+            }
         default:
             print("that field doesn't exist or can't be mutated")
         }
@@ -64,6 +68,8 @@ struct GameUser {
                 self.levelProgress[levelGroup] = currentLevel + 1
                 userRef.setData([
                     "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
+                self.updateField(field: "game-currency", count: 100)
+                self.updateField(field: "hints", count: 1)
             }
         }
         else {
@@ -72,6 +78,20 @@ struct GameUser {
             self.levelProgress[levelGroup] = currentLevel + 1
             userRef.setData([
                 "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
+            self.updateField(field: "game-currency", count: 100)
+            self.updateField(field: "hints", count: 1)
+        }
+    }
+    
+    static func enoughValue(field: String, count: Int) -> Bool {
+        let withdraw = count * -1
+        switch field {
+        case "game-currency":
+            return withdraw <= self.gameCurrency
+        case "hints":
+            return withdraw <= self.hints
+        default:
+            return false
         }
     }
     

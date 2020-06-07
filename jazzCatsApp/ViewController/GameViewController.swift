@@ -8,8 +8,6 @@
 
 import UIKit
 import SpriteKit
-//import FirebaseAuth
-//import FirebaseFirestore
 
 public var sceneWidth: CGFloat!
 public var sceneHeight: CGFloat!
@@ -20,7 +18,6 @@ class GameViewController: UIViewController {
     var selectedLevel: Int!
     var freestyleMode = false
     var currentScene: SKScene!
-    //var maxUnlockedLevel: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,29 +65,8 @@ class GameViewController: UIViewController {
         }
     }
     
-    func updateUserValue(field: String, count: Int) {
+    func updateUserLevelProgress() {
         GameUser.updateLevelProgress(levelGroup: levelGroup, currentLevel: selectedLevel)
-        /*
-        let currentUserID = Auth.auth().currentUser!.uid
-        let userRef = Firestore.firestore().collection("/users").document(currentUserID)
-        
-        if field == "level-progress" {
-            if maxUnlockedLevel > selectedLevel+1 {
-                print("wont change val bc youve already completed this")
-            }
-            else {
-                print("updating progress")
-                userRef.setData([
-                    field : [self.levelGroup : self.selectedLevel + 1]], merge: true)
-                maxUnlockedLevel += 1
-            }
-        }
-        else {
-            print("updating hints or currency")
-            userRef.setData([
-                field : FieldValue.increment(Int64(count))])
-        }
- */
     }
     
     @IBAction func showSettingsPopover(_ sender: Any) {

@@ -99,7 +99,6 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if let gameVC = segue.destination as? GameViewController {
             gameVC.levelGroup = levelGroup
             gameVC.selectedLevel = whichLevel
-            //gameVC.maxUnlockedLevel = maxUnlockedLevel
         }
     }
     
@@ -114,14 +113,6 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
     // destination segues
     @IBAction func backToLevelSelectFromGame(segue: UIStoryboardSegue) {
-        
-        // updating level progress
-        /*
-        if let gameVC = segue.source as? GameViewController {
-            self.maxUnlockedLevel =  gameVC.maxUnlockedLevel
-        }
- */
-        
         refreshCollection()
     }
     

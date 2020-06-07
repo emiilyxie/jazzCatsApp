@@ -39,7 +39,10 @@ public class LevelSetup {
         
         let docRef = db.collection(docPath).document("level\(levelNum)")
 
-        docRef.getDocument { (document, error) in
+        docRef.getDocument { (document, err) in
+            if let err = err {
+                print(err.localizedDescription)
+            }
             if let document = document, document.exists {
                 
                 var staffBarHeight = defaultStaffBarHeight

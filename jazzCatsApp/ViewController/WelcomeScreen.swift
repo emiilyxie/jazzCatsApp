@@ -28,10 +28,8 @@ class WelcomeScreen: UIViewController {
     func isSignedInResponse() {
         
         let signInHandler = Auth.auth().addStateDidChangeListener { (auth, user) in
-            if let user = user {
+            if user != nil {
                 // if user is signed in, then cool
-                self.userIDLabel.text = user.uid
-                
                 // set data for the user struct
                 self.setUpUser()
             }
@@ -71,9 +69,9 @@ class WelcomeScreen: UIViewController {
                 GameUser.email = document.get("email") as? String ?? nil
                 GameUser.nickname = document.get("nickname") as? String ?? nil
                 GameUser.levelProgress = document.get("level-progress") as? Dictionary ?? [:]
-                GameUser.gameCurrency = document.get("game-currency") as? Int ?? 0
-                GameUser.hints = document.get("hints") as? Int ?? 0
-                print(GameUser.levelProgress)
+                GameUser.gameCurrency = document.get("game-currency") as? Int ?? 100
+                GameUser.hints = document.get("hints") as? Int ?? 10
+                self.userIDLabel.text = "hi \(GameUser.nickname ?? "")!"
             }
             else {
                 print("user doc doesn't exist")

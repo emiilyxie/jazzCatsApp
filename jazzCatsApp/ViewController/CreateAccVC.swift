@@ -14,11 +14,7 @@ class CreateAccVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         dismissKeyboard()
-
-        // Do any additional setup after loading the view.
     }
     
     
@@ -95,7 +91,7 @@ class CreateAccVC: UIViewController {
         let user = Auth.auth().currentUser
         let uid = user?.uid
         let usersRef = Firestore.firestore().collection("users")
-        usersRef.document(uid!).setData(["email" : email, "password" : password, "nickname" : self.nameTextField.text!, "uid" : uid!, "levels-completed" : 0, "game-currency" : 0], merge: true)
+        usersRef.document(uid!).setData(["email" : email, "nickname" : self.nameTextField.text!, "uid" : uid!, "level-progress" : [:], "game-currency" : 100, "hints" : 10], merge: true)
     }
     
     func dismissKeyboard() {
