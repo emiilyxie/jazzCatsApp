@@ -16,6 +16,7 @@ struct GameUser {
     static var levelProgress: Dictionary<String, Int> = [:]
     static var gameCurrency = 100
     static var hints = 10
+    static var sounds: Dictionary<String, Int> = ["cat_basic1" : 0]
     
     static func updateField(field: String, text: String) {
         guard let uid = uid else {
@@ -92,6 +93,37 @@ struct GameUser {
             return withdraw <= self.hints
         default:
             return false
+        }
+    }
+    
+    static func updateSounds(newSound: String) {
+        guard let uid = uid else {
+            return
+        }
+        let userRef = getFIRUserDoc(uid: uid)
+        let soundsRef = Firestore.firestore().collection("/sounds").document(newSound)
+        
+        // getting index of the sound so that it can be sorted
+        soundsRef.getDocument { (document, err) in
+            if err != nil {
+                print(err!.localizedDescription)
+                return
+            }
+            else {
+                let soundIndex = document?.get("index") as! Int
+                self.sounds[newSound] = soundIndex
+                var sortedSounds: Dictionary<String, Int> = [:]
+                for (sound, index) in (Array(self.sounds).sorted {$0.1 < $1.1}) {
+                    sortedSounds[sound] = index
+                }
+                self.sounds = sortedSounds
+                userRef.setData(["sounds" : self.sounds], merge: true) { (err) in
+                    if err != nil {
+                        print(err!.localizedDescription)
+                        return
+                    }
+                }
+            }
         }
     }
     

@@ -36,7 +36,9 @@ public class LevelTemplate: SKScene {
     var bgNode: SKSpriteNode!
     let barsNode = SKNode()
     var measureBar: SKSpriteNode!
-    var selectedNoteType = NoteType.piano
+    //var selectedNoteType = NoteType.piano
+    var selectedNote = "cat_basic1"
+    weak var noteButton: Button!
     var currentMode = "addMode"
     var yayYouDidIt: SKSpriteNode!
     var sorryTryAgain: SKSpriteNode!
@@ -45,6 +47,7 @@ public class LevelTemplate: SKScene {
     var mixer: AKMixer!
     var ansSongPlayer: AKAudioPlayer!
     
+    var currentSounds = Array(GameUser.sounds.keys)
     var lvlAnsSong: String!
     var lvlAns: [Set<[Int]>] = []
     var myAns: [Set<[Int]>] = []
@@ -55,6 +58,7 @@ public class LevelTemplate: SKScene {
         setUpPhysics()
         setUpButtons()
         setUpSound()
+        print(currentSounds)
     }
     
     deinit {

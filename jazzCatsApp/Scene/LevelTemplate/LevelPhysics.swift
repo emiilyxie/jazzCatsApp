@@ -27,17 +27,13 @@ extension LevelTemplate: SKPhysicsContactDelegate {
             if let hitInstrument = contact.bodyA.node?.name != nil ? contact.bodyA.node as? Note : contact.bodyB.node as? Note {
                 let whichInstrument = hitInstrument.noteType
                 let whichNote = hitInstrument.getMidiVal()
+                let soundIndex = currentSounds.firstIndex(of: whichInstrument)
+                if soundIndex == nil {
+                    print("couldn't get sound")
+                    return
+                }
                 do {
-                    switch whichInstrument {
-                    case .piano:
-                        try samplers[0].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
-                    case .snare:
-                        try samplers[2].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
-                    case .cat:
-                        try samplers[4].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
-                    default:
-                        try samplers[0].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
-                    }
+                    try samplers[soundIndex!].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
                 }
                 catch {
                     print(error)

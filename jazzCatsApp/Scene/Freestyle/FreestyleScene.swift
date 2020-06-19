@@ -39,9 +39,12 @@ public class Freestyle: SKScene {
     let barsNode = SKNode()
     var measureBar: SKSpriteNode!
     var selectedNoteType = NoteType.piano
+    var selectedNote = "cat_basic1"
+    weak var noteButton: Button!
     var currentMode = "addMode"
     var settingsPopup: SKShapeNode!
     
+    var currentSounds = Array(GameUser.sounds.keys)
     var samplers: Array<AKAppleSampler>!
     var mixer: AKMixer!
     

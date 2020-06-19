@@ -69,6 +69,14 @@ class GameViewController: UIViewController {
         GameUser.updateLevelProgress(levelGroup: levelGroup, currentLevel: selectedLevel)
     }
     
+    @IBAction func showNoteSelectPopover(_ sender: Any) {
+        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "noteSelectPopoverID") as! NoteSelectPopupVC
+        self.addChild(popoverVC)
+        popoverVC.view.frame = self.view.frame
+        self.view.addSubview(popoverVC.view)
+        popoverVC.didMove(toParent: self)
+    }
+    
     @IBAction func showSettingsPopover(_ sender: Any) {
         let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "settingsPopoverID") as! SettingsPopupVC
         self.addChild(popoverVC)

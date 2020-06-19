@@ -96,7 +96,7 @@ extension Freestyle {
     
     func setUpImages() {
         // adding treble clef
-        let trebleClef = SKSpriteNode(imageNamed: "treble_clef.png")
+        let trebleClef = SKSpriteNode(imageNamed: "temp-treble_clef")
         let trebleClefScaledSize = CGSize(width: trebleClef.frame.width / 8, height: trebleClef.frame.height / 8)
         trebleClef.scale(to: trebleClefScaledSize)
         trebleClef.anchorPoint = CGPoint(x: 0, y: 0)

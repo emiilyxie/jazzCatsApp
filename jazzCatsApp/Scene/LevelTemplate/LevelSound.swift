@@ -34,14 +34,14 @@ extension LevelTemplate {
     }
     
     func setUpSamples() {
-        let audioArray = getAvailableAudioFiles()
+        
         var akSampleFile: AKAudioFile!
         var akSampleSampler: AKAppleSampler!
-        samplers = [AKAppleSampler](repeating: AKAppleSampler(), count: audioArray.count)
+        samplers = [AKAppleSampler](repeating: AKAppleSampler(), count: currentSounds.count)
         do {
-            for i in 0...audioArray.count-1 {
+            for i in 0...currentSounds.count-1 {
                 akSampleSampler = AKAppleSampler()
-                akSampleFile = try AKAudioFile(readFileName: audioArray[i])
+                akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i]).mp3")
                 try akSampleSampler.loadAudioFile(akSampleFile!)
                 samplers[i] = akSampleSampler
             }
@@ -63,12 +63,14 @@ extension LevelTemplate {
         ansSongPlayer.looping = false
     }
     
+    /*
     func getAvailableAudioFiles() -> Array<String> {
         var audioArray: [String] = []
-        for type in NoteType.allTypes {
+        for type in currentSounds {
             let tempNote = Note(type: type)
             audioArray.append(tempNote.audioFile)
         }
         return audioArray
     }
+ */
 }

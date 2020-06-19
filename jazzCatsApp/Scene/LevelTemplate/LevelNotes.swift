@@ -30,14 +30,14 @@ extension LevelTemplate {
                 if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
                     
                     // simulating a temporary note to get its position, and seeing if it overlaps with a current note
-                    let tempNote = Note(type: selectedNoteType)
+                    let tempNote = Note(type: selectedNote)
                     let snappedLocation = snapNoteLocation(touchedPoint: location)
                     tempNote.position = snappedLocation
                     barsNode.addChild(tempNote)
                     tempNote.setPositions()
                     let noteAns = tempNote.getAnsArray()
                     if !myAns[pageIndex].contains(noteAns) {
-                        addNote(noteType: selectedNoteType, notePosition: snappedLocation)
+                        addNote(noteType: selectedNote, notePosition: snappedLocation)
                         tempNote.removeFromParent()
                         //myAns[pageIndex].insert(noteAns)
                         //print(myAns[pageIndex])
@@ -81,7 +81,7 @@ extension LevelTemplate {
                     //if myAns[pageIndex][arrayVal[0]].contains(noteVal) {
                     let sharp = SKSpriteNode(imageNamed: "sharp.png")
                     sharp.size = scaleNode(size: sharp.size, factor: Double(0.05))
-                    sharp.position = CGPoint(x: -20, y: 0)
+                    sharp.position = CGPoint(x: -40, y: 0)
                     noteNode.addChild(sharp)
                     //}
                 }
@@ -107,7 +107,7 @@ extension LevelTemplate {
                     //myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
                     let flat = SKSpriteNode(imageNamed: "flat.png")
                     flat.size = scaleNode(size: flat.size, factor: Double(0.025))
-                    flat.position = CGPoint(x: -20, y: 0)
+                    flat.position = CGPoint(x: -40, y: 0)
                     noteNode.addChild(flat)
                 }
                 else {
@@ -123,7 +123,7 @@ extension LevelTemplate {
         }
     }
     
-    func addNote(noteType: NoteType, notePosition: CGPoint) {
+    func addNote(noteType: String, notePosition: CGPoint) {
         let note = Note(type: noteType)
         note.name = "note"
         note.position = notePosition

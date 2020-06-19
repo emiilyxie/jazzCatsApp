@@ -71,6 +71,7 @@ class WelcomeScreen: UIViewController {
                 GameUser.levelProgress = document.get("level-progress") as? Dictionary ?? [:]
                 GameUser.gameCurrency = document.get("game-currency") as? Int ?? 100
                 GameUser.hints = document.get("hints") as? Int ?? 10
+                GameUser.sounds = document.get("sounds") as? Dictionary ?? ["cat_basic1" : 0]
                 self.userIDLabel.text = "hi \(GameUser.nickname ?? "")!"
             }
             else {

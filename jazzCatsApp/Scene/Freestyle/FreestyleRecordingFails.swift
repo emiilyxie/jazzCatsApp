@@ -6,6 +6,7 @@
 //  Copyright © 2020 Emily Xie. All rights reserved.
 //
 
+/*
 import UIKit
 import SpriteKit
 import AudioKit
@@ -441,7 +442,7 @@ public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
                 let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
                 if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
                     let snappedLocation = snapNoteLocation(touchedPoint: location)
-                    addNote(noteType: selectedNoteType, notePosition: snappedLocation)
+                    addNote(noteType: selectedNote, notePosition: snappedLocation)
                 }
                 
             }
@@ -492,7 +493,7 @@ public class FreestyleRecordingFails: SKScene, AVAudioRecorderDelegate {
         }
     }
     
-    func addNote(noteType: NoteType, notePosition: CGPoint) {
+    func addNote(noteType: String, notePosition: CGPoint) {
         let note = Note(type: noteType)
         note.name = "note"
         note.position = notePosition
@@ -669,3 +670,5 @@ extension FreestyleRecordingFails: SKPhysicsContactDelegate {
         }
     }
 }
+
+ */

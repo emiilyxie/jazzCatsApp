@@ -13,7 +13,7 @@ public class Button: SKSpriteNode {
         self.action = action
         self.index = index
         
-        super.init(texture: defaultButton, color: UIColor.clear, size: CGSize(width: 50, height: 50))
+        super.init(texture: defaultButton, color: UIColor.clear, size: CGSize(width: 100, height: 100))
         self.name = buttonName
         
         isUserInteractionEnabled = true

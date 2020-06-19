@@ -31,6 +31,8 @@
 		AD9395AE247478250037E307 /* LevelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AD247478250037E307 /* LevelSetup.swift */; };
 		AD9395B024747CD10037E307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9395AF24747CD10037E307 /* Main.storyboard */; };
 		AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395B124747D3F0037E307 /* LevelSelect.swift */; };
+		AD954D97249CAC5E00EBDACD /* NoteSelectPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */; };
+		AD954D99249CACAD00EBDACD /* NoteSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */; };
 		ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC59C9C248824D6007D99A9 /* GameUser.swift */; };
 		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
@@ -49,9 +51,9 @@
 		ADFC5CE12478524000225610 /* FreestyleSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CE02478524000225610 /* FreestyleSound.swift */; };
 		ADFC5CE3247852BF00225610 /* FreestylePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CE2247852BF00225610 /* FreestylePhysics.swift */; };
 		ADFC5CEB2478847D00225610 /* SettingsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */; };
-		ADFC5CED247893DE00225610 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEC247893DE00225610 /* piano.mp3 */; };
-		ADFC5CEF247893F800225610 /* cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEE247893F800225610 /* cat.mp3 */; };
-		ADFC5CF12478945300225610 /* snare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF02478945300225610 /* snare.mp3 */; };
+		ADFC5CED247893DE00225610 /* piano1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEC247893DE00225610 /* piano1.mp3 */; };
+		ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEE247893F800225610 /* cat_basic1.mp3 */; };
+		ADFC5CF12478945300225610 /* snare1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF02478945300225610 /* snare1.mp3 */; };
 		ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF42479E9E600225610 /* lvl1song.mp3 */; };
 		ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */; };
 		ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF82479E9F400225610 /* lvl3song.mp3 */; };
@@ -98,6 +100,8 @@
 		AD9395AD247478250037E307 /* LevelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSetup.swift; sourceTree = "<group>"; };
 		AD9395AF24747CD10037E307 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AD9395B124747D3F0037E307 /* LevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelect.swift; sourceTree = "<group>"; };
+		AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectPopupVC.swift; sourceTree = "<group>"; };
+		AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectCell.swift; sourceTree = "<group>"; };
 		ADC59C9C248824D6007D99A9 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
@@ -116,9 +120,9 @@
 		ADFC5CE02478524000225610 /* FreestyleSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleSound.swift; sourceTree = "<group>"; };
 		ADFC5CE2247852BF00225610 /* FreestylePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestylePhysics.swift; sourceTree = "<group>"; };
 		ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupVC.swift; sourceTree = "<group>"; };
-		ADFC5CEC247893DE00225610 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
-		ADFC5CEE247893F800225610 /* cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat.mp3; sourceTree = "<group>"; };
-		ADFC5CF02478945300225610 /* snare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snare.mp3; sourceTree = "<group>"; };
+		ADFC5CEC247893DE00225610 /* piano1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano1.mp3; sourceTree = "<group>"; };
+		ADFC5CEE247893F800225610 /* cat_basic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic1.mp3; sourceTree = "<group>"; };
+		ADFC5CF02478945300225610 /* snare1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snare1.mp3; sourceTree = "<group>"; };
 		ADFC5CF42479E9E600225610 /* lvl1song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl1song.mp3; sourceTree = "<group>"; };
 		ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl2song.mp3; sourceTree = "<group>"; };
 		ADFC5CF82479E9F400225610 /* lvl3song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl3song.mp3; sourceTree = "<group>"; };
@@ -190,9 +194,9 @@
 				ADFC5CF42479E9E600225610 /* lvl1song.mp3 */,
 				ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */,
 				ADFC5CF82479E9F400225610 /* lvl3song.mp3 */,
-				ADFC5CF02478945300225610 /* snare.mp3 */,
-				ADFC5CEE247893F800225610 /* cat.mp3 */,
-				ADFC5CEC247893DE00225610 /* piano.mp3 */,
+				ADFC5CF02478945300225610 /* snare1.mp3 */,
+				ADFC5CEE247893F800225610 /* cat_basic1.mp3 */,
+				ADFC5CEC247893DE00225610 /* piano1.mp3 */,
 				AD3826F2245D22530027849D /* kitten-meow.wav */,
 			);
 			path = Sounds;
@@ -230,6 +234,8 @@
 				AD9395B124747D3F0037E307 /* LevelSelect.swift */,
 				AD042DA924819ACD00CB2310 /* LevelCell.swift */,
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
+				AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */,
+				AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */,
 				ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */,
 				AD92D0FD247F0BC500F8F807 /* SignInVC.swift */,
 				AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */,
@@ -369,14 +375,14 @@
 				ADFAD4A62483185F00C3779C /* LevelGroupView.xib in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
-				ADFC5CEF247893F800225610 /* cat.mp3 in Resources */,
+				ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
-				ADFC5CF12478945300225610 /* snare.mp3 in Resources */,
+				ADFC5CF12478945300225610 /* snare1.mp3 in Resources */,
 				ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
 				AD9395B024747CD10037E307 /* Main.storyboard in Resources */,
-				ADFC5CED247893DE00225610 /* piano.mp3 in Resources */,
+				ADFC5CED247893DE00225610 /* piano1.mp3 in Resources */,
 				AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */,
 				AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */,
 			);
@@ -436,8 +442,10 @@
 				ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */,
 				ADFC5CD6247834CB00225610 /* LevelNotes.swift in Sources */,
 				AD08F56A2473397900863204 /* LevelTemplate.swift in Sources */,
+				AD954D99249CACAD00EBDACD /* NoteSelectCell.swift in Sources */,
 				ADFC5CD02478312100225610 /* LevelLayout.swift in Sources */,
 				ADFC5CDB24784F1A00225610 /* FreestyleLayout.swift in Sources */,
+				AD954D97249CAC5E00EBDACD /* NoteSelectPopupVC.swift in Sources */,
 				ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */,
 				ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */,
 				ADFC5CD2247832EF00225610 /* LevelButtons.swift in Sources */,

@@ -17,40 +17,42 @@ extension Freestyle {
             return
         }
         
+        let rightXinView = CGPoint(x: view.bounds.size.width, y: 0)
+        let rightX = convertPoint(fromView: rightXinView).x
         let topYinView = CGPoint(x: 0, y: view.bounds.size.height*0.15)
         let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height*0.85)
         let topY = convertPoint(fromView: topYinView).y
         let bottomY = convertPoint(fromView: bottomYinView).y
         
-        addButton(buttonImage: "play.png", buttonAction: returnToWelcomeScreen, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: 50, y: topY))
-        addButton(buttonImage: "play.png", buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: 100, y: topY))
-        addButton(buttonImage: "pause.png", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: 150, y: topY))
-        addButton(buttonImage: "stop.png", buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: 200, y: topY))
+        _ = addButton(buttonImage: "play", buttonAction: returnToWelcomeScreen, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
+        _ = addButton(buttonImage: "play", buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
+        _ = addButton(buttonImage: "pause", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
+        _ = addButton(buttonImage: "stop", buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.4, y: topY))
+        _ = addButton(buttonImage: "snare1", buttonAction: displayPopup, buttonIndex: 0, name: "displaySettingsButton", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
         
-        addButton(buttonImage: "piano.png", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: 150, y: bottomY))
-        addButton(buttonImage: "snare.png", buttonAction: selectNoteType, buttonIndex: 2, name: "snareButton", buttonPosition: CGPoint(x: 200, y: bottomY))
-        addButton(buttonImage: "cat.png", buttonAction: selectNoteType, buttonIndex: 4, name: "catButton", buttonPosition: CGPoint(x: 250, y: bottomY))
-        addButton(buttonImage: "eraser.png", buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", buttonPosition: CGPoint(x: 300, y: bottomY))
-        addButton(buttonImage: "sharp.png", buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: 50, y: bottomY))
-        addButton(buttonImage: "flat.png", buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: 100, y: bottomY))
+        _ = addButton(buttonImage: "temp-sharp", buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.1, y: bottomY))
+        _ = addButton(buttonImage: "temp-flat", buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
+        //_ = addButton(buttonImage: "piano.png", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: 150, y: bottomY))
+        _ = addButton(buttonImage: "snare1", buttonAction: displayPopup, buttonIndex: 1, name: "snareButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
+        _ = addButton(buttonImage: "cat_basic1", buttonAction: selectNoteType, buttonIndex: 4, name: "catButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
+        _ = addButton(buttonImage: "temp-eraser", buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
         
-        addButton(buttonImage: "leftArrow.png", buttonAction: prevPage, buttonIndex: 0, name: "prevPage", buttonPosition: CGPoint(x: 400, y: bottomY))
-        addButton(buttonImage: "rightArrow.png", buttonAction: nextPage, buttonIndex: 0, name: "nextPage", buttonPosition: CGPoint(x: 450, y: bottomY))
+        _ = addButton(buttonImage: "temp-leftArrow", buttonAction: prevPage, buttonIndex: 0, name: "prevPage", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
+        _ = addButton(buttonImage: "temp-rightArrow", buttonAction: nextPage, buttonIndex: 0, name: "nextPage", buttonPosition: CGPoint(x: rightX*0.8, y: bottomY))
         
         pgCountLabel = SKLabelNode(text: "page: \(pageIndex+1)/\(maxPages!)")
         pgCountLabel.fontColor = UIColor.black
         pgCountLabel.fontSize = 30
         pgCountLabel.fontName = "Hiragino Mincho ProN"
-        pgCountLabel.position = CGPoint(x: 400, y: bottomY - 70)
+        pgCountLabel.position = CGPoint(x: rightX*0.7, y: bottomY - 70)
         addChild(pgCountLabel)
-        
-        addButton(buttonImage: "snare.png", buttonAction: displayPopup, buttonIndex: 0, name: "displaySettingsButton", buttonPosition: CGPoint(x: 350, y: topY))
     }
     
-    func addButton(buttonImage: String, buttonAction: @escaping (Int) -> (), buttonIndex: Int, name: String, buttonPosition: CGPoint) {
+    func addButton(buttonImage: String, buttonAction: @escaping (Int) -> (), buttonIndex: Int, name: String, buttonPosition: CGPoint) -> Button {
         let newButton = Button(defaultButtonImage: buttonImage, action: buttonAction, index: buttonIndex, buttonName: name)
         newButton.position = CGPoint(x: buttonPosition.x, y: buttonPosition.y)
         addChild(newButton)
+        return newButton
     }
     
     func addButton(button: Button, buttonPosition: CGPoint) {
@@ -141,26 +143,18 @@ extension Freestyle {
     func updatePgCount() {
         pgCountLabel.text = "page: \(pageIndex+1)/\(maxPages!)"
     }
-    /*
-    func displayPopup(index: Int) {
-        print("clicked display popup")
-        switch index {
-        case 0:
-            settingsPopup.isUserInteractionEnabled = true
-            settingsPopup.isHidden = false
-            settingsPopup.zPosition = 100
-            barsNode.isUserInteractionEnabled = false
-        default:
-            settingsPopup.zPosition = 100
-        }
-    }
- */
     
     func displayPopup(index: Int) {
         guard let gameVc = self.viewController as! GameViewController? else {
             return
         }
-        gameVc.showSettingsPopover(gameVc)
+        
+        switch index {
+        case 0:
+            gameVc.showSettingsPopover(gameVc)
+        default:
+            gameVc.showNoteSelectPopover(gameVc)
+        }
     }
         
     func returnToWelcomeScreen(index: Int) {

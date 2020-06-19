@@ -98,7 +98,7 @@ extension LevelTemplate {
     
     func setUpImages() {
         // adding treble clef
-        let trebleClef = SKSpriteNode(imageNamed: "treble_clef.png")
+        let trebleClef = SKSpriteNode(imageNamed: "temp-treble_clef")
         let trebleClefScaledSize = CGSize(width: trebleClef.frame.width / 8, height: trebleClef.frame.height / 8)
         trebleClef.scale(to: trebleClefScaledSize)
         trebleClef.anchorPoint = CGPoint(x: 0, y: 0)
@@ -106,7 +106,7 @@ extension LevelTemplate {
         barsNode.addChild(trebleClef)
         
         // level is complete (hidden)
-        yayYouDidIt = SKSpriteNode(imageNamed: "you-did-it.jpeg")
+        yayYouDidIt = SKSpriteNode(imageNamed: "temp-you-did-it")
         let yayYouDidItScaledSize = scaleNode(size: yayYouDidIt.size, factor: Double(0.5))
         yayYouDidIt.scale(to: yayYouDidItScaledSize)
         yayYouDidIt.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -115,7 +115,7 @@ extension LevelTemplate {
         addChild(yayYouDidIt)
         
         // try again (hidden)
-        sorryTryAgain = SKSpriteNode(imageNamed: "try-again.jpg")
+        sorryTryAgain = SKSpriteNode(imageNamed: "temp-try-again")
         let sorryTryAgainScaledSize = scaleNode(size: sorryTryAgain.size, factor: Double(0.5))
         sorryTryAgain.scale(to: sorryTryAgainScaledSize)
         sorryTryAgain.position = CGPoint(x: frame.midX, y: frame.midY)

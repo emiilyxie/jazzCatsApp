@@ -30,7 +30,7 @@ public class StaffBar: SKSpriteNode {
          shapeNode.lineWidth = 1
          addChild(shapeNode)
          */
-        if let linePic = UIImage(named: "long-thin.png") {
+        if let linePic = UIImage(named: "temp-long-thin.png") {
             self.texture = SKTexture(image: linePic)
         }
     }

@@ -28,7 +28,7 @@ extension Freestyle {
                 let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
                 if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
                     let snappedLocation = snapNoteLocation(touchedPoint: location)
-                    addNote(noteType: selectedNoteType, notePosition: snappedLocation)
+                    addNote(noteType: selectedNote, notePosition: snappedLocation)
                 }
                 
             }
@@ -48,7 +48,7 @@ extension Freestyle {
                 }
                 noteNode.toggleSharp()
                 if noteNode.isSharp {
-                    let sharp = SKSpriteNode(imageNamed: "sharp.png")
+                    let sharp = SKSpriteNode(imageNamed: "temp-sharp")
                     sharp.size = scaleNode(size: sharp.size, factor: Double(0.05))
                     sharp.position = CGPoint(x: -20, y: 0)
                     noteNode.addChild(sharp)
@@ -66,7 +66,7 @@ extension Freestyle {
                 }
                 noteNode.toggleFlat()
                 if noteNode.isFlat {
-                    let flat = SKSpriteNode(imageNamed: "flat.png")
+                    let flat = SKSpriteNode(imageNamed: "temp-flat")
                     flat.size = scaleNode(size: flat.size, factor: Double(0.025))
                     flat.position = CGPoint(x: -20, y: 0)
                     noteNode.addChild(flat)
@@ -80,7 +80,7 @@ extension Freestyle {
         }
     }
     
-    func addNote(noteType: NoteType, notePosition: CGPoint) {
+    func addNote(noteType: String, notePosition: CGPoint) {
         let note = Note(type: noteType)
         note.name = "note"
         note.position = notePosition

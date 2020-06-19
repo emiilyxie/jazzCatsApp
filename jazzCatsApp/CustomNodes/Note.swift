@@ -8,7 +8,7 @@ public enum NoteType: String {
 
 public class Note: SKSpriteNode {
     
-    public let noteType: NoteType
+    public let noteType: String
     public var positionInStaff = [0,0]
     public var universalTimePos: Double?
     public var soundBase: String
@@ -16,10 +16,14 @@ public class Note: SKSpriteNode {
     public var isSharp = false
     public var isFlat = false
     
-    public init(type: NoteType) {
+    public init(type: String) {
         noteType = type
         
-        let noteTexture: SKTexture!
+        let noteTexture = SKTexture(imageNamed: type)
+        soundBase = type
+        audioFile = "\(type).mp3"
+        
+        /*
         switch type {
         case .piano:
             noteTexture = SKTexture(imageNamed: "piano.png")
@@ -42,8 +46,9 @@ public class Note: SKSpriteNode {
             soundBase = "cat"
             audioFile = "cat.mp3"
         }
+ */
         
-        super.init(texture: noteTexture, color: UIColor.clear, size: CGSize(width: 30, height: 30))
+        super.init(texture: noteTexture, color: UIColor.clear, size: CGSize(width: 40, height: 40))
         
         
     }
