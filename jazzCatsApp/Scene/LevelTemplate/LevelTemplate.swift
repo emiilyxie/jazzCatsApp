@@ -36,7 +36,6 @@ public class LevelTemplate: SKScene {
     var bgNode: SKSpriteNode!
     let barsNode = SKNode()
     var measureBar: SKSpriteNode!
-    //var selectedNoteType = NoteType.piano
     var selectedNote = "cat_basic1"
     weak var noteButton: Button!
     var currentMode = "addMode"

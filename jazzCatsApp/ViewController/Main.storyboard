@@ -174,13 +174,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7lT-ZH-nOs">
-                                <rect key="frame" x="433" y="192" width="30" height="30"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="goToLevelSelect:" destination="dec-BY-2yf" eventType="touchUpInside" id="OF9-RG-t8Y"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fd-0C-cez">
                                 <rect key="frame" x="416.5" y="265" width="63" height="30"/>
                                 <state key="normal" title="Freestyle"/>
@@ -211,8 +204,6 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="1Fd-0C-cez" firstAttribute="centerX" secondItem="7lT-ZH-nOs" secondAttribute="centerX" id="4ln-N7-hTC"/>
-                            <constraint firstItem="1Fd-0C-cez" firstAttribute="top" secondItem="7lT-ZH-nOs" secondAttribute="bottom" constant="43" id="AI2-47-qp9"/>
                             <constraint firstItem="GyB-rx-roN" firstAttribute="trailing" secondItem="edd-Rg-unA" secondAttribute="trailing" constant="10" id="E5n-dA-Qad"/>
                             <constraint firstItem="Rn4-dd-hW6" firstAttribute="centerX" secondItem="hhp-mo-ldP" secondAttribute="centerX" id="OeQ-x8-cSm"/>
                             <constraint firstItem="GyB-rx-roN" firstAttribute="bottom" secondItem="1Fd-0C-cez" secondAttribute="bottom" constant="98" id="Qo2-Hf-pPg"/>
@@ -227,7 +218,6 @@
                     <connections>
                         <outlet property="userIDLabel" destination="xwI-vr-1dK" id="B0X-KY-8Y4"/>
                         <segue destination="uKC-AO-KPp" kind="presentation" identifier="fromWelcomeToFreestyleSegue" id="GLW-ER-AVP"/>
-                        <segue destination="4gq-Lp-7HN" kind="presentation" identifier="fromWelcomeToLevelSelectSegue" id="vav-ul-C7h"/>
                         <segue destination="5qc-HS-yo8" kind="presentation" identifier="fromWelcomeToSignInSegue" id="mba-eb-Z7X"/>
                         <segue destination="eET-rt-TJ4" kind="presentation" identifier="fromWelcomeToLevelGroupsSegue" id="ydH-AR-R67"/>
                     </connections>
@@ -637,7 +627,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Lga-rB-OrQ"/>
-        <segue reference="wCB-rj-d9R"/>
+        <segue reference="GLW-ER-AVP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -29,7 +29,7 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         }
         
         if let freestyleScene = parentVC.currentScene as? Freestyle {
-            //selectedNote = freestyleScene.selectedNote
+            selectedNote = freestyleScene.selectedNote
         }
         else {
             print("not freestyle")

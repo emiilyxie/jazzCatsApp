@@ -1,11 +1,12 @@
 import SpriteKit
 import UIKit
 
+/*
 public enum NoteType: String {
     case piano, bass, snare, hihat, cat
     static var allTypes: [NoteType] = [.piano, .bass, .snare, .hihat, .cat]
 }
-
+*/
 public class Note: SKSpriteNode {
     
     public let noteType: String
@@ -22,31 +23,6 @@ public class Note: SKSpriteNode {
         let noteTexture = SKTexture(imageNamed: type)
         soundBase = type
         audioFile = "\(type).mp3"
-        
-        /*
-        switch type {
-        case .piano:
-            noteTexture = SKTexture(imageNamed: "piano.png")
-            soundBase = "piano"
-            audioFile = "piano.mp3"
-        case .bass:
-            noteTexture = SKTexture(imageNamed: "bass.png")
-            soundBase = "bass"
-            audioFile = "piano.mp3"
-        case .snare:
-            noteTexture = SKTexture(imageNamed: "snare.png")
-            soundBase = "snare"
-            audioFile = "snare.mp3"
-        case .hihat:
-            noteTexture = SKTexture(imageNamed: "hihat.png")
-            soundBase = "hihat"
-            audioFile = "snare.mp3"
-        case .cat:
-            noteTexture = SKTexture(imageNamed: "cat.png")
-            soundBase = "cat"
-            audioFile = "cat.mp3"
-        }
- */
         
         super.init(texture: noteTexture, color: UIColor.clear, size: CGSize(width: 40, height: 40))
         

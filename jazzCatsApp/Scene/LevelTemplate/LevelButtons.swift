@@ -118,42 +118,46 @@ extension LevelTemplate {
     }
     
     func generateHint(index: Int) {
-        if hintNum < lvlAns[pageIndex].count && !lvlAns[pageIndex].isEmpty {
-            for noteAnswer in lvlAns[pageIndex] {
-                if !myAns[pageIndex].contains(noteAnswer) {
-                    
-                    // adding the note to the scene
-                    let currNotePos = ansArrayToScenePos(ansVal: noteAnswer)
-                    let currentNote = Note(type: selectedNote)
-                    currentNote.name = "note"
-                    currentNote.position = currNotePos
-                    currentNote.positionInStaff = getStaffPosition(notePosition: currNotePos)
-                    currentNote.physicsBody = SKPhysicsBody(rectangleOf: currentNote.size)
-                    currentNote.physicsBody?.isDynamic = false
-                    currentNote.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
-                    currentNote.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
-                    currentNote.physicsBody?.collisionBitMask = PhysicsCategories.none
-                    
-                    // add a flat if it should be flatted
-                    if shouldBeFlatted(midiVal: noteAnswer[1]) {
-                        currentNote.toggleFlat()
-                        let flat = SKSpriteNode(imageNamed: "temp-flat")
-                        flat.size = scaleNode(size: flat.size, factor: Double(0.05))
-                        flat.position = CGPoint(x: -20, y: 0)
-                        currentNote.addChild(flat)
-                    }
-                    
-                    // add the note to the bar
-                    barsNode.addChild(currentNote)
-                    myAns[pageIndex].insert(currentNote.getAnsArray())
-                    pages[pageIndex].append(currentNote)
-                    hintNum += 1
-                    return
-                }
-            }
-        }
-        else {
+        print(GameUser.hints)
+        if hintNum >= lvlAns[pageIndex].count || lvlAns[pageIndex].isEmpty {
             print("no more hints")
+            return
+        }
+        if !GameUser.updateField(field: "hints", count: -1) {
+            print("you're too broke in hints")
+            return
+        }
+        for noteAnswer in lvlAns[pageIndex] {
+            if !myAns[pageIndex].contains(noteAnswer) {
+                
+                // adding the note to the scene
+                let currNotePos = ansArrayToScenePos(ansVal: noteAnswer)
+                let currentNote = Note(type: selectedNote)
+                currentNote.name = "note"
+                currentNote.position = currNotePos
+                currentNote.positionInStaff = getStaffPosition(notePosition: currNotePos)
+                currentNote.physicsBody = SKPhysicsBody(rectangleOf: currentNote.size)
+                currentNote.physicsBody?.isDynamic = false
+                currentNote.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
+                currentNote.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
+                currentNote.physicsBody?.collisionBitMask = PhysicsCategories.none
+                
+                // add a flat if it should be flatted
+                if shouldBeFlatted(midiVal: noteAnswer[1]) {
+                    currentNote.toggleFlat()
+                    let flat = SKSpriteNode(imageNamed: "temp-flat")
+                    flat.size = scaleNode(size: flat.size, factor: Double(0.05))
+                    flat.position = CGPoint(x: -20, y: 0)
+                    currentNote.addChild(flat)
+                }
+                
+                // add the note to the bar
+                barsNode.addChild(currentNote)
+                myAns[pageIndex].insert(currentNote.getAnsArray())
+                pages[pageIndex].append(currentNote)
+                hintNum += 1
+                return
+            }
         }
     }
     
@@ -216,7 +220,6 @@ extension LevelTemplate {
         if pageIndex < maxPages - 1 {
             for note in pages[pageIndex] {
                 note.isHidden = true
-                print(note.isHidden)
                 note.physicsBody?.categoryBitMask = PhysicsCategories.none
             }
             

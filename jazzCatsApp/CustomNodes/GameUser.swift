@@ -18,9 +18,9 @@ struct GameUser {
     static var hints = 10
     static var sounds: Dictionary<String, Int> = ["cat_basic1" : 0]
     
-    static func updateField(field: String, text: String) {
+    static func updateField(field: String, text: String) -> Bool {
         guard let uid = uid else {
-            return
+            return false
         }
         let userRef = getFIRUserDoc(uid: uid)
         
@@ -28,14 +28,16 @@ struct GameUser {
         case "nickname":
             self.nickname = text
             userRef.setData(["nickname" : text], merge: true)
+            return true
         default:
             print("that field doesn't exist or it cant be mutated")
+            return false
         }
     }
     
-    static func updateField(field: String, count: Int) {
+    static func updateField(field: String, count: Int) -> Bool {
         guard let uid = uid else {
-            return
+            return false
         }
         let userRef = getFIRUserDoc(uid: uid)
         
@@ -44,15 +46,19 @@ struct GameUser {
             if enoughValue(field: field, count: count) {
                 self.gameCurrency = gameCurrency + count
                 userRef.setData(["game-currency" : self.gameCurrency], merge: true)
+                return true
             }
         case "hints":
             if enoughValue(field: field, count: count) {
                 self.hints = hints + count
                 userRef.setData(["hints" : self.hints], merge: true)
+                return true
             }
         default:
             print("that field doesn't exist or can't be mutated")
+            return false
         }
+        return false
     }
     
     static func updateLevelProgress(levelGroup: String, currentLevel: Int) {
@@ -69,8 +75,8 @@ struct GameUser {
                 self.levelProgress[levelGroup] = currentLevel + 1
                 userRef.setData([
                     "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
-                self.updateField(field: "game-currency", count: 100)
-                self.updateField(field: "hints", count: 1)
+                _ = self.updateField(field: "game-currency", count: 100)
+                _ = self.updateField(field: "hints", count: 1)
             }
         }
         else {
@@ -79,8 +85,8 @@ struct GameUser {
             self.levelProgress[levelGroup] = currentLevel + 1
             userRef.setData([
                 "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
-            self.updateField(field: "game-currency", count: 100)
-            self.updateField(field: "hints", count: 1)
+            _ = self.updateField(field: "game-currency", count: 100)
+            _ = self.updateField(field: "hints", count: 1)
         }
     }
     

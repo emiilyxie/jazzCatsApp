@@ -97,12 +97,6 @@ class WelcomeScreen: UIViewController {
         performSegue(withIdentifier: "fromWelcomeToLevelGroupsSegue", sender: self)
     }
     
-    
-    @IBAction func goToLevelSelect(_ sender: Any) {
-        goingToFreestyle = false
-        performSegue(withIdentifier: "fromWelcomeToLevelSelectSegue", sender: self)
-    }
-    
     @IBAction func goToFreestyle(_ sender: Any) {
         goingToFreestyle = true
         performSegue(withIdentifier: "fromWelcomeToFreestyleSegue", sender: self)
