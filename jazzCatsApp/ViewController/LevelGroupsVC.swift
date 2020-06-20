@@ -65,8 +65,15 @@ class LevelGroupsVC: UIViewController, UIScrollViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let levelSelect = segue.destination as? LevelSelect {
-            levelSelect.levelGroup = self.selectedLevelGroup
-            levelSelect.numOfLevels = self.levelGroupNumOfMeasures
+            
+            guard let levelGroup = self.selectedLevelGroup,
+                let numOfLevels = self.levelGroupNumOfMeasures else {
+                    print("nothings really selected uhoh")
+                    return
+            }
+            
+            levelSelect.levelGroup = levelGroup
+            levelSelect.numOfLevels = numOfLevels
         }
     }
     

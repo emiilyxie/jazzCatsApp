@@ -12,13 +12,7 @@ import AudioKit
 
 extension LevelTemplate {
     
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let firstTouch = touches.first {
-            editNotes(touch: firstTouch)
-        }
-    }
-    
-    func editNotes(touch: UITouch) {
+    override func editNotes(touch: UITouch) {
         var location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
         
@@ -123,7 +117,7 @@ extension LevelTemplate {
         }
     }
     
-    func addNote(noteType: String, notePosition: CGPoint) {
+    override func addNote(noteType: String, notePosition: CGPoint) {
         let note = Note(type: noteType)
         note.name = "note"
         note.position = notePosition
@@ -136,29 +130,15 @@ extension LevelTemplate {
         //myAns[pageIndex][note.positionInStaff[0]].insert(trebleNotes[note.positionInStaff[1] + 1])
         barsNode.addChild(note)
         note.setPositions()
+        addAnswer(note: note)
+    }
+    
+    func addAnswer(note: Note) {
         myAns[pageIndex].insert(note.getAnsArray())
         pages[pageIndex].append(note)
-        print(pages!)
     }
-    
-    func snapNoteLocation(touchedPoint: CGPoint) -> CGPoint {
-        let divisionWidthFloat = CGFloat(divisionWidth)
-        let indentLengthFloat = CGFloat(LevelSetup.indentLength)
-        let xPos = Int(round((touchedPoint.x - indentLengthFloat) / divisionWidthFloat) * divisionWidthFloat) + LevelSetup.indentLength
-        
-        let staffBarHeightFloat = CGFloat(staffBarHeight)
-        let yPos = Int(round(touchedPoint.y / staffBarHeightFloat) * staffBarHeightFloat - (staffBarHeightFloat / 2))
-        return CGPoint(x: xPos, y: yPos)
-    }
-    
     
     // Conversion Functions
-    
-    func getStaffPosition(notePosition: CGPoint) -> Array<Int> {
-        let xPos = (Int(notePosition.x) - LevelSetup.indentLength + 15) / divisionWidth
-        let yPos = Int(notePosition.y) / staffBarHeight
-        return [xPos, yPos]
-    }
     
     func midiValToNotePos(midiVal: Int) -> Int {
         let distFromC = midiVal - middleCMidi
@@ -205,12 +185,6 @@ extension LevelTemplate {
             return middleCPos - notePos - 1
         }
         else {return 0}
-    }
-    
-     func staffPosToScenePos(staffPos: [Int]) -> CGPoint {
-        let xPos = LevelSetup.indentLength + staffPos[0] * divisionWidth
-        let yPos = staffPos[1] * staffBarHeight + (staffBarHeight / 2)
-        return CGPoint(x: xPos, y: yPos)
     }
     
      func ansArrayToScenePos(ansVal: [Int]) -> CGPoint {

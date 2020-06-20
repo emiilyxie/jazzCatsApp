@@ -4,10 +4,10 @@ import UIKit
 public class StaffBar: SKSpriteNode {
     public let index: Int
     
-    public init(barIndex: Int, barHeight: Int) {
+    public init(barIndex: Int, barHeight: CGFloat) {
         index = barIndex
         
-        super.init(texture: nil, color: UIColor.clear, size: CGSize(width: Int(sceneWidth), height: barHeight))
+        super.init(texture: nil, color: UIColor.clear, size: CGSize(width: LevelSetup.sceneWidth ?? 1370, height: barHeight))
         
         /*
         if let staffBarWidth = self.parent?.frame.width {
@@ -23,16 +23,22 @@ public class StaffBar: SKSpriteNode {
     }
     
     public func drawLineThru() {
+        guard let sceneWidth = LevelSetup.sceneWidth else {
+            print("scenewidth not available")
+            return
+        }
+        
+        let shapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: sceneWidth, height: 4))
+        shapeNode.fillColor = .black
+        //shapeNode.strokeColor = UIColor.black
+        shapeNode.lineWidth = 1
+        addChild(shapeNode)
+         
         /*
-         let shapeNode = SKShapeNode(rect: CGRect(x: 0, y: Int(self.position.y), width: sceneWidth, height: 4))
-         shapeNode.fillColor = .black
-         //shapeNode.strokeColor = UIColor.black
-         shapeNode.lineWidth = 1
-         addChild(shapeNode)
-         */
         if let linePic = UIImage(named: "temp-long-thin.png") {
             self.texture = SKTexture(image: linePic)
         }
+ */
     }
     
     public func colorDebug(i: Int) {

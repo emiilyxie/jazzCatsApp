@@ -34,6 +34,16 @@
 		AD954D97249CAC5E00EBDACD /* NoteSelectPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */; };
 		AD954D99249CACAD00EBDACD /* NoteSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */; };
 		ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC59C9C248824D6007D99A9 /* GameUser.swift */; };
+		ADCAFD9F249DCBE400428C70 /* MusicScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFD9E249DCBE400428C70 /* MusicScene.swift */; };
+		ADCAFDA1249E05D800428C70 /* basics1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADCAFDA0249E05D800428C70 /* basics1.mp3 */; };
+		ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADCAFDA2249E061300428C70 /* basics2.mp3 */; };
+		ADCAFDA6249E061600428C70 /* intermediate1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADCAFDA3249E061500428C70 /* intermediate1.mp3 */; };
+		ADCAFDA7249E061600428C70 /* coltrane1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADCAFDA4249E061600428C70 /* coltrane1.mp3 */; };
+		ADCAFDA9249E084900428C70 /* MusicSceneLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDA8249E084900428C70 /* MusicSceneLayout.swift */; };
+		ADCAFDAB249E08CE00428C70 /* MusicSceneButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAA249E08CE00428C70 /* MusicSceneButtons.swift */; };
+		ADCAFDAD249E08DB00428C70 /* MusicSceneNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */; };
+		ADCAFDAF249E08E600428C70 /* MusicSceneSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */; };
+		ADCAFDB1249E08F300428C70 /* MusicScenePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */; };
 		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
 		ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */; };
@@ -103,6 +113,16 @@
 		AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectPopupVC.swift; sourceTree = "<group>"; };
 		AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectCell.swift; sourceTree = "<group>"; };
 		ADC59C9C248824D6007D99A9 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
+		ADCAFD9E249DCBE400428C70 /* MusicScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScene.swift; sourceTree = "<group>"; };
+		ADCAFDA0249E05D800428C70 /* basics1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = basics1.mp3; sourceTree = "<group>"; };
+		ADCAFDA2249E061300428C70 /* basics2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = basics2.mp3; sourceTree = "<group>"; };
+		ADCAFDA3249E061500428C70 /* intermediate1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intermediate1.mp3; sourceTree = "<group>"; };
+		ADCAFDA4249E061600428C70 /* coltrane1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coltrane1.mp3; sourceTree = "<group>"; };
+		ADCAFDA8249E084900428C70 /* MusicSceneLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneLayout.swift; sourceTree = "<group>"; };
+		ADCAFDAA249E08CE00428C70 /* MusicSceneButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneButtons.swift; sourceTree = "<group>"; };
+		ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneNotes.swift; sourceTree = "<group>"; };
+		ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneSound.swift; sourceTree = "<group>"; };
+		ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScenePhysics.swift; sourceTree = "<group>"; };
 		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleRecordingFails.swift; sourceTree = "<group>"; };
@@ -191,12 +211,16 @@
 		AD3826DA245D0FC60027849D /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				ADFC5CF42479E9E600225610 /* lvl1song.mp3 */,
-				ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */,
-				ADFC5CF82479E9F400225610 /* lvl3song.mp3 */,
+				ADCAFDA0249E05D800428C70 /* basics1.mp3 */,
+				ADCAFDA2249E061300428C70 /* basics2.mp3 */,
+				ADCAFDA3249E061500428C70 /* intermediate1.mp3 */,
+				ADCAFDA4249E061600428C70 /* coltrane1.mp3 */,
 				ADFC5CF02478945300225610 /* snare1.mp3 */,
 				ADFC5CEE247893F800225610 /* cat_basic1.mp3 */,
 				ADFC5CEC247893DE00225610 /* piano1.mp3 */,
+				ADFC5CF42479E9E600225610 /* lvl1song.mp3 */,
+				ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */,
+				ADFC5CF82479E9F400225610 /* lvl3song.mp3 */,
 				AD3826F2245D22530027849D /* kitten-meow.wav */,
 			);
 			path = Sounds;
@@ -246,6 +270,7 @@
 		AD3826DE245D0FE70027849D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				ADCAFD9D249DCBCD00428C70 /* MusicScene */,
 				ADFC5CD924784EF100225610 /* Freestyle */,
 				ADFC5CCE247830D900225610 /* LevelTemplate */,
 			);
@@ -278,6 +303,19 @@
 				F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ADCAFD9D249DCBCD00428C70 /* MusicScene */ = {
+			isa = PBXGroup;
+			children = (
+				ADCAFD9E249DCBE400428C70 /* MusicScene.swift */,
+				ADCAFDA8249E084900428C70 /* MusicSceneLayout.swift */,
+				ADCAFDAA249E08CE00428C70 /* MusicSceneButtons.swift */,
+				ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */,
+				ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */,
+				ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */,
+			);
+			path = MusicScene;
 			sourceTree = "<group>";
 		};
 		ADFC5CCE247830D900225610 /* LevelTemplate */ = {
@@ -371,6 +409,7 @@
 			files = (
 				ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */,
 				ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */,
+				ADCAFDA1249E05D800428C70 /* basics1.mp3 in Resources */,
 				ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */,
 				ADFAD4A62483185F00C3779C /* LevelGroupView.xib in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
@@ -380,8 +419,11 @@
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
 				ADFC5CF12478945300225610 /* snare1.mp3 in Resources */,
 				ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */,
+				ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
+				ADCAFDA6249E061600428C70 /* intermediate1.mp3 in Resources */,
 				AD9395B024747CD10037E307 /* Main.storyboard in Resources */,
+				ADCAFDA7249E061600428C70 /* coltrane1.mp3 in Resources */,
 				ADFC5CED247893DE00225610 /* piano1.mp3 in Resources */,
 				AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */,
 				AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */,
@@ -437,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCAFDAD249E08DB00428C70 /* MusicSceneNotes.swift in Sources */,
 				AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */,
 				ADFC5CEB2478847D00225610 /* SettingsPopupVC.swift in Sources */,
 				ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */,
@@ -448,15 +491,20 @@
 				AD954D97249CAC5E00EBDACD /* NoteSelectPopupVC.swift in Sources */,
 				ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */,
 				ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */,
+				ADCAFDAB249E08CE00428C70 /* MusicSceneButtons.swift in Sources */,
 				ADFC5CD2247832EF00225610 /* LevelButtons.swift in Sources */,
 				ADFC5CDF247851E600225610 /* FreestyleNotes.swift in Sources */,
 				AD3826E4245D106A0027849D /* Note.swift in Sources */,
 				AD3826E6245D10930027849D /* Button.swift in Sources */,
 				ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */,
 				AD08F56224732A0300863204 /* StaffBar.swift in Sources */,
+				ADCAFD9F249DCBE400428C70 /* MusicScene.swift in Sources */,
 				AD042DAA24819ACD00CB2310 /* LevelCell.swift in Sources */,
 				ADFC5CD42478345100225610 /* LevelSound.swift in Sources */,
+				ADCAFDB1249E08F300428C70 /* MusicScenePhysics.swift in Sources */,
+				ADCAFDA9249E084900428C70 /* MusicSceneLayout.swift in Sources */,
 				ADFC5CE12478524000225610 /* FreestyleSound.swift in Sources */,
+				ADCAFDAF249E08E600428C70 /* MusicSceneSound.swift in Sources */,
 				AD3826EA245D11920027849D /* Configuration.swift in Sources */,
 				AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */,
 				AD3826CB245D0F610027849D /* GameViewController.swift in Sources */,

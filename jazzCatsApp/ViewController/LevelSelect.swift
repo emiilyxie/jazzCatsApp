@@ -12,15 +12,14 @@ import UIKit
 
 class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var levels: Array<Int>!
-    var levelGroup: String!
-    var numOfLevels: Int!
-    var maxUnlockedLevel = 1
+    var levels: Array<Int> = []
+    var levelGroup: String = ""
+    var numOfLevels: Int = 0
+    var maxUnlockedLevel: Int = 1
     
-    var whichLevel: Int!
+    var whichLevel: Int = 0
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     
     override func viewWillAppear(_ animated: Bool) {
         // set up the datasource, an array of ints

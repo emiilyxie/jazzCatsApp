@@ -12,7 +12,7 @@ import AudioKit
 
 extension LevelTemplate {
     
-    func setUpSound() {
+    override func setUpSound() {
         setUpSamples()
         setUpPlayer()
         
@@ -20,7 +20,13 @@ extension LevelTemplate {
         for sample in samplers {
             AKNodeArray.append(sample)
         }
-        AKNodeArray.append(ansSongPlayer)
+        
+        guard let songPlayer = ansSongPlayer else {
+            print("song player nonexistent...")
+            return
+        }
+        
+        AKNodeArray.append(songPlayer)
         
         mixer = AKMixer(AKNodeArray)
         //AudioKit.output = answerSong
@@ -52,6 +58,7 @@ extension LevelTemplate {
     }
     
     func setUpPlayer() {
+        print(lvlAnsSong)
         var sampleSong: AKAudioFile!
         do {
             sampleSong = try AKAudioFile(readFileName: lvlAnsSong)
@@ -60,17 +67,6 @@ extension LevelTemplate {
         catch {
             print(error)
         }
-        ansSongPlayer.looping = false
+        ansSongPlayer?.looping = false
     }
-    
-    /*
-    func getAvailableAudioFiles() -> Array<String> {
-        var audioArray: [String] = []
-        for type in currentSounds {
-            let tempNote = Note(type: type)
-            audioArray.append(tempNote.audioFile)
-        }
-        return audioArray
-    }
- */
 }

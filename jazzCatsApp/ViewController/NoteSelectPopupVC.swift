@@ -12,8 +12,8 @@ import SpriteKit
 
 class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var availableNotes: Array<String>!
-    var selectedNote: String!
+    var availableNotes: Array<String> = []
+    var selectedNote: String = ""
     
     override func viewWillAppear(_ animated: Bool) {
         availableNotes = Array(GameUser.sounds.keys)
@@ -21,18 +21,13 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         guard let parentVC = self.parent as! GameViewController? else {
             return
         }
-        if let levelScene = parentVC.currentScene as? LevelTemplate {
-            selectedNote = levelScene.selectedNote
-        }
-        else {
-            print("not level template")
-        }
         
-        if let freestyleScene = parentVC.currentScene as? Freestyle {
-            selectedNote = freestyleScene.selectedNote
+        if let musicScene = parentVC.currentScene as? MusicScene {
+            selectedNote = musicScene.selectedNote
         }
         else {
-            print("not freestyle")
+            print("something's weird here")
+            return
         }
     }
 
@@ -83,26 +78,19 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     @IBAction func selectButton(_ sender: UIButton) {
-        guard let parentVC = self.parent as! GameViewController? else {
+        guard let parentVC = self.parent as! GameViewController?,
+            let musicScene = parentVC.currentScene as! MusicScene?,
+            let noteButton = musicScene.noteButton
+        else {
+            print("cant get parentvc or scene or button ouch")
+            self.view.removeFromSuperview()
             return
         }
-        if let levelScene = parentVC.currentScene as? LevelTemplate {
-            levelScene.selectedNote = selectedNote
-            levelScene.noteButton.defaultButton = SKTexture(imageNamed: selectedNote)
-            levelScene.noteButton.texture = SKTexture(imageNamed: selectedNote)
-            levelScene.currentMode = "addMode"
-        }
-        else {
-            print("not level template")
-        }
         
-        if let freestyleScene = parentVC.currentScene as? Freestyle {
-            //freestyleScene.selectedNote = selectedNote
-            freestyleScene.currentMode = "addMode"
-        }
-        else {
-            print("not freestyle")
-        }
+        musicScene.selectedNote = selectedNote
+        noteButton.defaultButton = SKTexture(imageNamed: selectedNote)
+        noteButton.run(SKAction.setTexture(noteButton.defaultButton))
+        musicScene.currentMode = "addMode"
         
         self.view.removeFromSuperview()
     }

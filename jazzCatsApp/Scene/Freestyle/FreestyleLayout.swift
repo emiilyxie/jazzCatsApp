@@ -11,102 +11,10 @@ import SpriteKit
 import AudioKit
 
 extension Freestyle {
-    
-    func layoutScene() {
-        setUpBackground()
-        setUpStaff()
-        setUpMeasureBar()
-        setUpButtons()
-    }
-    
-    func setUpBackground() {
-        if let bgNode = childNode(withName: "background") as? SKSpriteNode {
-            self.bgNode = bgNode
-        }
-    }
-    
-    func setUpStaff() {
-        barsNode.position = CGPoint(x: 0, y: staffHeightFromGround)
         
-        // creating the staff
-        for i in 0...staffBarNumber - 1 {
-            let staffBar = StaffBar(barIndex: i, barHeight: staffBarHeight)
-            staffBar.anchorPoint = CGPoint(x: 0, y: 0)
-            staffBar.position = CGPoint(x: 0, y: (i * Int(staffBar.size.height)))
-            staffBar.name = "staffBar"
-            if i == 0 {
-                continue
-            }
-                
-            else if i % 2 == 0 {
-                staffBar.drawLineThru()
-            }
-
-            barsNode.addChild(staffBar)
-        }
-        
-        // creating the staff & its time
-        for i in 0...totalDivision - 1 {
-            var lineWidth = 0
-            if i % subdivision == 0 {
-                lineWidth += 2
-            }
-            if i % (totalDivision / numberOfMeasures) == 0 {
-                lineWidth += 2
-            }
-            if lineWidth == 0 {
-                continue
-            }
-            else {
-                let xPos = LevelSetup.indentLength + i * divisionWidth
-                let measureLine = SKShapeNode(rect: CGRect(x: xPos, y: 0, width: lineWidth, height: staffTotalHeight))
-                measureLine.fillColor = UIColor.black
-                measureLine.strokeColor = UIColor.clear
-                barsNode.addChild(measureLine)
-            }
-        }
-        
-        // final bar with physics
-        let finalBar = SKSpriteNode(color: UIColor.black, size: CGSize(width: 6, height: staffTotalHeight))
-        finalBar.position = CGPoint(x: LevelSetup.indentLength + totalDivision * divisionWidth, y: Int(finalBar.size.height) / 2)
-        finalBar.physicsBody = SKPhysicsBody(rectangleOf: finalBar.size)
-        finalBar.physicsBody?.isDynamic = false
-        finalBar.physicsBody?.categoryBitMask = PhysicsCategories.finalBarCategory
-        finalBar.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
-        finalBar.physicsBody?.collisionBitMask = PhysicsCategories.none
-        barsNode.addChild(finalBar)
-        addChild(barsNode)
-    }
-    
-    func setUpMeasureBar() {
-        // adding white measure bar to hit notes
-        measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: staffTotalHeight + 30))
-        measureBar.position.x = CGFloat(Int(bgNode.frame.minX) + LevelSetup.indentLength - 20)
-        measureBar.position.y = barsNode.position.y + measureBar.size.height/2
-        measureBar.zPosition = 20
-        measureBar.physicsBody = SKPhysicsBody(rectangleOf: measureBar.size)
-        measureBar.physicsBody?.categoryBitMask = PhysicsCategories.measureBarCategory
-        measureBar.physicsBody?.contactTestBitMask = PhysicsCategories.noteCategory | PhysicsCategories.finalBarCategory
-        measureBar.physicsBody?.collisionBitMask = PhysicsCategories.none
-        measureBar.physicsBody?.affectedByGravity = false
-        measureBar.physicsBody?.friction = 0
-        measureBar.physicsBody?.linearDamping = 0
-        addChild(measureBar)
-    }
-    
-    func setUpImages() {
-        // adding treble clef
-        let trebleClef = SKSpriteNode(imageNamed: "temp-treble_clef")
-        let trebleClefScaledSize = CGSize(width: trebleClef.frame.width / 8, height: trebleClef.frame.height / 8)
-        trebleClef.scale(to: trebleClefScaledSize)
-        trebleClef.anchorPoint = CGPoint(x: 0, y: 0)
-        trebleClef.position = CGPoint(x: 0, y: 0)
-        barsNode.addChild(trebleClef)
-    }
-    
     func reloadLayout() {
         totalDivision = numberOfMeasures * bpm * subdivision
-        divisionWidth = resultWidth / totalDivision
+        divisionWidth = resultWidth / CGFloat(totalDivision)
         barsNode.removeAllChildren()
         barsNode.removeFromParent()
         setUpStaff()
@@ -133,9 +41,10 @@ extension Freestyle {
                     let newPos = (Int(universalNoteLocation * oldSubdivision)) % oldDivision
                     currentNote.positionInStaff[0] = newPos // position is rounded
                     let universalPageLoc = universalNoteLocation - (newPgNum * numberOfMeasures * bpm)
-                    let newXpos = LevelSetup.indentLength + universalPageLoc * (resultWidth / bpm / numberOfMeasures)
-                    let newYPos = currentNote.positionInStaff[1] * staffBarHeight + (staffBarHeight / 2)
-                    currentNote.position = CGPoint(x: newXpos, y: Double(newYPos))
+                    let division = (resultWidth / CGFloat(bpm) / CGFloat(numberOfMeasures))
+                    let newXpos = LevelSetup.indentLength + CGFloat(universalPageLoc) * division
+                    let newYPos = CGFloat(currentNote.positionInStaff[1]) * staffBarHeight + (staffBarHeight / 2)
+                    currentNote.position = CGPoint(x: newXpos, y: newYPos)
                     if newPgNum < maxPages {
                         barsNode.addChild(currentNote)
                         newPgArray[newPgNum].append(currentNote)
@@ -154,7 +63,7 @@ extension Freestyle {
             note.isHidden = false
         }
     }
-    
+    /*
     func addCamera() {
         addChild(gameCamera)
         gameCamera.position = CGPoint(x: 0, y: 0)
@@ -162,4 +71,5 @@ extension Freestyle {
         gameCamera.setScale(maxScale)
         camera = gameCamera
     }
+ */
 }

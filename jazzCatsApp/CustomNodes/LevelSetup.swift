@@ -11,10 +11,12 @@ import SpriteKit
 import FirebaseFirestore
 
 public class LevelSetup {
-
-    static public let indentLength = 100
     
-    static let defaultStaffBarHeight = 32
+    static public var sceneWidth: CGFloat?
+    static public var sceneHeight: CGFloat?
+    static public let indentLength = CGFloat(100)
+    
+    static let defaultStaffBarHeight = CGFloat(32)
     static let defaultStaffBarNumber = 12
     static let defaultNumberOfMeasures = 2
     static let defaultBpm = 4
@@ -53,7 +55,7 @@ public class LevelSetup {
                 var maxPages = defaultMaxPages
                 
                 if document.get("staffbar-height") != nil {
-                    staffBarHeight = document.get("staffbar-height") as! Int
+                    //staffBarHeight = document.get("staffbar-height") as! Int
                 }
                 if document.get("staffbar-number") != nil {
                     staffBarNumber = document.get("staffbar-number") as! Int
@@ -73,7 +75,7 @@ public class LevelSetup {
                                 
                 if let lvlAnsString = document.get("answer") as? String {
                     lvlAns = parseLvlAns(json: lvlAnsString, maxPages: maxPages)
-                    setUpLevel(level: level, levelNum: levelNum, staffBarHeight: staffBarHeight, staffBarNumber: staffBarNumber, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: lvlAns)
+                    //setUpLevel(level: level, levelNum: levelNum, staffBarHeight: staffBarHeight, staffBarNumber: staffBarNumber, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: lvlAns)
                     showTheScene()
                     return
                 }
@@ -89,9 +91,10 @@ public class LevelSetup {
         }
     }
 
+    /*
     static public func setUpLevel(level: LevelTemplate, levelNum: Int, staffBarHeight: Int, staffBarNumber: Int, numberOfMeasures: Int, bpm: Int, subdivision: Int, maxPages: Int, lvlAns: Array<Set<[Int]>>) {
         
-        level.whichLevel = levelNum
+        level.levelNum = levelNum
         
         level.staffBarHeight = staffBarHeight
         level.staffBarNumber = staffBarNumber
@@ -99,7 +102,7 @@ public class LevelSetup {
         let halfHeight = Int(level.size.height) / 2
         let halfStaffHeight = level.staffTotalHeight / 2
         let staffHeightFromGround = halfHeight - halfStaffHeight
-        level.staffHeightFromGround = staffHeightFromGround
+        //level.staffHeightFromGround = staffHeightFromGround
         
         level.numberOfMeasures = numberOfMeasures
         level.bpm = bpm
@@ -116,7 +119,10 @@ public class LevelSetup {
         level.lvlAns = lvlAns
         level.myAns = Array(repeating: Set([]), count: maxPages)
     }
+ */
 
+    /*
+     DONT KILL THIS YET
     static public func prepareFreestyle(freestyleLevel: Freestyle) {
         sceneWidth = CGFloat(freestyleLevel.size.width)
         sceneHeight = CGFloat(freestyleLevel.size.height)
@@ -144,6 +150,7 @@ public class LevelSetup {
         freestyleLevel.pages = [[Note]](repeating: [], count: freestyleLevel.maxPages)
         
     }
+ */
 
     static public func parseLvlAns(json: String, maxPages: Int) -> Array<Set<[Int]>> {
         let data = Data(json.utf8)

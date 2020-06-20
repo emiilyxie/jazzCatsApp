@@ -10,54 +10,39 @@ import UIKit
 import SpriteKit
 import AudioKit
 
-public class LevelTemplate: SKScene {
-
+public class LevelTemplate: MusicScene {
+    
     weak var viewController: UIViewController?
-    let gameCamera = GameCamera()
-    var whichLevel: Int!
+    var levelGroup: String
+    var levelNum: Int
     
-    public var staffBarHeight = 32
-    public var staffBarNumber: Int!
-    public var staffTotalHeight: Int!
-    public var staffHeightFromGround: Int!
-
-    public var numberOfMeasures: Int!
-    public var bpm: Int!
-    public var subdivision: Int!
-    public var totalDivision: Int!
-    public var resultWidth: Int!
-    public var divisionWidth: Int!
-
-    public var maxPages: Int!
-    public var pages: Array<Array<Note>>!
-    public var pageIndex = 0
-    var pgCountLabel: SKLabelNode!
+    //weak var noteButton: Button?
+    var yayYouDidIt: SKSpriteNode
+    var sorryTryAgain: SKSpriteNode
     
-    var bgNode: SKSpriteNode!
-    let barsNode = SKNode()
-    var measureBar: SKSpriteNode!
-    var selectedNote = "cat_basic1"
-    weak var noteButton: Button!
-    var currentMode = "addMode"
-    var yayYouDidIt: SKSpriteNode!
-    var sorryTryAgain: SKSpriteNode!
+    var lvlAnsSong: String
+    var ansSongPlayer: AKAudioPlayer?
     
-    var samplers: Array<AKAppleSampler>!
-    var mixer: AKMixer!
-    var ansSongPlayer: AKAudioPlayer!
-    
-    var currentSounds = Array(GameUser.sounds.keys)
-    var lvlAnsSong: String!
-    var lvlAns: [Set<[Int]>] = []
-    var myAns: [Set<[Int]>] = []
+    var lvlAns: [Set<[Int]>]
+    var myAns: [Set<[Int]>]
     var hintNum = 0
     
-    public override func didMove(to view: SKView) {
-        layoutScene()
-        setUpPhysics()
-        setUpButtons()
-        setUpSound()
-        print(currentSounds)
+    public init(size: CGSize, levelGroup: String, levelNum: Int, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?, lvlAns: Array<Set<[Int]>>) {
+        
+        self.levelGroup = levelGroup
+        self.levelNum = levelNum
+        self.yayYouDidIt = SKSpriteNode(imageNamed: "temp-you-did-it")
+        self.sorryTryAgain = SKSpriteNode(imageNamed: "temp-try-again")
+        self.lvlAnsSong = "\(levelGroup)\(levelNum).mp3"
+        self.lvlAns = lvlAns
+        self.myAns = Array(repeating: Set([]), count: maxPages ?? LevelSetup.defaultMaxPages)
+        
+        super.init(size: size, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     deinit {

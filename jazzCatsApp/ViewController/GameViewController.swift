@@ -8,16 +8,15 @@
 
 import UIKit
 import SpriteKit
-
-public var sceneWidth: CGFloat!
-public var sceneHeight: CGFloat!
+import FirebaseFirestore
 
 class GameViewController: UIViewController {
     
-    var levelGroup: String!
-    var selectedLevel: Int!
+    var levelGroup: String = ""
+    var selectedLevel: Int = 0
     var freestyleMode = false
-    var currentScene: SKScene!
+    var currentScene: SKScene?
+    let sceneSize = CGSize(width: CGFloat(1370), height: CGFloat(1024))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,39 +26,70 @@ class GameViewController: UIViewController {
             if !freestyleMode {
                 
                 //loading a level
-                if let scene = LevelTemplate(fileNamed: "LevelTemplate.sks") {
+                //if let scene = LevelTemplate(fileNamed: "LevelTemplate.sks") {
+                setupLevel(levelGroup: levelGroup, levelNum: selectedLevel) { (scene) in
                     scene.viewController = self
                     scene.scaleMode = .aspectFill
-                    sceneWidth = scene.size.width
-                    sceneHeight = scene.size.height
-
-                    LevelSetup.prepareLevel(level: scene, levelGroup: levelGroup, levelNum: selectedLevel) {
-                        // Present the scene as completion func
-                        view.presentScene(scene)
-                        self.currentScene = scene
-                        view.ignoresSiblingOrder = true
-                        view.showsFPS = true
-                        view.showsNodeCount = true
-                        //view.showsPhysics = true
-                    }
-                }
-             }
-            else {
-                if let scene = Freestyle(fileNamed: "LevelTemplate.sks") {
-                    scene.viewController = self
-                    LevelSetup.prepareFreestyle(freestyleLevel: scene)
-
-                    scene.scaleMode = .aspectFill
-                    sceneWidth = scene.size.width
-                    sceneHeight = scene.size.height
+                    LevelSetup.sceneWidth = scene.size.width
+                    LevelSetup.sceneHeight = scene.size.height
                     
-                    // Present the scene
                     view.presentScene(scene)
-                    currentScene = scene
+                    self.currentScene = scene
                     view.ignoresSiblingOrder = true
                     view.showsFPS = true
                     view.showsNodeCount = true
+                }
+                //LevelSetup.prepareLevel(level: scene, levelGroup: levelGroup, levelNum: selectedLevel) {
+                    // Present the scene as completion func
+                    
                     //view.showsPhysics = true
+                //}
+            //}
+             }
+            
+            else {
+                //if let scene = Freestyle(fileNamed: "LevelTemplate.sks") {
+                let scene = Freestyle(size: sceneSize, numberOfMeasures: nil, bpm: nil, subdivision: nil, maxPages: nil)
+                scene.viewController = self
+            
+                scene.scaleMode = .aspectFill
+                LevelSetup.sceneWidth = scene.size.width
+                LevelSetup.sceneHeight = scene.size.height
+                
+                // Present the scene
+                view.presentScene(scene)
+                self.currentScene = scene
+                view.ignoresSiblingOrder = true
+                view.showsFPS = true
+                view.showsNodeCount = true
+                //view.showsPhysics = true
+                }
+           // }
+            
+        }
+    }
+    
+    func setupLevel(levelGroup: String, levelNum: Int, showScene: @escaping (LevelTemplate) -> ()) {
+        let db = Firestore.firestore()
+        let docPath = "/level-groups/\(levelGroup)/levels"
+        let docRef = db.collection(docPath).document("level\(levelNum)")
+        
+        docRef.getDocument { (document, err) in
+            if let err = err {
+                print(err.localizedDescription)
+                return
+            }
+            if let document = document, document.exists {
+                let numberOfMeasures = document.get("number-of-measures") as? Int
+                let bpm = document.get("bpm") as? Int
+                let subdivision = document.get("subdivision") as? Int
+                let maxPages = document.get("maxpages") as? Int
+                
+                if let lvlAnsString = document.get("answer") as? String {
+                    let level = LevelTemplate(size: self.sceneSize, levelGroup: levelGroup, levelNum: levelNum, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: [])
+                    let lvlAns = LevelSetup.parseLvlAns(json: lvlAnsString, maxPages: level.maxPages)
+                    level.lvlAns = lvlAns
+                    showScene(level)
                 }
             }
         }

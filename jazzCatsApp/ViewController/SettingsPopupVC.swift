@@ -10,15 +10,15 @@ import UIKit
 
 class SettingsPopupVC: UIViewController {
     
-    public var currentPgs: Int!
-    public var currentMPP: Int!
-    public var currentBPM: Int!
-    public var currentSPB: Int!
+    public var currentPgs: Int = LevelSetup.defaultMaxPages
+    public var currentMPP: Int = LevelSetup.defaultNumberOfMeasures
+    public var currentBPM: Int = LevelSetup.defaultBpm
+    public var currentSPB: Int = LevelSetup.defaultSubdivision
     
-    public var newPgs: Int!
-    public var newMPP: Int!
-    public var newBPM: Int!
-    public var newSPB: Int!
+    public var newPgs: Int = LevelSetup.defaultMaxPages
+    public var newMPP: Int = LevelSetup.defaultNumberOfMeasures
+    public var newBPM: Int = LevelSetup.defaultBpm
+    public var newSPB: Int = LevelSetup.defaultSubdivision
 
     override func viewDidLoad() {
         super.viewDidLoad()
