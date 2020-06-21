@@ -7,7 +7,7 @@ public class StaffBar: SKSpriteNode {
     public init(barIndex: Int, barHeight: CGFloat) {
         index = barIndex
         
-        super.init(texture: nil, color: UIColor.clear, size: CGSize(width: LevelSetup.sceneWidth ?? 1370, height: barHeight))
+        super.init(texture: nil, color: UIColor.clear, size: CGSize(width: LevelSetup.sceneSize.width, height: barHeight))
         
         /*
         if let staffBarWidth = self.parent?.frame.width {
@@ -23,14 +23,9 @@ public class StaffBar: SKSpriteNode {
     }
     
     public func drawLineThru() {
-        guard let sceneWidth = LevelSetup.sceneWidth else {
-            print("scenewidth not available")
-            return
-        }
         
-        let shapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: sceneWidth, height: 4))
+        let shapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: LevelSetup.sceneSize.width, height: 4))
         shapeNode.fillColor = .black
-        //shapeNode.strokeColor = UIColor.black
         shapeNode.lineWidth = 1
         addChild(shapeNode)
          

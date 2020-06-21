@@ -99,5 +99,6 @@ class SettingsPopupVC: UIViewController {
         freestyleScene.oldBpm = currentBPM
         freestyleScene.oldSubdivision = currentSPB
         freestyleScene.reloadLayout()
+        self.view.removeFromSuperview()
     }
 }

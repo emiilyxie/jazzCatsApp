@@ -71,22 +71,12 @@ extension LevelTemplate {
                 // adding the note to the scene
                 let currNotePos = ansArrayToScenePos(ansVal: noteAnswer)
                 let currentNote = Note(type: selectedNote)
-                currentNote.name = "note"
                 currentNote.position = currNotePos
                 currentNote.positionInStaff = getStaffPosition(notePosition: currNotePos)
-                currentNote.physicsBody = SKPhysicsBody(rectangleOf: currentNote.size)
-                currentNote.physicsBody?.isDynamic = false
-                currentNote.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
-                currentNote.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
-                currentNote.physicsBody?.collisionBitMask = PhysicsCategories.none
                 
                 // add a flat if it should be flatted
                 if shouldBeFlatted(midiVal: noteAnswer[1]) {
-                    currentNote.toggleFlat()
-                    let flat = SKSpriteNode(imageNamed: "temp-flat")
-                    flat.size = scaleNode(size: flat.size, factor: Double(0.05))
-                    flat.position = CGPoint(x: -20, y: 0)
-                    currentNote.addChild(flat)
+                    editAccidental(accidental: "flat", note: currentNote)
                 }
                 
                 // add the note to the bar

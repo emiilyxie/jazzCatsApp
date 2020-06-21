@@ -16,7 +16,6 @@ class GameViewController: UIViewController {
     var selectedLevel: Int = 0
     var freestyleMode = false
     var currentScene: SKScene?
-    let sceneSize = CGSize(width: CGFloat(1370), height: CGFloat(1024))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +23,9 @@ class GameViewController: UIViewController {
         if let view = self.view as! SKView? {
             
             if !freestyleMode {
-                
-                //loading a level
-                //if let scene = LevelTemplate(fileNamed: "LevelTemplate.sks") {
                 setupLevel(levelGroup: levelGroup, levelNum: selectedLevel) { (scene) in
                     scene.viewController = self
                     scene.scaleMode = .aspectFill
-                    LevelSetup.sceneWidth = scene.size.width
-                    LevelSetup.sceneHeight = scene.size.height
                     
                     view.presentScene(scene)
                     self.currentScene = scene
@@ -39,33 +33,21 @@ class GameViewController: UIViewController {
                     view.showsFPS = true
                     view.showsNodeCount = true
                 }
-                //LevelSetup.prepareLevel(level: scene, levelGroup: levelGroup, levelNum: selectedLevel) {
-                    // Present the scene as completion func
-                    
-                    //view.showsPhysics = true
-                //}
-            //}
              }
             
             else {
-                //if let scene = Freestyle(fileNamed: "LevelTemplate.sks") {
-                let scene = Freestyle(size: sceneSize, numberOfMeasures: nil, bpm: nil, subdivision: nil, maxPages: nil)
+                let scene = Freestyle(size: LevelSetup.sceneSize, numberOfMeasures: nil, bpm: nil, subdivision: nil, maxPages: nil)
                 scene.viewController = self
             
                 scene.scaleMode = .aspectFill
-                LevelSetup.sceneWidth = scene.size.width
-                LevelSetup.sceneHeight = scene.size.height
                 
-                // Present the scene
                 view.presentScene(scene)
                 self.currentScene = scene
                 view.ignoresSiblingOrder = true
                 view.showsFPS = true
                 view.showsNodeCount = true
                 //view.showsPhysics = true
-                }
-           // }
-            
+            }            
         }
     }
     
@@ -86,7 +68,7 @@ class GameViewController: UIViewController {
                 let maxPages = document.get("maxpages") as? Int
                 
                 if let lvlAnsString = document.get("answer") as? String {
-                    let level = LevelTemplate(size: self.sceneSize, levelGroup: levelGroup, levelNum: levelNum, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: [])
+                    let level = LevelTemplate(size: LevelSetup.sceneSize, levelGroup: levelGroup, levelNum: levelNum, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: [])
                     let lvlAns = LevelSetup.parseLvlAns(json: lvlAnsString, maxPages: level.maxPages)
                     level.lvlAns = lvlAns
                     showScene(level)

@@ -26,7 +26,12 @@ public class Note: SKSpriteNode {
         
         super.init(texture: noteTexture, color: UIColor.clear, size: CGSize(width: 40, height: 40))
         
-        
+        self.name = "note"
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
+        self.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
+        self.physicsBody?.collisionBitMask = PhysicsCategories.none
     }
     
     required init?(coder aDecoder: NSCoder) {

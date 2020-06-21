@@ -33,20 +33,10 @@ extension LevelTemplate {
                     if !myAns[pageIndex].contains(noteAns) {
                         addNote(noteType: selectedNote, notePosition: snappedLocation)
                         tempNote.removeFromParent()
-                        //myAns[pageIndex].insert(noteAns)
-                        //print(myAns[pageIndex])
                     }
                     else {
                         tempNote.removeFromParent()
                     }
-                    /*
-                    let arrayVal = getStaffPosition(notePosition: location)
-                    let noteVal = trebleNotes[arrayVal[1] + 1]
-                    if !myAns[pageIndex][arrayVal[0]].contains(noteVal) {
-                        let snappedLocation = snapNoteLocation(touchedPoint: location)
-                        addNote(noteType: selectedNoteType, notePosition: snappedLocation)
-                    }
- */
                 }
                 
             }
@@ -62,52 +52,25 @@ extension LevelTemplate {
         case "sharpMode":
             let topNode = touchedNodes.first
             if let noteNode = topNode as? Note {
-                if noteNode.isFlat {
-                    noteNode.toggleFlat()
-                    noteNode.removeAllChildren()
-                }
                 let prevNoteAns = noteNode.getAnsArray()
-                noteNode.toggleSharp()
-                if noteNode.isSharp {
-                    //let arrayVal = getStaffPosition(notePosition: location)
-                    //let noteVal = trebleNotes[arrayVal[1] + 1]
-                    //location = touch.location(in: barsNode)
-                    //if myAns[pageIndex][arrayVal[0]].contains(noteVal) {
-                    let sharp = SKSpriteNode(imageNamed: "sharp.png")
-                    sharp.size = scaleNode(size: sharp.size, factor: Double(0.05))
-                    sharp.position = CGPoint(x: -40, y: 0)
-                    noteNode.addChild(sharp)
-                    //}
+                if !noteNode.isSharp {
+                    editAccidental(accidental: "sharp", note: noteNode)
                 }
                 else {
-                    noteNode.removeAllChildren()
+                    editAccidental(accidental: "natural", note: noteNode)
                 }
-                //myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
                 myAns[pageIndex].insert(noteNode.getAnsArray())
-                //myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
                 myAns[pageIndex].remove(prevNoteAns)
             }
         case "flatMode":
             let topNode = touchedNodes.first
             if let noteNode = topNode as? Note {
-                if noteNode.isSharp {
-                    noteNode.toggleSharp()
-                    noteNode.removeAllChildren()
-                }
                 let prevNoteAns = noteNode.getAnsArray()
-                noteNode.toggleFlat()
-                if noteNode.isFlat {
-                    //myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
-                    //myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
-                    let flat = SKSpriteNode(imageNamed: "flat.png")
-                    flat.size = scaleNode(size: flat.size, factor: Double(0.025))
-                    flat.position = CGPoint(x: -40, y: 0)
-                    noteNode.addChild(flat)
+                if !noteNode.isFlat {
+                    editAccidental(accidental: "flat", note: noteNode)
                 }
                 else {
-                    //myAns[pageIndex][noteNode.positionInStaff[0]].remove(prevNoteVal)
-                    //myAns[pageIndex][noteNode.positionInStaff[0]].insert(noteNode.getNoteName())
-                    noteNode.removeAllChildren()
+                    editAccidental(accidental: "natural", note: noteNode)
                 }
                 myAns[pageIndex].insert(noteNode.getAnsArray())
                 myAns[pageIndex].remove(prevNoteAns)
@@ -121,19 +84,8 @@ extension LevelTemplate {
         let note = Note(type: noteType)
         note.name = "note"
         note.position = notePosition
-        //note.positionInStaff = getStaffPosition(notePosition: notePosition)
-        note.physicsBody = SKPhysicsBody(rectangleOf: note.size)
-        note.physicsBody?.isDynamic = false
-        note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
-        note.physicsBody?.contactTestBitMask = PhysicsCategories.measureBarCategory
-        note.physicsBody?.collisionBitMask = PhysicsCategories.none
-        //myAns[pageIndex][note.positionInStaff[0]].insert(trebleNotes[note.positionInStaff[1] + 1])
         barsNode.addChild(note)
         note.setPositions()
-        addAnswer(note: note)
-    }
-    
-    func addAnswer(note: Note) {
         myAns[pageIndex].insert(note.getAnsArray())
         pages[pageIndex].append(note)
     }
