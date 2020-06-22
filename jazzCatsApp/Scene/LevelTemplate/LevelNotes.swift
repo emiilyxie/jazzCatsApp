@@ -18,27 +18,18 @@ extension LevelTemplate {
         
         switch currentMode {
         case "addMode": // if in addMode
+            for node in touchedNodes {
+                if let _ = node as? Note {
+                    return
+                }
+            }
             if barsNode.contains(location) {
-                location = touch.location(in: barsNode)
+                location = touch.location(in: barsNode) // going to barsNode coords
                 let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
                 if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
-                    
-                    // simulating a temporary note to get its position, and seeing if it overlaps with a current note
-                    let tempNote = Note(type: selectedNote)
                     let snappedLocation = snapNoteLocation(touchedPoint: location)
-                    tempNote.position = snappedLocation
-                    barsNode.addChild(tempNote)
-                    tempNote.setPositions()
-                    let noteAns = tempNote.getAnsArray()
-                    if !myAns[pageIndex].contains(noteAns) {
-                        addNote(noteType: selectedNote, notePosition: snappedLocation)
-                        tempNote.removeFromParent()
-                    }
-                    else {
-                        tempNote.removeFromParent()
-                    }
+                    addNote(noteType: selectedNote, notePosition: snappedLocation)
                 }
-                
             }
         case "eraseMode": // if in eraseMode
             for node in touchedNodes {

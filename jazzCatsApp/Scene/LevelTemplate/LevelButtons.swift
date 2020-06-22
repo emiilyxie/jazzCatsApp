@@ -57,7 +57,7 @@ extension LevelTemplate {
     
     func generateHint(index: Int) {
         print(GameUser.hints)
-        if hintNum >= lvlAns[pageIndex].count || lvlAns[pageIndex].isEmpty {
+        if  lvlAns[pageIndex].isEmpty || lvlAns[pageIndex].isSubset(of: myAns[pageIndex]) {
             print("no more hints")
             return
         }
@@ -83,7 +83,6 @@ extension LevelTemplate {
                 barsNode.addChild(currentNote)
                 myAns[pageIndex].insert(currentNote.getAnsArray())
                 pages[pageIndex].append(currentNote)
-                hintNum += 1
                 return
             }
         }
