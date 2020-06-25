@@ -234,10 +234,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csf-sm-4Td">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
-                                <color key="backgroundColor" red="0.97254902119999997" green="0.92156863209999995" blue="0.91372549530000002" alpha="1" colorSpace="deviceRGB"/>
-                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5U-G5-Nvo">
                                 <rect key="frame" x="44" y="20" width="97" height="30"/>
                                 <state key="normal" title="Back To Menu"/>
@@ -245,22 +241,59 @@
                                     <action selector="unwindFromLevelGroupsToWelcome:" destination="eET-rt-TJ4" eventType="touchUpInside" id="AmL-0u-ETK"/>
                                 </connections>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-j1-OjF">
+                                <rect key="frame" x="0.0" y="58" width="896" height="298"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="30" minimumInteritemSpacing="10" id="lof-V2-OjE" customClass="SnapToCenter" customModule="jazzCatsApp" customModuleProvider="target">
+                                    <size key="itemSize" width="400" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="levelGroupCell" id="qDg-h5-YOj" customClass="LevelGroupCell" customModule="jazzCatsApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49" width="400" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E48-7e-wAi">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk3-W1-Rlb">
+                                                    <rect key="frame" x="179" y="89.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xk3-W1-Rlb" firstAttribute="centerX" secondItem="E48-7e-wAi" secondAttribute="centerX" id="Y8q-6y-Bpg"/>
+                                                <constraint firstItem="xk3-W1-Rlb" firstAttribute="centerY" secondItem="E48-7e-wAi" secondAttribute="centerY" id="hSB-Ow-RXW"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="levelGroupLabel" destination="xk3-W1-Rlb" id="Kas-R8-BoP"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="eET-rt-TJ4" id="iRZ-yA-yMl"/>
+                                    <outlet property="delegate" destination="eET-rt-TJ4" id="GEX-bW-XJp"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="csf-sm-4Td" firstAttribute="leading" secondItem="Bpi-wI-wYJ" secondAttribute="leading" id="1r5-yo-SrZ"/>
                             <constraint firstItem="U5U-G5-Nvo" firstAttribute="top" secondItem="mXU-uT-XKR" secondAttribute="top" constant="20" id="8S1-4r-e85"/>
-                            <constraint firstAttribute="bottom" secondItem="csf-sm-4Td" secondAttribute="bottom" id="SZG-ze-j76"/>
-                            <constraint firstAttribute="trailing" secondItem="csf-sm-4Td" secondAttribute="trailing" id="TlE-vf-sLs"/>
-                            <constraint firstItem="csf-sm-4Td" firstAttribute="centerX" secondItem="Bpi-wI-wYJ" secondAttribute="centerX" id="e5S-RQ-HuJ"/>
+                            <constraint firstItem="NIK-j1-OjF" firstAttribute="top" secondItem="U5U-G5-Nvo" secondAttribute="bottom" constant="8" id="Hg7-jQ-tmS"/>
+                            <constraint firstItem="NIK-j1-OjF" firstAttribute="centerY" secondItem="Bpi-wI-wYJ" secondAttribute="centerY" id="O4O-Yy-Bnw"/>
                             <constraint firstItem="U5U-G5-Nvo" firstAttribute="leading" secondItem="mXU-uT-XKR" secondAttribute="leading" id="erU-Gf-O1O"/>
-                            <constraint firstItem="csf-sm-4Td" firstAttribute="centerY" secondItem="Bpi-wI-wYJ" secondAttribute="centerY" id="fre-Zx-ZxN"/>
-                            <constraint firstItem="csf-sm-4Td" firstAttribute="top" secondItem="mXU-uT-XKR" secondAttribute="top" id="iOt-F0-DXr"/>
+                            <constraint firstItem="NIK-j1-OjF" firstAttribute="centerX" secondItem="Bpi-wI-wYJ" secondAttribute="centerX" id="u2z-HE-1lm"/>
+                            <constraint firstItem="NIK-j1-OjF" firstAttribute="leading" secondItem="Bpi-wI-wYJ" secondAttribute="leading" id="zML-FI-KRn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mXU-uT-XKR"/>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="csf-sm-4Td" id="NXM-LJ-W0R"/>
+                        <outlet property="collectionView" destination="NIK-j1-OjF" id="9OH-y1-jHG"/>
                         <segue destination="4bv-19-uqW" kind="unwind" identifier="fromLevelGroupsToWelcomeUSegue" unwindAction="backToWelcomeFromLevelGroupsWithSegue:" id="9EM-F2-gev"/>
                         <segue destination="4gq-Lp-7HN" kind="presentation" identifier="fromLevelGroupsToLevelSelectSegue" id="wCB-rj-d9R"/>
                     </connections>
@@ -343,6 +376,7 @@
                         <outlet property="collectionView" destination="a3V-IE-ijI" id="TTS-Nk-ago"/>
                         <segue destination="uKC-AO-KPp" kind="presentation" identifier="goToLevelSegue" id="Lga-rB-OrQ"/>
                         <segue destination="YCr-aj-dNT" kind="unwind" identifier="fromLevelSelectToWelcomeUSegue" unwindAction="backToWelcomeFromLevelSelectWithSegue:" id="VTI-C1-foa"/>
+                        <segue destination="YCr-aj-dNT" kind="unwind" identifier="fromLevelSelectToLevelGroupsUSegue" unwindAction="backToLevelGroupsFromLevelSelectWithSegue:" id="cZU-gM-gPR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfb-PF-67I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -627,6 +661,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GLW-ER-AVP"/>
+        <segue reference="Lga-rB-OrQ"/>
     </inferredMetricsTieBreakers>
 </document>

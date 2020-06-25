@@ -34,6 +34,8 @@
 		AD954D97249CAC5E00EBDACD /* NoteSelectPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */; };
 		AD954D99249CACAD00EBDACD /* NoteSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */; };
 		ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC59C9C248824D6007D99A9 /* GameUser.swift */; };
+		ADCAE9E624A42FCD000A9FC7 /* SnapToCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */; };
+		ADCAE9E824A430C1000A9FC7 /* LevelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */; };
 		ADCAFD9F249DCBE400428C70 /* MusicScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFD9E249DCBE400428C70 /* MusicScene.swift */; };
 		ADCAFDA1249E05D800428C70 /* basics1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADCAFDA0249E05D800428C70 /* basics1.mp3 */; };
 		ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADCAFDA2249E061300428C70 /* basics2.mp3 */; };
@@ -113,6 +115,8 @@
 		AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectPopupVC.swift; sourceTree = "<group>"; };
 		AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectCell.swift; sourceTree = "<group>"; };
 		ADC59C9C248824D6007D99A9 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
+		ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapToCenter.swift; sourceTree = "<group>"; };
+		ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupCell.swift; sourceTree = "<group>"; };
 		ADCAFD9E249DCBE400428C70 /* MusicScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScene.swift; sourceTree = "<group>"; };
 		ADCAFDA0249E05D800428C70 /* basics1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = basics1.mp3; sourceTree = "<group>"; };
 		ADCAFDA2249E061300428C70 /* basics2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = basics2.mp3; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 				AD9395AF24747CD10037E307 /* Main.storyboard */,
 				ADFA240B247646DD008BC384 /* WelcomeScreen.swift */,
 				ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */,
+				ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */,
+				ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */,
 				ADFAD4A72483187200C3779C /* LevelGroupView.swift */,
 				ADFAD4A52483185F00C3779C /* LevelGroupView.xib */,
 				AD9395B124747D3F0037E307 /* LevelSelect.swift */,
@@ -491,10 +497,12 @@
 				AD954D97249CAC5E00EBDACD /* NoteSelectPopupVC.swift in Sources */,
 				ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */,
 				ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */,
+				ADCAE9E824A430C1000A9FC7 /* LevelGroupCell.swift in Sources */,
 				ADCAFDAB249E08CE00428C70 /* MusicSceneButtons.swift in Sources */,
 				ADFC5CD2247832EF00225610 /* LevelButtons.swift in Sources */,
 				ADFC5CDF247851E600225610 /* FreestyleNotes.swift in Sources */,
 				AD3826E4245D106A0027849D /* Note.swift in Sources */,
+				ADCAE9E624A42FCD000A9FC7 /* SnapToCenter.swift in Sources */,
 				AD3826E6245D10930027849D /* Button.swift in Sources */,
 				ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */,
 				AD08F56224732A0300863204 /* StaffBar.swift in Sources */,

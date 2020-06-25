@@ -107,7 +107,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     // unwind segue
     @IBAction func unwindFromLevelSelectToWelcome(_ sender: Any) {
-        performSegue(withIdentifier: "fromLevelSelectToWelcomeUSegue", sender: self)
+        performSegue(withIdentifier: "fromLevelSelectToLevelGroupsUSegue", sender: self)
     }
 
     // destination segues
