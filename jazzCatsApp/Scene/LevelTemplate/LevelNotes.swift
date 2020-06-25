@@ -84,7 +84,7 @@ extension LevelTemplate {
     // Conversion Functions
     
     func midiValToNotePos(midiVal: Int) -> Int {
-        let distFromC = midiVal - middleCMidi
+        let distFromC = midiVal - MusicValues.middleCMidi
         var notePos = 0
         // handling c flat for now
         if midiVal == 59 {
@@ -92,40 +92,40 @@ extension LevelTemplate {
         }
         if distFromC > 0 {
             //print("midival: \(midiVal)")
-            let whichOctave = Int(floor(Double(distFromC / octaveSize)))
-            let whichPos = distFromC % octaveSize
+            let whichOctave = Int(floor(Double(distFromC / MusicValues.octaveSize)))
+            let whichPos = distFromC % MusicValues.octaveSize
             let octavePos = whichOctave * 7
             if whichPos == 0 {
                 return octavePos
             }
             notePos += octavePos
             var counter = 0
-            for staffDist in 0...octaveStepSizes.count-1 {
-                counter += octaveStepSizes[staffDist]
+            for staffDist in 0...MusicValues.octaveStepSizes.count-1 {
+                counter += MusicValues.octaveStepSizes[staffDist]
                 if counter >= whichPos {
                     notePos += staffDist
                     break
                 }
             }
             //print("note pos: \(notePos)")
-            return notePos + 1 + middleCPos
+            return notePos + 1 + MusicValues.middleCPos
         }
         else if distFromC < 0 {
             print("aah less than C")
             let absDist = abs(distFromC)
-            let whichOctave = Int(floor(Double(absDist / octaveSize)))
-            let whichPos = absDist % octaveSize
+            let whichOctave = Int(floor(Double(absDist / MusicValues.octaveSize)))
+            let whichPos = absDist % MusicValues.octaveSize
             let octavePos = whichOctave * 7
             notePos += octavePos
             var counter = 0
-            for staffDist in 0...reversedOctaveStepSizes.count-1 {
-                counter += reversedOctaveStepSizes[staffDist]
+            for staffDist in 0...MusicValues.reversedOctaveStepSizes.count-1 {
+                counter += MusicValues.reversedOctaveStepSizes[staffDist]
                 if counter >= whichPos {
                     notePos += staffDist
                     break
                 }
             }
-            return middleCPos - notePos - 1
+            return MusicValues.middleCPos - notePos - 1
         }
         else {return 0}
     }
@@ -139,14 +139,14 @@ extension LevelTemplate {
     
     func shouldBeFlatted(midiVal: Int) -> Bool {
         if midiVal == 59 { return true } // handling c flat for now
-        if midiVal <= middleCMidi { return false }
-        let whichNote = (midiVal - middleCMidi) % octaveSize
+        if midiVal <= MusicValues.middleCMidi { return false }
+        let whichNote = (midiVal - MusicValues.middleCMidi) % MusicValues.octaveSize
         print("midival: \(midiVal)")
         print("which note: \(whichNote)")
         var counter = 0
         if whichNote == 0 { return false }
-        for i in 0...octaveStepSizes.count-1 {
-            counter += octaveStepSizes[i]
+        for i in 0...MusicValues.octaveStepSizes.count-1 {
+            counter += MusicValues.octaveStepSizes[i]
             if counter > whichNote {
                 return true
             }

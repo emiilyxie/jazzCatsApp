@@ -56,7 +56,7 @@ public class MusicScene: SKScene {
         self.measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: self.staffTotalHeight + 30))
         
         super.init(size: size)
-        self.backgroundColor = UIColor(red: 0.97, green: 0.92, blue: 0.91, alpha: 1.00)
+        self.backgroundColor = ColorPalette.apricot
 
     }
     

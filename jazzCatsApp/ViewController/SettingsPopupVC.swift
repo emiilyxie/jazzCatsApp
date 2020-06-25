@@ -20,9 +20,12 @@ class SettingsPopupVC: UIViewController {
     public var newBPM: Int = LevelSetup.defaultBpm
     public var newSPB: Int = LevelSetup.defaultSubdivision
 
+    @IBOutlet weak var popupView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(CGFloat(0.8))
+        self.popupView.backgroundColor = ColorPalette.melon
         
         guard let parentVC = self.parent as! GameViewController? else {
             return

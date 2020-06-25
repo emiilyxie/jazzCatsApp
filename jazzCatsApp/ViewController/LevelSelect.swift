@@ -56,13 +56,17 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "level", for: indexPath) as! LevelCell
 
         cell.levelCellLabel.text = String(levels[indexPath.row])
+        cell.levelCellLabel.textColor = .white
         
         if Int(cell.levelCellLabel.text!) ?? 0 > maxUnlockedLevel {
             cell.backgroundColor = UIColor.gray
         }
         else {
-            cell.backgroundColor = UIColor.purple
+            cell.backgroundColor = ColorPalette.pastelPink
         }
+        
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 5
         
         return cell
     }

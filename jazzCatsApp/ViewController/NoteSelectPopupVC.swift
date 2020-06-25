@@ -14,6 +14,7 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     var availableNotes: Array<String> = []
     var selectedNote: String = ""
+    @IBOutlet weak var collectionViewPopup: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
         availableNotes = Array(GameUser.sounds.keys)
@@ -34,6 +35,7 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(CGFloat(0.8))
+        self.collectionViewPopup.backgroundColor = ColorPalette.melon
 
     }
     

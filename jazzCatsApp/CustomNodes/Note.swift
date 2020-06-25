@@ -91,40 +91,40 @@ public class Note: SKSpriteNode {
     
     public func getNoteName() -> String {
         if positionInStaff[1] == 0 && isFlat { // C4 flat is B3
-            return "\(trebleNotes[0])"
+            return "\(MusicValues.trebleNotes[0])"
         }
         if (positionInStaff[1] == 3 || positionInStaff[1] == 7 || positionInStaff[1] == 10) && isFlat { // for enharmonics
-            return "\(trebleNotes[positionInStaff[1]])"
+            return "\(MusicValues.trebleNotes[positionInStaff[1]])"
         }
         if isSharp {
-            return "\(trebleNotes[positionInStaff[1] + 13])"
+            return "\(MusicValues.trebleNotes[positionInStaff[1] + 13])"
         }
         if isFlat {
-            return "\(trebleNotes[positionInStaff[1] + 12])"
+            return "\(MusicValues.trebleNotes[positionInStaff[1] + 12])"
         }
-        return "\(trebleNotes[positionInStaff[1] + 1])"
+        return "\(MusicValues.trebleNotes[positionInStaff[1] + 1])"
     }
     
     public func getMidiVal() -> Int {
-        var midiVal = middleCMidi
-        let distFromMiddleC = positionInStaff[1] - middleCPos
+        var midiVal = MusicValues.middleCMidi
+        let distFromMiddleC = positionInStaff[1] - MusicValues.middleCPos
         if distFromMiddleC > 0 {
             let octaveNums = Int((Double(distFromMiddleC) / 7.0).rounded(.down))
-            midiVal += octaveNums * octaveSize
+            midiVal += octaveNums * MusicValues.octaveSize
             let remainderNotes = distFromMiddleC - (octaveNums * 7)
             if remainderNotes > 0 {
                 for i in 0...remainderNotes-1 {
-                    midiVal += octaveStepSizes[i]
+                    midiVal += MusicValues.octaveStepSizes[i]
                 }
             }
         }
         else if distFromMiddleC < 0 {
             let octaveNums = Int((Double(-distFromMiddleC) / 7.0).rounded(.down))
-            midiVal -= octaveNums * octaveSize
+            midiVal -= octaveNums * MusicValues.octaveSize
             let remainderNotes = -distFromMiddleC - (octaveNums * 7)
             if remainderNotes > 0 {
                 for i in 0...remainderNotes-1 {
-                    midiVal -= reversedOctaveStepSizes[i]
+                    midiVal -= MusicValues.reversedOctaveStepSizes[i]
                 }
             }
         }

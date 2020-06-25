@@ -12,7 +12,6 @@ import FirebaseFirestore
 class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let levelGroups = ["Basics", "Intermediate", "Coltrane"]
-    //var levelCards: [LevelGroupView]!
     
     var selectedLevelGroup: String?
     var levelGroupNumOfMeasures: Int?
@@ -21,9 +20,6 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //levelCards = createSlides()
-        //setUpSlideScrollView(slides: levelCards)
         setupValues()
     }
     
@@ -48,7 +44,10 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "levelGroupCell", for: indexPath) as! LevelGroupCell
 
         cell.levelGroupLabel.text = String(levelGroups[indexPath.row])
-        cell.backgroundColor = UIColor.purple
+        cell.levelGroupLabel.textColor = .white
+        cell.backgroundColor = ColorPalette.pastelPink
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 5
         
         return cell
     }
@@ -75,45 +74,6 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
             }
         }
     }
-
-    @IBAction func backToLevelGroupsFromLevelSelect(segue: UIStoryboardSegue) {}
-    
-    /*
-    func createSlides() -> [LevelGroupView] {
-        
-        let slide1:LevelGroupView = Bundle.main.loadNibNamed("LevelGroupView", owner: self, options: nil)?.first as! LevelGroupView
-        slide1.parentVC = self
-        slide1.levelGroupCard.backgroundColor = UIColor.red
-        slide1.levelGroupCard.setTitle("Basics", for: .normal)
-        
-        let slide2:LevelGroupView = Bundle.main.loadNibNamed("LevelGroupView", owner: self, options: nil)?.first as! LevelGroupView
-        slide2.parentVC = self
-        slide2.levelGroupCard.backgroundColor = UIColor.blue
-        slide2.levelGroupCard.setTitle("Intermediate", for: .normal)
-        
-        let slide3:LevelGroupView = Bundle.main.loadNibNamed("LevelGroupView", owner: self, options: nil)?.first as! LevelGroupView
-        slide3.parentVC = self
-        slide3.levelGroupCard.backgroundColor = UIColor.red
-        slide3.levelGroupCard.setTitle("Coltrane", for: .normal)
-        
-        return [slide1, slide2, slide3]
-    }
-    
-    func setUpSlideScrollView(slides: [LevelGroupView]) {
-        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: view.frame.height)
-        scrollView.isPagingEnabled = true
-        
-        for i in 0 ..< slides.count {
-            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
-            scrollView.addSubview(slides[i])
-        }
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        setUpSlideScrollView(slides: levelCards)
-    }
-    */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let levelSelect = segue.destination as? LevelSelect {
@@ -133,6 +93,8 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     @IBAction func unwindFromLevelGroupsToWelcome(_ sender: Any) {
         performSegue(withIdentifier: "fromLevelGroupsToWelcomeUSegue", sender: self)
     }
+    
+    @IBAction func backToLevelGroupsFromLevelSelect(segue: UIStoryboardSegue) {}
     
 
 }

@@ -42,37 +42,21 @@ extension MusicScene {
         case "sharpMode":
             let topNode = touchedNodes.first
             if let noteNode = topNode as? Note {
-                if noteNode.isFlat {
-                    noteNode.toggleFlat()
-                    noteNode.removeAllChildren()
-                }
-                noteNode.toggleSharp()
-                if noteNode.isSharp {
-                    let sharp = SKSpriteNode(imageNamed: "temp-sharp")
-                    sharp.size = scaleNode(size: sharp.size, factor: Double(0.05))
-                    sharp.position = CGPoint(x: -20, y: 0)
-                    noteNode.addChild(sharp)
+                if !noteNode.isSharp {
+                    editAccidental(accidental: "sharp", note: noteNode)
                 }
                 else {
-                    noteNode.removeAllChildren()
+                    editAccidental(accidental: "natural", note: noteNode)
                 }
             }
         case "flatMode":
             let topNode = touchedNodes.first
             if let noteNode = topNode as? Note {
-                if noteNode.isSharp {
-                    noteNode.toggleSharp()
-                    noteNode.removeAllChildren()
-                }
-                noteNode.toggleFlat()
-                if noteNode.isFlat {
-                    let flat = SKSpriteNode(imageNamed: "temp-flat")
-                    flat.size = scaleNode(size: flat.size, factor: Double(0.025))
-                    flat.position = CGPoint(x: -20, y: 0)
-                    noteNode.addChild(flat)
+                if !noteNode.isFlat {
+                    editAccidental(accidental: "flat", note: noteNode)
                 }
                 else {
-                    noteNode.removeAllChildren()
+                    editAccidental(accidental: "natural", note: noteNode)
                 }
             }
         default: // not selected or navigateMode
@@ -91,25 +75,26 @@ extension MusicScene {
     }
     
     func editAccidental(accidental: String, note: Note) {
+        note.removeAllChildren()
         switch accidental {
         case "sharp":
             note.isSharp = true
-            note.isFlat = true
-            let sharp = SKSpriteNode(imageNamed: "temp-sharp")
-            sharp.size = CGSize(width: 20, height: 20)
-            sharp.position = CGPoint(x: -40, y: 0)
+            note.isFlat = false
+            let sharp = SKSpriteNode(imageNamed: "sharp")
+            sharp.size = CGSize(width: 30, height: 30)
+            sharp.position = CGPoint(x: -30, y: 0)
             note.addChild(sharp)
         case "flat":
             note.isSharp = false
             note.isFlat = true
-            let flat = SKSpriteNode(imageNamed: "temp-flat")
-            flat.size = CGSize(width: 20, height: 20)
-            flat.position = CGPoint(x: -40, y: 0)
+            let flat = SKSpriteNode(imageNamed: "flat")
+            flat.size = CGSize(width: 30, height: 30)
+            flat.position = CGPoint(x: -30, y: 0)
             note.addChild(flat)
         case "natural":
             note.isSharp = false
             note.isFlat = false
-            note.removeAllChildren()
+            //note.removeAllChildren()
         default:
             print("theres nothing to do")
         }

@@ -21,9 +21,12 @@ class WelcomeScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpGraphics()
     }
 
     @IBOutlet weak var userIDLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var freestyleButton: UIButton!
     
     func isSignedInResponse() {
         
@@ -72,12 +75,31 @@ class WelcomeScreen: UIViewController {
                 GameUser.gameCurrency = document.get("game-currency") as? Int ?? 100
                 GameUser.hints = document.get("hints") as? Int ?? 10
                 GameUser.sounds = document.get("sounds") as? Dictionary ?? ["cat_basic1" : 0]
-                self.userIDLabel.text = "hi \(GameUser.nickname ?? "")!"
+                self.userIDLabel.text = "Hi \(GameUser.nickname ?? "")!"
             }
             else {
                 print("user doc doesn't exist")
             }
         }
+    }
+    
+    func setUpGraphics() {
+        self.view.backgroundColor = ColorPalette.apricot
+        
+        userIDLabel.layer.masksToBounds = true
+        userIDLabel.textColor = .white
+        
+        playButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        playButton.layer.masksToBounds = true
+        playButton.layer.cornerRadius = 5
+        playButton.backgroundColor = ColorPalette.pastelPink
+        playButton.setTitleColor(.white, for: .normal)
+        
+        freestyleButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        freestyleButton.layer.masksToBounds = true
+        freestyleButton.layer.cornerRadius = 5
+        freestyleButton.backgroundColor = ColorPalette.pastelPink
+        freestyleButton.setTitleColor(.white, for: .normal)
     }
     
     // segue code

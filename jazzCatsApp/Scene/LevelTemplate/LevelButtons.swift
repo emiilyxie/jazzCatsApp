@@ -24,13 +24,13 @@ extension LevelTemplate {
         let topY = convertPoint(fromView: topYinView).y
         let bottomY = convertPoint(fromView: bottomYinView).y
         
-        _ = addButton(buttonImage: "play", buttonAction: returnToMainMenu, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
+        _ = addButton(buttonImage: "home", buttonAction: returnToMainMenu, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         _ = addButton(buttonImage: "play", buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
         _ = addButton(buttonImage: "pause", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         _ = addButton(buttonImage: "stop", buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.4, y: topY))
         
-        _ = addButton(buttonImage: "temp-sharp", buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
-        _ = addButton(buttonImage: "temp-flat", buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
+        _ = addButton(buttonImage: "sharp", buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
+        _ = addButton(buttonImage: "flat", buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
         //_ = addButton(buttonImage: "piano1", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
         _ = addButton(buttonImage: "snare1", buttonAction: displayPopup, buttonIndex: 2, name: "snareButton", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
         noteButton = addButton(buttonImage: "cat_basic1", buttonAction: selectNoteType, buttonIndex: 4, name: "catButton", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
@@ -205,5 +205,5 @@ extension LevelTemplate {
             return
         }
         gameVC.unwindFromGameToLevelSelect(gameVC)
-       }
+    }
 }
