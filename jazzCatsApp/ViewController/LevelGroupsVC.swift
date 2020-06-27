@@ -11,20 +11,72 @@ import FirebaseFirestore
 
 class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let levelGroups = ["Basics", "Intermediate", "Coltrane"]
+    var levelGroupNames: Array<String>?
+    var levelGroupNumbers: Array<Int>?
     
     var selectedLevelGroup: String?
-    var levelGroupNumOfMeasures: Int?
+    var levelGroupNumOfLevels: Int?
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var backButton: UIButton!
     
+    override func viewWillAppear(_ animated: Bool) {
+        getNameData {
+            self.getCountData {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpValues()
         self.view.backgroundColor = .white
+    }
+    
+    func getNameData(getCounts: @escaping () -> ()) {
+        let levelGroupsRef = Firestore.firestore().collection("/level-groups")
+        
+        levelGroupsRef.document("all-groups").getDocument { (document, err) in
+            if let err = err {
+                print(err.localizedDescription)
+                return
+            }
+            else if let document = document, document.exists {
+                if let names = document.get("groups") as? Array<String> {
+                    self.levelGroupNames = names
+                    getCounts()
+                }
+            }
+            else {
+                print("couldnt get name doc")
+                return
+            }
+        }
+    }
+    
+    func getCountData(displayView: @escaping () -> ()) {
+        let levelGroupsRef = Firestore.firestore().collection("/level-groups")
+        self.levelGroupNumbers = []
+        for name in levelGroupNames! {
+            levelGroupsRef.document(name).getDocument { (document, err) in
+                if let err = err {
+                    print(err.localizedDescription)
+                    return
+                }
+                else if let document = document, document.exists {
+                    if let levelCount = document.get("number-of-levels") as? Int {
+                        self.levelGroupNumbers?.append(levelCount)
+                    }
+                }
+                else {
+                    print("couldnt get number of levels")
+                    return
+                }
+            }
+        }
+        displayView()
     }
     
     func setUpValues() {
@@ -42,13 +94,22 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return levelGroups.count
+        guard let names = levelGroupNames else {
+            print("level names not loaded")
+            return 0
+        }
+        return names.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "levelGroupCell", for: indexPath) as! LevelGroupCell
+        
+        guard let names = levelGroupNames else {
+            print("level names not loaded")
+            return UICollectionViewCell()
+        }
 
-        cell.levelGroupLabel.text = String(levelGroups[indexPath.row])
+        cell.levelGroupLabel.text = String(names[indexPath.row])
         cell.levelGroupLabel.textColor = .black
         cell.backgroundColor = .white
         cell.layer.masksToBounds = true
@@ -60,33 +121,21 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let levelGroupDoc = levelGroups[indexPath.row].lowercased()
-        
-        let levelGroupsRef = Firestore.firestore().collection("/level-groups")
-        levelGroupsRef.document(levelGroupDoc).getDocument { (document, err) in
-            if let document = document, document.exists {
-                if let numOfMeasures = document.get("number-of-levels") as? Int {
-                    self.selectedLevelGroup = document.documentID
-                    self.levelGroupNumOfMeasures = numOfMeasures
-                    self.performSegue(withIdentifier: "fromLevelGroupsToLevelSelectSegue", sender: self)
-                }
-                else {
-                    print("document values not found")
-                    return
-                }
-            }
-            else {
-                print("document was not found")
-                return
-            }
+        guard let names = levelGroupNames, let counts = levelGroupNumbers else {
+            print("level names or counts not loaded")
+            return
         }
+        
+        selectedLevelGroup = names[indexPath.row]
+        levelGroupNumOfLevels = counts[indexPath.row]
+        performSegue(withIdentifier: "fromLevelGroupsToLevelSelectSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let levelSelect = segue.destination as? LevelSelect {
             
-            guard let levelGroup = self.selectedLevelGroup,
-                let numOfLevels = self.levelGroupNumOfMeasures else {
+            guard let levelGroup = selectedLevelGroup,
+                let numOfLevels = levelGroupNumOfLevels else {
                     print("nothings really selected uhoh")
                     return
             }
