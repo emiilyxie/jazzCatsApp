@@ -84,22 +84,26 @@ class WelcomeScreen: UIViewController {
     }
     
     func setUpGraphics() {
-        self.view.backgroundColor = ColorPalette.apricot
+        self.view.backgroundColor = .white
         
         userIDLabel.layer.masksToBounds = true
-        userIDLabel.textColor = .white
+        userIDLabel.textColor = .black
         
         playButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         playButton.layer.masksToBounds = true
-        playButton.layer.cornerRadius = 5
-        playButton.backgroundColor = ColorPalette.pastelPink
-        playButton.setTitleColor(.white, for: .normal)
+        playButton.layer.cornerRadius = 24
+        playButton.layer.borderWidth = 3
+        playButton.layer.borderColor = UIColor.black.cgColor
+        playButton.backgroundColor = .white
+        playButton.setTitleColor(.black, for: .normal)
         
         freestyleButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         freestyleButton.layer.masksToBounds = true
-        freestyleButton.layer.cornerRadius = 5
-        freestyleButton.backgroundColor = ColorPalette.pastelPink
-        freestyleButton.setTitleColor(.white, for: .normal)
+        freestyleButton.layer.cornerRadius = 24
+        freestyleButton.layer.borderWidth = 3
+        freestyleButton.layer.borderColor = UIColor.black.cgColor
+        freestyleButton.backgroundColor = .white
+        freestyleButton.setTitleColor(.black, for: .normal)
     }
     
     // segue code

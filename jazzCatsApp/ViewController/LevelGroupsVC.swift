@@ -17,13 +17,17 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     var levelGroupNumOfMeasures: Int?
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var header: UILabel!
+    @IBOutlet weak var backButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupValues()
+        setUpValues()
+        self.view.backgroundColor = .white
     }
     
-    func setupValues() {
+    func setUpValues() {
         let screenSize = UIScreen.main.bounds.size
         let cellWidth = floor(screenSize.width * 0.6)
         let cellHeight = floor(screenSize.height * 0.6)
@@ -34,6 +38,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         collectionView.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
 
         collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
+        collectionView.backgroundColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -44,10 +49,12 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "levelGroupCell", for: indexPath) as! LevelGroupCell
 
         cell.levelGroupLabel.text = String(levelGroups[indexPath.row])
-        cell.levelGroupLabel.textColor = .white
-        cell.backgroundColor = ColorPalette.pastelPink
+        cell.levelGroupLabel.textColor = .black
+        cell.backgroundColor = .white
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 5
+        cell.layer.borderWidth = 3
+        cell.layer.borderColor = UIColor.black.cgColor
         
         return cell
     }

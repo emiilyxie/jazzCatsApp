@@ -7,6 +7,14 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gaegu-Regular.ttf">
+            <string>Gaegu-Regular</string>
+        </array>
+        <array key="JazzText_Regular.ttf">
+            <string>JazzText-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Sign InVC-->
         <scene sceneID="Pc6-sa-84b">
@@ -175,7 +183,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fd-0C-cez">
-                                <rect key="frame" x="416.5" y="282" width="63" height="30"/>
+                                <rect key="frame" x="348" y="317" width="200" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Z9r-zu-8d9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="24"/>
                                 <state key="normal" title="Freestyle"/>
                                 <connections>
                                     <action selector="goToFreestyle:" destination="dec-BY-2yf" eventType="touchUpInside" id="exh-Ox-eJT"/>
@@ -189,15 +201,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rn4-dd-hW6">
-                                <rect key="frame" x="403" y="224" width="90" height="30"/>
+                                <rect key="frame" x="348" y="253" width="200" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Chv-fC-n0n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="24"/>
                                 <state key="normal" title="Level Groups"/>
                                 <connections>
                                     <action selector="goToLevelGroups:" destination="dec-BY-2yf" eventType="touchUpInside" id="6J9-36-Pst"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwI-vr-1dK" userLabel="currentUser">
-                                <rect key="frame" x="412.5" y="91" width="71" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <rect key="frame" x="394" y="40" width="108.5" height="72"/>
+                                <fontDescription key="fontDescription" name="JazzText-Regular" family="JazzText" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -207,11 +223,11 @@
                             <constraint firstItem="GyB-rx-roN" firstAttribute="trailing" secondItem="edd-Rg-unA" secondAttribute="trailing" constant="10" id="E5n-dA-Qad"/>
                             <constraint firstItem="Rn4-dd-hW6" firstAttribute="centerX" secondItem="hhp-mo-ldP" secondAttribute="centerX" id="OeQ-x8-cSm"/>
                             <constraint firstItem="xwI-vr-1dK" firstAttribute="centerX" secondItem="hhp-mo-ldP" secondAttribute="centerX" id="PCe-o7-1de"/>
-                            <constraint firstItem="GyB-rx-roN" firstAttribute="bottom" secondItem="1Fd-0C-cez" secondAttribute="bottom" constant="81" id="PZl-WT-R5B"/>
+                            <constraint firstItem="GyB-rx-roN" firstAttribute="bottom" secondItem="1Fd-0C-cez" secondAttribute="bottom" constant="40" id="PZl-WT-R5B"/>
                             <constraint firstItem="edd-Rg-unA" firstAttribute="top" secondItem="GyB-rx-roN" secondAttribute="top" constant="20" id="Tg3-dt-tD9"/>
                             <constraint firstItem="1Fd-0C-cez" firstAttribute="centerX" secondItem="hhp-mo-ldP" secondAttribute="centerX" id="aKC-sV-dW5"/>
                             <constraint firstItem="1Fd-0C-cez" firstAttribute="top" secondItem="Rn4-dd-hW6" secondAttribute="bottom" constant="28" id="dpe-YZ-PXO"/>
-                            <constraint firstItem="xwI-vr-1dK" firstAttribute="top" secondItem="GyB-rx-roN" secondAttribute="top" constant="91" id="zr9-9h-hLe"/>
+                            <constraint firstItem="xwI-vr-1dK" firstAttribute="top" secondItem="GyB-rx-roN" secondAttribute="top" constant="40" id="zr9-9h-hLe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GyB-rx-roN"/>
                     </view>
@@ -236,15 +252,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5U-G5-Nvo">
-                                <rect key="frame" x="44" y="20" width="97" height="30"/>
-                                <state key="normal" title="Back To Menu"/>
-                                <connections>
-                                    <action selector="unwindFromLevelGroupsToWelcome:" destination="eET-rt-TJ4" eventType="touchUpInside" id="AmL-0u-ETK"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-j1-OjF">
-                                <rect key="frame" x="0.0" y="58" width="896" height="298"/>
+                                <rect key="frame" x="0.0" y="60" width="896" height="294"/>
                                 <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="30" minimumInteritemSpacing="10" id="lof-V2-OjE" customClass="SnapToCenter" customModule="jazzCatsApp" customModuleProvider="target">
                                     <size key="itemSize" width="400" height="200"/>
@@ -254,15 +263,15 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="levelGroupCell" id="qDg-h5-YOj" customClass="LevelGroupCell" customModule="jazzCatsApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49" width="400" height="200"/>
+                                        <rect key="frame" x="0.0" y="47" width="400" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E48-7e-wAi">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk3-W1-Rlb">
-                                                    <rect key="frame" x="179" y="89.5" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="174.5" y="88" width="51.5" height="24"/>
+                                                    <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -282,20 +291,48 @@
                                     <outlet property="delegate" destination="eET-rt-TJ4" id="GEX-bW-XJp"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level Groups" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcr-pH-luh">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="IYW-Ov-Rl6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="30"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5U-G5-Nvo">
+                                <rect key="frame" x="64" y="15" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="U5U-G5-Nvo" secondAttribute="height" id="V8W-vt-6CR"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="arrow.left" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="unwindFromLevelGroupsToWelcome:" destination="eET-rt-TJ4" eventType="touchUpInside" id="AmL-0u-ETK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="U5U-G5-Nvo" firstAttribute="top" secondItem="mXU-uT-XKR" secondAttribute="top" constant="20" id="8S1-4r-e85"/>
-                            <constraint firstItem="NIK-j1-OjF" firstAttribute="top" secondItem="U5U-G5-Nvo" secondAttribute="bottom" constant="8" id="Hg7-jQ-tmS"/>
+                            <constraint firstAttribute="trailing" secondItem="Zcr-pH-luh" secondAttribute="trailing" id="ACO-Bn-9Re"/>
+                            <constraint firstItem="Zcr-pH-luh" firstAttribute="top" secondItem="mXU-uT-XKR" secondAttribute="top" id="Mfs-q6-vX7"/>
                             <constraint firstItem="NIK-j1-OjF" firstAttribute="centerY" secondItem="Bpi-wI-wYJ" secondAttribute="centerY" id="O4O-Yy-Bnw"/>
-                            <constraint firstItem="U5U-G5-Nvo" firstAttribute="leading" secondItem="mXU-uT-XKR" secondAttribute="leading" id="erU-Gf-O1O"/>
+                            <constraint firstItem="U5U-G5-Nvo" firstAttribute="height" secondItem="Zcr-pH-luh" secondAttribute="height" multiplier="0.5" id="VOM-5P-kdw"/>
+                            <constraint firstItem="NIK-j1-OjF" firstAttribute="top" secondItem="Zcr-pH-luh" secondAttribute="bottom" id="cKi-nd-AvB"/>
+                            <constraint firstItem="U5U-G5-Nvo" firstAttribute="centerY" secondItem="Zcr-pH-luh" secondAttribute="centerY" id="eh2-aE-oLu"/>
+                            <constraint firstItem="U5U-G5-Nvo" firstAttribute="leading" secondItem="mXU-uT-XKR" secondAttribute="leading" constant="20" id="erU-Gf-O1O"/>
+                            <constraint firstItem="Zcr-pH-luh" firstAttribute="leading" secondItem="Bpi-wI-wYJ" secondAttribute="leading" id="pO3-XG-I35"/>
                             <constraint firstItem="NIK-j1-OjF" firstAttribute="centerX" secondItem="Bpi-wI-wYJ" secondAttribute="centerX" id="u2z-HE-1lm"/>
                             <constraint firstItem="NIK-j1-OjF" firstAttribute="leading" secondItem="Bpi-wI-wYJ" secondAttribute="leading" id="zML-FI-KRn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mXU-uT-XKR"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="U5U-G5-Nvo" id="HVJ-7u-GKq"/>
                         <outlet property="collectionView" destination="NIK-j1-OjF" id="9OH-y1-jHG"/>
+                        <outlet property="header" destination="Zcr-pH-luh" id="0Uh-vU-Zz7"/>
                         <segue destination="4bv-19-uqW" kind="unwind" identifier="fromLevelGroupsToWelcomeUSegue" unwindAction="backToWelcomeFromLevelGroupsWithSegue:" id="9EM-F2-gev"/>
                         <segue destination="4gq-Lp-7HN" kind="presentation" identifier="fromLevelGroupsToLevelSelectSegue" id="wCB-rj-d9R"/>
                     </connections>
@@ -303,7 +340,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N5L-w8-v8B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="4bv-19-uqW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1104.2410714285713" y="-191.30434782608697"/>
+            <point key="canvasLocation" x="-1092.1875" y="-191.30434782608697"/>
         </scene>
         <!--Level Select-->
         <scene sceneID="Nn8-A1-Mdv">
@@ -313,19 +350,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Alr-c2-wVp">
-                                <rect key="frame" x="120" y="20" width="94" height="30"/>
-                                <state key="normal" title="back to menu"/>
-                                <connections>
-                                    <action selector="unwindFromLevelSelectToWelcome:" destination="4gq-Lp-7HN" eventType="touchUpInside" id="ghe-f9-ubq"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a3V-IE-ijI">
-                                <rect key="frame" x="120" y="58" width="656" height="335"/>
+                                <rect key="frame" x="114" y="90" width="668" height="303"/>
                                 <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="335" id="JcC-zj-I0h"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DjP-ev-XrM">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -341,8 +368,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8v-4M-eAH">
-                                                    <rect key="frame" x="43" y="53.5" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="42.5" y="54" width="43" height="20"/>
+                                                    <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -363,19 +390,47 @@
                                     <outlet property="delegate" destination="4gq-Lp-7HN" id="Qse-ma-Tg3"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAz-37-46p">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1yo-NI-yEK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="30"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Alr-c2-wVp">
+                                <rect key="frame" x="64" y="15" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Alr-c2-wVp" secondAttribute="height" id="mwj-Xo-Sgz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="arrow.left" catalog="system"/>
+                                <connections>
+                                    <action selector="unwindFromLevelSelectToWelcome:" destination="4gq-Lp-7HN" eventType="touchUpInside" id="ghe-f9-ubq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="a3V-IE-ijI" firstAttribute="top" secondItem="Alr-c2-wVp" secondAttribute="bottom" constant="8" id="1fD-8a-zoQ"/>
-                            <constraint firstItem="a3V-IE-ijI" firstAttribute="bottom" secondItem="nGk-aJ-aHf" secondAttribute="bottom" id="5tB-K7-c5n"/>
-                            <constraint firstItem="a3V-IE-ijI" firstAttribute="leading" secondItem="Alr-c2-wVp" secondAttribute="leading" id="YON-cy-iWl"/>
+                            <constraint firstItem="a3V-IE-ijI" firstAttribute="bottom" secondItem="qH1-D2-I13" secondAttribute="bottomMargin" id="jVE-Yl-o4x"/>
+                            <constraint firstItem="a3V-IE-ijI" firstAttribute="leading" secondItem="nGk-aJ-aHf" secondAttribute="leading" constant="70" id="mOg-Je-rcd"/>
+                            <constraint firstItem="Alr-c2-wVp" firstAttribute="height" secondItem="zAz-37-46p" secondAttribute="height" multiplier="0.5" id="mkN-X4-6JC"/>
                             <constraint firstItem="a3V-IE-ijI" firstAttribute="centerX" secondItem="qH1-D2-I13" secondAttribute="centerX" id="nxg-TE-8S5"/>
-                            <constraint firstItem="a3V-IE-ijI" firstAttribute="leading" secondItem="nGk-aJ-aHf" secondAttribute="leading" constant="76" id="t0Q-HK-tC7"/>
+                            <constraint firstItem="Alr-c2-wVp" firstAttribute="centerY" secondItem="zAz-37-46p" secondAttribute="centerY" id="pvI-y9-geH"/>
+                            <constraint firstItem="a3V-IE-ijI" firstAttribute="top" secondItem="zAz-37-46p" secondAttribute="bottom" constant="30" id="tS3-74-OkY"/>
+                            <constraint firstItem="zAz-37-46p" firstAttribute="leading" secondItem="qH1-D2-I13" secondAttribute="leading" id="tkU-eR-LoF"/>
+                            <constraint firstItem="zAz-37-46p" firstAttribute="top" secondItem="nGk-aJ-aHf" secondAttribute="top" id="xn3-w1-yNe"/>
+                            <constraint firstAttribute="trailing" secondItem="zAz-37-46p" secondAttribute="trailing" id="y8g-1y-dZP"/>
+                            <constraint firstItem="Alr-c2-wVp" firstAttribute="leading" secondItem="nGk-aJ-aHf" secondAttribute="leading" constant="20" id="yFM-7c-DMN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nGk-aJ-aHf"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="Alr-c2-wVp" id="eow-LW-YPh"/>
                         <outlet property="collectionView" destination="a3V-IE-ijI" id="TTS-Nk-ago"/>
+                        <outlet property="header" destination="zAz-37-46p" id="ftk-1u-VOc"/>
                         <segue destination="uKC-AO-KPp" kind="presentation" identifier="goToLevelSegue" id="Lga-rB-OrQ"/>
                         <segue destination="YCr-aj-dNT" kind="unwind" identifier="fromLevelSelectToWelcomeUSegue" unwindAction="backToWelcomeFromLevelSelectWithSegue:" id="VTI-C1-foa"/>
                         <segue destination="YCr-aj-dNT" kind="unwind" identifier="fromLevelSelectToLevelGroupsUSegue" unwindAction="backToLevelGroupsFromLevelSelectWithSegue:" id="cZU-gM-gPR"/>
@@ -384,7 +439,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfb-PF-67I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="YCr-aj-dNT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-462" y="-191"/>
+            <point key="canvasLocation" x="-462.05357142857139" y="-191.30434782608697"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="Nob-v2-Xgg">
@@ -667,4 +722,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="GLW-ER-AVP"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
+    </resources>
 </document>

@@ -33,6 +33,7 @@
 		AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395B124747D3F0037E307 /* LevelSelect.swift */; };
 		AD954D97249CAC5E00EBDACD /* NoteSelectPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */; };
 		AD954D99249CACAD00EBDACD /* NoteSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */; };
+		AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD9DF62624A6653D00187636 /* ShadowsIntoLight-Regular.ttf */; };
 		ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC59C9C248824D6007D99A9 /* GameUser.swift */; };
 		ADCAE9E624A42FCD000A9FC7 /* SnapToCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */; };
 		ADCAE9E824A430C1000A9FC7 /* LevelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */; };
@@ -46,6 +47,8 @@
 		ADCAFDAD249E08DB00428C70 /* MusicSceneNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */; };
 		ADCAFDAF249E08E600428C70 /* MusicSceneSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */; };
 		ADCAFDB1249E08F300428C70 /* MusicScenePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */; };
+		ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */; };
+		ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */; };
 		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
 		ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */; };
@@ -112,6 +115,7 @@
 		AD9395B124747D3F0037E307 /* LevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelect.swift; sourceTree = "<group>"; };
 		AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectPopupVC.swift; sourceTree = "<group>"; };
 		AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectCell.swift; sourceTree = "<group>"; };
+		AD9DF62624A6653D00187636 /* ShadowsIntoLight-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ShadowsIntoLight-Regular.ttf"; sourceTree = "<group>"; };
 		ADC59C9C248824D6007D99A9 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapToCenter.swift; sourceTree = "<group>"; };
 		ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupCell.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 		ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneNotes.swift; sourceTree = "<group>"; };
 		ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneSound.swift; sourceTree = "<group>"; };
 		ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScenePhysics.swift; sourceTree = "<group>"; };
+		ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzText_Regular.ttf; sourceTree = "<group>"; };
+		ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Regular.ttf"; sourceTree = "<group>"; };
 		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleRecordingFails.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 				AD3826DB245D0FCB0027849D /* CustomNodes */,
 				AD3826DA245D0FC60027849D /* Sounds */,
 				AD3826E0245D0FF90027849D /* Assets */,
+				AD9DF62824A6655100187636 /* Fonts */,
 			);
 			path = jazzCatsApp;
 			sourceTree = "<group>";
@@ -303,6 +310,16 @@
 				F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD9DF62824A6655100187636 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AD9DF62624A6653D00187636 /* ShadowsIntoLight-Regular.ttf */,
+				ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */,
+				ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		ADCAFD9D249DCBCD00428C70 /* MusicScene */ = {
@@ -413,10 +430,13 @@
 				ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
+				AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */,
 				ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
 				ADFC5CF12478945300225610 /* snare1.mp3 in Resources */,
+				ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */,
+				ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */,
 				ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */,
 				ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,

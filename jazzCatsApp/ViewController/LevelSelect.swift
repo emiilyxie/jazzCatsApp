@@ -20,6 +20,9 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var whichLevel: Int = 0
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var header: UILabel!
+    @IBOutlet weak var backButton: UIButton!
+    
     
     override func viewWillAppear(_ animated: Bool) {
         // set up the datasource, an array of ints
@@ -34,6 +37,9 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         // set up the max unlocked level
         refreshCollection()
+        self.view.backgroundColor = .white
+        collectionView.backgroundColor = .white
+        header.text = levelGroup.capitalized
     }
     
     func refreshCollection() {
@@ -56,17 +62,19 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "level", for: indexPath) as! LevelCell
 
         cell.levelCellLabel.text = String(levels[indexPath.row])
-        cell.levelCellLabel.textColor = .white
+        cell.levelCellLabel.textColor = .black
         
         if Int(cell.levelCellLabel.text!) ?? 0 > maxUnlockedLevel {
             cell.backgroundColor = UIColor.gray
         }
         else {
-            cell.backgroundColor = ColorPalette.pastelPink
+            cell.backgroundColor = .white
         }
         
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 5
+        cell.layer.borderWidth = 3
+        cell.layer.borderColor = UIColor.black.cgColor
         
         return cell
     }
