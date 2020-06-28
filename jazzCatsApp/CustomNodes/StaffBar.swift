@@ -26,14 +26,8 @@ public class StaffBar: SKSpriteNode {
         
         let shapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: LevelSetup.sceneSize.width, height: 4))
         shapeNode.fillColor = .black
-        shapeNode.lineWidth = 1
         addChild(shapeNode)
-         
-        /*
-        if let linePic = UIImage(named: "temp-long-thin.png") {
-            self.texture = SKTexture(image: linePic)
-        }
- */
+
     }
     
     public func colorDebug(i: Int) {

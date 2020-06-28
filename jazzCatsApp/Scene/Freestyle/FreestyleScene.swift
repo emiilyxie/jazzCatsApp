@@ -18,7 +18,13 @@ public class Freestyle: MusicScene {
     public var oldBpm: Int!
     public var oldSubdivision: Int!
     
-    //weak var noteButton: Button?
+    init(size: CGSize) {
+        super.init(size: size, numberOfMeasures: nil, bpm: nil, subdivision: nil, maxPages: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     deinit {
         print("deinitialized")

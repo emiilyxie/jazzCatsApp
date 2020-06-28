@@ -33,7 +33,8 @@ public class MusicScene: SKScene {
     var measureBar: SKSpriteNode
     var selectedNote: String = "cat_basic1"
     var currentMode: String = "addMode"
-    weak var noteButton: Button?
+    var buttons = NSMapTable<NSString, Button>.init(keyOptions: .copyIn, valueOptions: .weakMemory)
+    //weak var noteButton: Button?
     
     var currentSounds = Array(GameUser.sounds.keys)
     var samplers: Array<AKAppleSampler> = []
@@ -52,11 +53,10 @@ public class MusicScene: SKScene {
         self.resultWidth = size.width - LevelSetup.indentLength
         self.divisionWidth = self.resultWidth/CGFloat(self.totalDivision)
         self.pages = [[Note]](repeating: [], count: self.maxPages)
-        
         self.measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: self.staffTotalHeight + 30))
         
         super.init(size: size)
-        self.backgroundColor = ColorPalette.apricot
+        self.backgroundColor = .white
 
     }
     

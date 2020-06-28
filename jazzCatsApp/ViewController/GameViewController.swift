@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
              }
             
             else {
-                let scene = Freestyle(size: LevelSetup.sceneSize, numberOfMeasures: nil, bpm: nil, subdivision: nil, maxPages: nil)
+                let scene = Freestyle(size: LevelSetup.sceneSize)
                 scene.viewController = self
             
                 scene.scaleMode = .aspectFill

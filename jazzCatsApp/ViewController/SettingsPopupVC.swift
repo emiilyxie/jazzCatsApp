@@ -34,6 +34,10 @@ class SettingsPopupVC: UIViewController {
             return
         }
         
+        parentVC.currentScene?.isUserInteractionEnabled = false
+        parentVC.currentScene?.isPaused = true
+        self.view.isUserInteractionEnabled = true
+        
         currentPgs = freestyleScene.maxPages
         currentMPP = freestyleScene.numberOfMeasures
         currentBPM = freestyleScene.bpm
@@ -84,7 +88,13 @@ class SettingsPopupVC: UIViewController {
     
     
     @IBAction func closePopover(_ sender: Any) {
+        guard let parentVC = self.parent as! GameViewController? else {
+            print("cant get parnetvc")
+            return
+        }
         self.view.removeFromSuperview()
+        parentVC.currentScene?.isPaused = false
+        parentVC.currentScene?.isUserInteractionEnabled = true
     }
     
     @IBAction func confirmEdits(_ sender: UIButton) {
@@ -102,6 +112,9 @@ class SettingsPopupVC: UIViewController {
         freestyleScene.oldBpm = currentBPM
         freestyleScene.oldSubdivision = currentSPB
         freestyleScene.reloadLayout()
+        
         self.view.removeFromSuperview()
+        parentVC.currentScene?.isPaused = false
+        parentVC.currentScene?.isUserInteractionEnabled = true
     }
 }

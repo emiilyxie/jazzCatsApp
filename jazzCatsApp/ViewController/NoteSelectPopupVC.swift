@@ -30,6 +30,10 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
             print("something's weird here")
             return
         }
+        
+        parentVC.currentScene?.isUserInteractionEnabled = false
+        parentVC.currentScene?.isPaused = true
+        self.view.isUserInteractionEnabled = true
     }
 
     override func viewDidLoad() {
@@ -75,6 +79,12 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
+        guard let parentVC = self.parent as! GameViewController? else {
+            print("cant get parentvc")
+            return
+        }
+        parentVC.currentScene?.isPaused = false
+        parentVC.currentScene?.isUserInteractionEnabled = true
         self.view.removeFromSuperview()
     }
     
@@ -82,7 +92,7 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
     @IBAction func selectButton(_ sender: UIButton) {
         guard let parentVC = self.parent as! GameViewController?,
             let musicScene = parentVC.currentScene as! MusicScene?,
-            let noteButton = musicScene.noteButton
+            let noteButton = musicScene.buttons.object(forKey: "addNotesButton")
         else {
             print("cant get parentvc or scene or button ouch")
             self.view.removeFromSuperview()
@@ -95,6 +105,9 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         musicScene.currentMode = "addMode"
         
         self.view.removeFromSuperview()
+        parentVC.currentScene?.isPaused = false
+        parentVC.currentScene?.isUserInteractionEnabled = true
+
     }
     
 

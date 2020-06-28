@@ -24,21 +24,23 @@ extension Freestyle {
         let topY = convertPoint(fromView: topYinView).y
         let bottomY = convertPoint(fromView: bottomYinView).y
         
-        _ = addButton(buttonImage: "home", buttonAction: returnToWelcomeScreen, buttonIndex: 3, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
-        _ = addButton(buttonImage: "play", buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
-        _ = addButton(buttonImage: "pause", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
-        _ = addButton(buttonImage: "stop", buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.4, y: topY))
-        _ = addButton(buttonImage: "snare1", buttonAction: displayPopup, buttonIndex: 0, name: "displaySettingsButton", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
+        let defaultConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light, scale: .small)
         
-        _ = addButton(buttonImage: "sharp", buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.1, y: bottomY))
-        _ = addButton(buttonImage: "flat", buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
+        addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: returnToWelcomeScreen, buttonIndex: 3, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
+        addButton(buttonImage: UIImage(systemName: "play", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
+        //_ = addButton(buttonImage: UIImage(systemName: "pause"), buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
+        addButton(buttonImage: UIImage(systemName: "stop", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
+        addButton(buttonImage: UIImage(systemName: "slider.horizontal.3", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 0, name: "displaySettingsButton", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
+        
+        addButton(buttonImage: UIImage(named: "sharp"), buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.1, y: bottomY))
+        addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
         //_ = addButton(buttonImage: "piano.png", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: 150, y: bottomY))
-        _ = addButton(buttonImage: "snare1", buttonAction: displayPopup, buttonIndex: 1, name: "snareButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
-        noteButton = addButton(buttonImage: "cat_basic1", buttonAction: selectNoteType, buttonIndex: 4, name: "catButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
-        _ = addButton(buttonImage: "temp-eraser", buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
+        addButton(buttonImage: UIImage(systemName: "pencil", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 1, name: "selectNoteButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
+        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: selectNoteType, buttonIndex: 4, name: "addNotesButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
+        addButton(buttonImage: UIImage(systemName: "trash", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
         
-        _ = addButton(buttonImage: "temp-leftArrow", buttonAction: prevPage, buttonIndex: 0, name: "prevPage", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
-        _ = addButton(buttonImage: "temp-rightArrow", buttonAction: nextPage, buttonIndex: 0, name: "nextPage", buttonPosition: CGPoint(x: rightX*0.8, y: bottomY))
+        addButton(buttonImage: UIImage(systemName: "chevron.left", withConfiguration: defaultConfig), buttonAction: prevPage, buttonIndex: 0, name: "prevPage", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
+        addButton(buttonImage: UIImage(systemName: "chevron.right", withConfiguration: defaultConfig), buttonAction: nextPage, buttonIndex: 0, name: "nextPage", buttonPosition: CGPoint(x: rightX*0.8, y: bottomY))
         
         pgCountLabel = SKLabelNode(text: "page: \(pageIndex+1)/\(maxPages)")
         pgCountLabel.fontColor = UIColor.black

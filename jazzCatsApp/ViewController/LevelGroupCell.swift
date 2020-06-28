@@ -11,5 +11,7 @@ import UIKit
 class LevelGroupCell: UICollectionViewCell {
     
     @IBOutlet weak var levelGroupLabel: UILabel!
+    @IBOutlet weak var levelGroupBkgd: UIImageView!
+    
     
 }

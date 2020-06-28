@@ -32,7 +32,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpValues()
-        self.view.backgroundColor = .white
+        setUpGraphics()
     }
     
     func getNameData(getCounts: @escaping () -> ()) {
@@ -93,6 +93,22 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         collectionView.backgroundColor = .white
     }
     
+    func setUpGraphics() {
+        self.view.backgroundColor = .white
+        
+        header.backgroundColor = .white
+        header.layer.masksToBounds = true
+        header.layer.borderWidth = 3
+        header.layer.borderColor = UIColor.black.cgColor
+        
+        backButton.backgroundColor = .white
+        backButton.layer.masksToBounds = true
+        backButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        backButton.layer.cornerRadius = 5
+        backButton.layer.borderWidth = 3
+        backButton.layer.borderColor = UIColor.black.cgColor
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let names = levelGroupNames else {
             print("level names not loaded")
@@ -111,6 +127,12 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
 
         cell.levelGroupLabel.text = String(names[indexPath.row])
         cell.levelGroupLabel.textColor = .black
+        //cell.levelGroupLabel.layer.masksToBounds = true
+        
+        cell.levelGroupBkgd.contentMode = .scaleAspectFill
+        cell.levelGroupBkgd.clipsToBounds = true
+        cell.levelGroupBkgd.image = UIImage(named: "cafe1")
+        
         cell.backgroundColor = .white
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 5

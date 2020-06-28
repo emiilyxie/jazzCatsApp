@@ -25,6 +25,7 @@ class WelcomeScreen: UIViewController {
     }
 
     @IBOutlet weak var userIDLabel: UILabel!
+    @IBOutlet weak var accountButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var freestyleButton: UIButton!
     
@@ -84,10 +85,26 @@ class WelcomeScreen: UIViewController {
     }
     
     func setUpGraphics() {
-        self.view.backgroundColor = .white
+        //self.view.backgroundColor = .white
+        
+        let background = UIImage(named: "cafe1")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
         
         userIDLabel.layer.masksToBounds = true
         userIDLabel.textColor = .black
+        
+        accountButton.layer.masksToBounds = true
+        accountButton.layer.cornerRadius = 22
+        accountButton.layer.borderWidth = 3
+        accountButton.layer.borderColor = UIColor.black.cgColor
+        accountButton.backgroundColor = .white
         
         playButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         playButton.layer.masksToBounds = true
