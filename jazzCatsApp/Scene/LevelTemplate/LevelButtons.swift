@@ -26,7 +26,7 @@ extension LevelTemplate {
         
         let defaultConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light, scale: .small)
         
-        addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: returnToMainMenu, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
+        addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: returnToMainMenu, buttonIndex: 3, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         addButton(buttonImage: UIImage(systemName: "play", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
         //_ = addButton(buttonImage: "pause", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         addButton(buttonImage: UIImage(systemName: "stop", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))

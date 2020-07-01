@@ -13,6 +13,8 @@ import AudioKit
 extension MusicScene {
     
     func layoutScene() {
+        self.anchorPoint = CGPoint(x: 0, y: 0)
+        
         setUpStaff()
         setUpMeasureBar()
         setUpButtons()

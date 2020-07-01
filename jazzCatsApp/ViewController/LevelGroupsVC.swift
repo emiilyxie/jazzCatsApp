@@ -23,9 +23,9 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     override func viewWillAppear(_ animated: Bool) {
         getNameData {
-            self.getCountData {
+            //self.getCountData {
                 self.collectionView.reloadData()
-            }
+            //}
         }
     }
     
@@ -35,9 +35,30 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         setUpGraphics()
     }
     
-    func getNameData(getCounts: @escaping () -> ()) {
+    func getNameData(refresh: @escaping () -> ()) {
         let levelGroupsRef = Firestore.firestore().collection("/level-groups")
         
+        levelGroupsRef.getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print(err.localizedDescription)
+                return
+            }
+            else {
+                self.levelGroupNames = []
+                self.levelGroupNumbers = []
+                for document in querySnapshot!.documents {
+                    self.levelGroupNames?.append(document.documentID)
+                    guard let numberOfMeasures = document.get("number-of-levels") as? Int else {
+                        print("no field number of levels")
+                        break
+                    }
+                    self.levelGroupNumbers?.append(numberOfMeasures)
+                    refresh()
+                }
+            }
+        }
+        
+        /*
         levelGroupsRef.document("all-groups").getDocument { (document, err) in
             if let err = err {
                 print(err.localizedDescription)
@@ -54,6 +75,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
                 return
             }
         }
+ */
     }
     
     func getCountData(displayView: @escaping () -> ()) {

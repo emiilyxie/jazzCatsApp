@@ -17,8 +17,7 @@ extension Freestyle {
             return
         }
         
-        let rightXinView = CGPoint(x: view.bounds.size.width, y: 0)
-        let rightX = convertPoint(fromView: rightXinView).x
+        let rightX = self.size.width
         let topYinView = CGPoint(x: 0, y: view.bounds.size.height*0.15)
         let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height*0.85)
         let topY = convertPoint(fromView: topYinView).y

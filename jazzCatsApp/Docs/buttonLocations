@@ -1,0 +1,13 @@
+
+key: submitButton, button position: (959.0000610351562, 781.5841064453125)
+key: prevPage, button position: (1096.0001220703125, 242.416015625)
+key: audioSampleButton, button position: (685.0000610351562, 781.5841064453125)
+key: stopButton, button position: (411.0000305175781, 781.5841064453125)
+key: addNotesButton, button position: (822.0000610351562, 242.416015625)
+key: selectNoteButton, button position: (685.0000610351562, 242.416015625)
+key: sharpButton, button position: (274.0000305175781, 242.416015625)
+key: flatButton, button position: (411.0000305175781, 242.416015625)
+key: nextPage, button position: (1233.0001220703125, 242.416015625)
+key: eraseButton, button position: (959.0000610351562, 242.416015625)
+key: playButton, button position: (274.0000305175781, 781.5841064453125)
+key: hintButton, button position: (822.0000610351562, 781.5841064453125)

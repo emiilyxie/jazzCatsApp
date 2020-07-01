@@ -1,0 +1,41 @@
+[
+"dialogue" : [
+    ["text" : "Hi! Nice to meet you, I'm Toto. Welcome to the jazz world. I'll show you how things work around here."],
+    ["text" : "So, there's only one goal to each level: transcribe the music."],
+    ["text" : "Oh, what's transcribing? Well, basically, you listen to an audio sample, and you transfer what you hear in the recording onto a music staff."],
+    ["text": "The music staff contains notes, and each note, based on its position, gives you information about what to play and when to play it."],
+    ["is-enabled": ["audioSampleButton"],
+     "progress-button": "audioSampleButton",
+     "text": "Let's actually try this out. First, to hear what you're going to transcribe this level, click on the audio button in the top right."],
+    ["text": "Not too bad, right? You can click this as many times as you want."],
+    ["is-enabled": ["addNotesButton"],
+     "progress-button": "addNotesButton",
+     "text": "Now, let's transcribe the audio by adding notes onto the staff. Click the cat button down below to go into \"add mode,\" which lets you add notes on the staff.",
+     "text-position": "bottom"],
+    ["progress-rect": [0, 7, 50],
+     "progress-action": "add-note",
+     "text": "Since we heard four notes, lets place four notes on the staff. Tap on the staff to place notes."],
+    ["progress-rect": [1, 7, 50],
+     "progress-action": "add-note",
+     "text": "Since we heard four notes, lets place four notes on the staff. Tap on the staff to place notes."],
+    ["progress-rect": [2, 7, 50],
+     "progress-action": "add-note",
+     "text": "Since we heard four notes, lets place four notes on the staff. Tap on the staff to place notes."],
+    ["progress-rect": [3, 7, 50],
+     "progress-action": "add-note",
+     "text": "Since we heard four notes, lets place four notes on the staff. Tap on the staff to place notes."],
+    ["is-enabled": ["playButton"],
+     "text": "Click on the Play button to hear what you've transcribed so far. The line that moves across the screen tells you which notes are being played."],
+    ["text": "You may click on the Audio button to hear the audio again and check your answer."],
+    ["is-enabled": ["submitButton"],
+     "progress-button": "submitButton",
+     "text": "When played, the notes on the staff sound the same as the audio! Press the Submit button to submit your answer."],
+    ["text": "Congrats! You finished the first tutorial. Here are some rewards for you.",
+     "updates": [
+        "game-currency": 100,
+        "hints": 3
+        ]
+    ],
+    ["text": "Well, I gotta catch a gig with my friend Charlie now. Nice meeting you, and I'll be seeing you around."],
+    ["progress-action": "dismiss"]
+]]

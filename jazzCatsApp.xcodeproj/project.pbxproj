@@ -12,6 +12,8 @@
 		AD08F5682473371A00863204 /* FreestyleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD08F5672473371A00863204 /* FreestyleScene.swift */; };
 		AD08F56A2473397900863204 /* LevelTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD08F5692473397900863204 /* LevelTemplate.swift */; };
 		AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD08F56B24734F5200863204 /* LevelTemplate.sks */; };
+		AD21FDF724A976830068A729 /* basics1tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD21FDF624A976830068A729 /* basics1tutorial */; };
+		AD21FDF924A98A030068A729 /* TutorialPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */; };
 		AD3826C3245D0F610027849D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826C2245D0F610027849D /* AppDelegate.swift */; };
 		AD3826CB245D0F610027849D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826CA245D0F610027849D /* GameViewController.swift */; };
 		AD3826CE245D0F610027849D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3826CC245D0F610027849D /* Main.storyboard */; };
@@ -26,6 +28,7 @@
 		AD3826EE245D20700027849D /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD3826EC245D20700027849D /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F0245D20DC0027849D /* Default-568h@2x.png */; };
 		AD3826F3245D22530027849D /* kitten-meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F2245D22530027849D /* kitten-meow.wav */; };
+		AD700CD224AB08E000881EBE /* buttonLocations in Resources */ = {isa = PBXBuildFile; fileRef = AD700CD124AB08E000881EBE /* buttonLocations */; };
 		AD92D0FE247F0BC500F8F807 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FD247F0BC500F8F807 /* SignInVC.swift */; };
 		AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */; };
 		AD9395AE247478250037E307 /* LevelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AD247478250037E307 /* LevelSetup.swift */; };
@@ -93,6 +96,8 @@
 		AD08F5672473371A00863204 /* FreestyleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleScene.swift; sourceTree = "<group>"; };
 		AD08F5692473397900863204 /* LevelTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTemplate.swift; sourceTree = "<group>"; };
 		AD08F56B24734F5200863204 /* LevelTemplate.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelTemplate.sks; sourceTree = "<group>"; };
+		AD21FDF624A976830068A729 /* basics1tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics1tutorial; sourceTree = "<group>"; };
+		AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPopupVC.swift; sourceTree = "<group>"; };
 		AD3826BF245D0F610027849D /* jazzCatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jazzCatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3826C2245D0F610027849D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD3826CA245D0F610027849D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +113,7 @@
 		AD3826EC245D20700027849D /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		AD3826F0245D20DC0027849D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AD3826F2245D22530027849D /* kitten-meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kitten-meow.wav"; sourceTree = "<group>"; };
+		AD700CD124AB08E000881EBE /* buttonLocations */ = {isa = PBXFileReference; lastKnownFileType = text; path = buttonLocations; sourceTree = "<group>"; };
 		AD92D0FD247F0BC500F8F807 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
 		AD9395AD247478250037E307 /* LevelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSetup.swift; sourceTree = "<group>"; };
@@ -179,6 +185,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AD21FDF524A9765A0068A729 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				AD21FDF624A976830068A729 /* basics1tutorial */,
+				AD700CD124AB08E000881EBE /* buttonLocations */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
 		AD3826B6245D0F610027849D = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +226,7 @@
 				AD3826DA245D0FC60027849D /* Sounds */,
 				AD3826E0245D0FF90027849D /* Assets */,
 				AD9DF62824A6655100187636 /* Fonts */,
+				AD21FDF524A9765A0068A729 /* Docs */,
 			);
 			path = jazzCatsApp;
 			sourceTree = "<group>";
@@ -265,6 +281,7 @@
 				AD9395B124747D3F0037E307 /* LevelSelect.swift */,
 				AD042DA924819ACD00CB2310 /* LevelCell.swift */,
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
+				AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */,
 				AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */,
 				AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */,
 				ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */,
@@ -431,6 +448,7 @@
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
 				AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */,
+				AD700CD224AB08E000881EBE /* buttonLocations in Resources */,
 				ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
@@ -438,6 +456,7 @@
 				ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */,
 				ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */,
 				ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */,
+				AD21FDF724A976830068A729 /* basics1tutorial in Resources */,
 				ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
 				ADCAFDA6249E061600428C70 /* intermediate1.mp3 in Resources */,
@@ -499,6 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCAFDAD249E08DB00428C70 /* MusicSceneNotes.swift in Sources */,
+				AD21FDF924A98A030068A729 /* TutorialPopupVC.swift in Sources */,
 				AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */,
 				ADFC5CEB2478847D00225610 /* SettingsPopupVC.swift in Sources */,
 				ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */,

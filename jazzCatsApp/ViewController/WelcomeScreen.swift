@@ -125,7 +125,9 @@ class WelcomeScreen: UIViewController {
     
     // segue code
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //exportData()
         if goingToFreestyle == true {
+            print("pressed freestyle segue")
             if let gameVC = segue.destination as? GameViewController {
                 gameVC.freestyleMode = true
             }
@@ -179,5 +181,21 @@ class WelcomeScreen: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle)
     }
  */
+    
+    // for exporting documents
+    
+    /*
+    func exportData() {
+        let db = Firestore.firestore()
+        let docData = // your data
 
+        db.document("/level-groups/basics/levels/level1").setData(docData, merge: true) { (err) in
+            if err != nil {
+                print(err!.localizedDescription)
+            }
+        }
+    }
+ */
+     
+ 
 }

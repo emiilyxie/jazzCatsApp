@@ -66,12 +66,17 @@ class GameViewController: UIViewController {
                 let bpm = document.get("bpm") as? Int
                 let subdivision = document.get("subdivision") as? Int
                 let maxPages = document.get("maxpages") as? Int
+                let hasTutorial = document.get("tutorial") as? Bool
+                let tutorialData = document.get("dialogue") as? Array<Dictionary<String, Any>>
                 
                 if let lvlAnsString = document.get("answer") as? String {
                     let level = LevelTemplate(size: LevelSetup.sceneSize, levelGroup: levelGroup, levelNum: levelNum, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: [])
                     let lvlAns = LevelSetup.parseLvlAns(json: lvlAnsString, maxPages: level.maxPages)
                     level.lvlAns = lvlAns
                     showScene(level)
+                    if hasTutorial == true && tutorialData != nil {
+                        self.showTutorialPopover(self, tutorialData: tutorialData!)
+                    }
                 }
             }
         }
@@ -79,6 +84,16 @@ class GameViewController: UIViewController {
     
     func updateUserLevelProgress() {
         GameUser.updateLevelProgress(levelGroup: levelGroup, currentLevel: selectedLevel)
+    }
+    
+    @IBAction func showTutorialPopover(_ sender: Any, tutorialData: Array<Dictionary<String, Any>>) {
+        let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "tutorialPopoverID") as! TutorialPopupVC
+        self.addChild(tutorialVC)
+        tutorialVC.view.frame = self.view.frame
+        tutorialVC.tutorialData = tutorialData
+        tutorialVC.startTutorial()
+        self.view.addSubview(tutorialVC.view)
+        tutorialVC.didMove(toParent: self)
     }
     
     @IBAction func showNoteSelectPopover(_ sender: Any) {
