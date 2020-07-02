@@ -275,16 +275,9 @@
 			children = (
 				AD9395AF24747CD10037E307 /* Main.storyboard */,
 				ADFA240B247646DD008BC384 /* WelcomeScreen.swift */,
-				ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */,
-				ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */,
-				ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */,
-				AD9395B124747D3F0037E307 /* LevelSelect.swift */,
-				AD042DA924819ACD00CB2310 /* LevelCell.swift */,
+				AD700CD524AC446300881EBE /* Levels */,
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
-				AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */,
-				AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */,
-				AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */,
-				ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */,
+				AD700CD424AC442800881EBE /* PopupViews */,
 				AD92D0FD247F0BC500F8F807 /* SignInVC.swift */,
 				AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */,
 			);
@@ -327,6 +320,29 @@
 				F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD700CD424AC442800881EBE /* PopupViews */ = {
+			isa = PBXGroup;
+			children = (
+				AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */,
+				AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */,
+				AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */,
+				ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */,
+			);
+			name = PopupViews;
+			sourceTree = "<group>";
+		};
+		AD700CD524AC446300881EBE /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */,
+				ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */,
+				ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */,
+				AD9395B124747D3F0037E307 /* LevelSelect.swift */,
+				AD042DA924819ACD00CB2310 /* LevelCell.swift */,
+			);
+			path = Levels;
 			sourceTree = "<group>";
 		};
 		AD9DF62824A6655100187636 /* Fonts */ = {

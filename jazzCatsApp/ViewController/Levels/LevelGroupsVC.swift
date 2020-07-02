@@ -11,8 +11,9 @@ import FirebaseFirestore
 
 class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var levelGroupNames: Array<String>?
-    var levelGroupNumbers: Array<Int>?
+    var levelGroupNames = ["basics", "intermediate", "coltrane"].reversed()
+    //var levelGroupNumbers: Array<Int>?
+    var levelGroupArray: [(String, Int)] = []
     
     var selectedLevelGroup: String?
     var levelGroupNumOfLevels: Int?
@@ -37,7 +38,26 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func getNameData(refresh: @escaping () -> ()) {
         let levelGroupsRef = Firestore.firestore().collection("/level-groups")
+        //levelGroupNumbers = []
+        for levelGroupName in levelGroupNames {
+            levelGroupsRef.document(levelGroupName).getDocument { (document, err) in
+                if let err = err {
+                    print(err.localizedDescription)
+                    return
+                }
+                if let document = document, document.exists {
+                    if let numberOfLevels = document.get("number-of-levels") as? Int {
+                        self.levelGroupArray.append((levelGroupName, numberOfLevels))
+                        refresh()
+                    }
+                    else {
+                        print("cant get number of levels")
+                    }
+                }
+            }
+        }
         
+        /*
         levelGroupsRef.getDocuments { (querySnapshot, err) in
             if let err = err {
                 print(err.localizedDescription)
@@ -47,7 +67,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
                 self.levelGroupNames = []
                 self.levelGroupNumbers = []
                 for document in querySnapshot!.documents {
-                    self.levelGroupNames?.append(document.documentID)
+                    self.levelGroupNames.append(document.documentID)
                     guard let numberOfMeasures = document.get("number-of-levels") as? Int else {
                         print("no field number of levels")
                         break
@@ -57,6 +77,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
                 }
             }
         }
+ */
         
         /*
         levelGroupsRef.document("all-groups").getDocument { (document, err) in
@@ -78,10 +99,11 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
  */
     }
     
+    /*
     func getCountData(displayView: @escaping () -> ()) {
         let levelGroupsRef = Firestore.firestore().collection("/level-groups")
         self.levelGroupNumbers = []
-        for name in levelGroupNames! {
+        for name in levelGroupNames {
             levelGroupsRef.document(name).getDocument { (document, err) in
                 if let err = err {
                     print(err.localizedDescription)
@@ -100,6 +122,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         }
         displayView()
     }
+ */
     
     func setUpValues() {
         let screenSize = UIScreen.main.bounds.size
@@ -132,22 +155,13 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let names = levelGroupNames else {
-            print("level names not loaded")
-            return 0
-        }
-        return names.count
+        return levelGroupArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "levelGroupCell", for: indexPath) as! LevelGroupCell
-        
-        guard let names = levelGroupNames else {
-            print("level names not loaded")
-            return UICollectionViewCell()
-        }
 
-        cell.levelGroupLabel.text = String(names[indexPath.row])
+        cell.levelGroupLabel.text = String(levelGroupArray[indexPath.row].0).capitalized
         cell.levelGroupLabel.textColor = .black
         //cell.levelGroupLabel.layer.masksToBounds = true
         
@@ -165,13 +179,9 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let names = levelGroupNames, let counts = levelGroupNumbers else {
-            print("level names or counts not loaded")
-            return
-        }
         
-        selectedLevelGroup = names[indexPath.row]
-        levelGroupNumOfLevels = counts[indexPath.row]
+        selectedLevelGroup = levelGroupArray[indexPath.row].0
+        levelGroupNumOfLevels = levelGroupArray[indexPath.row].1
         performSegue(withIdentifier: "fromLevelGroupsToLevelSelectSegue", sender: self)
     }
     

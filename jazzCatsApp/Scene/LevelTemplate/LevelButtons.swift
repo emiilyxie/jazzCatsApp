@@ -24,7 +24,7 @@ extension LevelTemplate {
         let topY = convertPoint(fromView: topYinView).y
         let bottomY = convertPoint(fromView: bottomYinView).y
         
-        let defaultConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light, scale: .small)
+        let defaultConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light, scale: .small)
         
         addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: returnToMainMenu, buttonIndex: 3, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         addButton(buttonImage: UIImage(systemName: "play", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))

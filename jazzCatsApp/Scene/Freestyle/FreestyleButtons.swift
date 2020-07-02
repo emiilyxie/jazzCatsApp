@@ -18,12 +18,14 @@ extension Freestyle {
         }
         
         let rightX = self.size.width
+        //let topY = self.size.height*0.15
+        //let bottomY = self.size.height*0.85
         let topYinView = CGPoint(x: 0, y: view.bounds.size.height*0.15)
         let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height*0.85)
         let topY = convertPoint(fromView: topYinView).y
         let bottomY = convertPoint(fromView: bottomYinView).y
         
-        let defaultConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .light, scale: .small)
+        let defaultConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light, scale: .default)
         
         addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: returnToWelcomeScreen, buttonIndex: 3, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         addButton(buttonImage: UIImage(systemName: "play", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))

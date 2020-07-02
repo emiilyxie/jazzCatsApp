@@ -13,6 +13,7 @@ import FirebaseFirestore
 public struct LevelSetup {
     
     static public let sceneSize = CGSize(width: CGFloat(1370), height: CGFloat(1024))
+    //static public let sceneSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
     static public let indentLength = CGFloat(100)
     
     static let defaultStaffBarHeight = CGFloat(32)

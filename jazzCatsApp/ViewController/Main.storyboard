@@ -707,6 +707,7 @@
                         <outlet property="dialogueBox" destination="nUC-ZJ-AFp" id="aWs-rP-QxP"/>
                         <outlet property="dialogueTopConstraint" destination="H9y-zt-jf6" id="fDY-29-KR9"/>
                         <outlet property="dialogueView" destination="kmD-6Q-a3G" id="8ot-MI-kWC"/>
+                        <outlet property="tapToContinue" destination="wTD-5l-RtM" id="8fK-pc-NUx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sac-bD-FxD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

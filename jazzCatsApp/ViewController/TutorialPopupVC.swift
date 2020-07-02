@@ -25,6 +25,10 @@ class TutorialPopupVC: UIViewController {
     @IBOutlet weak var dialogueTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonFrame: UIButton!
     @IBOutlet weak var dialogueBox: UILabel!
+    @IBOutlet weak var tapToContinue: UILabel!
+    
+    
+    var whereToPress = SKSpriteNode()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +87,8 @@ class TutorialPopupVC: UIViewController {
         canContinue = true
         continueLoc = nil
         progressAction = { (optPoint: CGPoint?) -> () in  }
+        whereToPress.removeFromParent()
+        tapToContinue.isHidden = false
         if currentTutorialPage < tutorialData.count {
             for field in tutorialData[currentTutorialPage] {
                 let key = field.key
@@ -100,19 +106,32 @@ class TutorialPopupVC: UIViewController {
         }
         
         switch (key, val) {
-            
         case ("text", let content):
             dialogueBox.text = content as? String
             
         case ("progress-button", let buttonName):
             canContinue = false
-            let button = musicScene.buttons.object(forKey: buttonName as? NSString)
-            guard let scenePos = button?.frame.origin else { return }
-            let sceneRect = CGRect(x: scenePos.x, y: scenePos.y, width: 100, height: 100)
+            tapToContinue.isHidden = true
+            
+            guard let button = musicScene.buttons.object(forKey: buttonName as? NSString) else {
+                print("cant get button")
+                return
+            }
+            let sceneRect = button.calculateAccumulatedFrame()
             continueLoc = sceneRect
+            whereToPress = SKSpriteNode(color: UIColor.blue.withAlphaComponent(CGFloat(0.3)), size: CGSize(width: sceneRect.width, height: sceneRect.height))
+            whereToPress.anchorPoint = CGPoint(x: 0, y: 0)
+            whereToPress.position = CGPoint(x: sceneRect.minX, y: sceneRect.minY)
+            musicScene.addChild(whereToPress)
+            
+            let action = {(_: CGPoint?) -> () in
+                button.action(button.index)
+            }
+            progressAction = action
             
         case ("progress-rect", let rect):
             canContinue = false
+            tapToContinue.isHidden = true
             guard let rectArray = rect as? Array<Int> else {
                 print("cant parse rect")
                 return
@@ -122,8 +141,12 @@ class TutorialPopupVC: UIViewController {
             print("rect origin: \(rectOrigin)")
             let rectDiameter = CGFloat(rectArray[2])
             let rectRadius = rectDiameter/2
-            let viewRect = CGRect(x: rectOrigin.x - rectRadius, y: rectOrigin.y - rectRadius, width: rectDiameter, height: rectDiameter)
-            continueLoc = viewRect
+            let sceneRect = CGRect(x: rectOrigin.x - rectRadius, y: rectOrigin.y - rectRadius, width: rectDiameter, height: rectDiameter)
+            continueLoc = sceneRect
+            whereToPress = SKSpriteNode(color: UIColor.blue.withAlphaComponent(CGFloat(0.3)), size: CGSize(width: rectDiameter, height: rectDiameter))
+            whereToPress.anchorPoint = CGPoint(x: 0, y: 0)
+            whereToPress.position = CGPoint(x: sceneRect.minX, y: sceneRect.minY)
+            musicScene.addChild(whereToPress)
             
         case ("progress-action", "add-note" as String):
             let addNoteProgress = { (location: CGPoint?) -> () in
@@ -161,9 +184,9 @@ class TutorialPopupVC: UIViewController {
     
     @IBAction func buttonFramePressed(_ sender: UIButton) {
         if canContinue {
+            progressAction(nil)
             currentTutorialPage += 1
             nextPage()
-            progressAction(nil)
         }
     }
     

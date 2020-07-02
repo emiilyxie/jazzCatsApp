@@ -79,7 +79,7 @@ extension MusicScene {
     
     func setUpMeasureBar() {
         // adding white measure bar to hit notes
-        measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: staffTotalHeight + 30))
+        measureBar = SKSpriteNode(color: UIColor.gray, size: CGSize(width: 4, height: staffTotalHeight + 30))
         measureBar.position.x = frame.minX + LevelSetup.indentLength - 50.0
         measureBar.position.y = barsNode.position.y + measureBar.size.height/2
         measureBar.zPosition = 20
