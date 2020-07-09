@@ -22,6 +22,7 @@ public struct LevelSetup {
     static let defaultBpm = 4
     static let defaultSubdivision = 2
     static let defaultMaxPages = 2
+    static let defaultReward = ["game-currency": 100, "hints": 1]
     
     static var lvlGroup: String!
     static var lvlAns: Array<Set<[Int]>>!

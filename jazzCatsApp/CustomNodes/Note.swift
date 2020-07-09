@@ -1,12 +1,6 @@
 import SpriteKit
 import UIKit
 
-/*
-public enum NoteType: String {
-    case piano, bass, snare, hihat, cat
-    static var allTypes: [NoteType] = [.piano, .bass, .snare, .hihat, .cat]
-}
-*/
 public class Note: SKSpriteNode {
     
     public let noteType: String

@@ -110,6 +110,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if let gameVC = segue.destination as? GameViewController {
             gameVC.levelGroup = levelGroup
             gameVC.selectedLevel = whichLevel
+            gameVC.maxlevel = numOfLevels
         }
     }
     

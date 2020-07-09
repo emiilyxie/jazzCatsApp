@@ -12,6 +12,8 @@ import AudioKit
 
 public class MusicScene: SKScene {
     
+    //weak var viewController: UIViewController?
+    
     var staffBarHeight: CGFloat = LevelSetup.defaultStaffBarHeight
     var staffBarNumber: Int = LevelSetup.defaultStaffBarNumber
     var staffTotalHeight: CGFloat
@@ -36,7 +38,7 @@ public class MusicScene: SKScene {
     var buttons = NSMapTable<NSString, Button>.init(keyOptions: .copyIn, valueOptions: .weakMemory)
     //weak var noteButton: Button?
     
-    var currentSounds = Array(GameUser.sounds.keys)
+    var currentSounds = GameUser.soundsArr
     var samplers: Array<AKAppleSampler> = []
     var mixer = AKMixer()
 

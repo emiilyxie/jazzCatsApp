@@ -13,9 +13,13 @@ import FirebaseFirestore
 class WelcomeScreen: UIViewController {
     
     var goingToFreestyle = false
+    @IBOutlet weak var gameNameLabel: UILabel!
+    @IBOutlet weak var accountButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var freestyleButton: UIButton!
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        //super.viewWillAppear(animated)
         isSignedInResponse()
     }
 
@@ -23,11 +27,6 @@ class WelcomeScreen: UIViewController {
         super.viewDidLoad()
         setUpGraphics()
     }
-
-    @IBOutlet weak var userIDLabel: UILabel!
-    @IBOutlet weak var accountButton: UIButton!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var freestyleButton: UIButton!
     
     func isSignedInResponse() {
         
@@ -45,7 +44,7 @@ class WelcomeScreen: UIViewController {
         Auth.auth().removeStateDidChangeListener(signInHandler)
     }
     
-    @IBAction func signOut(_ sender: Any) {
+    func signOut(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
@@ -76,7 +75,8 @@ class WelcomeScreen: UIViewController {
                 GameUser.gameCurrency = document.get("game-currency") as? Int ?? 100
                 GameUser.hints = document.get("hints") as? Int ?? 10
                 GameUser.sounds = document.get("sounds") as? Dictionary ?? ["cat_basic1" : 0]
-                self.userIDLabel.text = "Hi \(GameUser.nickname ?? "")!"
+                GameUser.sortSounds()
+                //self.userIDLabel.text = "Hi \(GameUser.nickname ?? "")!"
             }
             else {
                 print("user doc doesn't exist")
@@ -97,30 +97,19 @@ class WelcomeScreen: UIViewController {
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
         
-        userIDLabel.layer.masksToBounds = true
-        userIDLabel.textColor = .black
+        gameNameLabel.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.8))
+        gameNameLabel.textColor = .black
         
-        accountButton.layer.masksToBounds = true
+        UIStyling.setButtonStyle(button: accountButton)
         accountButton.layer.cornerRadius = 22
-        accountButton.layer.borderWidth = 3
-        accountButton.layer.borderColor = UIColor.black.cgColor
-        accountButton.backgroundColor = .white
         
+        UIStyling.setButtonStyle(button: playButton)
         playButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        playButton.layer.masksToBounds = true
         playButton.layer.cornerRadius = 24
-        playButton.layer.borderWidth = 3
-        playButton.layer.borderColor = UIColor.black.cgColor
-        playButton.backgroundColor = .white
-        playButton.setTitleColor(.black, for: .normal)
         
+        UIStyling.setButtonStyle(button: freestyleButton)
         freestyleButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        freestyleButton.layer.masksToBounds = true
         freestyleButton.layer.cornerRadius = 24
-        freestyleButton.layer.borderWidth = 3
-        freestyleButton.layer.borderColor = UIColor.black.cgColor
-        freestyleButton.backgroundColor = .white
-        freestyleButton.setTitleColor(.black, for: .normal)
     }
     
     // segue code
@@ -134,7 +123,24 @@ class WelcomeScreen: UIViewController {
         }
     }
     
+    @IBAction func accountButtonPressed(_ sender: UIButton) {
+        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "accountDetailsPopoverID") as! AccountDetailsPopupVC
+        self.addChild(popoverVC)
+        popoverVC.view.frame = self.view.frame
+        self.view.addSubview(popoverVC.view)
+        popoverVC.didMove(toParent: self)
+    }
+    
+    
     func goToSignIn(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        }
+        catch let signOutError as NSError{
+            print(signOutError)
+            print("no ones even signed in")
+        }
         performSegue(withIdentifier: "fromWelcomeToSignInSegue", sender: self)
     }
     
@@ -159,28 +165,6 @@ class WelcomeScreen: UIViewController {
     @IBAction func backToWelcomeFromLevelGroups(segue: UIStoryboardSegue) {
         
     }
-    
-    // for when you dont wanna sign in yet
-    /*
-    func anonSignIn() {
-        let handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
-            Auth.auth().signInAnonymously { (authResult, error) in
-                guard let user = authResult?.user else { return }
-                // isAnonymous = user.isAnonymous
-                let uid = user.uid
-                print("user id: \(uid)")
-            }
-        })
-        
-        let user = Auth.auth().currentUser
-        let uid = user?.uid
-        userIDLabel.text = uid
-        
-        let usersRef = Firestore.firestore().collection("users")
-        usersRef.document(uid!).setData(["uid": uid!], merge: true)
-        Auth.auth().removeStateDidChangeListener(handle)
-    }
- */
     
     // for exporting documents
     

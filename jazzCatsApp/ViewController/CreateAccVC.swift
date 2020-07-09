@@ -19,11 +19,8 @@ class CreateAccVC: UIViewController {
     
     
     @IBOutlet weak var errorMessage: UILabel!
-    
     @IBOutlet weak var nameTextField: UITextField!
-    
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     
     
@@ -102,10 +99,6 @@ class CreateAccVC: UIViewController {
     // unwind segues
     @IBAction func unwindFromCreateAccToWelcome(_ sender: Any) {
         performSegue(withIdentifier: "fromCreateAccToWelcomeUSegue", sender: nil)
-    }
-    
-    @IBAction func unwindFromCreateAccToSignIn(_ sender: Any) {
-        performSegue(withIdentifier: "fromCreateAccToSignInUSegue", sender: nil)
     }
 
 }

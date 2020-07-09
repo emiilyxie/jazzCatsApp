@@ -26,7 +26,7 @@ extension LevelTemplate {
         
         let defaultConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light, scale: .small)
         
-        addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: returnToMainMenu, buttonIndex: 3, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
+        addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 2, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         addButton(buttonImage: UIImage(systemName: "play", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
         //_ = addButton(buttonImage: "pause", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         addButton(buttonImage: UIImage(systemName: "stop", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
@@ -34,7 +34,7 @@ extension LevelTemplate {
         addButton(buttonImage: UIImage(named: "sharp"), buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
         addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
         //_ = addButton(buttonImage: "piano1", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
-        addButton(buttonImage: UIImage(systemName: "pencil", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 2, name: "selectNoteButton", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
+        addButton(buttonImage: UIImage(systemName: "pencil", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 0, name: "selectNoteButton", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
         addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: selectNoteType, buttonIndex: 4, name: "addNotesButton", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
         addButton(buttonImage: UIImage(systemName: "trash", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
         
@@ -111,10 +111,21 @@ extension LevelTemplate {
  */
     
     override func displayPopup(index: Int) {
-        guard let gameVc = self.viewController as! GameViewController? else {
+        guard let gameVC = self.viewController as? GameViewController else {
+            print("cant get viewcontroller")
             return
         }
-        gameVc.showNoteSelectPopover(gameVc)
+        
+        switch index {
+        case 0:
+            gameVC.showNoteSelectPopover(gameVC)
+        case 1:
+            gameVC.showSettingsPopover(gameVC)
+        case 2:
+            gameVC.showConfirmNavPopover(gameVC)
+        default:
+            print("invalid popup index")
+        }
     }
     
     func submitAns(index: Int) {
@@ -128,8 +139,14 @@ extension LevelTemplate {
             guard let gameVC = self.viewController as? GameViewController else {
                 return
             }
-            //gameVC.updateUserValue(field: "level-progress", count: 1)
-            GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel)
+            gameVC.showLevelCompletePopover(self)
+            GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
+            do {
+                try AudioKit.shutdown()
+            }
+            catch {
+                print(error)
+            }
         }
         else {
             

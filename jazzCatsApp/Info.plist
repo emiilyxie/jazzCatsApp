@@ -7,6 +7,7 @@
 		<string>ShadowsIntoLight-Regular.ttf</string>
 		<string>JazzText_Regular.ttf</string>
 		<string>Gaegu-Regular.ttf</string>
+		<string>Gaegu-Bold.ttf</string>
 	</array>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Record your sample</string>

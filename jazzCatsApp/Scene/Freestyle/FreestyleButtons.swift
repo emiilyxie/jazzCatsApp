@@ -27,16 +27,16 @@ extension Freestyle {
         
         let defaultConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light, scale: .default)
         
-        addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: returnToWelcomeScreen, buttonIndex: 3, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
+        addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 2, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         addButton(buttonImage: UIImage(systemName: "play", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
         //_ = addButton(buttonImage: UIImage(systemName: "pause"), buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         addButton(buttonImage: UIImage(systemName: "stop", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
-        addButton(buttonImage: UIImage(systemName: "slider.horizontal.3", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 0, name: "displaySettingsButton", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
+        addButton(buttonImage: UIImage(systemName: "slider.horizontal.3", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 1, name: "displaySettingsButton", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
         
         addButton(buttonImage: UIImage(named: "sharp"), buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.1, y: bottomY))
         addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
         //_ = addButton(buttonImage: "piano.png", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: 150, y: bottomY))
-        addButton(buttonImage: UIImage(systemName: "pencil", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 1, name: "selectNoteButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
+        addButton(buttonImage: UIImage(systemName: "pencil", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 0, name: "selectNoteButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
         addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: selectNoteType, buttonIndex: 4, name: "addNotesButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
         addButton(buttonImage: UIImage(systemName: "trash", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
         
@@ -52,15 +52,20 @@ extension Freestyle {
     }
     
     override func displayPopup(index: Int) {
-        guard let gameVc = self.viewController as! GameViewController? else {
+       guard let gameVC = self.viewController as? GameViewController else {
+            print("cant get viewcontroller")
             return
         }
         
         switch index {
         case 0:
-            gameVc.showSettingsPopover(gameVc)
+            gameVC.showNoteSelectPopover(gameVC)
+        case 1:
+            gameVC.showSettingsPopover(gameVC)
+        case 2:
+            gameVC.showConfirmNavPopover(gameVC)
         default:
-            gameVc.showNoteSelectPopover(gameVc)
+            print("invalid popup index")
         }
     }
         

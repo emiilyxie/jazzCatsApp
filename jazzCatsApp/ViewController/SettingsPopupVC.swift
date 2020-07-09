@@ -21,12 +21,14 @@ class SettingsPopupVC: UIViewController {
     public var newSPB: Int = LevelSetup.defaultSubdivision
 
     @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet var settingValues: [UILabel]!
+    @IBOutlet var settingSteppers: [UIStepper]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(CGFloat(0.8))
-        self.popupView.backgroundColor = ColorPalette.melon
-        
+        setUpGraphics()
         guard let parentVC = self.parent as! GameViewController? else {
             return
         }
@@ -47,12 +49,18 @@ class SettingsPopupVC: UIViewController {
         newBPM = freestyleScene.bpm
         newSPB = freestyleScene.subdivision
         currentSettings()
-
     }
     
-    @IBOutlet var settingValues: [UILabel]!
-    
-    @IBOutlet var settingSteppers: [UIStepper]!
+    func setUpGraphics() {
+        DispatchQueue.main.async {
+            self.view.backgroundColor = UIColor.clear
+            UIStyling.setPopupBackground(popupView: self.popupView)
+            UIStyling.setButtonStyle(button: self.cancelButton)
+            UIStyling.setButtonStyle(button: self.submitButton)
+            self.cancelButton.layer.cornerRadius = 10
+            self.submitButton.layer.cornerRadius = 10
+        }
+    }
     
     func currentSettings() {
         settingValues[0].text = String(currentPgs)

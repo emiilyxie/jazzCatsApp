@@ -11,9 +11,8 @@ import FirebaseFirestore
 
 class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var levelGroupNames = ["basics", "intermediate", "coltrane"].reversed()
-    //var levelGroupNumbers: Array<Int>?
-    var levelGroupArray: [(String, Int)] = []
+    var levelGroupNames = ["basics", "intermediate", "coltrane"]
+    var levelGroupDict: Dictionary<String, Int> = [:]
     
     var selectedLevelGroup: String?
     var levelGroupNumOfLevels: Int?
@@ -24,9 +23,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     override func viewWillAppear(_ animated: Bool) {
         getNameData {
-            //self.getCountData {
-                self.collectionView.reloadData()
-            //}
+            self.collectionView.reloadData()
         }
     }
     
@@ -38,7 +35,6 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func getNameData(refresh: @escaping () -> ()) {
         let levelGroupsRef = Firestore.firestore().collection("/level-groups")
-        //levelGroupNumbers = []
         for levelGroupName in levelGroupNames {
             levelGroupsRef.document(levelGroupName).getDocument { (document, err) in
                 if let err = err {
@@ -47,7 +43,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
                 }
                 if let document = document, document.exists {
                     if let numberOfLevels = document.get("number-of-levels") as? Int {
-                        self.levelGroupArray.append((levelGroupName, numberOfLevels))
+                        self.levelGroupDict[levelGroupName] = numberOfLevels
                         refresh()
                     }
                     else {
@@ -56,73 +52,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
                 }
             }
         }
-        
-        /*
-        levelGroupsRef.getDocuments { (querySnapshot, err) in
-            if let err = err {
-                print(err.localizedDescription)
-                return
-            }
-            else {
-                self.levelGroupNames = []
-                self.levelGroupNumbers = []
-                for document in querySnapshot!.documents {
-                    self.levelGroupNames.append(document.documentID)
-                    guard let numberOfMeasures = document.get("number-of-levels") as? Int else {
-                        print("no field number of levels")
-                        break
-                    }
-                    self.levelGroupNumbers?.append(numberOfMeasures)
-                    refresh()
-                }
-            }
-        }
- */
-        
-        /*
-        levelGroupsRef.document("all-groups").getDocument { (document, err) in
-            if let err = err {
-                print(err.localizedDescription)
-                return
-            }
-            else if let document = document, document.exists {
-                if let names = document.get("groups") as? Array<String> {
-                    self.levelGroupNames = names
-                    getCounts()
-                }
-            }
-            else {
-                print("couldnt get name doc")
-                return
-            }
-        }
- */
     }
-    
-    /*
-    func getCountData(displayView: @escaping () -> ()) {
-        let levelGroupsRef = Firestore.firestore().collection("/level-groups")
-        self.levelGroupNumbers = []
-        for name in levelGroupNames {
-            levelGroupsRef.document(name).getDocument { (document, err) in
-                if let err = err {
-                    print(err.localizedDescription)
-                    return
-                }
-                else if let document = document, document.exists {
-                    if let levelCount = document.get("number-of-levels") as? Int {
-                        self.levelGroupNumbers?.append(levelCount)
-                    }
-                }
-                else {
-                    print("couldnt get number of levels")
-                    return
-                }
-            }
-        }
-        displayView()
-    }
- */
     
     func setUpValues() {
         let screenSize = UIScreen.main.bounds.size
@@ -146,22 +76,19 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         header.layer.borderWidth = 3
         header.layer.borderColor = UIColor.black.cgColor
         
-        backButton.backgroundColor = .white
-        backButton.layer.masksToBounds = true
+        UIStyling.setButtonStyle(button: backButton)
         backButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         backButton.layer.cornerRadius = 5
-        backButton.layer.borderWidth = 3
-        backButton.layer.borderColor = UIColor.black.cgColor
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return levelGroupArray.count
+        return levelGroupDict.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "levelGroupCell", for: indexPath) as! LevelGroupCell
 
-        cell.levelGroupLabel.text = String(levelGroupArray[indexPath.row].0).capitalized
+        cell.levelGroupLabel.text = String(levelGroupNames[indexPath.row]).capitalized
         cell.levelGroupLabel.textColor = .black
         //cell.levelGroupLabel.layer.masksToBounds = true
         
@@ -180,8 +107,8 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedLevelGroup = levelGroupArray[indexPath.row].0
-        levelGroupNumOfLevels = levelGroupArray[indexPath.row].1
+        selectedLevelGroup = levelGroupNames[indexPath.row]
+        levelGroupNumOfLevels = levelGroupDict[selectedLevelGroup!]
         performSegue(withIdentifier: "fromLevelGroupsToLevelSelectSegue", sender: self)
     }
     

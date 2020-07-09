@@ -17,6 +17,7 @@ struct GameUser {
     static var gameCurrency = 100
     static var hints = 10
     static var sounds: Dictionary<String, Int> = ["cat_basic1" : 0]
+    static var soundsArr: Array<String> = ["cat_basic1"]
     
     static func updateField(field: String, text: String) -> Bool {
         guard let uid = uid else {
@@ -61,22 +62,23 @@ struct GameUser {
         return false
     }
     
-    static func updateLevelProgress(levelGroup: String, currentLevel: Int) {
+    static func updateLevelProgress(levelGroup: String, currentLevel: Int, reward: Dictionary<String, Any>) {
         guard let uid = uid else {
             return
         }
         let userRef = getFIRUserDoc(uid: uid)
         
         if let maxUnlockedLevel = self.levelProgress[levelGroup] {
-            if maxUnlockedLevel > currentLevel + 1 {
+            if maxUnlockedLevel > currentLevel {
                 print("you've already completed this level, no update")
             }
             else {
                 self.levelProgress[levelGroup] = currentLevel + 1
                 userRef.setData([
                     "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
-                _ = self.updateField(field: "game-currency", count: 100)
-                _ = self.updateField(field: "hints", count: 1)
+                self.claimReward(reward: reward)
+                //_ = self.updateField(field: "game-currency", count: 100)
+                //_ = self.updateField(field: "hints", count: 1)
             }
         }
         else {
@@ -85,8 +87,9 @@ struct GameUser {
             self.levelProgress[levelGroup] = currentLevel + 1
             userRef.setData([
                 "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
-            _ = self.updateField(field: "game-currency", count: 100)
-            _ = self.updateField(field: "hints", count: 1)
+            self.claimReward(reward: reward)
+            //_ = self.updateField(field: "game-currency", count: 100)
+            //_ = self.updateField(field: "hints", count: 1)
         }
     }
     
@@ -118,11 +121,7 @@ struct GameUser {
             else {
                 let soundIndex = document?.get("index") as! Int
                 self.sounds[newSound] = soundIndex
-                var sortedSounds: Dictionary<String, Int> = [:]
-                for (sound, index) in (Array(self.sounds).sorted {$0.1 < $1.1}) {
-                    sortedSounds[sound] = index
-                }
-                self.sounds = sortedSounds
+                self.sortSounds()
                 userRef.setData(["sounds" : self.sounds], merge: true) { (err) in
                     if err != nil {
                         print(err!.localizedDescription)
@@ -133,8 +132,33 @@ struct GameUser {
         }
     }
     
+    static func claimReward(reward: Dictionary<String, Any>) {
+        for (field, value) in reward {
+            switch field {
+            case "game-currency", "hints":
+                if let amount = value as? Int {
+                    _ = self.updateField(field: field, count: amount)
+                }
+            case "sound":
+                if let sound = value as? String {
+                    _ = self.updateSounds(newSound: sound)
+                }
+            default:
+                print("dont recognize field")
+            }
+        }
+    }
+    
     static func getFIRUserDoc(uid: String) -> DocumentReference {
         let userRef = Firestore.firestore().collection("/users").document(uid)
         return userRef
+    }
+    
+    static func sortSounds() {
+        var sortedSounds: Array<String> = []
+        for (sound, _) in (Array(self.sounds).sorted {$0.1 < $1.1}) {
+            sortedSounds.append(sound)
+        }
+        self.soundsArr = sortedSounds
     }
 }

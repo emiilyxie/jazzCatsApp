@@ -25,6 +25,26 @@ struct ColorPalette {
     static let oldLavender = UIColor(red: 0.43, green: 0.41, blue: 0.46, alpha: 1.00)
 }
 
+struct UIStyling {
+    static func setButtonStyle(button: UIButton) {
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
+        button.setTitleColor(.black, for: .normal)
+        button.layer.borderWidth = CGFloat(2)
+        button.layer.borderColor = UIColor.black.cgColor
+        button.backgroundColor = .white
+        button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+    }
+    
+    static func setPopupBackground(popupView: UIView) {
+        popupView.layer.masksToBounds = true
+        popupView.layer.cornerRadius = 10
+        popupView.backgroundColor = .white
+        popupView.layer.borderWidth = 3
+        popupView.layer.borderColor = UIColor.black.cgColor
+    }
+}
+
 enum ButtonType: String {
     case add, erase, navigate, play, pause, stop
 }

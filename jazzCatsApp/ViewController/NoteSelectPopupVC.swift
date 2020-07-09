@@ -14,7 +14,10 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
     
     var availableNotes: Array<String> = []
     var selectedNote: String = ""
-    @IBOutlet weak var collectionViewPopup: UICollectionView!
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var selectButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         availableNotes = Array(GameUser.sounds.keys)
@@ -38,12 +41,20 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(CGFloat(0.8))
-        self.collectionViewPopup.backgroundColor = ColorPalette.melon
-
+        setUpGraphics()
     }
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    func setUpGraphics() {
+        DispatchQueue.main.async {
+            self.view.backgroundColor = UIColor.clear
+            UIStyling.setPopupBackground(popupView: self.bgView)
+            UIStyling.setButtonStyle(button: self.selectButton)
+            UIStyling.setButtonStyle(button: self.cancelButton)
+            self.selectButton.layer.cornerRadius = 10
+            self.cancelButton.layer.cornerRadius = 10
+            self.collectionView.backgroundColor = .white
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return availableNotes.count

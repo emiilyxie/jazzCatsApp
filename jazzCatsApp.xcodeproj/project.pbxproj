@@ -12,6 +12,7 @@
 		AD08F5682473371A00863204 /* FreestyleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD08F5672473371A00863204 /* FreestyleScene.swift */; };
 		AD08F56A2473397900863204 /* LevelTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD08F5692473397900863204 /* LevelTemplate.swift */; };
 		AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD08F56B24734F5200863204 /* LevelTemplate.sks */; };
+		AD0D2D4924ADB59E0098E744 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0D2D4824ADB59E0098E744 /* SignInVC.swift */; };
 		AD21FDF724A976830068A729 /* basics1tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD21FDF624A976830068A729 /* basics1tutorial */; };
 		AD21FDF924A98A030068A729 /* TutorialPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */; };
 		AD3826C3245D0F610027849D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826C2245D0F610027849D /* AppDelegate.swift */; };
@@ -29,14 +30,18 @@
 		AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F0245D20DC0027849D /* Default-568h@2x.png */; };
 		AD3826F3245D22530027849D /* kitten-meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F2245D22530027849D /* kitten-meow.wav */; };
 		AD700CD224AB08E000881EBE /* buttonLocations in Resources */ = {isa = PBXBuildFile; fileRef = AD700CD124AB08E000881EBE /* buttonLocations */; };
-		AD92D0FE247F0BC500F8F807 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FD247F0BC500F8F807 /* SignInVC.swift */; };
+		AD7EF23724B12CB7009875CA /* AccountDetailsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */; };
+		AD7EF23924B165C9009875CA /* Gaegu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */; };
+		AD92D0FE247F0BC500F8F807 /* SignInEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FD247F0BC500F8F807 /* SignInEmailVC.swift */; };
 		AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */; };
 		AD9395AE247478250037E307 /* LevelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AD247478250037E307 /* LevelSetup.swift */; };
 		AD9395B024747CD10037E307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9395AF24747CD10037E307 /* Main.storyboard */; };
 		AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395B124747D3F0037E307 /* LevelSelect.swift */; };
+		AD94032224B05D700021F07D /* ConfirmNavPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD94032124B05D700021F07D /* ConfirmNavPopupVC.swift */; };
 		AD954D97249CAC5E00EBDACD /* NoteSelectPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */; };
 		AD954D99249CACAD00EBDACD /* NoteSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */; };
 		AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD9DF62624A6653D00187636 /* ShadowsIntoLight-Regular.ttf */; };
+		ADB0FF6324B6A66C002E1023 /* LevelCompletePopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0FF6224B6A66C002E1023 /* LevelCompletePopupVC.swift */; };
 		ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC59C9C248824D6007D99A9 /* GameUser.swift */; };
 		ADCAE9E624A42FCD000A9FC7 /* SnapToCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */; };
 		ADCAE9E824A430C1000A9FC7 /* LevelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */; };
@@ -70,9 +75,6 @@
 		ADFC5CED247893DE00225610 /* piano1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEC247893DE00225610 /* piano1.mp3 */; };
 		ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEE247893F800225610 /* cat_basic1.mp3 */; };
 		ADFC5CF12478945300225610 /* snare1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF02478945300225610 /* snare1.mp3 */; };
-		ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF42479E9E600225610 /* lvl1song.mp3 */; };
-		ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */; };
-		ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF82479E9F400225610 /* lvl3song.mp3 */; };
 		D7102F5BAC4B7E69ACB26ECA /* Pods_jazzCatsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,7 @@
 		AD08F5672473371A00863204 /* FreestyleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleScene.swift; sourceTree = "<group>"; };
 		AD08F5692473397900863204 /* LevelTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTemplate.swift; sourceTree = "<group>"; };
 		AD08F56B24734F5200863204 /* LevelTemplate.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelTemplate.sks; sourceTree = "<group>"; };
+		AD0D2D4824ADB59E0098E744 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		AD21FDF624A976830068A729 /* basics1tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics1tutorial; sourceTree = "<group>"; };
 		AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPopupVC.swift; sourceTree = "<group>"; };
 		AD3826BF245D0F610027849D /* jazzCatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jazzCatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,14 +117,18 @@
 		AD3826F0245D20DC0027849D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AD3826F2245D22530027849D /* kitten-meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kitten-meow.wav"; sourceTree = "<group>"; };
 		AD700CD124AB08E000881EBE /* buttonLocations */ = {isa = PBXFileReference; lastKnownFileType = text; path = buttonLocations; sourceTree = "<group>"; };
-		AD92D0FD247F0BC500F8F807 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsPopupVC.swift; sourceTree = "<group>"; };
+		AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Bold.ttf"; sourceTree = "<group>"; };
+		AD92D0FD247F0BC500F8F807 /* SignInEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailVC.swift; sourceTree = "<group>"; };
 		AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
 		AD9395AD247478250037E307 /* LevelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSetup.swift; sourceTree = "<group>"; };
 		AD9395AF24747CD10037E307 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AD9395B124747D3F0037E307 /* LevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelect.swift; sourceTree = "<group>"; };
+		AD94032124B05D700021F07D /* ConfirmNavPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNavPopupVC.swift; sourceTree = "<group>"; };
 		AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectPopupVC.swift; sourceTree = "<group>"; };
 		AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectCell.swift; sourceTree = "<group>"; };
 		AD9DF62624A6653D00187636 /* ShadowsIntoLight-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ShadowsIntoLight-Regular.ttf"; sourceTree = "<group>"; };
+		ADB0FF6224B6A66C002E1023 /* LevelCompletePopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCompletePopupVC.swift; sourceTree = "<group>"; };
 		ADC59C9C248824D6007D99A9 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapToCenter.swift; sourceTree = "<group>"; };
 		ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupCell.swift; sourceTree = "<group>"; };
@@ -155,9 +162,6 @@
 		ADFC5CEC247893DE00225610 /* piano1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano1.mp3; sourceTree = "<group>"; };
 		ADFC5CEE247893F800225610 /* cat_basic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic1.mp3; sourceTree = "<group>"; };
 		ADFC5CF02478945300225610 /* snare1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snare1.mp3; sourceTree = "<group>"; };
-		ADFC5CF42479E9E600225610 /* lvl1song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl1song.mp3; sourceTree = "<group>"; };
-		ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl2song.mp3; sourceTree = "<group>"; };
-		ADFC5CF82479E9F400225610 /* lvl3song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lvl3song.mp3; sourceTree = "<group>"; };
 		B4D4512561694B850C9F9BD4 /* Pods-jazzCatsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jazzCatsApp.release.xcconfig"; path = "Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp.release.xcconfig"; sourceTree = "<group>"; };
 		CED5AB26DDBF3FB455552657 /* Pods-jazzCatsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jazzCatsApp.debug.xcconfig"; path = "Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jazzCatsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,9 +245,6 @@
 				ADFC5CF02478945300225610 /* snare1.mp3 */,
 				ADFC5CEE247893F800225610 /* cat_basic1.mp3 */,
 				ADFC5CEC247893DE00225610 /* piano1.mp3 */,
-				ADFC5CF42479E9E600225610 /* lvl1song.mp3 */,
-				ADFC5CF62479E9ED00225610 /* lvl2song.mp3 */,
-				ADFC5CF82479E9F400225610 /* lvl3song.mp3 */,
 				AD3826F2245D22530027849D /* kitten-meow.wav */,
 			);
 			path = Sounds;
@@ -278,7 +279,8 @@
 				AD700CD524AC446300881EBE /* Levels */,
 				AD3826CA245D0F610027849D /* GameViewController.swift */,
 				AD700CD424AC442800881EBE /* PopupViews */,
-				AD92D0FD247F0BC500F8F807 /* SignInVC.swift */,
+				AD0D2D4824ADB59E0098E744 /* SignInVC.swift */,
+				AD92D0FD247F0BC500F8F807 /* SignInEmailVC.swift */,
 				AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */,
 			);
 			path = ViewController;
@@ -325,10 +327,13 @@
 		AD700CD424AC442800881EBE /* PopupViews */ = {
 			isa = PBXGroup;
 			children = (
+				AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */,
 				AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */,
 				AD954D96249CAC5E00EBDACD /* NoteSelectPopupVC.swift */,
 				AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */,
 				ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */,
+				AD94032124B05D700021F07D /* ConfirmNavPopupVC.swift */,
+				ADB0FF6224B6A66C002E1023 /* LevelCompletePopupVC.swift */,
 			);
 			name = PopupViews;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 			children = (
 				AD9DF62624A6653D00187636 /* ShadowsIntoLight-Regular.ttf */,
 				ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */,
+				AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */,
 				ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */,
 			);
 			path = Fonts;
@@ -457,8 +463,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADFC5CF92479E9F400225610 /* lvl3song.mp3 in Resources */,
-				ADFC5CF52479E9E600225610 /* lvl1song.mp3 in Resources */,
 				ADCAFDA1249E05D800428C70 /* basics1.mp3 in Resources */,
 				ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
@@ -468,10 +472,10 @@
 				ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
+				AD7EF23924B165C9009875CA /* Gaegu-Bold.ttf in Resources */,
 				ADFC5CF12478945300225610 /* snare1.mp3 in Resources */,
 				ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */,
 				ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */,
-				ADFC5CF72479E9ED00225610 /* lvl2song.mp3 in Resources */,
 				AD21FDF724A976830068A729 /* basics1tutorial in Resources */,
 				ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
@@ -548,6 +552,7 @@
 				ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */,
 				ADCAE9E824A430C1000A9FC7 /* LevelGroupCell.swift in Sources */,
 				ADCAFDAB249E08CE00428C70 /* MusicSceneButtons.swift in Sources */,
+				ADB0FF6324B6A66C002E1023 /* LevelCompletePopupVC.swift in Sources */,
 				ADFC5CD2247832EF00225610 /* LevelButtons.swift in Sources */,
 				ADFC5CDF247851E600225610 /* FreestyleNotes.swift in Sources */,
 				AD3826E4245D106A0027849D /* Note.swift in Sources */,
@@ -563,16 +568,19 @@
 				ADFC5CE12478524000225610 /* FreestyleSound.swift in Sources */,
 				ADCAFDAF249E08E600428C70 /* MusicSceneSound.swift in Sources */,
 				AD3826EA245D11920027849D /* Configuration.swift in Sources */,
+				AD94032224B05D700021F07D /* ConfirmNavPopupVC.swift in Sources */,
 				AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */,
 				AD3826CB245D0F610027849D /* GameViewController.swift in Sources */,
-				AD92D0FE247F0BC500F8F807 /* SignInVC.swift in Sources */,
+				AD92D0FE247F0BC500F8F807 /* SignInEmailVC.swift in Sources */,
 				AD9395AE247478250037E307 /* LevelSetup.swift in Sources */,
 				AD3826E2245D104E0027849D /* GameCamera.swift in Sources */,
 				ADFC5CDD247850DC00225610 /* FreestyleButtons.swift in Sources */,
 				ADFC5CD82478352700225610 /* LevelPhysics.swift in Sources */,
 				AD08F5682473371A00863204 /* FreestyleScene.swift in Sources */,
 				AD3826C3245D0F610027849D /* AppDelegate.swift in Sources */,
+				AD7EF23724B12CB7009875CA /* AccountDetailsPopupVC.swift in Sources */,
 				ADFC5CE3247852BF00225610 /* FreestylePhysics.swift in Sources */,
+				AD0D2D4924ADB59E0098E744 /* SignInVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

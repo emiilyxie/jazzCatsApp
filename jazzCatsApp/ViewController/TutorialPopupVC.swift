@@ -52,11 +52,8 @@ class TutorialPopupVC: UIViewController {
     func setUpGraphics() {
         self.view.backgroundColor = .clear
         
-        buttonFrame.layer.masksToBounds = true
-        buttonFrame.layer.cornerRadius = 20
-        buttonFrame.layer.borderWidth = 3
-        buttonFrame.layer.borderColor = UIColor.black.cgColor
-        buttonFrame.backgroundColor = .white
+        UIStyling.setButtonStyle(button: buttonFrame)
+        
         dialogueBox.textColor = .black
     }
     
@@ -72,7 +69,6 @@ class TutorialPopupVC: UIViewController {
         }
         
         currentScene.isUserInteractionEnabled = false
-        //currentScene.isPaused = true
         for button in currentScene.buttons.dictionaryRepresentation().values {
             button.isUserInteractionEnabled = false
         }

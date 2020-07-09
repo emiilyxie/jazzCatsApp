@@ -2,76 +2,79 @@
 //  SignInVC.swift
 //  jazzCatsApp
 //
-//  Created by Emily Xie on 5/27/20.
+//  Created by Emily Xie on 7/1/20.
 //  Copyright © 2020 Emily Xie. All rights reserved.
 //
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class SignInVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dismissKeyboard()
-    }
-    
-    @IBOutlet weak var errMessage: UILabel!
-    
-    @IBOutlet weak var emailTextField: UITextField!
-    
-    @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBAction func submitButtonPressed(_ sender: Any) {
-        let error = validateFields()
-        if error != nil {
-            // then show the error message
-            errMessage.text = error
-            errMessage.isHidden = false
-        }
-        else {
-            // attempt sign in
-            Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, err) in
-                if err != nil {
-                    print(err!.localizedDescription)
-                    self.errMessage.text = err?.localizedDescription
-                    self.errMessage.isHidden = false
-                    return
-                }
-                else {
-                    self.performSegue(withIdentifier: "backToWelcomeFromSignInUSegue", sender: self)
-                }
-            }
-        }
-        
-    }
-    
-    @IBAction func newAccButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "fromSignInToCreateAccSegue", sender: self)
-    }
-    
-    func validateFields() -> String? {
-        if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            return "please fill in everything..."
-        }
-        if !isValidEmail(emailTextField.text!){
-            return "please put an actually valid email"
-        }
-        return nil
-    }
-    
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
+        setUpGraphics()
     }
     
-    func dismissKeyboard() {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
+    @IBOutlet var signInOptions: [UIButton]!
+    @IBOutlet weak var warningPopup: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
+    
+    
+    func setUpGraphics() {
+        for button in signInOptions {
+            UIStyling.setButtonStyle(button: button)
+        }
+        UIStyling.setPopupBackground(popupView: warningPopup)
+        UIStyling.setButtonStyle(button: cancelButton)
+        UIStyling.setButtonStyle(button: continueButton)
+    }
+
+    @IBAction func signInWithApple(_ sender: UIButton) {
+        print("cant signin w apple yet")
+    }
+    @IBAction func signInWithGoogle(_ sender: UIButton) {
+        print("cant signin w google yet")
+    }
+    @IBAction func signInWithEmail(_ sender: UIButton) {
+        performSegue(withIdentifier: "fromSignInToSignInEmailSegue", sender: self)
+    }
+    @IBAction func signUpWithEmail(_ sender: UIButton) {
+        performSegue(withIdentifier: "fromSignInToSignUpEmailSegue", sender: self)
+    }
+    @IBAction func playAsGuest(_ sender: UIButton) {
+        // for when you dont wanna sign in yet
+        warningPopup.isHidden = false
     }
     
-    @IBAction func backToSignInFromCreateAcc(segue: UIStoryboardSegue) {}
+    @IBAction func cancelWarning(_ sender: UIButton) {
+        warningPopup.isHidden = true
+    }
+    @IBAction func continueWarning(_ sender: UIButton) {
+        Auth.auth().signInAnonymously { (authResult, error) in
+            guard let user = authResult?.user else { return }
+            // isAnonymous = user.isAnonymous
+            let uid = user.uid
+            print("user id: \(uid)")
+            let usersRef = Firestore.firestore().collection("users")
+            usersRef.document(uid).setData(["email" : "anonymous", "nickname" : "anonymous", "uid" : uid, "level-progress" : [:], "game-currency" : 100, "hints" : 10], merge: true)
+            self.performSegue(withIdentifier: "fromSignInToWelcomeUSegue", sender: self)
+        }
+    }
+    
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
