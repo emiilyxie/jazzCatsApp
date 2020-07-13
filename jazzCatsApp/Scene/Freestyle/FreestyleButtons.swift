@@ -61,13 +61,17 @@ extension Freestyle {
         
         switch index {
         case 0:
-            gameVC.showNoteSelectPopover(gameVC)
+            //gameVC.showNoteSelectPopover(gameVC)
+            gameVC.showPopover(gameVC, popupID: Constants.noteSelectID)
         case 1:
-            gameVC.showSettingsPopover(gameVC)
+            //gameVC.showSettingsPopover(gameVC)
+            gameVC.showPopover(gameVC, popupID: Constants.settingsID)
         case 2:
-            gameVC.showConfirmNavPopover(gameVC)
+            //gameVC.showConfirmNavPopover(gameVC)
+            gameVC.showPopover(gameVC, popupID: Constants.confirmNavID)
         case 3:
-            gameVC.showShareCompPopover(gameVC)
+            //gameVC.showShareCompPopover(gameVC)
+            gameVC.showPopover(gameVC, popupID: Constants.shareCompID)
         default:
             print("invalid popup index")
         }

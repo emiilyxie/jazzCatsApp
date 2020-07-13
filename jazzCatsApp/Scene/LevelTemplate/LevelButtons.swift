@@ -58,10 +58,7 @@ extension LevelTemplate {
     }
     
     func generateHint(index: Int) {
-        //print(GameUser.hints)
-        //if  lvlAns[pageIndex].isEmpty || lvlAns[pageIndex].isSubset(of: noteData[pageIndex]) {
-        //print("levelans: \(lvlAns)")
-        //print("notedata: \(noteData)")
+
         if lvlAns.isEmpty || lvlAns.isSubset(of: noteData) {
             print("no more hints")
             return
@@ -78,28 +75,8 @@ extension LevelTemplate {
                 
                 print("note ans: \(noteAnswer)")
                 addNote(with: noteAnswer, on: pageIndex)
-                
-                /*
-                // adding the note to the scene
-                let currNotePos = noteInfoToScenePos(noteInfo: noteAnswer)
-                let currentNote = Note(type: selectedNote)
-                currentNote.position = currNotePos
-                currentNote.beat = noteAnswer[0]
-                currentNote.staffLine = getNoteStaffLine(noteYPos: currentNote.position.y)
-                //currentNote.positionInStaff = getStaffPosition(notePosition: currNotePos)
-                
-                // add a flat if it should be flatted
-                if shouldBeFlatted(midiVal: Int(noteAnswer[1])) {
-                    editAccidental(accidental: "flat", note: currentNote)
-                }
-                
-                // add the note to the bar
-                barsNode.addChild(currentNote)
-                noteData[pageIndex].insert(currentNote.getNoteInfo())
-                print("current note info: \(currentNote.getNoteInfo())")
-                pages[pageIndex].append(currentNote)
- */
                 return
+                
             }
             }
         }
@@ -133,11 +110,14 @@ extension LevelTemplate {
         
         switch index {
         case 0:
-            gameVC.showNoteSelectPopover(gameVC)
+            //gameVC.showNoteSelectPopover(gameVC)
+            gameVC.showPopover(gameVC, popupID: Constants.noteSelectID)
         case 1:
-            gameVC.showSettingsPopover(gameVC)
+            //gameVC.showSettingsPopover(gameVC)
+            gameVC.showPopover(gameVC, popupID: Constants.settingsID)
         case 2:
-            gameVC.showConfirmNavPopover(gameVC)
+            //gameVC.showConfirmNavPopover(gameVC)
+            gameVC.showPopover(gameVC, popupID: Constants.confirmNavID)
         default:
             print("invalid popup index")
         }
@@ -147,14 +127,15 @@ extension LevelTemplate {
         if noteData == lvlAns {
             
             //display the "yay!"
-            yayYouDidIt.zPosition = 100
-            yayYouDidIt.run(SKAction.fadeIn(withDuration: 0.5))
+            //yayYouDidIt.zPosition = 100
+            //yayYouDidIt.run(SKAction.fadeIn(withDuration: 0.5))
             
             // update level progress
             guard let gameVC = self.viewController as? GameViewController else {
                 return
             }
-            gameVC.showLevelCompletePopover(self)
+            //gameVC.showLevelCompletePopover(self)
+            gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID)
             GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
             do {
                 try AudioKit.shutdown()

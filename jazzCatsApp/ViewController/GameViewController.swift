@@ -102,17 +102,64 @@ class GameViewController: UIViewController {
         GameUser.updateLevelProgress(levelGroup: levelGroup, currentLevel: selectedLevel)
     }
     */
+    
+    func showPopover(_ sender: Any, popupID: String) {
+        
+        switch popupID {
+            
+        case Constants.noteSelectID:
+            let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.noteSelectID) as! NoteSelectPopupVC
+            self.addChild(popoverVC)
+            popoverVC.view.frame = self.view.frame
+            self.view.addSubview(popoverVC.view)
+            popoverVC.didMove(toParent: self)
+            
+        case Constants.settingsID:
+            let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.settingsID) as! SettingsPopupVC
+            self.addChild(popoverVC)
+            popoverVC.view.frame = self.view.frame
+            self.view.addSubview(popoverVC.view)
+            popoverVC.didMove(toParent: self)
+        
+        case Constants.confirmNavID:
+            let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.confirmNavID) as! ConfirmNavPopupVC
+            self.addChild(popoverVC)
+            popoverVC.view.frame = self.view.frame
+            self.view.addSubview(popoverVC.view)
+            popoverVC.didMove(toParent: self)
+            
+        case Constants.levelCompleteID:
+            let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.levelCompleteID) as! LevelCompletePopupVC
+            self.addChild(popoverVC)
+            popoverVC.view.frame = self.view.frame
+            self.view.addSubview(popoverVC.view)
+            popoverVC.didMove(toParent: self)
+            
+        case Constants.shareCompID:
+            let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.shareCompID) as! ShareCompVC
+            self.addChild(popoverVC)
+            popoverVC.view.frame = self.view.frame
+            self.view.addSubview(popoverVC.view)
+            popoverVC.didMove(toParent: self)
+            
+        default:
+            print("dont recognize popover")
+            return
+        }
+        
+    }
+    
     @IBAction func showTutorialPopover(_ sender: Any, tutorialData: Array<Dictionary<String, Any>>) {
         let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "tutorialPopoverID") as! TutorialPopupVC
         self.addChild(tutorialVC)
         tutorialVC.view.frame = self.view.frame
-        //tutorialVC.view.layer.zPosition = 1000
         tutorialVC.tutorialData = tutorialData
         tutorialVC.startTutorial()
         self.view.addSubview(tutorialVC.view)
         tutorialVC.didMove(toParent: self)
     }
     
+    /*
     @IBAction func showNoteSelectPopover(_ sender: Any) {
         let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "noteSelectPopoverID") as! NoteSelectPopupVC
         self.addChild(popoverVC)
@@ -152,6 +199,7 @@ class GameViewController: UIViewController {
         self.view.addSubview(popoverVC.view)
         popoverVC.didMove(toParent: self)
     }
+ */
     
     // unwind segues
     @IBAction func unwindFromGameToWelcome(_ sender: Any) {

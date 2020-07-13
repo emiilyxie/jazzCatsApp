@@ -83,7 +83,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print(levels[indexPath.row])
         whichLevel = levels[indexPath.row]
         if whichLevel <= maxUnlockedLevel {
-            performSegue(withIdentifier: "goToLevelSegue", sender: self)
+            performSegue(withIdentifier: Constants.levelSelectToGame, sender: self)
         }
         else {
             print("level not unlocked yet!!")
@@ -115,12 +115,12 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func goToLevel(_ sender: Any) {
-        performSegue(withIdentifier: "goToLevelSegue", sender: self)
+        performSegue(withIdentifier: Constants.levelSelectToGame, sender: self)
     }
     
     // unwind segue
     @IBAction func unwindFromLevelSelectToWelcome(_ sender: Any) {
-        performSegue(withIdentifier: "fromLevelSelectToLevelGroupsUSegue", sender: self)
+        performSegue(withIdentifier: Constants.levelSelectToWelcome, sender: self)
     }
 
     // destination segues

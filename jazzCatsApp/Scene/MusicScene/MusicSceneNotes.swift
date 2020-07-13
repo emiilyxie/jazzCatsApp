@@ -17,57 +17,6 @@ extension MusicScene {
         }
     }
     
-    /*
-    
-    @objc func editNotes(touch: UITouch) {
-        var location = touch.location(in: self)
-        let touchedNodes = nodes(at: location)
-        
-        switch currentMode {
-        case "addMode": // if in addMode
-            if barsNode.contains(location) {
-                location = touch.location(in: barsNode)
-                let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
-                if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
-                    //let snappedLocation = snapNoteLocation(touchedPoint: location)
-                    addNote(noteType: selectedNote, notePosition: location)
-                }
-                
-            }
-        case "eraseMode": // if in eraseMode
-            for node in touchedNodes {
-                if let noteNode = node as? Note {
-                    noteNode.removeFromParent()
-                    noteData.remove(noteNode.getNoteInfo())
-                    pages[pageIndex].removeAll { $0 == noteNode }
-                }
-            }
-        case "sharpMode":
-            let topNode = touchedNodes.first
-            if let noteNode = topNode as? Note {
-                if !noteNode.isSharp {
-                    editAccidental(accidental: "sharp", note: noteNode)
-                }
-                else {
-                    editAccidental(accidental: "natural", note: noteNode)
-                }
-            }
-        case "flatMode":
-            let topNode = touchedNodes.first
-            if let noteNode = topNode as? Note {
-                if !noteNode.isFlat {
-                    editAccidental(accidental: "flat", note: noteNode)
-                }
-                else {
-                    editAccidental(accidental: "natural", note: noteNode)
-                }
-            }
-        default: // not selected or navigateMode
-            return
-        }
-    }
- */
-    
     func editNotes(touch: UITouch) {
         var location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
@@ -83,7 +32,6 @@ extension MusicScene {
                 location = touch.location(in: barsNode) // going to barsNode coords
                 let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
                 if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
-                    //let snappedLocation = snapNoteLocation(touchedPoint: location)
                     addNote(noteType: selectedNote, notePosition: location)
                 }
             }
@@ -91,7 +39,6 @@ extension MusicScene {
             for node in touchedNodes {
                 if let noteNode = node as? Note {
                     noteNode.removeFromParent()
-                    //myAns[pageIndex].remove(noteNode.getNoteInfo())
                     noteData.remove(noteNode.getNoteInfo())
                     pages[pageIndex].removeAll { $0 == noteNode }
                 }
@@ -106,8 +53,6 @@ extension MusicScene {
                 else {
                     editAccidental(accidental: "natural", note: noteNode)
                 }
-                //myAns[pageIndex].insert(noteNode.getNoteInfo())
-                //myAns[pageIndex].remove(prevNoteAns)
                 noteData.insert(noteNode.getNoteInfo())
                 noteData.remove(prevNoteAns)
             }
@@ -121,8 +66,6 @@ extension MusicScene {
                 else {
                     editAccidental(accidental: "natural", note: noteNode)
                 }
-                //myAns[pageIndex].insert(noteNode.getNoteInfo())
-                //myAns[pageIndex].remove(prevNoteAns)
                 noteData.insert(noteNode.getNoteInfo())
                 noteData.remove(prevNoteAns)
             }
@@ -140,7 +83,7 @@ extension MusicScene {
         note.measure = getNoteMeasure(noteXPos: note.position.x - LevelSetup.indentLength)
         note.beat = getNoteBeat(noteXPos: note.position.x - LevelSetup.indentLength, noteMeasure: note.measure)
         note.staffLine = getNoteStaffLine(noteYPos: note.position.y)
-        //note.setPositions()
+
         noteData.insert(note.getNoteInfo())
         print(noteData)
         pages[pageIndex].append(note)
@@ -225,23 +168,6 @@ extension MusicScene {
         return Int(noteYPos/staffBarHeight)
     }
     
-    
-    /*
-    func getStaffPosition(notePosition: CGPoint) -> Array<Int> {
-        let xPos = Int((notePosition.x - LevelSetup.indentLength + 15) / divisionWidth)
-        let yPos = Int(notePosition.y / staffBarHeight)
-        return [xPos, yPos]
-    }
- */
-    
-    /*
-    func staffPosToScenePos(staffPos: [Int]) -> CGPoint {
-        let xPos = LevelSetup.indentLength + CGFloat(staffPos[0]) * divisionWidth
-        let yPos = CGFloat(staffPos[1]) * staffBarHeight
-        return CGPoint(x: xPos, y: yPos)
-    }
- */
-        
     func midiValToStaffLine(midiVal: Int) -> Int {
         let distFromC = midiVal - MusicValues.middleCMidi
         var notePos = 0
@@ -250,7 +176,7 @@ extension MusicScene {
             return 0
         }
         if distFromC > 0 {
-            //print("midival: \(midiVal)")
+
             let whichOctave = Int(floor(Double(distFromC / MusicValues.octaveSize)))
             let whichPos = distFromC % MusicValues.octaveSize
             let octavePos = whichOctave * 7
@@ -266,7 +192,6 @@ extension MusicScene {
                     break
                 }
             }
-            //print("note pos: \(notePos)")
             return notePos + 1 + MusicValues.middleCPos
         }
         else if distFromC < 0 {
@@ -299,21 +224,10 @@ extension MusicScene {
         return location
     }
     
-    /*
-     func ansArrayToScenePos(ansVal: [Int]) -> CGPoint {
-        let noteWhere = ansVal[0]
-        let whichNote = midiValToNotePos(midiVal: ansVal[1])
-        let scenePos = staffPosToScenePos(staffPos: [noteWhere, whichNote])
-        return scenePos
-    }
- */
-    
     func shouldBeFlatted(midiVal: Int) -> Bool {
         if midiVal == 59 { return true } // handling c flat for now
         if midiVal <= MusicValues.middleCMidi { return false }
         let whichNote = (midiVal - MusicValues.middleCMidi) % MusicValues.octaveSize
-        //print("midival: \(midiVal)")
-        //print("which note: \(whichNote)")
         var counter = 0
         if whichNote == 0 { return false }
         for i in 0...MusicValues.octaveStepSizes.count-1 {

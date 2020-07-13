@@ -124,7 +124,7 @@ class WelcomeScreen: UIViewController {
     }
     
     @IBAction func accountButtonPressed(_ sender: UIButton) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "accountDetailsPopoverID") as! AccountDetailsPopupVC
+        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.accountDetailsID) as! AccountDetailsPopupVC
         self.addChild(popoverVC)
         popoverVC.view.frame = self.view.frame
         self.view.addSubview(popoverVC.view)
@@ -141,16 +141,16 @@ class WelcomeScreen: UIViewController {
             print(signOutError)
             print("no ones even signed in")
         }
-        performSegue(withIdentifier: "fromWelcomeToSignInSegue", sender: self)
+        performSegue(withIdentifier: Constants.welcomeToSignIn, sender: self)
     }
     
     @IBAction func goToLevelGroups(_ sender: Any) {
-        performSegue(withIdentifier: "fromWelcomeToLevelGroupsSegue", sender: self)
+        performSegue(withIdentifier: Constants.welcomeToLevelGroups, sender: self)
     }
     
     @IBAction func goToFreestyle(_ sender: Any) {
         goingToFreestyle = true
-        performSegue(withIdentifier: "fromWelcomeToFreestyleSegue", sender: self)
+        performSegue(withIdentifier: Constants.welcomeToFreestyle, sender: self)
     }
     
     // unwind segue destinations

@@ -33,14 +33,12 @@ public class MusicScene: SKScene {
     var pageIndex = 0
     var pgCountLabel: SKLabelNode
     
-    //var bgNode: SKSpriteNode?
     var barsNode = SKNode()
     var measureBar: SKSpriteNode
     var selectedNote: String = "cat_basic1"
     var currentMode: String = "addMode"
     var buttons = NSMapTable<NSString, Button>.init(keyOptions: .copyIn, valueOptions: .weakMemory)
     var noteData = Set<[CGFloat]>()
-    //weak var noteButton: Button?
     
     var currentSounds = GameUser.soundsArr
     var samplers: Array<AKAppleSampler> = []

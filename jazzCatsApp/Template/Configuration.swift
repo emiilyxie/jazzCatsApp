@@ -45,6 +45,15 @@ struct UIStyling {
     }
 }
 
+enum Popups: String {
+    case accountDetails = "accountDetailsPopoverID"
+    case tutorial = "tutorialPopoverID"
+    case confirmNav = "confirmNavPopoverID"
+    case settings = "settingsPopoverID"
+    case noteSelect = "noteSelectPopoverID"
+    case levelComplete = "levelCompletePopoverID"
+}
+
 enum ButtonType: String {
     case add, erase, navigate, play, pause, stop
 }

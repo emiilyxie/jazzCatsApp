@@ -109,7 +109,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         
         selectedLevelGroup = levelGroupNames[indexPath.row]
         levelGroupNumOfLevels = levelGroupDict[selectedLevelGroup!]
-        performSegue(withIdentifier: "fromLevelGroupsToLevelSelectSegue", sender: self)
+        performSegue(withIdentifier: Constants.levelGroupsToLevelSelect, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,7 +128,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
 
     @IBAction func unwindFromLevelGroupsToWelcome(_ sender: Any) {
-        performSegue(withIdentifier: "fromLevelGroupsToWelcomeUSegue", sender: self)
+        performSegue(withIdentifier: Constants.levelGroupsToWelcome, sender: self)
     }
     
     @IBAction func backToLevelGroupsFromLevelSelect(segue: UIStoryboardSegue) {}
