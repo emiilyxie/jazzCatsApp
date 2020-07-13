@@ -27,14 +27,15 @@ public struct LevelSetup {
     static var lvlGroup: String!
     static var lvlAns: Array<Set<[Int]>>!
 
-    static public func parseLvlAns(json: String, maxPages: Int) -> Array<Set<[Int]>> {
+    static public func parseLvlAns(json: String, maxPages: Int) -> Set<[CGFloat]> {
         let data = Data(json.utf8)
-        var lvlAnsArray: Array<Array<Array<Int>>> = []
+        //var lvlAnsArray: [[[CGFloat]]]  = []
+        var lvlAnsArray: [[CGFloat]]  = []
         
         do {
-            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[[Int]]] {
-                print(json)
-                print(type(of: json))
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[CGFloat]] {
+                //print(json)
+                //print(type(of: json))
                 lvlAnsArray = json
             }
         }
@@ -42,12 +43,14 @@ public struct LevelSetup {
             print(err.localizedDescription)
         }
         
-        var ansSet = [Set<[Int]>](repeatElement([], count: maxPages))
-        for page in 0...lvlAnsArray.count-1 {
-            for ansArr in 0...lvlAnsArray[page].count-1 {
-                let currentNoteAns = lvlAnsArray[page][ansArr]
-                ansSet[page].insert(currentNoteAns)
-            }
+        //var ansSet = [Set<[CGFloat]>](repeatElement([], count: maxPages))
+        var ansSet = Set<[CGFloat]>()
+        for ans in 0...lvlAnsArray.count-1 {
+            //for ansArr in 0...lvlAnsArray[page].count-1 {
+                let currentNoteAns = lvlAnsArray[ans]
+                //ansSet[page].insert(currentNoteAns)
+                ansSet.insert(currentNoteAns)
+            //}
         }
         return ansSet
     }

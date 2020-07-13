@@ -22,7 +22,10 @@ public class MusicScene: SKScene {
     var bpm: Int = LevelSetup.defaultBpm
     var subdivision: Int = LevelSetup.defaultSubdivision
     var totalDivision: Int
+    var totalBeats: Int
     var resultWidth: CGFloat
+    var measureWidth: CGFloat
+    var beatWidth: CGFloat
     var divisionWidth: CGFloat
 
     var maxPages: Int = LevelSetup.defaultMaxPages
@@ -36,6 +39,7 @@ public class MusicScene: SKScene {
     var selectedNote: String = "cat_basic1"
     var currentMode: String = "addMode"
     var buttons = NSMapTable<NSString, Button>.init(keyOptions: .copyIn, valueOptions: .weakMemory)
+    var noteData = Set<[CGFloat]>()
     //weak var noteButton: Button?
     
     var currentSounds = GameUser.soundsArr
@@ -52,7 +56,10 @@ public class MusicScene: SKScene {
         
         self.staffTotalHeight = self.staffBarHeight*CGFloat(self.staffBarNumber)
         self.totalDivision = self.numberOfMeasures * self.bpm * self.subdivision
+        self.totalBeats = self.numberOfMeasures * self.bpm
         self.resultWidth = size.width - LevelSetup.indentLength
+        self.measureWidth = self.resultWidth/CGFloat(self.numberOfMeasures)
+        self.beatWidth = self.resultWidth/CGFloat(self.totalBeats)
         self.divisionWidth = self.resultWidth/CGFloat(self.totalDivision)
         self.pages = [[Note]](repeating: [], count: self.maxPages)
         self.measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: self.staffTotalHeight + 30))

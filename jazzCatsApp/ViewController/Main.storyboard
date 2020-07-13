@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Gaegu-Bold.ttf">
+            <string>Gaegu-Bold</string>
+        </array>
         <array key="Gaegu-Regular.ttf">
             <string>Gaegu-Regular</string>
         </array>
@@ -798,6 +801,90 @@
             </objects>
             <point key="canvasLocation" x="-462.05357142857139" y="-191.30434782608697"/>
         </scene>
+        <!--Share CompVC-->
+        <scene sceneID="tXA-9o-dzi">
+            <objects>
+                <viewController storyboardIdentifier="shareCompPopoverID" id="xaF-FK-ZCM" customClass="ShareCompVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WVR-tE-lYf">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBW-cy-eyJ">
+                                <rect key="frame" x="198" y="57" width="500" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share your composition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-fM-6WO">
+                                        <rect key="frame" x="168" y="30" width="164.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="Gaegu-Bold" family="Gaegu" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz5-Mk-Wdb">
+                                        <rect key="frame" x="100" y="77" width="300" height="68"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="AaX-iN-YfD"/>
+                                        </constraints>
+                                        <string key="text">Press the button below to record your composition. After your done, stop the screen recording. This will produce a video, which you can share around!</string>
+                                        <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kq-sp-7nL">
+                                        <rect key="frame" x="50" y="220" width="48" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="xaF-FK-ZCM" eventType="touchUpInside" id="2pe-Xv-cxS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4a-vr-VTi">
+                                        <rect key="frame" x="401" y="220" width="49" height="30"/>
+                                        <state key="normal" title="Record"/>
+                                        <connections>
+                                            <action selector="recordButtonPressed:" destination="xaF-FK-ZCM" eventType="touchUpInside" id="LXY-QC-Xdh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="31K-M3-lnF"/>
+                                    <constraint firstAttribute="trailing" secondItem="w4a-vr-VTi" secondAttribute="trailing" constant="50" id="AAX-bN-3A8"/>
+                                    <constraint firstItem="7kq-sp-7nL" firstAttribute="leading" secondItem="MBW-cy-eyJ" secondAttribute="leading" constant="50" id="AC2-Ek-vvv"/>
+                                    <constraint firstItem="2bj-fM-6WO" firstAttribute="top" secondItem="MBW-cy-eyJ" secondAttribute="top" constant="30" id="BiG-15-Cpo"/>
+                                    <constraint firstAttribute="width" constant="500" id="GVX-dK-Zn5"/>
+                                    <constraint firstItem="lz5-Mk-Wdb" firstAttribute="top" secondItem="2bj-fM-6WO" secondAttribute="bottom" constant="30" id="LTb-QK-lRZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="w4a-vr-VTi" secondAttribute="bottom" constant="50" id="Zd3-c9-ee7"/>
+                                    <constraint firstAttribute="bottom" secondItem="7kq-sp-7nL" secondAttribute="bottom" constant="50" id="fTo-JW-XsK"/>
+                                    <constraint firstItem="lz5-Mk-Wdb" firstAttribute="centerX" secondItem="MBW-cy-eyJ" secondAttribute="centerX" id="lW9-Wu-7c6"/>
+                                    <constraint firstItem="2bj-fM-6WO" firstAttribute="centerX" secondItem="MBW-cy-eyJ" secondAttribute="centerX" id="vkB-7o-d0Q"/>
+                                </constraints>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRb-Eo-w5H">
+                                <rect key="frame" x="395" y="20" width="106" height="30"/>
+                                <state key="normal" title="Stop Recording"/>
+                                <connections>
+                                    <action selector="stopRecordingButtonPressed:" destination="xaF-FK-ZCM" eventType="touchUpInside" id="EbY-O3-55B"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MBW-cy-eyJ" firstAttribute="centerX" secondItem="WVR-tE-lYf" secondAttribute="centerX" id="6Zf-rd-Fzs"/>
+                            <constraint firstItem="GRb-Eo-w5H" firstAttribute="top" secondItem="7xP-Dk-16C" secondAttribute="top" constant="20" id="Ih9-wE-VWz"/>
+                            <constraint firstItem="MBW-cy-eyJ" firstAttribute="centerY" secondItem="WVR-tE-lYf" secondAttribute="centerY" id="qcT-Fg-OiN"/>
+                            <constraint firstItem="GRb-Eo-w5H" firstAttribute="centerX" secondItem="WVR-tE-lYf" secondAttribute="centerX" id="xx7-5m-lQ5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7xP-Dk-16C"/>
+                    </view>
+                    <connections>
+                        <outlet property="bgView" destination="MBW-cy-eyJ" id="uDi-ws-OW3"/>
+                        <outlet property="cancelButton" destination="7kq-sp-7nL" id="Bbo-dg-epG"/>
+                        <outlet property="recordButton" destination="w4a-vr-VTi" id="VpN-EB-JEl"/>
+                        <outlet property="stopRecordingButton" destination="GRb-Eo-w5H" id="wxQ-ad-R1h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yun-51-ZAn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-277" y="606"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="Nob-v2-Xgg">
             <objects>
@@ -831,7 +918,7 @@
                                 <rect key="frame" x="248" y="57" width="400" height="300"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1q-Kk-Bvu">
-                                        <rect key="frame" x="30" y="254" width="63" height="36"/>
+                                        <rect key="frame" x="30" y="258" width="54" height="32"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -841,7 +928,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-sn-dv8">
-                                        <rect key="frame" x="323" y="254" width="47" height="36"/>
+                                        <rect key="frame" x="331" y="258" width="39" height="32"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                         <state key="normal" title="Okay">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -851,31 +938,31 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-Am-W3J">
-                                        <rect key="frame" x="19" y="53.5" width="362" height="188"/>
+                                        <rect key="frame" x="27" y="50" width="346.5" height="188"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XvD-Dn-TjV">
-                                                <rect key="frame" x="0.0" y="0.0" width="196.5" height="188"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="181.5" height="188"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pages:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aL1-DA-hoP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="196.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="181.5" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="measures per page:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6va-sF-vjo">
-                                                        <rect key="frame" x="0.0" y="52" width="196.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="52" width="181.5" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="beats per measure:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llm-wy-DXa">
-                                                        <rect key="frame" x="0.0" y="104" width="196.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="104" width="181.5" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subdivisions per beat:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQb-LJ-p5N">
-                                                        <rect key="frame" x="0.0" y="156" width="196.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="156" width="181.5" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -883,28 +970,28 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-2w-2Py">
-                                                <rect key="frame" x="226.5" y="0.0" width="11.5" height="188"/>
+                                                <rect key="frame" x="211.5" y="0.0" width="11" height="188"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-lf-mGO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="11.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="11" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkW-D2-kyF">
-                                                        <rect key="frame" x="0.0" y="52" width="11.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="52" width="11" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0E-c9-HmT">
-                                                        <rect key="frame" x="0.0" y="104" width="11.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="104" width="11" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzj-YP-XCu">
-                                                        <rect key="frame" x="0.0" y="156" width="11.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="156" width="11" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -912,7 +999,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-N1-syo">
-                                                <rect key="frame" x="268" y="0.0" width="94" height="188"/>
+                                                <rect key="frame" x="252.5" y="0.0" width="94" height="188"/>
                                                 <subviews>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="32" translatesAutoresizingMaskIntoConstraints="NO" id="w0s-0e-blw">
                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
@@ -943,7 +1030,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freestyle Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFE-f7-ucb">
-                                        <rect key="frame" x="120" y="10" width="160" height="23.5"/>
+                                        <rect key="frame" x="124.5" y="10" width="151.5" height="20"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>

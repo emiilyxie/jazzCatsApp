@@ -58,8 +58,11 @@ extension LevelTemplate {
     }
     
     func generateHint(index: Int) {
-        print(GameUser.hints)
-        if  lvlAns[pageIndex].isEmpty || lvlAns[pageIndex].isSubset(of: myAns[pageIndex]) {
+        //print(GameUser.hints)
+        //if  lvlAns[pageIndex].isEmpty || lvlAns[pageIndex].isSubset(of: noteData[pageIndex]) {
+        //print("levelans: \(lvlAns)")
+        //print("notedata: \(noteData)")
+        if lvlAns.isEmpty || lvlAns.isSubset(of: noteData) {
             print("no more hints")
             return
         }
@@ -67,25 +70,37 @@ extension LevelTemplate {
             print("you're too broke in hints")
             return
         }
-        for noteAnswer in lvlAns[pageIndex] {
-            if !myAns[pageIndex].contains(noteAnswer) {
+        
+        let measuresOnPage = pageIndex * numberOfMeasures...pageIndex * numberOfMeasures + numberOfMeasures
+        for noteAnswer in lvlAns {
+            if !noteData.contains(noteAnswer){
+            if measuresOnPage.contains(Int(noteAnswer[0])) {
                 
+                print("note ans: \(noteAnswer)")
+                addNote(with: noteAnswer, on: pageIndex)
+                
+                /*
                 // adding the note to the scene
-                let currNotePos = ansArrayToScenePos(ansVal: noteAnswer)
+                let currNotePos = noteInfoToScenePos(noteInfo: noteAnswer)
                 let currentNote = Note(type: selectedNote)
                 currentNote.position = currNotePos
-                currentNote.positionInStaff = getStaffPosition(notePosition: currNotePos)
+                currentNote.beat = noteAnswer[0]
+                currentNote.staffLine = getNoteStaffLine(noteYPos: currentNote.position.y)
+                //currentNote.positionInStaff = getStaffPosition(notePosition: currNotePos)
                 
                 // add a flat if it should be flatted
-                if shouldBeFlatted(midiVal: noteAnswer[1]) {
+                if shouldBeFlatted(midiVal: Int(noteAnswer[1])) {
                     editAccidental(accidental: "flat", note: currentNote)
                 }
                 
                 // add the note to the bar
                 barsNode.addChild(currentNote)
-                myAns[pageIndex].insert(currentNote.getAnsArray())
+                noteData[pageIndex].insert(currentNote.getNoteInfo())
+                print("current note info: \(currentNote.getNoteInfo())")
                 pages[pageIndex].append(currentNote)
+ */
                 return
+            }
             }
         }
     }
@@ -129,7 +144,7 @@ extension LevelTemplate {
     }
     
     func submitAns(index: Int) {
-        if myAns.elementsEqual(lvlAns) {
+        if noteData == lvlAns {
             
             //display the "yay!"
             yayYouDidIt.zPosition = 100
@@ -157,7 +172,7 @@ extension LevelTemplate {
                 self.sorryTryAgain.zPosition = -100
             }
         }
-        //print(myAns)
+        //print(noteData)
     }
     
     override func nextPage(index: Int) {

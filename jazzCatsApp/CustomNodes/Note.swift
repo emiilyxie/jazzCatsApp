@@ -4,8 +4,10 @@ import UIKit
 public class Note: SKSpriteNode {
     
     public let noteType: String
-    public var positionInStaff = [0,0]
-    public var universalTimePos: Double?
+    //public var positionInStaff = [0,0]
+    public var staffLine: Int = 0
+    public var beat: CGFloat = 0
+    public var measure: Int = 0
     public var soundBase: String
     public var audioFile: String
     public var isSharp = false
@@ -46,23 +48,13 @@ public class Note: SKSpriteNode {
         
         //print(self.parent?.parent)
         
-        if let scene = self.parent?.parent as? LevelTemplate {
+        /*
+        if let scene = self.scene as? MusicScene {
             self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
-            let conversion = Double(scene.subdivision / (scene.pageIndex + 1))
-            self.universalTimePos = Double(self.positionInStaff[0]) / conversion
+            let conversion = CGFloat(scene.subdivision / (scene.pageIndex + 1))
+            self.beat = CGFloat(self.positionInStaff[0]) / conversion
         }
-        else {
-            //print("parent is not level template")
-        }
-        
-        if let scene = self.parent?.parent as? Freestyle {
-            self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
-            let conversion = Double(scene.subdivision / (scene.pageIndex + 1))
-            self.universalTimePos = Double(self.positionInStaff[0]) / conversion
-        }
-        else {
-            //print("parent is not freestyle")
-        }
+ */
     }
     
     public func toggleSharp() {
@@ -84,26 +76,28 @@ public class Note: SKSpriteNode {
     }
     
     public func getNoteName() -> String {
-        if positionInStaff[1] == 0 && isFlat { // C4 flat is B3
+        
+        if staffLine == 0 && isFlat { // C4 flat is B3
             return "\(MusicValues.trebleNotes[0])"
         }
-        if (positionInStaff[1] == 3 || positionInStaff[1] == 7 || positionInStaff[1] == 10) && isFlat { // for enharmonics
-            return "\(MusicValues.trebleNotes[positionInStaff[1]])"
+        if (staffLine == 3 || staffLine == 7 || staffLine == 10) && isFlat { // for enharmonics
+            return "\(MusicValues.trebleNotes[staffLine])"
         }
         if isSharp {
-            return "\(MusicValues.trebleNotes[positionInStaff[1] + 13])"
+            return "\(MusicValues.trebleNotes[staffLine + 13])"
         }
         if isFlat {
-            return "\(MusicValues.trebleNotes[positionInStaff[1] + 12])"
+            return "\(MusicValues.trebleNotes[staffLine + 12])"
         }
-        return "\(MusicValues.trebleNotes[positionInStaff[1] + 1])"
+        return "\(MusicValues.trebleNotes[staffLine + 1])"
     }
     
     public func getMidiVal() -> Int {
+        
         var midiVal = MusicValues.middleCMidi
-        let distFromMiddleC = positionInStaff[1] - MusicValues.middleCPos
+        let distFromMiddleC = staffLine - MusicValues.middleCPos
         if distFromMiddleC > 0 {
-            let octaveNums = Int((Double(distFromMiddleC) / 7.0).rounded(.down))
+            let octaveNums = Int((CGFloat(distFromMiddleC) / 7.0).rounded(.down))
             midiVal += octaveNums * MusicValues.octaveSize
             let remainderNotes = distFromMiddleC - (octaveNums * 7)
             if remainderNotes > 0 {
@@ -113,7 +107,7 @@ public class Note: SKSpriteNode {
             }
         }
         else if distFromMiddleC < 0 {
-            let octaveNums = Int((Double(-distFromMiddleC) / 7.0).rounded(.down))
+            let octaveNums = Int((CGFloat(-distFromMiddleC) / 7.0).rounded(.down))
             midiVal -= octaveNums * MusicValues.octaveSize
             let remainderNotes = -distFromMiddleC - (octaveNums * 7)
             if remainderNotes > 0 {
@@ -131,8 +125,8 @@ public class Note: SKSpriteNode {
         return midiVal
     }
     
-    public func getAnsArray() -> [Int] {
-        return [positionInStaff[0], getMidiVal()]
+    public func getNoteInfo() -> [CGFloat] {        
+        return [CGFloat(measure), beat, CGFloat(getMidiVal())]
     }
     
 }

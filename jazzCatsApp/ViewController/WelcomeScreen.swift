@@ -171,7 +171,8 @@ class WelcomeScreen: UIViewController {
     /*
     func exportData() {
         let db = Firestore.firestore()
-        let docData = // your data
+        let docData = // data here
+
 
         db.document("/level-groups/basics/levels/level1").setData(docData, merge: true) { (err) in
             if err != nil {

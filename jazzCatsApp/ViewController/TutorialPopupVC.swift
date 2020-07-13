@@ -128,14 +128,23 @@ class TutorialPopupVC: UIViewController {
         case ("progress-rect", let rect):
             canContinue = false
             tapToContinue.isHidden = true
-            guard let rectArray = rect as? Array<Int> else {
+            guard let rectDict = rect as? Dictionary<String, Any> else {
                 print("cant parse rect")
                 return
             }
-            let staffOrigin = musicScene.staffPosToScenePos(staffPos: [rectArray[0], rectArray[1]])
+            
+            guard let note = rectDict["note"] as? Array<CGFloat>,
+                let size = rectDict["size"] as? CGFloat else {
+                print("cant get dict note")
+                    return
+            }
+            
+            //let staffOrigin = musicScene.staffPosToScenePos(staffPos: [rectArray[0], rectArray[1]])
+            //let staffOrigin = musicScene.noteInfoToScenePos(noteInfo: [rectArray[0], rectArray[1]])
+            let staffOrigin = musicScene.noteInfoToScenePos(noteInfo: note)
             let rectOrigin = musicScene.convert(staffOrigin, from: musicScene.barsNode)
             print("rect origin: \(rectOrigin)")
-            let rectDiameter = CGFloat(rectArray[2])
+            let rectDiameter = CGFloat(size)
             let rectRadius = rectDiameter/2
             let sceneRect = CGRect(x: rectOrigin.x - rectRadius, y: rectOrigin.y - rectRadius, width: rectDiameter, height: rectDiameter)
             continueLoc = sceneRect

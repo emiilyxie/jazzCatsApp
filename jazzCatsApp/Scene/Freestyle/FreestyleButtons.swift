@@ -29,9 +29,9 @@ extension Freestyle {
         
         addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 2, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         addButton(buttonImage: UIImage(systemName: "play", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
-        //_ = addButton(buttonImage: UIImage(systemName: "pause"), buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         addButton(buttonImage: UIImage(systemName: "stop", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         addButton(buttonImage: UIImage(systemName: "slider.horizontal.3", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 1, name: "displaySettingsButton", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
+        addButton(buttonImage: UIImage(systemName: "square.and.arrow.up", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 3, name: "shareCompButton", buttonPosition: CGPoint(x: rightX*0.8, y: topY))
         
         addButton(buttonImage: UIImage(named: "sharp"), buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.1, y: bottomY))
         addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
@@ -43,12 +43,14 @@ extension Freestyle {
         addButton(buttonImage: UIImage(systemName: "chevron.left", withConfiguration: defaultConfig), buttonAction: prevPage, buttonIndex: 0, name: "prevPage", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
         addButton(buttonImage: UIImage(systemName: "chevron.right", withConfiguration: defaultConfig), buttonAction: nextPage, buttonIndex: 0, name: "nextPage", buttonPosition: CGPoint(x: rightX*0.8, y: bottomY))
         
+        /*
         pgCountLabel = SKLabelNode(text: "page: \(pageIndex+1)/\(maxPages)")
         pgCountLabel.fontColor = UIColor.black
         pgCountLabel.fontSize = 30
         pgCountLabel.fontName = "Hiragino Mincho ProN"
         pgCountLabel.position = CGPoint(x: rightX*0.7, y: bottomY - 70)
         addChild(pgCountLabel)
+ */
     }
     
     override func displayPopup(index: Int) {
@@ -64,6 +66,8 @@ extension Freestyle {
             gameVC.showSettingsPopover(gameVC)
         case 2:
             gameVC.showConfirmNavPopover(gameVC)
+        case 3:
+            gameVC.showShareCompPopover(gameVC)
         default:
             print("invalid popup index")
         }

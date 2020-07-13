@@ -42,6 +42,8 @@
 		AD954D99249CACAD00EBDACD /* NoteSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */; };
 		AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD9DF62624A6653D00187636 /* ShadowsIntoLight-Regular.ttf */; };
 		ADB0FF6324B6A66C002E1023 /* LevelCompletePopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0FF6224B6A66C002E1023 /* LevelCompletePopupVC.swift */; };
+		ADBE499A24BA8F54002D5B49 /* ShareCompVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBE499924BA8F53002D5B49 /* ShareCompVC.swift */; };
+		ADBE499E24BBE289002D5B49 /* coltrane1 in Resources */ = {isa = PBXBuildFile; fileRef = ADBE499D24BBE289002D5B49 /* coltrane1 */; };
 		ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC59C9C248824D6007D99A9 /* GameUser.swift */; };
 		ADCAE9E624A42FCD000A9FC7 /* SnapToCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */; };
 		ADCAE9E824A430C1000A9FC7 /* LevelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */; };
@@ -129,6 +131,8 @@
 		AD954D98249CACAD00EBDACD /* NoteSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSelectCell.swift; sourceTree = "<group>"; };
 		AD9DF62624A6653D00187636 /* ShadowsIntoLight-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ShadowsIntoLight-Regular.ttf"; sourceTree = "<group>"; };
 		ADB0FF6224B6A66C002E1023 /* LevelCompletePopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCompletePopupVC.swift; sourceTree = "<group>"; };
+		ADBE499924BA8F53002D5B49 /* ShareCompVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCompVC.swift; sourceTree = "<group>"; };
+		ADBE499D24BBE289002D5B49 /* coltrane1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = coltrane1; sourceTree = "<group>"; };
 		ADC59C9C248824D6007D99A9 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapToCenter.swift; sourceTree = "<group>"; };
 		ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupCell.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 			children = (
 				AD21FDF624A976830068A729 /* basics1tutorial */,
 				AD700CD124AB08E000881EBE /* buttonLocations */,
+				ADBE499D24BBE289002D5B49 /* coltrane1 */,
 			);
 			path = Docs;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */,
 				AD94032124B05D700021F07D /* ConfirmNavPopupVC.swift */,
 				ADB0FF6224B6A66C002E1023 /* LevelCompletePopupVC.swift */,
+				ADBE499924BA8F53002D5B49 /* ShareCompVC.swift */,
 			);
 			name = PopupViews;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
 				AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */,
+				ADBE499E24BBE289002D5B49 /* coltrane1 in Resources */,
 				AD700CD224AB08E000881EBE /* buttonLocations in Resources */,
 				ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
@@ -553,6 +560,7 @@
 				ADCAE9E824A430C1000A9FC7 /* LevelGroupCell.swift in Sources */,
 				ADCAFDAB249E08CE00428C70 /* MusicSceneButtons.swift in Sources */,
 				ADB0FF6324B6A66C002E1023 /* LevelCompletePopupVC.swift in Sources */,
+				ADBE499A24BA8F54002D5B49 /* ShareCompVC.swift in Sources */,
 				ADFC5CD2247832EF00225610 /* LevelButtons.swift in Sources */,
 				ADFC5CDF247851E600225610 /* FreestyleNotes.swift in Sources */,
 				AD3826E4245D106A0027849D /* Note.swift in Sources */,

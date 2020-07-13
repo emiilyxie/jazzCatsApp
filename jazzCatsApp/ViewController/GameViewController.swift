@@ -106,6 +106,7 @@ class GameViewController: UIViewController {
         let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "tutorialPopoverID") as! TutorialPopupVC
         self.addChild(tutorialVC)
         tutorialVC.view.frame = self.view.frame
+        //tutorialVC.view.layer.zPosition = 1000
         tutorialVC.tutorialData = tutorialData
         tutorialVC.startTutorial()
         self.view.addSubview(tutorialVC.view)
@@ -138,6 +139,14 @@ class GameViewController: UIViewController {
     
     @IBAction func showLevelCompletePopover(_ sender: Any) {
         let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "levelCompletePopoverID") as! LevelCompletePopupVC
+        self.addChild(popoverVC)
+        popoverVC.view.frame = self.view.frame
+        self.view.addSubview(popoverVC.view)
+        popoverVC.didMove(toParent: self)
+    }
+    
+    @IBAction func showShareCompPopover(_ sender: Any) {
+        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "shareCompPopoverID") as! ShareCompVC
         self.addChild(popoverVC)
         popoverVC.view.frame = self.view.frame
         self.view.addSubview(popoverVC.view)

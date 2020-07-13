@@ -14,7 +14,10 @@ extension Freestyle {
         
     func reloadLayout() {
         totalDivision = numberOfMeasures * bpm * subdivision
+        totalBeats = numberOfMeasures * bpm
         divisionWidth = resultWidth / CGFloat(totalDivision)
+        beatWidth = resultWidth / CGFloat(totalBeats)
+        pages = [[Note]](repeating: [], count: maxPages)
         barsNode.removeAllChildren()
         barsNode.removeFromParent()
         setUpStaff()
@@ -23,6 +26,36 @@ extension Freestyle {
         repositionNotes()
     }
     
+    func repositionNotes() {
+        guard let prevBpm = oldBpm else {
+            print("cant get old values")
+            return
+        }
+        
+        var newNoteData = Set<[CGFloat]>()
+        
+        for noteInfo in noteData {
+            let noteMeasure = noteInfo[0]
+            let noteBeat = noteInfo[1]
+            print("note info: \(noteInfo)")
+            let measurelessBeat = (noteMeasure - 1) * CGFloat(prevBpm) + noteBeat
+            print("measureless beat: \(measurelessBeat)")
+            let newPage = ((measurelessBeat - 1) / CGFloat(totalBeats)).rounded(.down)
+            print("new page: \(newPage)")
+            let newMeasure = ((measurelessBeat - 1) / CGFloat(bpm)).rounded(.down) + 1
+            //let measureOnPage = (Int(noteMeasure) - 1) % numberOfMeasures
+            let newBeat = measurelessBeat - ((newMeasure - 1) * CGFloat(bpm))
+            let newNote = [newMeasure, newBeat, noteInfo[2]]
+            newNoteData.insert(newNote)
+            if Int(newPage) < maxPages {
+                addNote(with: newNote, on: Int(newPage))
+            }
+        }
+        
+        noteData = newNoteData
+    }
+    
+    /*
     func repositionNotes() {
         let oldDivision = numberOfMeasures * bpm * oldSubdivision
         var newPgArray = [[Note]](repeating: [], count: maxPages)
@@ -63,6 +96,7 @@ extension Freestyle {
             note.isHidden = false
         }
     }
+ */
     /*
     func addCamera() {
         addChild(gameCamera)

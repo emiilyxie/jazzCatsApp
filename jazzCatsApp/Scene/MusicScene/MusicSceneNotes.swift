@@ -17,6 +17,8 @@ extension MusicScene {
         }
     }
     
+    /*
+    
     @objc func editNotes(touch: UITouch) {
         var location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
@@ -27,8 +29,8 @@ extension MusicScene {
                 location = touch.location(in: barsNode)
                 let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
                 if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
-                    let snappedLocation = snapNoteLocation(touchedPoint: location)
-                    addNote(noteType: selectedNote, notePosition: snappedLocation)
+                    //let snappedLocation = snapNoteLocation(touchedPoint: location)
+                    addNote(noteType: selectedNote, notePosition: location)
                 }
                 
             }
@@ -36,6 +38,7 @@ extension MusicScene {
             for node in touchedNodes {
                 if let noteNode = node as? Note {
                     noteNode.removeFromParent()
+                    noteData.remove(noteNode.getNoteInfo())
                     pages[pageIndex].removeAll { $0 == noteNode }
                 }
             }
@@ -63,15 +66,110 @@ extension MusicScene {
             return
         }
     }
+ */
     
-    @objc func addNote(noteType: String, notePosition: CGPoint) {
+    func editNotes(touch: UITouch) {
+        var location = touch.location(in: self)
+        let touchedNodes = nodes(at: location)
+        
+        switch currentMode {
+        case "addMode": // if in addMode
+            for node in touchedNodes {
+                if let _ = node as? Note {
+                    return
+                }
+            }
+            if barsNode.contains(location) {
+                location = touch.location(in: barsNode) // going to barsNode coords
+                let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
+                if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
+                    //let snappedLocation = snapNoteLocation(touchedPoint: location)
+                    addNote(noteType: selectedNote, notePosition: location)
+                }
+            }
+        case "eraseMode": // if in eraseMode
+            for node in touchedNodes {
+                if let noteNode = node as? Note {
+                    noteNode.removeFromParent()
+                    //myAns[pageIndex].remove(noteNode.getNoteInfo())
+                    noteData.remove(noteNode.getNoteInfo())
+                    pages[pageIndex].removeAll { $0 == noteNode }
+                }
+            }
+        case "sharpMode":
+            let topNode = touchedNodes.first
+            if let noteNode = topNode as? Note {
+                let prevNoteAns = noteNode.getNoteInfo()
+                if !noteNode.isSharp {
+                    editAccidental(accidental: "sharp", note: noteNode)
+                }
+                else {
+                    editAccidental(accidental: "natural", note: noteNode)
+                }
+                //myAns[pageIndex].insert(noteNode.getNoteInfo())
+                //myAns[pageIndex].remove(prevNoteAns)
+                noteData.insert(noteNode.getNoteInfo())
+                noteData.remove(prevNoteAns)
+            }
+        case "flatMode":
+            let topNode = touchedNodes.first
+            if let noteNode = topNode as? Note {
+                let prevNoteAns = noteNode.getNoteInfo()
+                if !noteNode.isFlat {
+                    editAccidental(accidental: "flat", note: noteNode)
+                }
+                else {
+                    editAccidental(accidental: "natural", note: noteNode)
+                }
+                //myAns[pageIndex].insert(noteNode.getNoteInfo())
+                //myAns[pageIndex].remove(prevNoteAns)
+                noteData.insert(noteNode.getNoteInfo())
+                noteData.remove(prevNoteAns)
+            }
+        default: // not selected or navigateMode
+            return
+        }
+    }
+    
+    func addNote(noteType: String, notePosition: CGPoint) {
         let note = Note(type: noteType)
         note.name = "note"
-        note.position = notePosition
+        note.position = snapNoteLocation(touchedPoint: notePosition)
         
         barsNode.addChild(note)
-        note.setPositions()
+        note.measure = getNoteMeasure(noteXPos: note.position.x - LevelSetup.indentLength)
+        note.beat = getNoteBeat(noteXPos: note.position.x - LevelSetup.indentLength, noteMeasure: note.measure)
+        note.staffLine = getNoteStaffLine(noteYPos: note.position.y)
+        //note.setPositions()
+        noteData.insert(note.getNoteInfo())
+        print(noteData)
         pages[pageIndex].append(note)
+    }
+    
+    func addNote(with info: [CGFloat], on page: Int) {
+        let notePosition = noteInfoToScenePos(noteInfo: info)
+        let note = Note(type: selectedNote)
+        note.name = "note"
+        note.position = notePosition
+        //note.position = snapNoteLocation(touchedPoint: notePosition)
+        
+        barsNode.addChild(note)
+        note.measure = getNoteMeasure(noteXPos: note.position.x - LevelSetup.indentLength)
+        note.beat = getNoteBeat(noteXPos: note.position.x - LevelSetup.indentLength, noteMeasure: note.measure)
+        note.staffLine = getNoteStaffLine(noteYPos: note.position.y)
+        
+        // add a flat if it should be flatted
+        if shouldBeFlatted(midiVal: Int(info[2])) {
+            editAccidental(accidental: "flat", note: note)
+        }
+        
+        noteData.insert(note.getNoteInfo())
+        print(noteData)
+        pages[page].append(note)
+        if page != pageIndex {
+            note.isHidden = true
+            note.physicsBody?.categoryBitMask = PhysicsCategories.none
+        }
     }
     
     func editAccidental(accidental: String, note: Note) {
@@ -100,21 +198,134 @@ extension MusicScene {
         }
     }
     
+    // conversion funcs
+    
     func snapNoteLocation(touchedPoint: CGPoint) -> CGPoint {
         let xPos = round((touchedPoint.x - LevelSetup.indentLength) / divisionWidth) * divisionWidth + LevelSetup.indentLength
         let yPos = round(touchedPoint.y / staffBarHeight) * staffBarHeight
         return CGPoint(x: xPos, y: yPos)
     }
     
+    func getNoteMeasure(noteXPos: CGFloat) -> Int {
+        let measureOnPage = Int(noteXPos/measureWidth.rounded(.down))
+        let noteMeasure = pageIndex * numberOfMeasures + measureOnPage + 1
+        return noteMeasure
+    }
+    
+    func getNoteBeat(noteXPos: CGFloat, noteMeasure: Int) -> CGFloat {
+        let longDecimal = (noteXPos/beatWidth)
+        let rounded = Double(String(format: "%.2f", longDecimal))!
+        //return CGFloat(rounded)
+        let measureOnPage = (noteMeasure - 1) % numberOfMeasures
+        let beatInMeasure = Double(rounded) - Double((measureOnPage) * bpm) + 1
+        return CGFloat(beatInMeasure)
+    }
+    
+    func getNoteStaffLine(noteYPos: CGFloat) -> Int {
+        return Int(noteYPos/staffBarHeight)
+    }
+    
+    
+    /*
     func getStaffPosition(notePosition: CGPoint) -> Array<Int> {
         let xPos = Int((notePosition.x - LevelSetup.indentLength + 15) / divisionWidth)
         let yPos = Int(notePosition.y / staffBarHeight)
         return [xPos, yPos]
     }
+ */
     
+    /*
     func staffPosToScenePos(staffPos: [Int]) -> CGPoint {
         let xPos = LevelSetup.indentLength + CGFloat(staffPos[0]) * divisionWidth
         let yPos = CGFloat(staffPos[1]) * staffBarHeight
         return CGPoint(x: xPos, y: yPos)
+    }
+ */
+        
+    func midiValToStaffLine(midiVal: Int) -> Int {
+        let distFromC = midiVal - MusicValues.middleCMidi
+        var notePos = 0
+        // handling c flat for now
+        if midiVal == 59 {
+            return 0
+        }
+        if distFromC > 0 {
+            //print("midival: \(midiVal)")
+            let whichOctave = Int(floor(Double(distFromC / MusicValues.octaveSize)))
+            let whichPos = distFromC % MusicValues.octaveSize
+            let octavePos = whichOctave * 7
+            if whichPos == 0 {
+                return octavePos
+            }
+            notePos += octavePos
+            var counter = 0
+            for staffDist in 0...MusicValues.octaveStepSizes.count-1 {
+                counter += MusicValues.octaveStepSizes[staffDist]
+                if counter >= whichPos {
+                    notePos += staffDist
+                    break
+                }
+            }
+            //print("note pos: \(notePos)")
+            return notePos + 1 + MusicValues.middleCPos
+        }
+        else if distFromC < 0 {
+            print("aah less than C")
+            let absDist = abs(distFromC)
+            let whichOctave = Int(floor(Double(absDist / MusicValues.octaveSize)))
+            let whichPos = absDist % MusicValues.octaveSize
+            let octavePos = whichOctave * 7
+            notePos += octavePos
+            var counter = 0
+            for staffDist in 0...MusicValues.reversedOctaveStepSizes.count-1 {
+                counter += MusicValues.reversedOctaveStepSizes[staffDist]
+                if counter >= whichPos {
+                    notePos += staffDist
+                    break
+                }
+            }
+            return MusicValues.middleCPos - notePos - 1
+        }
+        else {return 0}
+    }
+    
+    func noteInfoToScenePos(noteInfo: [CGFloat]) -> CGPoint {
+        let measureOnPage = Int(noteInfo[0] - 1) % numberOfMeasures + 1
+        let addMeasureWidth = CGFloat(measureOnPage-1) * measureWidth
+        let xPos = (noteInfo[1] - 1) * beatWidth + LevelSetup.indentLength + addMeasureWidth
+        let staffLine = midiValToStaffLine(midiVal: Int(noteInfo[2]))
+        let yPos = staffBarHeight * CGFloat(staffLine)
+        let location = CGPoint(x: xPos, y: yPos)
+        return location
+    }
+    
+    /*
+     func ansArrayToScenePos(ansVal: [Int]) -> CGPoint {
+        let noteWhere = ansVal[0]
+        let whichNote = midiValToNotePos(midiVal: ansVal[1])
+        let scenePos = staffPosToScenePos(staffPos: [noteWhere, whichNote])
+        return scenePos
+    }
+ */
+    
+    func shouldBeFlatted(midiVal: Int) -> Bool {
+        if midiVal == 59 { return true } // handling c flat for now
+        if midiVal <= MusicValues.middleCMidi { return false }
+        let whichNote = (midiVal - MusicValues.middleCMidi) % MusicValues.octaveSize
+        //print("midival: \(midiVal)")
+        //print("which note: \(whichNote)")
+        var counter = 0
+        if whichNote == 0 { return false }
+        for i in 0...MusicValues.octaveStepSizes.count-1 {
+            counter += MusicValues.octaveStepSizes[i]
+            if counter > whichNote {
+                return true
+            }
+            else if whichNote == counter {
+                return false
+            }
+        }
+        print("hmm uh oh cant determine flat")
+        return false
     }
 }

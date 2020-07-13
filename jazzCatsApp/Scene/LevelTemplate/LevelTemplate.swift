@@ -23,12 +23,14 @@ public class LevelTemplate: MusicScene {
     var lvlAnsSong: String
     var ansSongPlayer: AKAudioPlayer?
     
-    var lvlAns: [Set<[Int]>]
-    var myAns: [Set<[Int]>]
+    //var lvlAns: [Set<[Int]>]
+    //var myAns: [Set<[Int]>]
+    var lvlAns = Set<[CGFloat]>()
+    //var myAns: Set<[CGFloat]>
     var hintNum = 0
     var reward: Dictionary<String, Any>
     
-    public init(size: CGSize, levelGroup: String, levelNum: Int, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?, lvlAns: Array<Set<[Int]>>, reward: Dictionary<String, Any>?) {
+    public init(size: CGSize, levelGroup: String, levelNum: Int, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?, lvlAns: Set<[CGFloat]>, reward: Dictionary<String, Any>?) {
         
         self.levelGroup = levelGroup
         self.levelNum = levelNum
@@ -36,7 +38,8 @@ public class LevelTemplate: MusicScene {
         self.sorryTryAgain = SKSpriteNode(imageNamed: "temp-try-again")
         self.lvlAnsSong = "\(levelGroup)\(levelNum).mp3"
         self.lvlAns = lvlAns
-        self.myAns = Array(repeating: Set([]), count: maxPages ?? LevelSetup.defaultMaxPages)
+        //self.myAns = Array(repeating: Set([]), count: maxPages ?? LevelSetup.defaultMaxPages)
+        //self.myAns: Set<[CGFloat]> = []
         self.reward = reward ?? LevelSetup.defaultReward
         
         super.init(size: size, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages)
