@@ -16,15 +16,15 @@ extension MusicScene {
         preconditionFailure("must override setupbuttons")
     }
     
-    func addButton(buttonImage: UIImage?, buttonAction: @escaping (Int) -> (), buttonIndex: Int, name: String, buttonPosition: CGPoint) {
-        let newButton = Button(defaultButtonImage: buttonImage, action: buttonAction, index: buttonIndex, buttonName: name)
+    func addButton(buttonImage: UIImage?, buttonAction: @escaping (Int) -> (), buttonIndex: Int, name: String, label: String, buttonPosition: CGPoint) {
+        let newButton = Button(defaultButtonImage: buttonImage, action: buttonAction, index: buttonIndex, buttonName: name, buttonLabel: label)
         buttons.setObject(newButton, forKey: name as NSString)
-        newButton.position = CGPoint(x: buttonPosition.x, y: buttonPosition.y)
+        newButton.position = CGPoint(x: buttonPosition.x, y: buttonPosition.y+20)
         addChild(newButton)
     }
     
     func addButton(button: Button, buttonPosition: CGPoint) {
-        button.position = CGPoint(x: buttonPosition.x, y: buttonPosition.y)
+        button.position = CGPoint(x: buttonPosition.x, y: buttonPosition.y+20)
         addChild(button)
     }
     

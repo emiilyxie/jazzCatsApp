@@ -36,10 +36,8 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
         
         // set up the max unlocked level
+        setUpGraphics()
         refreshCollection()
-        self.view.backgroundColor = .white
-        collectionView.backgroundColor = .white
-        header.text = levelGroup.capitalized
     }
     
     func refreshCollection() {
@@ -49,7 +47,37 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         else {
             self.maxUnlockedLevel = 1
         }
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func setUpGraphics() {
+        //self.view.backgroundColor = ColorPalette.brightManuscript
+        
+        /*
+        let imageView : UIImageView = {
+            let iv = UIImageView()
+            iv.image = UIImage(named: "cafe1")
+            iv.contentMode = .scaleAspectFill
+            return iv
+        }()
+        
+        self.collectionView.backgroundView = imageView
+ */
+        self.collectionView.backgroundColor = ColorPalette.brightManuscript
+        
+        let flowlayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        flowlayout.sectionInset.top = CGFloat(90)
+        flowlayout.sectionInset.left = CGFloat(60)
+        flowlayout.sectionInset.right = CGFloat(60)
+        
+        UIStyling.setHeader(header: header)
+        header.text = levelGroup.capitalized
+        
+        UIStyling.setButtonStyle(button: backButton)
+        backButton.layer.cornerRadius = 5
+        backButton.backgroundColor = .white
     }
     
     // setting up the collection view funcs
@@ -62,7 +90,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "level", for: indexPath) as! LevelCell
 
         cell.levelCellLabel.text = String(levels[indexPath.row])
-        cell.levelCellLabel.textColor = .black
+        cell.levelCellLabel.textColor = ColorPalette.lineColor
         
         if Int(cell.levelCellLabel.text!) ?? 0 > maxUnlockedLevel {
             cell.backgroundColor = UIColor.gray
@@ -74,7 +102,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 3
-        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderColor = ColorPalette.lineColor.cgColor
         
         return cell
     }
@@ -106,6 +134,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         // pass on info
         if let gameVC = segue.destination as? GameViewController {
             gameVC.levelGroup = levelGroup
@@ -120,7 +149,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     // unwind segue
     @IBAction func unwindFromLevelSelectToWelcome(_ sender: Any) {
-        performSegue(withIdentifier: Constants.levelSelectToWelcome, sender: self)
+        performSegue(withIdentifier: Constants.levelSelectToLevelGroups, sender: self)
     }
 
     // destination segues

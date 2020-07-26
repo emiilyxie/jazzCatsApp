@@ -63,7 +63,7 @@ public class MusicScene: SKScene {
         self.measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: self.staffTotalHeight + 30))
         
         super.init(size: size)
-        self.backgroundColor = .white
+        self.backgroundColor = ColorPalette.brightManuscript
 
     }
     
@@ -74,7 +74,6 @@ public class MusicScene: SKScene {
     public override func didMove(to view: SKView) {
         layoutScene()
         setUpPhysics()
-        setUpButtons()
         setUpSound()
     }
     

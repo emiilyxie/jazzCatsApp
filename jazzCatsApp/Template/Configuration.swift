@@ -23,35 +23,81 @@ struct ColorPalette {
     static let pastelPink = UIColor(red: 0.90, green: 0.60, blue: 0.61, alpha: 1.00)
     static let englishLavender = UIColor(red: 0.71, green: 0.51, blue: 0.55, alpha: 1.00)
     static let oldLavender = UIColor(red: 0.43, green: 0.41, blue: 0.46, alpha: 1.00)
+    
+    static let unselectedButton = UIColor(red: 0.90, green: 0.82, blue: 0.63, alpha: 1.00)
+    static let lineColor = UIColor(red: 0.2, green: 0.1, blue: 0.1, alpha: 1.00)
+    static let brightManuscript = UIColor(red: 0.97, green: 0.93, blue: 0.76, alpha: 1.00)
+    static let friendlyGold = UIColor(red: 0.92, green: 0.79, blue: 0.51, alpha: 1.00)
+    static let softAlert = UIColor(red: 0.91, green: 0.49, blue: 0.44, alpha: 1.00)
+    static let humbleWood = UIColor(red: 0.67, green: 0.55, blue: 0.45, alpha: 1.00)
+    static let goldWood = UIColor(red: 0.86, green: 0.78, blue: 0.57, alpha: 1.00)
 }
 
 struct UIStyling {
+    static func setViewBg(view: UIView, bgImage: String) {
+        let background = UIImage(named: bgImage)
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        view.sendSubviewToBack(imageView)
+    }
+    
     static func setButtonStyle(button: UIButton) {
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 20
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(ColorPalette.lineColor, for: .normal)
         button.layer.borderWidth = CGFloat(2)
-        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderColor = ColorPalette.lineColor.cgColor
         button.backgroundColor = .white
+        button.titleLabel?.font = UIFont(name: "Gaegu-Regular", size: CGFloat(24))
         button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
     }
     
     static func setPopupBackground(popupView: UIView) {
         popupView.layer.masksToBounds = true
         popupView.layer.cornerRadius = 10
-        popupView.backgroundColor = .white
+        popupView.backgroundColor = ColorPalette.friendlyGold
         popupView.layer.borderWidth = 3
-        popupView.layer.borderColor = UIColor.black.cgColor
+        popupView.layer.borderColor = ColorPalette.lineColor.cgColor
+        
     }
-}
+    
+    static func setHeader(header: UILabel) {
+        header.textColor = ColorPalette.lineColor
+        header.layer.masksToBounds = true
+        header.layer.borderWidth = 3
+        header.layer.borderColor = ColorPalette.lineColor.cgColor
+        header.backgroundColor = ColorPalette.goldWood
+    }
+    
+    static func showLoading(view: UIView) {
+        var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
-enum Popups: String {
-    case accountDetails = "accountDetailsPopoverID"
-    case tutorial = "tutorialPopoverID"
-    case confirmNav = "confirmNavPopoverID"
-    case settings = "settingsPopoverID"
-    case noteSelect = "noteSelectPopoverID"
-    case levelComplete = "levelCompletePopoverID"
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        activityIndicator.backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
+        activityIndicator.layer.cornerRadius = 6
+        activityIndicator.bringSubviewToFront(view)
+        activityIndicator.layer.zPosition = 9999
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        activityIndicator.tag = -738264
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
+    }
+    
+    static func hideLoading(view: UIView) {
+        var activityIndicator = view.viewWithTag(-738264) as? UIActivityIndicatorView
+        activityIndicator?.stopAnimating()
+        activityIndicator?.removeFromSuperview()
+        activityIndicator = nil
+        view.isUserInteractionEnabled = true
+    }
 }
 
 enum ButtonType: String {

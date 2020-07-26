@@ -16,17 +16,22 @@ public class LevelTemplate: MusicScene {
     var levelGroup: String
     var levelNum: Int
     
-    //weak var noteButton: Button?
+    var hintCount: SKLabelNode = {
+        let label = SKLabelNode(text: String(GameUser.hints))
+        label.fontName = "Gaegu-Bold"
+        label.fontColor = .white
+        label.fontSize = CGFloat(20)
+        label.zPosition = 501
+        label.position = CGPoint(x: 0, y: 0)
+        return label
+    }()
     var yayYouDidIt: SKSpriteNode
     var sorryTryAgain: SKSpriteNode
     
     var lvlAnsSong: String
     var ansSongPlayer: AKAudioPlayer?
     
-    //var lvlAns: [Set<[Int]>]
-    //var myAns: [Set<[Int]>]
     var lvlAns = Set<[CGFloat]>()
-    //var myAns: Set<[CGFloat]>
     var hintNum = 0
     var reward: Dictionary<String, Any>
     

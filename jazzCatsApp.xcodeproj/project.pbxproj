@@ -45,6 +45,7 @@
 		ADBE499A24BA8F54002D5B49 /* ShareCompVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBE499924BA8F53002D5B49 /* ShareCompVC.swift */; };
 		ADBE499E24BBE289002D5B49 /* coltrane1 in Resources */ = {isa = PBXBuildFile; fileRef = ADBE499D24BBE289002D5B49 /* coltrane1 */; };
 		ADBE49A024BBEBF5002D5B49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBE499F24BBEBF5002D5B49 /* Constants.swift */; };
+		ADBE49A224BC13D7002D5B49 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBE49A124BC13D7002D5B49 /* LoadingVC.swift */; };
 		ADC59C9D248824D6007D99A9 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC59C9C248824D6007D99A9 /* GameUser.swift */; };
 		ADCAE9E624A42FCD000A9FC7 /* SnapToCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */; };
 		ADCAE9E824A430C1000A9FC7 /* LevelGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */; };
@@ -135,6 +136,7 @@
 		ADBE499924BA8F53002D5B49 /* ShareCompVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCompVC.swift; sourceTree = "<group>"; };
 		ADBE499D24BBE289002D5B49 /* coltrane1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = coltrane1; sourceTree = "<group>"; };
 		ADBE499F24BBEBF5002D5B49 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ADBE49A124BC13D7002D5B49 /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
 		ADC59C9C248824D6007D99A9 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		ADCAE9E524A42FCD000A9FC7 /* SnapToCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapToCenter.swift; sourceTree = "<group>"; };
 		ADCAE9E724A430C1000A9FC7 /* LevelGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupCell.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				AD0D2D4824ADB59E0098E744 /* SignInVC.swift */,
 				AD92D0FD247F0BC500F8F807 /* SignInEmailVC.swift */,
 				AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */,
+				ADBE49A124BC13D7002D5B49 /* LoadingVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				ADBE49A024BBEBF5002D5B49 /* Constants.swift in Sources */,
 				ADFC5CE12478524000225610 /* FreestyleSound.swift in Sources */,
 				ADCAFDAF249E08E600428C70 /* MusicSceneSound.swift in Sources */,
+				ADBE49A224BC13D7002D5B49 /* LoadingVC.swift in Sources */,
 				AD3826EA245D11920027849D /* Configuration.swift in Sources */,
 				AD94032224B05D700021F07D /* ConfirmNavPopupVC.swift in Sources */,
 				AD9395B224747D3F0037E307 /* LevelSelect.swift in Sources */,

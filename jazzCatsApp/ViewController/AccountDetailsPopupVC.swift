@@ -34,7 +34,7 @@ class AccountDetailsPopupVC: UIViewController {
         DispatchQueue.main.async {
             self.view.backgroundColor = .clear
             UIStyling.setPopupBackground(popupView: self.bgView)
-            self.scrollContentView.backgroundColor = .white
+            self.scrollContentView.backgroundColor = ColorPalette.friendlyGold
             
             for button in self.buttons {
                 UIStyling.setButtonStyle(button: button)

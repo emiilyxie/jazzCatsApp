@@ -21,6 +21,7 @@ class SettingsPopupVC: UIViewController {
     public var newSPB: Int = LevelSetup.defaultSubdivision
 
     @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var scrollContentView: UIView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet var settingValues: [UILabel]!
@@ -54,6 +55,7 @@ class SettingsPopupVC: UIViewController {
     func setUpGraphics() {
         DispatchQueue.main.async {
             self.view.backgroundColor = UIColor.clear
+            self.scrollContentView.backgroundColor = ColorPalette.friendlyGold
             UIStyling.setPopupBackground(popupView: self.popupView)
             UIStyling.setButtonStyle(button: self.cancelButton)
             UIStyling.setButtonStyle(button: self.submitButton)

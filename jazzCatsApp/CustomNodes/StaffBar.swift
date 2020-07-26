@@ -25,7 +25,8 @@ public class StaffBar: SKSpriteNode {
     public func drawLineThru() {
         
         let shapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: LevelSetup.sceneSize.width, height: 4))
-        shapeNode.fillColor = .black
+        shapeNode.fillColor = ColorPalette.lineColor
+        shapeNode.lineWidth = CGFloat(0)
         addChild(shapeNode)
 
     }

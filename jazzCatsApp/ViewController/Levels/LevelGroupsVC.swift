@@ -21,16 +21,15 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var backButton: UIButton!
     
-    override func viewWillAppear(_ animated: Bool) {
-        getNameData {
-            self.collectionView.reloadData()
-        }
-    }
-    
     override func viewDidLoad() {
+        UIStyling.showLoading(view: self.view)
         super.viewDidLoad()
         setUpValues()
         setUpGraphics()
+        getNameData {
+            self.collectionView.reloadData()
+            UIStyling.hideLoading(view: self.view)
+        }
     }
     
     func getNameData(refresh: @escaping () -> ()) {
@@ -65,20 +64,18 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         collectionView.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
 
         collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
-        collectionView.backgroundColor = .white
     }
     
     func setUpGraphics() {
-        self.view.backgroundColor = .white
+        collectionView.backgroundColor = ColorPalette.brightManuscript
         
-        header.backgroundColor = .white
-        header.layer.masksToBounds = true
-        header.layer.borderWidth = 3
-        header.layer.borderColor = UIColor.black.cgColor
+        UIStyling.setHeader(header: header)
         
         UIStyling.setButtonStyle(button: backButton)
         backButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         backButton.layer.cornerRadius = 5
+        backButton.backgroundColor = .white
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -89,26 +86,29 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "levelGroupCell", for: indexPath) as! LevelGroupCell
 
         cell.levelGroupLabel.text = String(levelGroupNames[indexPath.row]).capitalized
-        cell.levelGroupLabel.textColor = .black
-        //cell.levelGroupLabel.layer.masksToBounds = true
+        cell.levelGroupLabel.textColor = ColorPalette.lineColor
+        cell.levelGroupLabel.layer.masksToBounds = true
+        cell.levelGroupLabel.backgroundColor = .white
+        cell.levelGroupLabel.layer.cornerRadius = 5
+        cell.levelGroupLabel.layer.borderColor = ColorPalette.lineColor.cgColor
+        cell.levelGroupLabel.layer.borderWidth = 2
         
         cell.levelGroupBkgd.contentMode = .scaleAspectFill
         cell.levelGroupBkgd.clipsToBounds = true
         cell.levelGroupBkgd.image = UIImage(named: "cafe1")
         
-        cell.backgroundColor = .white
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 3
-        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderColor = ColorPalette.lineColor.cgColor
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         selectedLevelGroup = levelGroupNames[indexPath.row]
         levelGroupNumOfLevels = levelGroupDict[selectedLevelGroup!]
+        
         performSegue(withIdentifier: Constants.levelGroupsToLevelSelect, sender: self)
     }
     

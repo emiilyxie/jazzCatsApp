@@ -20,7 +20,9 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
+        UIStyling.showLoading(view: self.view)
+        
         if !freestyleMode {
             showLevel()
          }
@@ -45,6 +47,8 @@ class GameViewController: UIViewController {
             view.ignoresSiblingOrder = true
             view.showsFPS = true
             view.showsNodeCount = true
+            
+            UIStyling.hideLoading(view: self.view)
         }
     }
     
@@ -54,15 +58,17 @@ class GameViewController: UIViewController {
             return
         }
         let scene = Freestyle(size: LevelSetup.sceneSize)
-            scene.viewController = self
+        scene.viewController = self
+    
+        scene.scaleMode = .aspectFill
         
-            scene.scaleMode = .aspectFill
-            
-            view.presentScene(scene)
-            self.currentScene = scene
-            view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
+        view.presentScene(scene)
+        self.currentScene = scene
+        view.ignoresSiblingOrder = true
+        view.showsFPS = true
+        view.showsNodeCount = true
+        
+        UIStyling.hideLoading(view: self.view)
     }
     
     func setupLevel(levelGroup: String, levelNum: Int, showScene: @escaping (LevelTemplate) -> ()) {
@@ -96,12 +102,6 @@ class GameViewController: UIViewController {
             }
         }
     }
-    
-    /*
-    func updateUserLevelProgress() {
-        GameUser.updateLevelProgress(levelGroup: levelGroup, currentLevel: selectedLevel)
-    }
-    */
     
     func showPopover(_ sender: Any, popupID: String) {
         
@@ -158,48 +158,6 @@ class GameViewController: UIViewController {
         self.view.addSubview(tutorialVC.view)
         tutorialVC.didMove(toParent: self)
     }
-    
-    /*
-    @IBAction func showNoteSelectPopover(_ sender: Any) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "noteSelectPopoverID") as! NoteSelectPopupVC
-        self.addChild(popoverVC)
-        popoverVC.view.frame = self.view.frame
-        self.view.addSubview(popoverVC.view)
-        popoverVC.didMove(toParent: self)
-    }
-    
-    @IBAction func showSettingsPopover(_ sender: Any) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "settingsPopoverID") as! SettingsPopupVC
-        self.addChild(popoverVC)
-        popoverVC.view.frame = self.view.frame
-        self.view.addSubview(popoverVC.view)
-        popoverVC.didMove(toParent: self)
-    }
-    
-    @IBAction func showConfirmNavPopover(_ sender: Any) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "confirmNavPopoverID") as! ConfirmNavPopupVC
-        self.addChild(popoverVC)
-        popoverVC.view.frame = self.view.frame
-        self.view.addSubview(popoverVC.view)
-        popoverVC.didMove(toParent: self)
-    }
-    
-    @IBAction func showLevelCompletePopover(_ sender: Any) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "levelCompletePopoverID") as! LevelCompletePopupVC
-        self.addChild(popoverVC)
-        popoverVC.view.frame = self.view.frame
-        self.view.addSubview(popoverVC.view)
-        popoverVC.didMove(toParent: self)
-    }
-    
-    @IBAction func showShareCompPopover(_ sender: Any) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "shareCompPopoverID") as! ShareCompVC
-        self.addChild(popoverVC)
-        popoverVC.view.frame = self.view.frame
-        self.view.addSubview(popoverVC.view)
-        popoverVC.didMove(toParent: self)
-    }
- */
     
     // unwind segues
     @IBAction func unwindFromGameToWelcome(_ sender: Any) {

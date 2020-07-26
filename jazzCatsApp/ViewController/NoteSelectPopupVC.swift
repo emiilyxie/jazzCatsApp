@@ -65,6 +65,10 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
 
         cell.noteCellLabel.text = String(availableNotes[indexPath.row])
         cell.noteCellImage.image = UIImage(named: availableNotes[indexPath.row])
+        cell.layer.masksToBounds = true
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = CGFloat(5)
+        cell.layer.cornerRadius = CGFloat(5)
         
         return cell
     }

@@ -59,8 +59,8 @@ extension MusicScene {
             else {
                 let xPos = LevelSetup.indentLength + CGFloat(i) * divisionWidth
                 let measureLine = SKShapeNode(rect: CGRect(x: xPos, y: 0, width: CGFloat(lineWidth), height: staffTotalHeight))
-                measureLine.fillColor = UIColor.black
-                measureLine.strokeColor = UIColor.clear
+                measureLine.fillColor = ColorPalette.lineColor
+                measureLine.lineWidth = CGFloat(0)
                 barsNode.addChild(measureLine)
             }
         }

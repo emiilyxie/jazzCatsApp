@@ -39,4 +39,20 @@ extension MusicScene {
         }
     }
     
+    func playNoteSound(note: Note) {
+        let whichInstrument = note.noteType
+        let whichNote = note.getMidiVal()
+        let soundIndex = currentSounds.firstIndex(of: whichInstrument)
+        if soundIndex == nil {
+            print("couldn't get sound")
+            return
+        }
+        do {
+            try samplers[soundIndex!].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
+        }
+        catch {
+            print(error)
+        }
+    }
+    
 }

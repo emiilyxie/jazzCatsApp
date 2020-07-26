@@ -85,20 +85,11 @@ class WelcomeScreen: UIViewController {
     }
     
     func setUpGraphics() {
-        //self.view.backgroundColor = .white
-        
-        let background = UIImage(named: "cafe1")
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
+        UIStyling.setViewBg(view: self.view, bgImage: "cafe1")
         
         gameNameLabel.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.8))
         gameNameLabel.textColor = .black
+        gameNameLabel.font = UIFont(name: "Gaegu-Bold", size: CGFloat(70))
         
         UIStyling.setButtonStyle(button: accountButton)
         accountButton.layer.cornerRadius = 22
@@ -115,6 +106,7 @@ class WelcomeScreen: UIViewController {
     // segue code
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //exportData()
+        
         if goingToFreestyle == true {
             print("pressed freestyle segue")
             if let gameVC = segue.destination as? GameViewController {
@@ -162,9 +154,7 @@ class WelcomeScreen: UIViewController {
     @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {
         isSignedInResponse()
     }
-    @IBAction func backToWelcomeFromLevelGroups(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func backToWelcomeFromLevelGroups(segue: UIStoryboardSegue) {}
     
     // for exporting documents
     

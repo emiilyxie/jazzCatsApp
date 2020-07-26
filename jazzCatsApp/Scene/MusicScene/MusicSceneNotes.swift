@@ -55,6 +55,7 @@ extension MusicScene {
                 }
                 noteData.insert(noteNode.getNoteInfo())
                 noteData.remove(prevNoteAns)
+                playNoteSound(note: noteNode)
             }
         case "flatMode":
             let topNode = touchedNodes.first
@@ -68,6 +69,7 @@ extension MusicScene {
                 }
                 noteData.insert(noteNode.getNoteInfo())
                 noteData.remove(prevNoteAns)
+                playNoteSound(note: noteNode)
             }
         default: // not selected or navigateMode
             return
@@ -87,6 +89,8 @@ extension MusicScene {
         noteData.insert(note.getNoteInfo())
         print(noteData)
         pages[pageIndex].append(note)
+        
+        playNoteSound(note: note)
     }
     
     func addNote(with info: [CGFloat], on page: Int) {
@@ -113,6 +117,7 @@ extension MusicScene {
             note.isHidden = true
             note.physicsBody?.categoryBitMask = PhysicsCategories.none
         }
+        
     }
     
     func editAccidental(accidental: String, note: Note) {

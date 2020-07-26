@@ -24,33 +24,41 @@ extension LevelTemplate {
         let topY = convertPoint(fromView: topYinView).y
         let bottomY = convertPoint(fromView: bottomYinView).y
         
-        let defaultConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .light, scale: .small)
-        
-        addButton(buttonImage: UIImage(systemName: "house", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 2, name: "homeButton", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
-        addButton(buttonImage: UIImage(systemName: "play", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 3, name: "playButton", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
+        addButton(buttonImage: UIImage(named: "home"), buttonAction: displayPopup, buttonIndex: 2, name: "homeButton", label: "Home", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
+        addButton(buttonImage: UIImage(named: "play"), buttonAction: enterMode, buttonIndex: 3, name: "playButton", label: "Play", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
         //_ = addButton(buttonImage: "pause", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
-        addButton(buttonImage: UIImage(systemName: "stop", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 5, name: "stopButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
+        addButton(buttonImage: UIImage(named: "stop"), buttonAction: enterMode, buttonIndex: 5, name: "stopButton", label: "Stop", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         
-        addButton(buttonImage: UIImage(named: "sharp"), buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
-        addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
+        addButton(buttonImage: UIImage(named: "sharp"), buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", label: "Sharp", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
+        addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", label: "Flat", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
         //_ = addButton(buttonImage: "piano1", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
-        addButton(buttonImage: UIImage(systemName: "pencil", withConfiguration: defaultConfig), buttonAction: displayPopup, buttonIndex: 0, name: "selectNoteButton", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
-        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: selectNoteType, buttonIndex: 4, name: "addNotesButton", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
-        addButton(buttonImage: UIImage(systemName: "trash", withConfiguration: defaultConfig), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
+        addButton(buttonImage: UIImage(named: "select"), buttonAction: displayPopup, buttonIndex: 0, name: "selectNoteButton", label: "Select", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
+        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: selectNoteType, buttonIndex: 4, name: "addNotesButton", label: "Add", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
+        addButton(buttonImage: UIImage(named: "erase"), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", label: "Erase", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
         
-        addButton(buttonImage: UIImage(systemName: "speaker.2.fill", withConfiguration: defaultConfig), buttonAction: playSample, buttonIndex: 0, name: "audioSampleButton", buttonPosition: CGPoint(x: rightX*0.5, y: topY))
-        addButton(buttonImage:  UIImage(systemName: "lightbulb", withConfiguration: defaultConfig), buttonAction: generateHint, buttonIndex: 0, name: "hintButton", buttonPosition: CGPoint(x: rightX*0.6, y: topY))
-        addButton(buttonImage: UIImage(systemName: "checkmark", withConfiguration: defaultConfig), buttonAction: submitAns, buttonIndex: 0, name: "submitButton", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
+        addButton(buttonImage: UIImage(named: "audio"), buttonAction: playSample, buttonIndex: 0, name: "audioSampleButton", label: "Audio", buttonPosition: CGPoint(x: rightX*0.5, y: topY))
+        addButton(buttonImage:  UIImage(named: "hint"), buttonAction: generateHint, buttonIndex: 0, name: "hintButton", label: "Hint", buttonPosition: CGPoint(x: rightX*0.6, y: topY))
+        addButton(buttonImage: UIImage(named: "submit"), buttonAction: submitAns, buttonIndex: 0, name: "submitButton", label: "Submit", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
         
-        addButton(buttonImage: UIImage(systemName: "chevron.left", withConfiguration: defaultConfig), buttonAction: prevPage, buttonIndex: 0, name: "prevPage", buttonPosition: CGPoint(x: rightX*0.8, y: bottomY))
-        addButton(buttonImage: UIImage(systemName: "chevron.right", withConfiguration: defaultConfig), buttonAction: nextPage, buttonIndex: 0, name: "nextPage", buttonPosition: CGPoint(x: rightX*0.9, y: bottomY))
+        addButton(buttonImage: UIImage(named: "prev"), buttonAction: prevPage, buttonIndex: 0, name: "prevPage", label: "Prev", buttonPosition: CGPoint(x: rightX*0.8, y: bottomY))
+        addButton(buttonImage: UIImage(named: "next"), buttonAction: nextPage, buttonIndex: 0, name: "nextPage", label: "Next", buttonPosition: CGPoint(x: rightX*0.9, y: bottomY))
         
         pgCountLabel = SKLabelNode(text: "page: \(pageIndex+1)/\(maxPages)")
         pgCountLabel.fontColor = UIColor.black
         pgCountLabel.fontSize = 30
-        pgCountLabel.fontName = "Hiragino Mincho ProN"
-        pgCountLabel.position = CGPoint(x: rightX*0.8, y: bottomY - 100)
+        pgCountLabel.fontName = "Gaegu"
+        pgCountLabel.position = CGPoint(x: rightX*0.85, y: bottomY - 80)
         addChild(pgCountLabel)
+        
+        let hintNotification = SKShapeNode(circleOfRadius: CGFloat(20))
+        hintNotification.fillColor = ColorPalette.softAlert
+        hintNotification.lineWidth = 0
+        hintNotification.zPosition = 500
+        hintNotification.addChild(hintCount)
+        if let hintButton = buttons.object(forKey: "hintButton") {
+            hintButton.addChild(hintNotification)
+            hintNotification.position = CGPoint(x: 50, y: 30)
+        }
     }
     
     func playSample(index: Int) {
@@ -75,6 +83,7 @@ extension LevelTemplate {
                 
                 print("note ans: \(noteAnswer)")
                 addNote(with: noteAnswer, on: pageIndex)
+                hintCount.text = String(GameUser.hints)
                 return
                 
             }
