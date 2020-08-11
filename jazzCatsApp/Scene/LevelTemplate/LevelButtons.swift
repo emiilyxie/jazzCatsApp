@@ -33,7 +33,7 @@ extension LevelTemplate {
         addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", label: "Flat", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
         //_ = addButton(buttonImage: "piano1", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
         addButton(buttonImage: UIImage(named: "select"), buttonAction: displayPopup, buttonIndex: 0, name: "selectNoteButton", label: "Select", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
-        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: selectNoteType, buttonIndex: 4, name: "addNotesButton", label: "Add", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
+        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: enterMode, buttonIndex: 0, name: "addNotesButton", label: "Add", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
         addButton(buttonImage: UIImage(named: "erase"), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", label: "Erase", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
         
         addButton(buttonImage: UIImage(named: "audio"), buttonAction: playSample, buttonIndex: 0, name: "audioSampleButton", label: "Audio", buttonPosition: CGPoint(x: rightX*0.5, y: topY))
@@ -59,13 +59,15 @@ extension LevelTemplate {
             hintButton.addChild(hintNotification)
             hintNotification.position = CGPoint(x: 50, y: 30)
         }
+        
+        super.setUpButtons()
     }
     
-    func playSample(index: Int) {
+    func playSample(sender: Button?, index: Int) {
         ansSongPlayer?.play()
     }
     
-    func generateHint(index: Int) {
+    func generateHint(sender: Button?, index: Int) {
 
         if lvlAns.isEmpty || lvlAns.isSubset(of: noteData) {
             print("no more hints")
@@ -111,7 +113,7 @@ extension LevelTemplate {
     }
  */
     
-    override func displayPopup(index: Int) {
+    override func displayPopup(sender: Button?, index: Int) {
         guard let gameVC = self.viewController as? GameViewController else {
             print("cant get viewcontroller")
             return
@@ -130,9 +132,11 @@ extension LevelTemplate {
         default:
             print("invalid popup index")
         }
+        
+        super.displayPopup(sender: sender, index: index)
     }
     
-    func submitAns(index: Int) {
+    func submitAns(sender: Button?, index: Int) {
         if noteData == lvlAns {
             
             //display the "yay!"
@@ -144,8 +148,8 @@ extension LevelTemplate {
                 return
             }
             //gameVC.showLevelCompletePopover(self)
-            gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID)
-            GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
+            let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
+            gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
             do {
                 try AudioKit.shutdown()
             }
@@ -165,7 +169,7 @@ extension LevelTemplate {
         //print(noteData)
     }
     
-    override func nextPage(index: Int) {
+    override func nextPage(sender: Button?, index: Int) {
         if pageIndex < maxPages - 1 {
             for note in pages[pageIndex] {
                 note.isHidden = true
@@ -180,9 +184,12 @@ extension LevelTemplate {
             }
         }
         updatePgCount()
+        if let button = sender {
+            unselectCurrentButton(button: button)
+        }
     }
     
-    override func prevPage(index: Int) {
+    override func prevPage(sender: Button?, index: Int) {
         
         //has the same sort of logic as nextPage func
         if pageIndex >= 1 {
@@ -198,9 +205,12 @@ extension LevelTemplate {
             }
             updatePgCount()
         }
+        if let button = sender {
+            unselectCurrentButton(button: button)
+        }
     }
     
-    func returnToMainMenu(index: Int) {
+    func returnToMainMenu() {
         
         // bye bye audiokit
         do {

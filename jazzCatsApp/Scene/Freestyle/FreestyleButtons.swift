@@ -35,7 +35,7 @@ extension Freestyle {
         addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", label: "Flat", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
         //_ = addButton(buttonImage: "piano.png", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: 150, y: bottomY))
         addButton(buttonImage: UIImage(named: "select"), buttonAction: displayPopup, buttonIndex: 0, name: "selectNoteButton", label: "Select", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
-        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: selectNoteType, buttonIndex: 4, name: "addNotesButton", label: "Add", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
+        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: enterMode, buttonIndex: 0, name: "addNotesButton", label: "Add", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
         addButton(buttonImage: UIImage(named: "erase"), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", label: "Erase", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
         
         addButton(buttonImage: UIImage(named: "prev"), buttonAction: prevPage, buttonIndex: 0, name: "prevPage", label: "Prev", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
@@ -47,9 +47,11 @@ extension Freestyle {
         pgCountLabel.fontName = "Gaegu"
         pgCountLabel.position = CGPoint(x: rightX*0.75, y: bottomY - 80)
         addChild(pgCountLabel)
+        
+        super.setUpButtons()
     }
     
-    override func displayPopup(index: Int) {
+    override func displayPopup(sender: Button?, index: Int) {
        guard let gameVC = self.viewController as? GameViewController else {
             print("cant get viewcontroller")
             return
@@ -71,9 +73,11 @@ extension Freestyle {
         default:
             print("invalid popup index")
         }
+        
+        super.displayPopup(sender: sender, index: index)
     }
         
-    func returnToWelcomeScreen(index: Int) {
+    func returnToWelcomeScreen() {
         do {
             //mixer.stop()
             //mixer.detach()

@@ -12,15 +12,14 @@ import SpriteKit
 
 class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var availableNotes: Array<String> = []
+    var sounds = GameUser.sounds
     var selectedNote: String = ""
+    @IBOutlet weak var header: UILabel!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
-        availableNotes = Array(GameUser.sounds.keys)
         
         guard let parentVC = self.parent as! GameViewController? else {
             return
@@ -48,39 +47,59 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         DispatchQueue.main.async {
             self.view.backgroundColor = UIColor.clear
             UIStyling.setPopupBackground(popupView: self.bgView)
-            UIStyling.setButtonStyle(button: self.selectButton)
             UIStyling.setButtonStyle(button: self.cancelButton)
-            self.selectButton.layer.cornerRadius = 10
+            self.header.textColor = ColorPalette.lineColor
             self.cancelButton.layer.cornerRadius = 10
-            self.collectionView.backgroundColor = .white
+            self.collectionView.backgroundColor = ColorPalette.friendlyGold
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return availableNotes.count
+        return sounds.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noteSelection", for: indexPath) as! NoteSelectCell
 
-        cell.noteCellLabel.text = String(availableNotes[indexPath.row])
-        cell.noteCellImage.image = UIImage(named: availableNotes[indexPath.row])
+        cell.noteCellLabel.text = sounds[indexPath.row].name
+        cell.noteCellLabel.font = UIFont(name: "Gaegu-Regular", size: CGFloat(16))
+        cell.noteCellLabel.textColor = ColorPalette.lineColor
+        cell.noteCellImage.image = UIImage(named: sounds[indexPath.row].id)
+        cell.backgroundColor = ColorPalette.unselectedButton
         cell.layer.masksToBounds = true
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = CGFloat(5)
-        cell.layer.cornerRadius = CGFloat(5)
+        cell.layer.borderColor = ColorPalette.lineColor.cgColor
+        cell.layer.borderWidth = CGFloat(2)
+        cell.layer.cornerRadius = CGFloat(25)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(availableNotes[indexPath.row])
-        selectedNote = availableNotes[indexPath.row]
+        print(sounds[indexPath.row].id)
+        selectedNote = sounds[indexPath.row].id
+        
+        guard let parentVC = self.parent as! GameViewController?,
+            let musicScene = parentVC.currentScene as! MusicScene?,
+            let noteButton = musicScene.buttons.object(forKey: "addNotesButton")
+        else {
+            print("cant get parentvc or scene or button ouch")
+            self.view.removeFromSuperview()
+            return
+        }
+        
+        musicScene.selectedNote = selectedNote
+        noteButton.defaultButton = SKTexture(imageNamed: selectedNote)
+        noteButton.run(SKAction.setTexture(noteButton.defaultButton))
+        musicScene.currentMode = "addMode"
+        
+        self.view.removeFromSuperview()
+        parentVC.currentScene?.isPaused = false
+        parentVC.currentScene?.isUserInteractionEnabled = true
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let noOfCellsInRow = 6
+        let noOfCellsInRow = 4
 
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
 
@@ -102,28 +121,5 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         parentVC.currentScene?.isUserInteractionEnabled = true
         self.view.removeFromSuperview()
     }
-    
-    
-    @IBAction func selectButton(_ sender: UIButton) {
-        guard let parentVC = self.parent as! GameViewController?,
-            let musicScene = parentVC.currentScene as! MusicScene?,
-            let noteButton = musicScene.buttons.object(forKey: "addNotesButton")
-        else {
-            print("cant get parentvc or scene or button ouch")
-            self.view.removeFromSuperview()
-            return
-        }
-        
-        musicScene.selectedNote = selectedNote
-        noteButton.defaultButton = SKTexture(imageNamed: selectedNote)
-        noteButton.run(SKAction.setTexture(noteButton.defaultButton))
-        musicScene.currentMode = "addMode"
-        
-        self.view.removeFromSuperview()
-        parentVC.currentScene?.isPaused = false
-        parentVC.currentScene?.isUserInteractionEnabled = true
-
-    }
-    
 
 }

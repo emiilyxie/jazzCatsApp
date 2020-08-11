@@ -13,6 +13,7 @@ class LevelCompletePopupVC: UIViewController {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var nextLevelButton: UIButton!
     @IBOutlet weak var earnLabel: UILabel!
+    var rewardMessage: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,8 @@ class LevelCompletePopupVC: UIViewController {
             return
         }
         
-        earnLabel.text = String(describing: level.reward)
+        //earnLabel.text = String(describing: level.reward)
+        earnLabel.text = rewardMessage
     }
     
     @IBAction func nextLevelPressed(_ sender: UIButton) {

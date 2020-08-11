@@ -59,6 +59,7 @@
 		ADCAFDAD249E08DB00428C70 /* MusicSceneNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */; };
 		ADCAFDAF249E08E600428C70 /* MusicSceneSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */; };
 		ADCAFDB1249E08F300428C70 /* MusicScenePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */; };
+		ADCC4F6724DBA78400140E7F /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCC4F6624DBA78400140E7F /* Sounds.swift */; };
 		ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */; };
 		ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */; };
 		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
@@ -150,6 +151,7 @@
 		ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneNotes.swift; sourceTree = "<group>"; };
 		ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneSound.swift; sourceTree = "<group>"; };
 		ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScenePhysics.swift; sourceTree = "<group>"; };
+		ADCC4F6624DBA78400140E7F /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzText_Regular.ttf; sourceTree = "<group>"; };
 		ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Regular.ttf"; sourceTree = "<group>"; };
 		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			children = (
 				AD3826E1245D104E0027849D /* GameCamera.swift */,
 				AD3826E3245D106A0027849D /* Note.swift */,
+				ADCC4F6624DBA78400140E7F /* Sounds.swift */,
 				AD3826E5245D10930027849D /* Button.swift */,
 				AD08F56124732A0300863204 /* StaffBar.swift */,
 				AD9395AD247478250037E307 /* LevelSetup.swift */,
@@ -553,6 +556,7 @@
 				ADCAFDAD249E08DB00428C70 /* MusicSceneNotes.swift in Sources */,
 				AD21FDF924A98A030068A729 /* TutorialPopupVC.swift in Sources */,
 				AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */,
+				ADCC4F6724DBA78400140E7F /* Sounds.swift in Sources */,
 				ADFC5CEB2478847D00225610 /* SettingsPopupVC.swift in Sources */,
 				ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */,
 				ADFC5CD6247834CB00225610 /* LevelNotes.swift in Sources */,

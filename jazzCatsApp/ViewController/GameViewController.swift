@@ -103,7 +103,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    func showPopover(_ sender: Any, popupID: String) {
+    func showPopover(_ sender: Any, popupID: String, rewardMessage: String? = nil) {
         
         switch popupID {
             
@@ -130,6 +130,7 @@ class GameViewController: UIViewController {
             
         case Constants.levelCompleteID:
             let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.levelCompleteID) as! LevelCompletePopupVC
+            popoverVC.rewardMessage = rewardMessage
             self.addChild(popoverVC)
             popoverVC.view.frame = self.view.frame
             self.view.addSubview(popoverVC.view)

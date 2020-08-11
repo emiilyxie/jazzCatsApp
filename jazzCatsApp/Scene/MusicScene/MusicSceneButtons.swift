@@ -13,10 +13,15 @@ import AudioKit
 extension MusicScene {
     
     @objc func setUpButtons() {
-        preconditionFailure("must override setupbuttons")
+        //preconditionFailure("must override setupbuttons")
+        
+        if let addNoteButton = self.buttons.object(forKey: "addNotesButton") {
+            selectButton(button: addNoteButton)
+            selectedButton = addNoteButton
+        }
     }
     
-    func addButton(buttonImage: UIImage?, buttonAction: @escaping (Int) -> (), buttonIndex: Int, name: String, label: String, buttonPosition: CGPoint) {
+    func addButton(buttonImage: UIImage?, buttonAction: @escaping (Button?, Int) -> (), buttonIndex: Int, name: String, label: String, buttonPosition: CGPoint) {
         let newButton = Button(defaultButtonImage: buttonImage, action: buttonAction, index: buttonIndex, buttonName: name, buttonLabel: label)
         buttons.setObject(newButton, forKey: name as NSString)
         newButton.position = CGPoint(x: buttonPosition.x, y: buttonPosition.y+20)
@@ -28,7 +33,14 @@ extension MusicScene {
         addChild(button)
     }
     
-    func enterMode(index: Int) {
+    func enterMode(sender: Button?, index: Int) {
+        
+        if let pressedButton = sender  {
+            unselectCurrentButton()
+            selectButton(button: pressedButton)
+            selectedButton = sender
+        }
+        
         let measureBarResetPos = CGPoint(x: frame.minX + LevelSetup.indentLength - 50.0, y: barsNode.position.y + measureBar.size.height/2)
         let measureBarContinuePos = CGPoint(x: frame.minX + LevelSetup.indentLength, y: barsNode.position.y + measureBar.size.height/2)
         let resetPostion = SKAction.move(to: measureBarResetPos, duration: 0)
@@ -60,15 +72,14 @@ extension MusicScene {
         }
     }
     
-    func selectNoteType(index: Int) {
-        currentMode = "addMode"
+    @objc func displayPopup(sender: Button?, index: Int) {
+        //preconditionFailure("must override displaypopup")
+        if let button = sender {
+            unselectCurrentButton(button: button)
+        }
     }
     
-    @objc func displayPopup(index: Int) {
-        preconditionFailure("must override displaypopup")
-    }
-    
-    @objc func nextPage(index: Int) {
+    @objc func nextPage(sender: Button?, index: Int) {
         if pageIndex < maxPages - 1 {
             for note in pages[pageIndex] {
                 note.isHidden = true
@@ -81,9 +92,13 @@ extension MusicScene {
             }
         }
         updatePgCount()
+        if let button = sender {
+            unselectCurrentButton(button: button)
+        }
     }
     
-    @objc func prevPage(index: Int) {
+    @objc func prevPage(sender: Button?, index: Int) {
+        unselectCurrentButton()
         if pageIndex >= 1 {
             for note in pages[pageIndex] {
                 note.isHidden = true
@@ -96,10 +111,29 @@ extension MusicScene {
             }
         }
         updatePgCount()
+        if let button = sender {
+            unselectCurrentButton(button: button)
+        }
     }
     
     func updatePgCount() {
+        unselectCurrentButton()
         pgCountLabel.text = "page: \(pageIndex+1)/\(maxPages)"
     }
     
+    func selectButton(button: Button) {
+        button.bkgdShape.fillColor = ColorPalette.brightManuscript
+        button.selected = true
+        //selectedButton = button
+    }
+    
+    func unselectCurrentButton() {
+        selectedButton?.bkgdShape.fillColor = ColorPalette.unselectedButton
+        selectedButton?.selected = false
+    }
+    
+    func unselectCurrentButton(button: Button) {
+        button.bkgdShape.fillColor = ColorPalette.unselectedButton
+        button.selected = false
+    }
 }

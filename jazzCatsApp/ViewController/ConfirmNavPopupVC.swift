@@ -39,12 +39,12 @@ class ConfirmNavPopupVC: UIViewController {
         }
         if let freestyle = gameVC.currentScene as? Freestyle {
             self.view.removeFromSuperview()
-            freestyle.returnToWelcomeScreen(index: 0)
+            freestyle.returnToWelcomeScreen()
             return
         }
         if let level = gameVC.currentScene as? LevelTemplate {
             self.view.removeFromSuperview()
-            level.returnToMainMenu(index: 0)
+            level.returnToMainMenu()
             return
         }
         print("couldnt get scene")

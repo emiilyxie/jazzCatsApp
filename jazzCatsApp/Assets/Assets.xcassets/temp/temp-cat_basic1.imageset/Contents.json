@@ -5,11 +5,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "cat_basic@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cat_basic1@3x.png",
+      "filename" : "cat_basic@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -19,7 +19,7 @@ extension MusicScene {
         do {
             for i in 0...currentSounds.count-1 {
                 akSampleSampler = AKAppleSampler()
-                akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i]).mp3")
+                akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i].id).mp3")
                 try akSampleSampler.loadAudioFile(akSampleFile!)
                 samplers[i] = akSampleSampler
             }
@@ -42,13 +42,13 @@ extension MusicScene {
     func playNoteSound(note: Note) {
         let whichInstrument = note.noteType
         let whichNote = note.getMidiVal()
-        let soundIndex = currentSounds.firstIndex(of: whichInstrument)
-        if soundIndex == nil {
+        let soundIndex = GameUser.unlockedSoundNames.firstIndex(of: whichInstrument)
+        guard let index = soundIndex else {
             print("couldn't get sound")
             return
         }
         do {
-            try samplers[soundIndex!].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
+            try samplers[index].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
         }
         catch {
             print(error)

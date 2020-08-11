@@ -17,19 +17,15 @@ class WelcomeScreen: UIViewController {
     @IBOutlet weak var accountButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var freestyleButton: UIButton!
-    
-    override func viewDidAppear(_ animated: Bool) {
-        //super.viewWillAppear(animated)
-        isSignedInResponse()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        isSignedInResponse()
         setUpGraphics()
     }
     
     func isSignedInResponse() {
-        
+        UIStyling.showLoading(view: self.view)
         let signInHandler = Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
                 // if user is signed in, then cool
@@ -39,6 +35,7 @@ class WelcomeScreen: UIViewController {
             else {
                 self.goToSignIn(self)
             }
+            UIStyling.hideLoading(view: self.view)
         }
         
         Auth.auth().removeStateDidChangeListener(signInHandler)
@@ -74,8 +71,9 @@ class WelcomeScreen: UIViewController {
                 GameUser.levelProgress = document.get("level-progress") as? Dictionary ?? [:]
                 GameUser.gameCurrency = document.get("game-currency") as? Int ?? 100
                 GameUser.hints = document.get("hints") as? Int ?? 10
-                GameUser.sounds = document.get("sounds") as? Dictionary ?? ["cat_basic1" : 0]
-                GameUser.sortSounds()
+                GameUser.unlockedSoundNames = document.get("unlocked-sounds") as? [String] ?? ["cat_basic1"]
+                GameUser.setSounds()
+                //GameUser.sortSounds()
                 //self.userIDLabel.text = "Hi \(GameUser.nickname ?? "")!"
             }
             else {

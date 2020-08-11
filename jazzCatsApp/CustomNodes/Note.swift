@@ -20,7 +20,7 @@ public class Note: SKSpriteNode {
         soundBase = type
         audioFile = "\(type).mp3"
         
-        super.init(texture: noteTexture, color: UIColor.clear, size: CGSize(width: 40, height: 40))
+        super.init(texture: noteTexture, color: UIColor.clear, size: CGSize(width: 50, height: 50))
         
         self.name = "note"
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)

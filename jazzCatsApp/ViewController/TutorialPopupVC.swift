@@ -121,7 +121,7 @@ class TutorialPopupVC: UIViewController {
             musicScene.addChild(whereToPress)
             
             let action = {(_: CGPoint?) -> () in
-                button.action(button.index)
+                button.action(button, button.index)
             }
             progressAction = action
             

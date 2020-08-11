@@ -47,7 +47,7 @@ extension LevelTemplate {
         do {
             for i in 0...currentSounds.count-1 {
                 akSampleSampler = AKAppleSampler()
-                akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i]).mp3")
+                akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i].id).mp3")
                 try akSampleSampler.loadAudioFile(akSampleFile!)
                 samplers[i] = akSampleSampler
             }

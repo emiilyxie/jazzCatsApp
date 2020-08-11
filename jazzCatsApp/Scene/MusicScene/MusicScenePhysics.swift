@@ -45,11 +45,11 @@ extension MusicScene: SKPhysicsContactDelegate {
            
            if contactMask == PhysicsCategories.measureBarCategory | PhysicsCategories.finalBarCategory {
                if pageIndex < maxPages - 1 {
-                   nextPage(index: 0)
-                   enterMode(index: 6)
+                    nextPage(sender: nil, index: 0)
+                    enterMode(sender: nil, index: 6)
                }
                else {
-                   enterMode(index: 5)
+                   enterMode(sender: nil, index: 5)
                }
            }
        }

@@ -98,8 +98,8 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
             note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
         }
         
-        musicScene.enterMode(index: 5) // stop & reset
-        musicScene.enterMode(index: 3) // play
+        musicScene.enterMode(sender: musicScene.buttons.object(forKey: "stopButton"), index: 5) // stop & reset
+        musicScene.enterMode(sender: musicScene.buttons.object(forKey: "playButton"), index: 3) // play
     }
     
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {

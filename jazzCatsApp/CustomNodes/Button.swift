@@ -3,27 +3,29 @@ import UIKit
 
 public class Button: SKSpriteNode {
     
-    //var bkgdShape: SKShapeNode
+    var bkgdShape: SKShapeNode
     var defaultButton: SKTexture
-    var action: (Int) -> Void
+    var action: (Button?, Int) -> Void
     var index: Int
+    var selected = false
     
-    public init(defaultButtonImage: UIImage?, action: @escaping (Int) -> Void, index: Int, buttonName: String, buttonLabel: String) {
+    public init(defaultButtonImage: UIImage?, action: @escaping (Button?, Int) -> Void, index: Int, buttonName: String, buttonLabel: String) {
 
         defaultButton = SKTexture(image: defaultButtonImage ?? UIImage())
         self.action = action
         self.index = index
         
-        super.init(texture: defaultButton, color: UIColor.clear, size: CGSize(width: 70, height: 70))
-        self.name = buttonName
-        isUserInteractionEnabled = true
-        
-        let bkgdShape = SKShapeNode(rectOf: CGSize(width: 100, height: 100), cornerRadius: 20)
-        bkgdShape.lineWidth = 6
+        self.bkgdShape = SKShapeNode(rectOf: CGSize(width: 120, height: 120), cornerRadius: 20)
+        bkgdShape.lineWidth = 3
         bkgdShape.strokeColor = ColorPalette.lineColor
         bkgdShape.fillColor = ColorPalette.unselectedButton
         bkgdShape.zPosition = -1
         bkgdShape.position = CGPoint(x: 0, y: -20)
+        
+        super.init(texture: defaultButton, color: UIColor.clear, size: CGSize(width: 70, height: 70))
+        self.name = buttonName
+        isUserInteractionEnabled = true
+
         self.addChild(bkgdShape)
         
         let label = SKLabelNode(text: buttonLabel)
@@ -41,6 +43,8 @@ public class Button: SKSpriteNode {
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        action(index)
+        let scene = self.scene as? MusicScene
+        scene?.selectButton(button: self)
+        action(self, index)
     }
 }
