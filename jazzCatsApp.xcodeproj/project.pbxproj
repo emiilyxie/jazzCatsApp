@@ -15,6 +15,7 @@
 		AD0D2D4924ADB59E0098E744 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0D2D4824ADB59E0098E744 /* SignInVC.swift */; };
 		AD21FDF724A976830068A729 /* basics1tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD21FDF624A976830068A729 /* basics1tutorial */; };
 		AD21FDF924A98A030068A729 /* TutorialPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */; };
+		AD242BAA24E3A6F800CAD3A0 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD242BA924E3A6F800CAD3A0 /* Conductor.swift */; };
 		AD3826C3245D0F610027849D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826C2245D0F610027849D /* AppDelegate.swift */; };
 		AD3826CB245D0F610027849D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826CA245D0F610027849D /* GameViewController.swift */; };
 		AD3826CE245D0F610027849D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3826CC245D0F610027849D /* Main.storyboard */; };
@@ -106,6 +107,7 @@
 		AD0D2D4824ADB59E0098E744 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		AD21FDF624A976830068A729 /* basics1tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics1tutorial; sourceTree = "<group>"; };
 		AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPopupVC.swift; sourceTree = "<group>"; };
+		AD242BA924E3A6F800CAD3A0 /* Conductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		AD3826BF245D0F610027849D /* jazzCatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jazzCatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3826C2245D0F610027849D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD3826CA245D0F610027849D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				AD3826E1245D104E0027849D /* GameCamera.swift */,
 				AD3826E3245D106A0027849D /* Note.swift */,
 				ADCC4F6624DBA78400140E7F /* Sounds.swift */,
+				AD242BA924E3A6F800CAD3A0 /* Conductor.swift */,
 				AD3826E5245D10930027849D /* Button.swift */,
 				AD08F56124732A0300863204 /* StaffBar.swift */,
 				AD9395AD247478250037E307 /* LevelSetup.swift */,
@@ -594,6 +597,7 @@
 				AD92D0FE247F0BC500F8F807 /* SignInEmailVC.swift in Sources */,
 				AD9395AE247478250037E307 /* LevelSetup.swift in Sources */,
 				AD3826E2245D104E0027849D /* GameCamera.swift in Sources */,
+				AD242BAA24E3A6F800CAD3A0 /* Conductor.swift in Sources */,
 				ADFC5CDD247850DC00225610 /* FreestyleButtons.swift in Sources */,
 				ADFC5CD82478352700225610 /* LevelPhysics.swift in Sources */,
 				AD08F5682473371A00863204 /* FreestyleScene.swift in Sources */,

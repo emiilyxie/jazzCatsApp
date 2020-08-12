@@ -103,11 +103,17 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="205" height="29"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="17"/>
                                                                         <state key="normal" title="Guide"/>
+                                                                        <connections>
+                                                                            <action selector="guideButtonPressed:" destination="rou-EE-fCa" eventType="touchUpInside" id="jv6-pr-XBh"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJY-1a-lqu">
                                                                         <rect key="frame" x="235" y="0.0" width="205" height="29"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="17"/>
                                                                         <state key="normal" title="Follow"/>
+                                                                        <connections>
+                                                                            <action selector="followButtonPressed:" destination="rou-EE-fCa" eventType="touchUpInside" id="ADx-8X-Kox"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -115,6 +121,9 @@
                                                                 <rect key="frame" x="0.0" y="156" width="440" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="17"/>
                                                                 <state key="normal" title="Restore Purchases"/>
+                                                                <connections>
+                                                                    <action selector="restoreButtonPressed:" destination="rou-EE-fCa" eventType="touchUpInside" id="1Ls-CX-Kqd"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZt-8l-mgP">
                                                                 <rect key="frame" x="0.0" y="195" width="440" height="29"/>
@@ -143,7 +152,7 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gju-Vy-UzG" userLabel="back button">
+                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gju-Vy-UzG" userLabel="back button">
                                                         <rect key="frame" x="20" y="20" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="gju-Vy-UzG" secondAttribute="height" id="cDi-R2-mT4"/>

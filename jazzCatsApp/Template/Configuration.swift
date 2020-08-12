@@ -98,6 +98,27 @@ struct UIStyling {
         activityIndicator = nil
         view.isUserInteractionEnabled = true
     }
+    
+    static func showAlert(viewController: UIViewController, text: String) {
+        let alertView = UIButton()
+        alertView.setTitle(text, for: .normal)
+        alertView.titleLabel?.font = UIFont(name: "Gaegu-Bold", size: 14)
+        alertView.backgroundColor = ColorPalette.lineColor
+        alertView.layer.masksToBounds = true
+        alertView.layer.cornerRadius = 5
+        alertView.titleLabel?.textColor = .white
+        
+        //viewController.addChild(alertView)
+        alertView.frame = CGRect(width: 150, height: 40)
+        viewController.view.addSubview(alertView)
+        alertView.bringSubviewToFront(viewController.view)
+        alertView.center = viewController.view.center
+        
+        //alertView.didMove(toParent: viewController)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            alertView.removeFromSuperview()
+        }
+    }
 }
 
 enum ButtonType: String {
@@ -120,6 +141,13 @@ struct MusicValues {
 
 public func scaleNode(size: CGSize, factor: Double) -> CGSize {
     return CGSize(width: size.width * CGFloat(factor), height: size.height * CGFloat(factor))
+}
+
+extension UILabel {
+    open override func draw(_ rect: CGRect) {
+        let insets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        super.draw(rect.inset(by: insets))
+    }
 }
 
 /*

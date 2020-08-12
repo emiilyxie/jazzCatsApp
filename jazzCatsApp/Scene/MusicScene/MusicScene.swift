@@ -18,6 +18,7 @@ public class MusicScene: SKScene {
     var staffBarNumber: Int = LevelSetup.defaultStaffBarNumber
     var staffTotalHeight: CGFloat
 
+    var tempo: Int = LevelSetup.defaultTempo
     var numberOfMeasures: Int = LevelSetup.defaultNumberOfMeasures
     var bpm: Int = LevelSetup.defaultBpm
     var subdivision: Int = LevelSetup.defaultSubdivision
@@ -35,6 +36,7 @@ public class MusicScene: SKScene {
     
     var barsNode = SKNode()
     var measureBar: SKSpriteNode
+    var barVelocity: CGFloat
     var selectedNote: String = "cat_basic1"
     weak var selectedButton: Button?
     var currentMode: String = "addMode"
@@ -42,11 +44,15 @@ public class MusicScene: SKScene {
     var noteData = Set<[CGFloat]>()
     
     var currentSounds = GameUser.sounds
-    var samplers: Array<AKAppleSampler> = []
+    //var samplers: Array<AKAppleSampler> = []
+    var samplers: Array<AKMIDISampler> = []
     var mixer = AKMixer()
+    var sequencer = AKAppleSequencer()
+    //let conductor = Conductor()
 
-    public init(size: CGSize, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?) {
+    public init(size: CGSize, tempo: Int?, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?) {
         
+        self.tempo = tempo ?? LevelSetup.defaultTempo
         self.numberOfMeasures = numberOfMeasures ?? LevelSetup.defaultNumberOfMeasures
         self.bpm = bpm ?? LevelSetup.defaultBpm
         self.subdivision = subdivision ?? LevelSetup.defaultSubdivision
@@ -62,7 +68,9 @@ public class MusicScene: SKScene {
         self.divisionWidth = self.resultWidth/CGFloat(self.totalDivision)
         self.pages = [[Note]](repeating: [], count: self.maxPages)
         self.measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: self.staffTotalHeight + 30))
+        self.barVelocity = CGFloat(self.tempo) / 60 * self.beatWidth
                 
+        //conductor.setUpTracks()
         super.init(size: size)
         self.backgroundColor = ColorPalette.brightManuscript
 

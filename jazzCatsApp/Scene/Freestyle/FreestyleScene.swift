@@ -19,7 +19,7 @@ public class Freestyle: MusicScene {
     public var oldSubdivision: Int!
     
     init(size: CGSize) {
-        super.init(size: size, numberOfMeasures: nil, bpm: nil, subdivision: nil, maxPages: nil)
+        super.init(size: size, tempo: nil, numberOfMeasures: nil, bpm: nil, subdivision: nil, maxPages: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {

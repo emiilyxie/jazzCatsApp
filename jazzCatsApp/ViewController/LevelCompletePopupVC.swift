@@ -32,17 +32,6 @@ class LevelCompletePopupVC: UIViewController {
     }
     
     func displayRewards() {
-        guard let gameVC = self.parent as? GameViewController else {
-            print("cant get parent")
-            return
-        }
-        
-        guard let level = gameVC.currentScene as? LevelTemplate else {
-            print("cant get level")
-            return
-        }
-        
-        //earnLabel.text = String(describing: level.reward)
         earnLabel.text = rewardMessage
     }
     

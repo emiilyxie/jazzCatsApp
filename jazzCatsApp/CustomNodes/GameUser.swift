@@ -141,43 +141,47 @@ struct GameUser {
         guard let uid = uid else {
             return
         }
-        let userRef = getFIRUserDoc(uid: uid)
-        let soundsRef = Firestore.firestore().collection("/sounds").document(newSound)
         
-        self.unlockedSoundNames.append(newSound)
-        userRef.setData(["unlocked-sounds" : self.unlockedSoundNames], merge: true)
-        // getting index of the sound so that it can be sorted
+        if !(self.unlockedSoundNames.contains(newSound)) {
         
-        soundsRef.getDocument { (document, err) in
-            if err != nil {
-                print(err!.localizedDescription)
-                return
-            }
-            if let document = document, document.exists {
-                if let soundData = document.data() {
-                    let sound = Sound(data: soundData, unlocked: true)
-                    sounds.append(sound)
-                    self.sounds = Sounds.sortSounds(sounds: sounds)
-                }
-                else {
-                    print("cant get sound doc data")
+            let userRef = getFIRUserDoc(uid: uid)
+            let soundsRef = Firestore.firestore().collection("/sounds").document(newSound)
+            
+            self.unlockedSoundNames.append(newSound)
+            userRef.setData(["unlocked-sounds" : self.unlockedSoundNames], merge: true)
+            // getting index of the sound so that it can be sorted
+            
+            soundsRef.getDocument { (document, err) in
+                if err != nil {
+                    print(err!.localizedDescription)
                     return
                 }
-            }
-            else {
-                print("cant get sound document")
-                return
-                /*
-                let soundIndex = document?.get("index") as! Int
-                self.sounds[newSound] = soundIndex
-                self.sortSounds()
-                userRef.setData(["sounds" : self.sounds], merge: true) { (err) in
-                    if err != nil {
-                        print(err!.localizedDescription)
+                if let document = document, document.exists {
+                    if let soundData = document.data() {
+                        let sound = Sound(data: soundData, unlocked: true)
+                        sounds.append(sound)
+                        self.sounds = Sounds.sortSounds(sounds: sounds)
+                    }
+                    else {
+                        print("cant get sound doc data")
                         return
                     }
                 }
- */
+                else {
+                    print("cant get sound document")
+                    return
+                    /*
+                    let soundIndex = document?.get("index") as! Int
+                    self.sounds[newSound] = soundIndex
+                    self.sortSounds()
+                    userRef.setData(["sounds" : self.sounds], merge: true) { (err) in
+                        if err != nil {
+                            print(err!.localizedDescription)
+                            return
+                        }
+                    }
+     */
+                }
             }
         }
     }

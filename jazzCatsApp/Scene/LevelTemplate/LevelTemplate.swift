@@ -35,7 +35,7 @@ public class LevelTemplate: MusicScene {
     var hintNum = 0
     var reward: Dictionary<String, Any>
     
-    public init(size: CGSize, levelGroup: String, levelNum: Int, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?, lvlAns: Set<[CGFloat]>, reward: Dictionary<String, Any>?) {
+    public init(size: CGSize, levelGroup: String, levelNum: Int, tempo: Int?, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?, lvlAns: Set<[CGFloat]>, reward: Dictionary<String, Any>?) {
         
         self.levelGroup = levelGroup
         self.levelNum = levelNum
@@ -47,7 +47,7 @@ public class LevelTemplate: MusicScene {
         //self.myAns: Set<[CGFloat]> = []
         self.reward = reward ?? LevelSetup.defaultReward
         
-        super.init(size: size, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages)
+        super.init(size: size, tempo: tempo, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages)
         
     }
     

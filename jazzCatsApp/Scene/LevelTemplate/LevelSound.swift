@@ -37,16 +37,21 @@ extension LevelTemplate {
         catch {
             print(error)
         }
+        
+        setUpSequencer(noteData: lvlAns)
     }
     
     func setUpSamples() {
         
         var akSampleFile: AKAudioFile!
-        var akSampleSampler: AKAppleSampler!
-        samplers = [AKAppleSampler](repeating: AKAppleSampler(), count: currentSounds.count)
+        //var akSampleSampler: AKAppleSampler!
+        var akSampleSampler = AKMIDISampler()
+        //samplers = [AKAppleSampler](repeating: AKAppleSampler(), count: currentSounds.count)
+        samplers = [AKMIDISampler](repeating: AKMIDISampler(), count: currentSounds.count)
         do {
             for i in 0...currentSounds.count-1 {
-                akSampleSampler = AKAppleSampler()
+                //akSampleSampler = AKAppleSampler()
+                akSampleSampler = AKMIDISampler()
                 akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i].id).mp3")
                 try akSampleSampler.loadAudioFile(akSampleFile!)
                 samplers[i] = akSampleSampler

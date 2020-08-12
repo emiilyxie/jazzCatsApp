@@ -64,7 +64,30 @@ extension LevelTemplate {
     }
     
     func playSample(sender: Button?, index: Int) {
-        ansSongPlayer?.play()
+        //ansSongPlayer?.play()
+        let soundIndex = GameUser.unlockedSoundNames.firstIndex(of: selectedNote)
+        sequencer.tracks[0].setMIDIOutput(samplers[soundIndex ?? 0].midiIn)
+        if sequencer.isPlaying {
+            self.sequencer.stop()
+            self.sequencer.rewind()
+            if let button = sender {
+                unselectCurrentButton(button: button)
+            }
+        }
+        else {
+            sequencer.play()
+            
+            let sequenceTime = AKDuration(beats: maxPages * numberOfMeasures * bpm, tempo: BPM(tempo))
+            DispatchQueue.main.asyncAfter(deadline: .now() + sequenceTime.seconds) {
+                if self.sequencer.currentPosition >= AKDuration(beats: self.maxPages * self.numberOfMeasures * self.bpm - 1.0) {
+                    self.sequencer.stop()
+                    self.sequencer.rewind()
+                    if let button = sender {
+                        self.unselectCurrentButton(button: button)
+                    }
+                }
+            }
+        }
     }
     
     func generateHint(sender: Button?, index: Int) {
@@ -90,6 +113,10 @@ extension LevelTemplate {
                 
             }
             }
+        }
+        
+        if let button = sender {
+            unselectCurrentButton(button: button)
         }
     }
     

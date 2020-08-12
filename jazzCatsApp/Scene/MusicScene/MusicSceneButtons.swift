@@ -55,7 +55,8 @@ extension MusicScene {
             //currentMode = "navigateMode"
         case 3:
             //currentMode = "playMode"
-            measureBar.physicsBody?.velocity = CGVector(dx: 500, dy: 0)
+            //measureBar.physicsBody?.velocity = CGVector(dx: 500, dy: 0)
+            measureBar.physicsBody?.velocity = CGVector(dx: barVelocity, dy: 0)
         case 4:
             measureBar.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         case 5:

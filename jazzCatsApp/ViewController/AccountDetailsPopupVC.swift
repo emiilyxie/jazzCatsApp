@@ -39,6 +39,7 @@ class AccountDetailsPopupVC: UIViewController {
             for button in self.buttons {
                 UIStyling.setButtonStyle(button: button)
             }
+            self.backButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
             self.backButton.layer.cornerRadius = 5
         }
     }
@@ -49,6 +50,17 @@ class AccountDetailsPopupVC: UIViewController {
         userIDLabel.text = GameUser.uid
     }
 
+    @IBAction func guideButtonPressed(_ sender: Any) {
+        UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+    }
+    
+    @IBAction func followButtonPressed(_ sender: Any) {
+        UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+    }
+    
+    @IBAction func restoreButtonPressed(_ sender: Any) {
+        UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+    }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         self.view.removeFromSuperview()
@@ -61,6 +73,15 @@ class AccountDetailsPopupVC: UIViewController {
         }
         self.view.removeFromSuperview()
         welcomeScreen.signOut(self)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        //location is relative to the current view
+        // do something with the touched point
+        if touch?.view != bgView {
+            self.view.removeFromSuperview()
+        }
     }
     
     

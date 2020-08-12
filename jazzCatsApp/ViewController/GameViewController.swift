@@ -82,6 +82,7 @@ class GameViewController: UIViewController {
                 return
             }
             if let document = document, document.exists {
+                let tempo = document.get("tempo") as? Int
                 let numberOfMeasures = document.get("number-of-measures") as? Int
                 let bpm = document.get("bpm") as? Int
                 let subdivision = document.get("subdivision") as? Int
@@ -91,7 +92,7 @@ class GameViewController: UIViewController {
                 let tutorialData = document.get("dialogue") as? Array<Dictionary<String, Any>>
                 
                 if let lvlAnsString = document.get("answer") as? String {
-                    let level = LevelTemplate(size: LevelSetup.sceneSize, levelGroup: levelGroup, levelNum: levelNum, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: [], reward: reward)
+                    let level = LevelTemplate(size: LevelSetup.sceneSize, levelGroup: levelGroup, levelNum: levelNum, tempo: tempo, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: [], reward: reward)
                     let lvlAns = LevelSetup.parseLvlAns(json: lvlAnsString, maxPages: level.maxPages)
                     level.lvlAns = lvlAns
                     showScene(level)

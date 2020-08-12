@@ -76,6 +76,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         header.text = levelGroup.capitalized
         
         UIStyling.setButtonStyle(button: backButton)
+        backButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         backButton.layer.cornerRadius = 5
         backButton.backgroundColor = .white
     }

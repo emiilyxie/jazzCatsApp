@@ -18,6 +18,7 @@ public struct LevelSetup {
     
     static let defaultStaffBarHeight = CGFloat(32)
     static let defaultStaffBarNumber = 12
+    static let defaultTempo = 100
     static let defaultNumberOfMeasures = 2
     static let defaultBpm = 4
     static let defaultSubdivision = 2
