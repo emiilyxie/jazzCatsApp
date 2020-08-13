@@ -47,4 +47,5 @@ public class Button: SKSpriteNode {
         scene?.selectButton(button: self)
         action(self, index)
     }
+    
 }

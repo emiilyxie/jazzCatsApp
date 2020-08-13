@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "piano1@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "piano1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

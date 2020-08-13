@@ -11,26 +11,112 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class CreateAccVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        dismissKeyboard()
-    }
     
-    
-    @IBOutlet weak var errorMessage: UILabel!
+    @IBOutlet weak var header: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var tempTextField: UITextField!
+    @IBOutlet weak var jamButton: UIButton!
     
+    var currentlyEditing: UITextField?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUpGraphics()
+        setUpKeyboard()
+    }
+    
+    func setUpGraphics() {
+        self.view.backgroundColor = ColorPalette.brightManuscript
+        UIStyling.setHeader(header: header)
+        
+        UIStyling.setButtonStyle(button: backButton)
+        backButton.layer.cornerRadius = 5
+        backButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        
+        UIStyling.setButtonStyle(button: jamButton)
+        jamButton.backgroundColor = ColorPalette.friendlyGold
+        jamButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        jamButton.layer.cornerRadius = 24
+        
+        UIStyling.setTextField(textField: nameTextField, placeholder: "Nickname")
+        UIStyling.setTextField(textField: emailTextField, placeholder: "Email")
+        UIStyling.setTextField(textField: passwordTextField, placeholder: "Password")
+        UIStyling.setTextField(textField: tempTextField, placeholder: "Temp")
+        tempTextField.isHidden = true
+    }
+    
+    func setUpKeyboard() {
+        dismissKeyboard()
+        nameTextField.returnKeyType = .next
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.returnKeyType = .next
+        passwordTextField.returnKeyType = .done
+    }
+    
+    @IBAction func namePressed(_ sender: Any) {
+        tempTextField.isHidden = false
+        nameTextField.isHidden = true
+        emailTextField.isHidden = true
+        passwordTextField.isHidden = true
+        
+        //tempPressed(self)
+        DispatchQueue.main.async {
+            self.tempTextField.becomeFirstResponder()
+        }
+        tempTextField.placeholder = nameTextField.placeholder
+        tempTextField.text = nameTextField.text
+        currentlyEditing = nameTextField
+    }
+    
+    @IBAction func emailPressed(_ sender: Any) {
+        tempTextField.isHidden = false
+        nameTextField.isHidden = true
+        emailTextField.isHidden = true
+        passwordTextField.isHidden = true
+        
+        //tempPressed(self)
+        DispatchQueue.main.async {
+            self.tempTextField.becomeFirstResponder()
+        }
+        tempTextField.placeholder = emailTextField.placeholder
+        tempTextField.text = emailTextField.text
+        currentlyEditing = emailTextField
+    }
+    
+    @IBAction func passwordPressed(_ sender: Any) {
+        tempTextField.isHidden = false
+        nameTextField.isHidden = true
+        emailTextField.isHidden = true
+        passwordTextField.isHidden = true
+        
+        //tempPressed(self)
+        DispatchQueue.main.async {
+            self.tempTextField.becomeFirstResponder()
+        }
+        tempTextField.placeholder = passwordTextField.placeholder
+        tempTextField.text = passwordTextField.text
+        currentlyEditing = passwordTextField
+    }
+    
+    @IBAction func tempDone(_ sender: Any) {
+        tempTextField.isHidden = true
+        nameTextField.isHidden = false
+        emailTextField.isHidden = false
+        passwordTextField.isHidden = false
+
+        currentlyEditing?.text = tempTextField.text
+    }
     
     @IBAction func createAccButton(_ sender: Any) {
         // 1. validate fields
         let error = validateFields()
         if error != nil {
             // then show the error message
-            errorMessage.text = error
-            errorMessage.isHidden = false
+            UIStyling.showAlert(viewController: self, text: error!)
         }
         else {
             // continue with login
@@ -41,8 +127,7 @@ class CreateAccVC: UIViewController {
                 
                 if err != nil {
                     print(err!.localizedDescription)
-                    self.errorMessage.text = err?.localizedDescription
-                    self.errorMessage.isHidden = false
+                    UIStyling.showAlert(viewController: self, text: err!.localizedDescription)
                     return
                 }
                 else {
@@ -98,7 +183,12 @@ class CreateAccVC: UIViewController {
     
     // unwind segues
     @IBAction func unwindFromCreateAccToWelcome(_ sender: Any) {
-        performSegue(withIdentifier: "fromCreateAccToWelcomeUSegue", sender: nil)
+        performSegue(withIdentifier: Constants.createAccToWelcome, sender: self)
     }
+    
+    @IBAction func unwindFromCreateAccToSignIn(_ sender: Any) {
+        performSegue(withIdentifier: Constants.createAccToSignIn, sender: self)
+    }
+    
 
 }

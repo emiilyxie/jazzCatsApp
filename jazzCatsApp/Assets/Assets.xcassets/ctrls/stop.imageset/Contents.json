@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "stop@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "stop@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

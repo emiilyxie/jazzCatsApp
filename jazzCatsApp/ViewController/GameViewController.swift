@@ -12,16 +12,20 @@ import FirebaseFirestore
 
 class GameViewController: UIViewController {
     
+    weak var sourceVC: UIViewController?
     var levelGroup: String = ""
     var selectedLevel: Int = 0
     var maxlevel: Int = 0
     var freestyleMode = false
     var currentScene: SKScene?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         UIStyling.showLoading(view: self.view)
+        
+        if let source = sourceVC {
+            UIStyling.hideLoading(view: source.view)
+        }
         
         if !freestyleMode {
             showLevel()
@@ -163,13 +167,12 @@ class GameViewController: UIViewController {
     
     // unwind segues
     @IBAction func unwindFromGameToWelcome(_ sender: Any) {
-        performSegue(withIdentifier: "fromGameToWelcomeUSegue", sender: nil)
+        performSegue(withIdentifier: "fromGameToWelcomeUSegue", sender: self)
     }
     
     @IBAction func unwindFromGameToLevelSelect(_ sender: Any) {
-        performSegue(withIdentifier: "fromGameToLevelSelectUSegue", sender: nil)
+        performSegue(withIdentifier: "fromGameToLevelSelectUSegue", sender: self)
     }
-
     
 }
 

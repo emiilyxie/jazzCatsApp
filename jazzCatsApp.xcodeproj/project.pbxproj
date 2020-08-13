@@ -64,6 +64,12 @@
 		ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */; };
 		ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */; };
 		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
+		ADF47DD324E4751E00CFD4A7 /* saxophone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADF47DD224E4751E00CFD4A7 /* saxophone1.mp3 */; };
+		ADF47DDA24E47A5100CFD4A7 /* bass1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADF47DD524E47A5000CFD4A7 /* bass1.mp3 */; };
+		ADF47DDB24E47A5100CFD4A7 /* trumpet1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADF47DD624E47A5000CFD4A7 /* trumpet1.mp3 */; };
+		ADF47DDC24E47A5100CFD4A7 /* drumhihat1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADF47DD724E47A5000CFD4A7 /* drumhihat1.mp3 */; };
+		ADF47DDD24E47A5100CFD4A7 /* drumsnare1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADF47DD824E47A5100CFD4A7 /* drumsnare1.mp3 */; };
+		ADF47DDF24E47B6500CFD4A7 /* trombone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADF47DDE24E47B6500CFD4A7 /* trombone1.mp3 */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
 		ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */; };
 		ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */; };
@@ -80,7 +86,6 @@
 		ADFC5CEB2478847D00225610 /* SettingsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */; };
 		ADFC5CED247893DE00225610 /* piano1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEC247893DE00225610 /* piano1.mp3 */; };
 		ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEE247893F800225610 /* cat_basic1.mp3 */; };
-		ADFC5CF12478945300225610 /* snare1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CF02478945300225610 /* snare1.mp3 */; };
 		D7102F5BAC4B7E69ACB26ECA /* Pods_jazzCatsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +162,12 @@
 		ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzText_Regular.ttf; sourceTree = "<group>"; };
 		ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Regular.ttf"; sourceTree = "<group>"; };
 		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ADF47DD224E4751E00CFD4A7 /* saxophone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = saxophone1.mp3; path = "../../../../../game-assets/audio/saxophone1.mp3"; sourceTree = "<group>"; };
+		ADF47DD524E47A5000CFD4A7 /* bass1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bass1.mp3; sourceTree = "<group>"; };
+		ADF47DD624E47A5000CFD4A7 /* trumpet1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trumpet1.mp3; sourceTree = "<group>"; };
+		ADF47DD724E47A5000CFD4A7 /* drumhihat1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drumhihat1.mp3; sourceTree = "<group>"; };
+		ADF47DD824E47A5100CFD4A7 /* drumsnare1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drumsnare1.mp3; sourceTree = "<group>"; };
+		ADF47DDE24E47B6500CFD4A7 /* trombone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trombone1.mp3; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleRecordingFails.swift; sourceTree = "<group>"; };
 		ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupsVC.swift; sourceTree = "<group>"; };
@@ -173,7 +184,6 @@
 		ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupVC.swift; sourceTree = "<group>"; };
 		ADFC5CEC247893DE00225610 /* piano1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano1.mp3; sourceTree = "<group>"; };
 		ADFC5CEE247893F800225610 /* cat_basic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic1.mp3; sourceTree = "<group>"; };
-		ADFC5CF02478945300225610 /* snare1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snare1.mp3; sourceTree = "<group>"; };
 		B4D4512561694B850C9F9BD4 /* Pods-jazzCatsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jazzCatsApp.release.xcconfig"; path = "Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp.release.xcconfig"; sourceTree = "<group>"; };
 		CED5AB26DDBF3FB455552657 /* Pods-jazzCatsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jazzCatsApp.debug.xcconfig"; path = "Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jazzCatsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,9 +263,14 @@
 			children = (
 				ADCAFDA0249E05D800428C70 /* basics1.mp3 */,
 				ADCAFDA2249E061300428C70 /* basics2.mp3 */,
-				ADCAFDA3249E061500428C70 /* intermediate1.mp3 */,
 				ADCAFDA4249E061600428C70 /* coltrane1.mp3 */,
-				ADFC5CF02478945300225610 /* snare1.mp3 */,
+				ADCAFDA3249E061500428C70 /* intermediate1.mp3 */,
+				ADF47DD224E4751E00CFD4A7 /* saxophone1.mp3 */,
+				ADF47DD524E47A5000CFD4A7 /* bass1.mp3 */,
+				ADF47DD724E47A5000CFD4A7 /* drumhihat1.mp3 */,
+				ADF47DD824E47A5100CFD4A7 /* drumsnare1.mp3 */,
+				ADF47DDE24E47B6500CFD4A7 /* trombone1.mp3 */,
+				ADF47DD624E47A5000CFD4A7 /* trumpet1.mp3 */,
 				ADFC5CEE247893F800225610 /* cat_basic1.mp3 */,
 				ADFC5CEC247893DE00225610 /* piano1.mp3 */,
 				AD3826F2245D22530027849D /* kitten-meow.wav */,
@@ -485,17 +500,22 @@
 				ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
+				ADF47DDC24E47A5100CFD4A7 /* drumhihat1.mp3 in Resources */,
 				AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */,
 				ADBE499E24BBE289002D5B49 /* coltrane1 in Resources */,
+				ADF47DDA24E47A5100CFD4A7 /* bass1.mp3 in Resources */,
 				AD700CD224AB08E000881EBE /* buttonLocations in Resources */,
 				ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */,
+				ADF47DD324E4751E00CFD4A7 /* saxophone1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
 				AD7EF23924B165C9009875CA /* Gaegu-Bold.ttf in Resources */,
-				ADFC5CF12478945300225610 /* snare1.mp3 in Resources */,
+				ADF47DDF24E47B6500CFD4A7 /* trombone1.mp3 in Resources */,
 				ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */,
 				ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */,
 				AD21FDF724A976830068A729 /* basics1tutorial in Resources */,
+				ADF47DDB24E47A5100CFD4A7 /* trumpet1.mp3 in Resources */,
+				ADF47DDD24E47A5100CFD4A7 /* drumsnare1.mp3 in Resources */,
 				ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
 				ADCAFDA6249E061600428C70 /* intermediate1.mp3 in Resources */,

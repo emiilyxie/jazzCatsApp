@@ -12,22 +12,24 @@ import FirebaseFirestore
 
 class SignInVC: UIViewController {
 
+    @IBOutlet var signInOptions: [UIButton]!
+    @IBOutlet weak var warningPopup: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpGraphics()
     }
     
-    @IBOutlet var signInOptions: [UIButton]!
-    @IBOutlet weak var warningPopup: UIView!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var continueButton: UIButton!
-    
-    
     func setUpGraphics() {
+        self.view.backgroundColor = ColorPalette.goldWood
+        
         for button in signInOptions {
             UIStyling.setButtonStyle(button: button)
         }
+        
         UIStyling.setPopupBackground(popupView: warningPopup)
         UIStyling.setButtonStyle(button: cancelButton)
         UIStyling.setButtonStyle(button: continueButton)
@@ -35,15 +37,17 @@ class SignInVC: UIViewController {
 
     @IBAction func signInWithApple(_ sender: UIButton) {
         print("cant signin w apple yet")
+        UIStyling.showAlert(viewController: self, text: "Sign In with Apple Coming Soon!")
     }
     @IBAction func signInWithGoogle(_ sender: UIButton) {
         print("cant signin w google yet")
+        UIStyling.showAlert(viewController: self, text: "Sign In with Google Coming Soon!")
     }
     @IBAction func signInWithEmail(_ sender: UIButton) {
-        performSegue(withIdentifier: "fromSignInToSignInEmailSegue", sender: self)
+        performSegue(withIdentifier: Constants.signInToSignInEmail, sender: self)
     }
     @IBAction func signUpWithEmail(_ sender: UIButton) {
-        performSegue(withIdentifier: "fromSignInToSignUpEmailSegue", sender: self)
+        performSegue(withIdentifier: Constants.signInToCreateAcc, sender: self)
     }
     @IBAction func playAsGuest(_ sender: UIButton) {
         // for when you dont wanna sign in yet
@@ -53,6 +57,7 @@ class SignInVC: UIViewController {
     @IBAction func cancelWarning(_ sender: UIButton) {
         warningPopup.isHidden = true
     }
+    
     @IBAction func continueWarning(_ sender: UIButton) {
         Auth.auth().signInAnonymously { (authResult, error) in
             guard let user = authResult?.user else { return }
@@ -65,16 +70,8 @@ class SignInVC: UIViewController {
         }
     }
     
+    @IBAction func backToSignInFromSignInEmail(sender: UIStoryboardSegue) {}
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    @IBAction func backToSignInFromCreateAcc(sender: UIStoryboardSegue) {}
+    
 }

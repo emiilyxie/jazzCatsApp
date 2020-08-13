@@ -115,9 +115,7 @@ extension LevelTemplate {
             }
         }
         
-        if let button = sender {
-            unselectCurrentButton(button: button)
-        }
+        timedUnselectButton(sender: sender)
     }
     
     /*
@@ -159,8 +157,8 @@ extension LevelTemplate {
         default:
             print("invalid popup index")
         }
-        
         super.displayPopup(sender: sender, index: index)
+        timedUnselectButton(sender: sender)
     }
     
     func submitAns(sender: Button?, index: Int) {
@@ -193,7 +191,7 @@ extension LevelTemplate {
                 self.sorryTryAgain.zPosition = -100
             }
         }
-        //print(noteData)
+        timedUnselectButton(sender: sender)
     }
     
     override func nextPage(sender: Button?, index: Int) {
@@ -211,9 +209,7 @@ extension LevelTemplate {
             }
         }
         updatePgCount()
-        if let button = sender {
-            unselectCurrentButton(button: button)
-        }
+        timedUnselectButton(sender: sender)
     }
     
     override func prevPage(sender: Button?, index: Int) {
@@ -232,9 +228,7 @@ extension LevelTemplate {
             }
             updatePgCount()
         }
-        if let button = sender {
-            unselectCurrentButton(button: button)
-        }
+        timedUnselectButton(sender: sender)
     }
     
     func returnToMainMenu() {

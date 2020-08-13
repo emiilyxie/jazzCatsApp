@@ -94,7 +94,7 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.levelCellLabel.textColor = ColorPalette.lineColor
         
         if Int(cell.levelCellLabel.text!) ?? 0 > maxUnlockedLevel {
-            cell.backgroundColor = UIColor.gray
+            cell.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.5))
         }
         else {
             cell.backgroundColor = .white

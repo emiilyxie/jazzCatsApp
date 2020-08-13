@@ -20,12 +20,12 @@ class WelcomeScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIStyling.showLoading(view: self.view)
         isSignedInResponse()
         setUpGraphics()
     }
     
     func isSignedInResponse() {
-        UIStyling.showLoading(view: self.view)
         let signInHandler = Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
                 // if user is signed in, then cool
@@ -34,8 +34,8 @@ class WelcomeScreen: UIViewController {
             }
             else {
                 self.goToSignIn(self)
+                UIStyling.hideLoading(view: self.view)
             }
-            UIStyling.hideLoading(view: self.view)
         }
         
         Auth.auth().removeStateDidChangeListener(signInHandler)
@@ -79,6 +79,7 @@ class WelcomeScreen: UIViewController {
             else {
                 print("user doc doesn't exist")
             }
+            UIStyling.hideLoading(view: self.view)
         }
     }
     
@@ -104,7 +105,9 @@ class WelcomeScreen: UIViewController {
     // segue code
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //exportData()
-        
+        if let gameVC = segue.destination as? GameViewController {
+            gameVC.sourceVC = self
+        }
         if goingToFreestyle == true {
             print("pressed freestyle segue")
             if let gameVC = segue.destination as? GameViewController {
@@ -140,6 +143,7 @@ class WelcomeScreen: UIViewController {
     
     @IBAction func goToFreestyle(_ sender: Any) {
         goingToFreestyle = true
+        UIStyling.showLoading(view: self.view)
         performSegue(withIdentifier: Constants.welcomeToFreestyle, sender: self)
     }
     

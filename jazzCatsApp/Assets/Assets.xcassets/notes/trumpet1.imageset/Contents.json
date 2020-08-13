@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "trumpet1@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "trumpet1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

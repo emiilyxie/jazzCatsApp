@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "sharp@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "sharp@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

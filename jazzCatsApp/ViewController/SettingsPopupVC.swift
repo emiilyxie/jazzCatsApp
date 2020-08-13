@@ -10,20 +10,23 @@ import UIKit
 
 class SettingsPopupVC: UIViewController {
     
+    public var currentTempo: Int = LevelSetup.defaultTempo
     public var currentPgs: Int = LevelSetup.defaultMaxPages
     public var currentMPP: Int = LevelSetup.defaultNumberOfMeasures
     public var currentBPM: Int = LevelSetup.defaultBpm
     public var currentSPB: Int = LevelSetup.defaultSubdivision
     
+    public var newTempo: Int = LevelSetup.defaultTempo
     public var newPgs: Int = LevelSetup.defaultMaxPages
     public var newMPP: Int = LevelSetup.defaultNumberOfMeasures
     public var newBPM: Int = LevelSetup.defaultBpm
     public var newSPB: Int = LevelSetup.defaultSubdivision
 
-    @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var scrollContentView: UIView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var tempoTextField: UITextField!
     @IBOutlet var settingValues: [UILabel]!
     @IBOutlet var settingSteppers: [UIStepper]!
     
@@ -41,10 +44,15 @@ class SettingsPopupVC: UIViewController {
         parentVC.currentScene?.isPaused = true
         self.view.isUserInteractionEnabled = true
         
+        self.tempoTextField.keyboardType = .numberPad
+        dismissKeyboard()
+        
+        currentTempo = freestyleScene.tempo
         currentPgs = freestyleScene.maxPages
         currentMPP = freestyleScene.numberOfMeasures
         currentBPM = freestyleScene.bpm
         currentSPB = freestyleScene.subdivision
+        newTempo = freestyleScene.tempo
         newPgs = freestyleScene.maxPages
         newMPP = freestyleScene.numberOfMeasures
         newBPM = freestyleScene.bpm
@@ -56,15 +64,18 @@ class SettingsPopupVC: UIViewController {
         DispatchQueue.main.async {
             self.view.backgroundColor = UIColor.clear
             self.scrollContentView.backgroundColor = ColorPalette.friendlyGold
-            UIStyling.setPopupBackground(popupView: self.popupView)
+            UIStyling.setPopupBackground(popupView: self.bgView)
             UIStyling.setButtonStyle(button: self.cancelButton)
             UIStyling.setButtonStyle(button: self.submitButton)
             self.cancelButton.layer.cornerRadius = 10
             self.submitButton.layer.cornerRadius = 10
+            self.tempoTextField.backgroundColor = .white
+            self.tempoTextField.textColor = ColorPalette.lineColor
         }
     }
     
     func currentSettings() {
+        tempoTextField.text = String(currentTempo)
         settingValues[0].text = String(currentPgs)
         settingValues[1].text = String(currentMPP)
         settingValues[2].text = String(currentBPM)
@@ -75,6 +86,27 @@ class SettingsPopupVC: UIViewController {
         settingSteppers[2].value = Double(currentBPM)
         settingSteppers[3].value = Double(currentSPB)
     }
+    
+    @IBAction func editTempo(_ sender: Any) {
+        guard let tempoString = tempoTextField.text, let tempoValue = Int(tempoString) else {
+            UIStyling.showAlert(viewController: self, text: "Please put in a number.")
+            tempoTextField.text = String(newTempo)
+            return
+        }
+        let lowestTempo = 30
+        let highestTempo = 400
+        
+        if tempoValue >= lowestTempo && tempoValue <= highestTempo {
+            tempoTextField.text = String(tempoValue)
+            newTempo = tempoValue
+        }
+        else {
+            UIStyling.showAlert(viewController: self, text: "Tempo must be in range [30, 400].")
+            tempoTextField.text = String(newTempo)
+            return
+        }
+    }
+    
     
     @IBAction func editPgs(_ sender: UIStepper) {
         settingValues[0].text = String(Int(settingSteppers[0].value))
@@ -114,6 +146,7 @@ class SettingsPopupVC: UIViewController {
         guard let freestyleScene = parentVC.currentScene as! Freestyle? else {
             return
         }
+        freestyleScene.tempo = newTempo
         freestyleScene.maxPages = newPgs
         freestyleScene.numberOfMeasures = newMPP
         freestyleScene.bpm = newBPM
@@ -126,5 +159,19 @@ class SettingsPopupVC: UIViewController {
         self.view.removeFromSuperview()
         parentVC.currentScene?.isPaused = false
         parentVC.currentScene?.isUserInteractionEnabled = true
+    }
+    
+    func dismissKeyboard() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        //location is relative to the current view
+        // do something with the touched point
+        if touch?.view != bgView {
+            self.view.removeFromSuperview()
+        }
     }
 }

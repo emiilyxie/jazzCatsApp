@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "bass1@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "bass1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

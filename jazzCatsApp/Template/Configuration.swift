@@ -68,10 +68,17 @@ struct UIStyling {
     
     static func setHeader(header: UILabel) {
         header.textColor = ColorPalette.lineColor
+        header.font = UIFont(name: "Gaegu-Regular", size: CGFloat(30))
         header.layer.masksToBounds = true
         header.layer.borderWidth = 3
         header.layer.borderColor = ColorPalette.lineColor.cgColor
         header.backgroundColor = ColorPalette.goldWood
+    }
+    
+    static func setTextField(textField: UITextField, placeholder: String) {
+        textField.backgroundColor = .white
+        textField.textColor = ColorPalette.lineColor
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
     }
     
     static func showLoading(view: UIView) {
@@ -100,23 +107,33 @@ struct UIStyling {
     }
     
     static func showAlert(viewController: UIViewController, text: String) {
-        let alertView = UIButton()
-        alertView.setTitle(text, for: .normal)
-        alertView.titleLabel?.font = UIFont(name: "Gaegu-Bold", size: 14)
+        let alertView = UILabel(frame: CGRect(width: 200, height: 500))
+        alertView.text = text
+        alertView.font = UIFont(name: "Gaegu-Bold", size: 20)
         alertView.backgroundColor = ColorPalette.lineColor
         alertView.layer.masksToBounds = true
         alertView.layer.cornerRadius = 5
-        alertView.titleLabel?.textColor = .white
+        alertView.textColor = .white
         
         //viewController.addChild(alertView)
-        alertView.frame = CGRect(width: 150, height: 40)
-        viewController.view.addSubview(alertView)
+        alertView.sizeThatFits(CGSize(width: 300, height: 500))
+        alertView.sizeToFit()
+        alertView.frame = CGRect(width: alertView.frame.width + 20, height: alertView.frame.height + 20)
+        alertView.textAlignment = .center
+        alertView.numberOfLines = -1
+        UIView.transition(with: viewController.view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+          viewController.view.addSubview(alertView)
+        }, completion: nil)
+        //viewController.view.addSubview(alertView)
         alertView.bringSubviewToFront(viewController.view)
         alertView.center = viewController.view.center
         
         //alertView.didMove(toParent: viewController)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            alertView.removeFromSuperview()
+            UIView.transition(with: viewController.view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+              alertView.removeFromSuperview()
+            }, completion: nil)
+            //alertView.removeFromSuperview()
         }
     }
 }
@@ -141,13 +158,6 @@ struct MusicValues {
 
 public func scaleNode(size: CGSize, factor: Double) -> CGSize {
     return CGSize(width: size.width * CGFloat(factor), height: size.height * CGFloat(factor))
-}
-
-extension UILabel {
-    open override func draw(_ rect: CGRect) {
-        let insets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        super.draw(rect.inset(by: insets))
-    }
 }
 
 /*

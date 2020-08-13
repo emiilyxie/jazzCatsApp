@@ -10,32 +10,98 @@ import UIKit
 import FirebaseAuth
 
 class SignInEmailVC: UIViewController {
-
+    
+    @IBOutlet weak var header: UILabel!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var tempTextField: UITextField!
+    @IBOutlet weak var jamButton: UIButton!
+    
+    var currentlyEditing: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        dismissKeyboard()
+        
+        setUpGraphics()
+        setUpKeyboards()
     }
     
-    @IBOutlet weak var errMessage: UILabel!
+    func setUpGraphics() {
+        self.view.backgroundColor = ColorPalette.brightManuscript
+        UIStyling.setHeader(header: header)
+        
+        UIStyling.setButtonStyle(button: backButton)
+        backButton.layer.cornerRadius = 5
+        backButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        
+        UIStyling.setButtonStyle(button: jamButton)
+        jamButton.backgroundColor = ColorPalette.friendlyGold
+        jamButton.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        jamButton.layer.cornerRadius = 24
+        
+        UIStyling.setTextField(textField: emailTextField, placeholder: "Email")
+        UIStyling.setTextField(textField: passwordTextField, placeholder: "Password")
+        UIStyling.setTextField(textField: tempTextField, placeholder: "Temp")
+        tempTextField.isHidden = true
+    }
     
-    @IBOutlet weak var emailTextField: UITextField!
+    func setUpKeyboards() {
+        dismissKeyboard()
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.returnKeyType = .next
+        passwordTextField.returnKeyType = .done
+    }
     
-    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBAction func emailPressed(_ sender: Any) {
+        tempTextField.isHidden = false
+        emailTextField.isHidden = true
+        passwordTextField.isHidden = true
+        
+        //tempPressed(self)
+        DispatchQueue.main.async {
+            self.tempTextField.becomeFirstResponder()
+        }
+        tempTextField.placeholder = emailTextField.placeholder
+        tempTextField.text = emailTextField.text
+        currentlyEditing = emailTextField
+    }
+    
+    @IBAction func passwordPressed(_ sender: Any) {
+        tempTextField.isHidden = false
+        emailTextField.isHidden = true
+        passwordTextField.isHidden = true
+        
+        DispatchQueue.main.async {
+            self.tempTextField.becomeFirstResponder()
+        }
+        tempTextField.placeholder = passwordTextField.placeholder
+        tempTextField.text = passwordTextField.text
+        currentlyEditing = passwordTextField
+    }
+    
+    @IBAction func tempDone(_ sender: Any) {
+        tempTextField.isHidden = true
+        emailTextField.isHidden = false
+        passwordTextField.isHidden = false
+
+        currentlyEditing?.text = tempTextField.text
+    }
     
     @IBAction func submitButtonPressed(_ sender: Any) {
         let error = validateFields()
         if error != nil {
             // then show the error message
-            errMessage.text = error
-            errMessage.isHidden = false
+            UIStyling.showAlert(viewController: self, text: error!)
+            //errMessage.text = error
         }
         else {
             // attempt sign in
             Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, err) in
                 if err != nil {
                     print(err!.localizedDescription)
-                    self.errMessage.text = err?.localizedDescription
-                    self.errMessage.isHidden = false
+                    UIStyling.showAlert(viewController: self, text: err!.localizedDescription)
                     return
                 }
                 else {
@@ -43,7 +109,6 @@ class SignInEmailVC: UIViewController {
                 }
             }
         }
-        
     }
     
     func validateFields() -> String? {
@@ -67,5 +132,10 @@ class SignInEmailVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: Constants.signInEmailToSignIn, sender: self)
+    }
+    
 
 }

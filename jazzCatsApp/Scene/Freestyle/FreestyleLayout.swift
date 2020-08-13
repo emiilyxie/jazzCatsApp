@@ -20,6 +20,7 @@ extension Freestyle {
         pages = [[Note]](repeating: [], count: maxPages)
         barsNode.removeAllChildren()
         barsNode.removeFromParent()
+        barVelocity = CGFloat(tempo) / 60 * beatWidth
         setUpStaff()
         pageIndex = 0
         updatePgCount()

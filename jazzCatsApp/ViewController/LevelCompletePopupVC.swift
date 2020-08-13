@@ -36,20 +36,21 @@ class LevelCompletePopupVC: UIViewController {
     }
     
     @IBAction func nextLevelPressed(_ sender: UIButton) {
-        guard let gameVC = self.parent as? GameViewController else {
+        guard let gameVC = self.parent as? GameViewController,
+            let levelScene = gameVC.currentScene as? LevelTemplate else {
             print("cant get parent")
             return
         }
         
         gameVC.selectedLevel += 1
         if gameVC.selectedLevel <= gameVC.maxlevel {
+            UIStyling.showLoading(view: gameVC.view)
             gameVC.showLevel()
         }
         else {
+            levelScene.returnToMainMenu()
             gameVC.unwindFromGameToLevelSelect(self)
         }
         gameVC.view.subviews.forEach({$0.removeFromSuperview()})
     }
-    
-
 }

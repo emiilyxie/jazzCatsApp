@@ -75,9 +75,7 @@ extension MusicScene {
     
     @objc func displayPopup(sender: Button?, index: Int) {
         //preconditionFailure("must override displaypopup")
-        if let button = sender {
-            unselectCurrentButton(button: button)
-        }
+        timedUnselectButton(sender: sender)
     }
     
     @objc func nextPage(sender: Button?, index: Int) {
@@ -93,13 +91,10 @@ extension MusicScene {
             }
         }
         updatePgCount()
-        if let button = sender {
-            unselectCurrentButton(button: button)
-        }
+        timedUnselectButton(sender: sender)
     }
     
     @objc func prevPage(sender: Button?, index: Int) {
-        unselectCurrentButton()
         if pageIndex >= 1 {
             for note in pages[pageIndex] {
                 note.isHidden = true
@@ -112,13 +107,10 @@ extension MusicScene {
             }
         }
         updatePgCount()
-        if let button = sender {
-            unselectCurrentButton(button: button)
-        }
+        timedUnselectButton(sender: sender)
     }
     
     func updatePgCount() {
-        unselectCurrentButton()
         pgCountLabel.text = "page: \(pageIndex+1)/\(maxPages)"
     }
     
@@ -136,5 +128,13 @@ extension MusicScene {
     func unselectCurrentButton(button: Button) {
         button.bkgdShape.fillColor = ColorPalette.unselectedButton
         button.selected = false
+    }
+    
+    func timedUnselectButton(sender: Button?) {
+        if let button = sender {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.unselectCurrentButton(button: button)
+            }
+        }
     }
 }

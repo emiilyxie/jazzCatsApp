@@ -122,4 +122,12 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         self.view.removeFromSuperview()
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        //location is relative to the current view
+        // do something with the touched point
+        if touch?.view != bgView {
+            self.view.removeFromSuperview()
+        }
+    }
 }

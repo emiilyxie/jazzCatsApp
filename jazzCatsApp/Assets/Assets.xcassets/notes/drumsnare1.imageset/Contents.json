@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "drumsnare1@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "drumsnare1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
