@@ -201,7 +201,7 @@ struct GameUser {
                         rewardMessage = "\(rewardMessage)\n+\(value) currency"
                     }
                 case "sound":
-                    if let sound = Sounds.getSound(sounds: self.sounds, with: value as! String) {
+                    if let sound = Sounds.getSound(from: self.sounds, id: value as! String) {
                         rewardMessage = "\(rewardMessage)\nnew sound: \(sound.name)"
                     }
                 default:

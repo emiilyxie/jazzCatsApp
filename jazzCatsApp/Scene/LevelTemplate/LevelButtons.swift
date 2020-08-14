@@ -107,7 +107,7 @@ extension LevelTemplate {
             if measuresOnPage.contains(Int(noteAnswer[0])) {
                 
                 print("note ans: \(noteAnswer)")
-                addNote(with: noteAnswer, on: pageIndex)
+                addNote(with: noteAnswer, on: pageIndex, soundID: selectedNote)
                 hintCount.text = String(GameUser.hints)
                 return
                 

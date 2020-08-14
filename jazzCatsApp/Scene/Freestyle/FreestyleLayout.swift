@@ -34,6 +34,31 @@ extension Freestyle {
         }
         
         var newNoteData = Set<[CGFloat]>()
+        var newNoteSoundData = Array<Set<[CGFloat]>>(repeating: [], count: (GameUser.sounds.last?.index ?? 20) + 1)
+        
+        for instrumentIndex in 0..<noteSoundData.count {
+            for noteInfo in noteSoundData[instrumentIndex] {
+                
+                let noteMeasure = noteInfo[0]
+                let noteBeat = noteInfo[1]
+                let measurelessBeat = (noteMeasure - 1) * CGFloat(prevBpm) + noteBeat
+                let newPage = ((measurelessBeat - 1) / CGFloat(totalBeats)).rounded(.down)
+                let newMeasure = ((measurelessBeat - 1) / CGFloat(bpm)).rounded(.down) + 1
+                let newBeat = measurelessBeat - ((newMeasure - 1) * CGFloat(bpm))
+                let newNote = [newMeasure, newBeat, noteInfo[2]]
+                
+                newNoteData.insert(newNote)
+                newNoteSoundData[instrumentIndex].insert(newNote)
+                if Int(newPage) < maxPages {
+                    let sound = Sounds.getSound(from: GameUser.sounds, index: instrumentIndex) ?? GameUser.sounds[0]
+                    addNote(with: newNote, on: Int(newPage), soundID: sound.id)
+                }
+            }
+        }
+        noteData = newNoteData
+        noteSoundData = newNoteSoundData
+        /*
+        var newNoteData = Set<[CGFloat]>()
         
         for noteInfo in noteData {
             
@@ -51,5 +76,6 @@ extension Freestyle {
             }
         }
         noteData = newNoteData
+ */
     }
 }

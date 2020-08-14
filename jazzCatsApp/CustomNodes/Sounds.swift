@@ -57,9 +57,17 @@ struct Sounds {
         return unlockedSounds
     }
     
-    static func getSound(sounds: [Sound], with id: String) -> Sound? {
+    static func getSound(from sounds: [Sound], id: String) -> Sound? {
         let soundIDs = sounds.map { $0.id }
         if let soundIndex = soundIDs.firstIndex(of: id) {
+            return sounds[soundIndex]
+        }
+        return nil
+    }
+    
+    static func getSound(from sounds: [Sound], index: Int) -> Sound? {
+        let soundIndexes = sounds.map { $0.index }
+        if let soundIndex = soundIndexes.firstIndex(of: index) {
             return sounds[soundIndex]
         }
         return nil

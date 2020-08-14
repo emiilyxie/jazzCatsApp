@@ -42,6 +42,8 @@ extension MusicScene {
                 if let noteNode = node as? Note {
                     noteNode.removeFromParent()
                     noteData.remove(noteNode.getNoteInfo())
+                    let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
+                    noteSoundData[soundIndex].remove(noteNode.getNoteInfo())
                     pages[pageIndex].removeAll { $0 == noteNode }
                 }
             }
@@ -57,6 +59,9 @@ extension MusicScene {
                 }
                 noteData.insert(noteNode.getNoteInfo())
                 noteData.remove(prevNoteAns)
+                let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
+                noteSoundData[soundIndex].insert(noteNode.getNoteInfo())
+                noteSoundData[soundIndex].remove(prevNoteAns)
                 playNoteSound(note: noteNode)
             }
         case "flatMode":
@@ -71,6 +76,9 @@ extension MusicScene {
                 }
                 noteData.insert(noteNode.getNoteInfo())
                 noteData.remove(prevNoteAns)
+                let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
+                noteSoundData[soundIndex].insert(noteNode.getNoteInfo())
+                noteSoundData[soundIndex].remove(prevNoteAns)
                 playNoteSound(note: noteNode)
             }
         default: // not selected or navigateMode
@@ -89,15 +97,17 @@ extension MusicScene {
         note.staffLine = getNoteStaffLine(noteYPos: note.position.y)
 
         noteData.insert(note.getNoteInfo())
-        print(noteData)
+        let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
+        noteSoundData[soundIndex].insert(note.getNoteInfo())
+        //print(noteData)
         pages[pageIndex].append(note)
         
         playNoteSound(note: note)
     }
     
-    func addNote(with info: [CGFloat], on page: Int) {
+    func addNote(with info: [CGFloat], on page: Int, soundID: String) {
         let notePosition = noteInfoToScenePos(noteInfo: info)
-        let note = Note(type: selectedNote)
+        let note = Note(type: soundID)
         note.name = "note"
         note.position = notePosition
         //note.position = snapNoteLocation(touchedPoint: notePosition)
@@ -113,7 +123,9 @@ extension MusicScene {
         }
         
         noteData.insert(note.getNoteInfo())
-        print(noteData)
+        let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
+        noteSoundData[soundIndex].insert(note.getNoteInfo())
+        //print(noteData)
         pages[page].append(note)
         if page != pageIndex {
             note.isHidden = true

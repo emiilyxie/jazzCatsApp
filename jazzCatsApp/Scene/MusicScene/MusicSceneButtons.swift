@@ -42,7 +42,7 @@ extension MusicScene {
         }
         
         let measureBarResetPos = CGPoint(x: frame.minX + LevelSetup.indentLength - 50.0, y: barsNode.position.y + measureBar.size.height/2)
-        let measureBarContinuePos = CGPoint(x: frame.minX + LevelSetup.indentLength, y: barsNode.position.y + measureBar.size.height/2)
+        let measureBarContinuePos = CGPoint(x: frame.minX + LevelSetup.indentLength - 3, y: barsNode.position.y + measureBar.size.height/2)
         let resetPostion = SKAction.move(to: measureBarResetPos, duration: 0)
         let continuePos = SKAction.move(to: measureBarContinuePos, duration: 0)
         

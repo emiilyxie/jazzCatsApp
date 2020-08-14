@@ -42,6 +42,7 @@ public class MusicScene: SKScene {
     var currentMode: String = "addMode"
     var buttons = NSMapTable<NSString, Button>.init(keyOptions: .copyIn, valueOptions: .weakMemory)
     var noteData = Set<[CGFloat]>()
+    var noteSoundData = Array<Set<[CGFloat]>>()
     
     var currentSounds = GameUser.sounds
     //var samplers: Array<AKAppleSampler> = []
@@ -67,8 +68,11 @@ public class MusicScene: SKScene {
         self.beatWidth = self.resultWidth/CGFloat(self.totalBeats)
         self.divisionWidth = self.resultWidth/CGFloat(self.totalDivision)
         self.pages = [[Note]](repeating: [], count: self.maxPages)
+        
         self.measureBar = SKSpriteNode(color: UIColor.white, size: CGSize(width: 4, height: self.staffTotalHeight + 30))
         self.barVelocity = CGFloat(self.tempo) / 60 * self.beatWidth
+        print(GameUser.sounds)
+        self.noteSoundData = Array<Set<[CGFloat]>>(repeating: [], count: (GameUser.sounds.last?.index ?? 20) + 1)
                 
         //conductor.setUpTracks()
         super.init(size: size)

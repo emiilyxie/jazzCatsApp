@@ -32,6 +32,7 @@ public class LevelTemplate: MusicScene {
     var ansSongPlayer: AKAudioPlayer?
     
     var lvlAns = Set<[CGFloat]>()
+    var myAns = Set<[CGFloat]>()
     var hintNum = 0
     var reward: Dictionary<String, Any>
     
