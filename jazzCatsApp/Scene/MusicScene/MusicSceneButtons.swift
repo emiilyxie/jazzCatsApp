@@ -137,4 +137,26 @@ extension MusicScene {
             }
         }
     }
+    
+    func destruct() {
+        do {
+            AudioKit.disconnectAllInputs()
+            try AudioKit.stop()
+            try AudioKit.shutdown()
+            AudioKit.output = nil
+            print(AudioKit.engine.isRunning)
+        }
+        catch {
+            print(error)
+        }
+        
+        // killing the kids
+        for child in self.children {
+            child.removeAllActions()
+        }
+        self.removeAllActions()
+        self.removeAllChildren()
+        self.removeFromParent()
+        self.view?.presentScene(nil)
+    }
 }

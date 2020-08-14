@@ -30,6 +30,17 @@ class SettingsPopupVC: UIViewController {
     @IBOutlet var settingValues: [UILabel]!
     @IBOutlet var settingSteppers: [UIStepper]!
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard let parentVC = self.parent as! GameViewController? else {
+            return
+        }
+        
+        parentVC.currentScene?.isUserInteractionEnabled = false
+        parentVC.currentScene?.isPaused = true
+        self.view.isUserInteractionEnabled = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpGraphics()
@@ -171,7 +182,7 @@ class SettingsPopupVC: UIViewController {
         //location is relative to the current view
         // do something with the touched point
         if touch?.view != bgView {
-            self.view.removeFromSuperview()
+            self.closePopover(self)
         }
     }
 }

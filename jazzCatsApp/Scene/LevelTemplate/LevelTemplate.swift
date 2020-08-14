@@ -12,7 +12,7 @@ import AudioKit
 
 public class LevelTemplate: MusicScene {
     
-    weak var viewController: UIViewController?
+    //weak var viewController: UIViewController?
     var levelGroup: String
     var levelNum: Int
     

@@ -12,7 +12,7 @@ import AudioKit
 
 public class MusicScene: SKScene {
     
-    //weak var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
     var staffBarHeight: CGFloat = LevelSetup.defaultStaffBarHeight
     var staffBarNumber: Int = LevelSetup.defaultStaffBarNumber
@@ -84,6 +84,14 @@ public class MusicScene: SKScene {
         layoutScene()
         setUpPhysics()
         setUpSound()
+        
+        guard let vcView = viewController?.view else {
+            print("cant get vc")
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            UIStyling.hideLoading(view: vcView)
+        })
     }
     
     deinit {

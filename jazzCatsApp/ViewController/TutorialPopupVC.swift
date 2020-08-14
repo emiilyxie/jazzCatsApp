@@ -153,11 +153,10 @@ class TutorialPopupVC: UIViewController {
             whereToPress.position = CGPoint(x: sceneRect.minX, y: sceneRect.minY)
             musicScene.addChild(whereToPress)
             
-        case ("progress-action", "add-note" as String):
+        case ("progress-action", "edit-note" as String):
             let addNoteProgress = { (location: CGPoint?) -> () in
                 if let noteLocation = location {
-                    let noteBarsLocation = musicScene.convert(noteLocation, to: musicScene.barsNode)
-                    musicScene.addNote(noteType: musicScene.selectedNote, notePosition: noteBarsLocation)
+                    musicScene.editNotes(location: noteLocation)
                 }
             }
             progressAction = addNoteProgress

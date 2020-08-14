@@ -19,6 +19,17 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard let parentVC = self.parent as! GameViewController? else {
+            return
+        }
+        
+        parentVC.currentScene?.isUserInteractionEnabled = false
+        parentVC.currentScene?.isPaused = true
+        self.view.isUserInteractionEnabled = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +50,12 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        guard let parentVC = self.parent as! GameViewController? else {
+            print("cant get parentvc")
+            return
+        }
+        parentVC.currentScene?.isPaused = false
+        parentVC.currentScene?.isUserInteractionEnabled = true
         self.view.removeFromSuperview()
     }
     
@@ -111,7 +128,7 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
         //location is relative to the current view
         // do something with the touched point
         if touch?.view != bgView {
-            self.view.removeFromSuperview()
+            self.cancelButtonPressed(UIButton())
         }
     }
 }

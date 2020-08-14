@@ -30,6 +30,11 @@
 		AD3826EE245D20700027849D /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD3826EC245D20700027849D /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F0245D20DC0027849D /* Default-568h@2x.png */; };
 		AD3826F3245D22530027849D /* kitten-meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F2245D22530027849D /* kitten-meow.wav */; };
+		AD427F7C24E5D1AE00446DFC /* basics2tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD427F7B24E5D1AE00446DFC /* basics2tutorial */; };
+		AD427F7E24E5EE3000446DFC /* basics3tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD427F7D24E5EE3000446DFC /* basics3tutorial */; };
+		AD427F8124E5FF9500446DFC /* cat_basic2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F7F24E5FF9500446DFC /* cat_basic2.mp3 */; };
+		AD427F8224E5FF9500446DFC /* cat_basic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */; };
+		AD427F8424E6012D00446DFC /* piano1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F8324E6012C00446DFC /* piano1.mp3 */; };
 		AD700CD224AB08E000881EBE /* buttonLocations in Resources */ = {isa = PBXBuildFile; fileRef = AD700CD124AB08E000881EBE /* buttonLocations */; };
 		AD7EF23724B12CB7009875CA /* AccountDetailsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */; };
 		AD7EF23924B165C9009875CA /* Gaegu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */; };
@@ -84,8 +89,6 @@
 		ADFC5CE12478524000225610 /* FreestyleSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CE02478524000225610 /* FreestyleSound.swift */; };
 		ADFC5CE3247852BF00225610 /* FreestylePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CE2247852BF00225610 /* FreestylePhysics.swift */; };
 		ADFC5CEB2478847D00225610 /* SettingsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */; };
-		ADFC5CED247893DE00225610 /* piano1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEC247893DE00225610 /* piano1.mp3 */; };
-		ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADFC5CEE247893F800225610 /* cat_basic1.mp3 */; };
 		D7102F5BAC4B7E69ACB26ECA /* Pods_jazzCatsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +131,11 @@
 		AD3826EC245D20700027849D /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
 		AD3826F0245D20DC0027849D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AD3826F2245D22530027849D /* kitten-meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kitten-meow.wav"; sourceTree = "<group>"; };
+		AD427F7B24E5D1AE00446DFC /* basics2tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics2tutorial; sourceTree = "<group>"; };
+		AD427F7D24E5EE3000446DFC /* basics3tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics3tutorial; sourceTree = "<group>"; };
+		AD427F7F24E5FF9500446DFC /* cat_basic2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic2.mp3; sourceTree = "<group>"; };
+		AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic1.mp3; sourceTree = "<group>"; };
+		AD427F8324E6012C00446DFC /* piano1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano1.mp3; sourceTree = "<group>"; };
 		AD700CD124AB08E000881EBE /* buttonLocations */ = {isa = PBXFileReference; lastKnownFileType = text; path = buttonLocations; sourceTree = "<group>"; };
 		AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsPopupVC.swift; sourceTree = "<group>"; };
 		AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Bold.ttf"; sourceTree = "<group>"; };
@@ -182,8 +190,6 @@
 		ADFC5CE02478524000225610 /* FreestyleSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleSound.swift; sourceTree = "<group>"; };
 		ADFC5CE2247852BF00225610 /* FreestylePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestylePhysics.swift; sourceTree = "<group>"; };
 		ADFC5CEA2478847D00225610 /* SettingsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopupVC.swift; sourceTree = "<group>"; };
-		ADFC5CEC247893DE00225610 /* piano1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano1.mp3; sourceTree = "<group>"; };
-		ADFC5CEE247893F800225610 /* cat_basic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic1.mp3; sourceTree = "<group>"; };
 		B4D4512561694B850C9F9BD4 /* Pods-jazzCatsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jazzCatsApp.release.xcconfig"; path = "Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp.release.xcconfig"; sourceTree = "<group>"; };
 		CED5AB26DDBF3FB455552657 /* Pods-jazzCatsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jazzCatsApp.debug.xcconfig"; path = "Target Support Files/Pods-jazzCatsApp/Pods-jazzCatsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jazzCatsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				AD21FDF624A976830068A729 /* basics1tutorial */,
+				AD427F7B24E5D1AE00446DFC /* basics2tutorial */,
+				AD427F7D24E5EE3000446DFC /* basics3tutorial */,
 				AD700CD124AB08E000881EBE /* buttonLocations */,
 				ADBE499D24BBE289002D5B49 /* coltrane1 */,
 			);
@@ -265,14 +273,15 @@
 				ADCAFDA2249E061300428C70 /* basics2.mp3 */,
 				ADCAFDA4249E061600428C70 /* coltrane1.mp3 */,
 				ADCAFDA3249E061500428C70 /* intermediate1.mp3 */,
+				AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */,
+				AD427F7F24E5FF9500446DFC /* cat_basic2.mp3 */,
+				AD427F8324E6012C00446DFC /* piano1.mp3 */,
 				ADF47DD224E4751E00CFD4A7 /* saxophone1.mp3 */,
 				ADF47DD524E47A5000CFD4A7 /* bass1.mp3 */,
 				ADF47DD724E47A5000CFD4A7 /* drumhihat1.mp3 */,
 				ADF47DD824E47A5100CFD4A7 /* drumsnare1.mp3 */,
 				ADF47DDE24E47B6500CFD4A7 /* trombone1.mp3 */,
 				ADF47DD624E47A5000CFD4A7 /* trumpet1.mp3 */,
-				ADFC5CEE247893F800225610 /* cat_basic1.mp3 */,
-				ADFC5CEC247893DE00225610 /* piano1.mp3 */,
 				AD3826F2245D22530027849D /* kitten-meow.wav */,
 			);
 			path = Sounds;
@@ -499,13 +508,16 @@
 				ADCAFDA1249E05D800428C70 /* basics1.mp3 in Resources */,
 				ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
+				AD427F8424E6012D00446DFC /* piano1.mp3 in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
+				AD427F7C24E5D1AE00446DFC /* basics2tutorial in Resources */,
+				AD427F7E24E5EE3000446DFC /* basics3tutorial in Resources */,
 				ADF47DDC24E47A5100CFD4A7 /* drumhihat1.mp3 in Resources */,
 				AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */,
 				ADBE499E24BBE289002D5B49 /* coltrane1 in Resources */,
 				ADF47DDA24E47A5100CFD4A7 /* bass1.mp3 in Resources */,
+				AD427F8224E5FF9500446DFC /* cat_basic1.mp3 in Resources */,
 				AD700CD224AB08E000881EBE /* buttonLocations in Resources */,
-				ADFC5CEF247893F800225610 /* cat_basic1.mp3 in Resources */,
 				ADF47DD324E4751E00CFD4A7 /* saxophone1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
@@ -514,6 +526,7 @@
 				ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */,
 				ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */,
 				AD21FDF724A976830068A729 /* basics1tutorial in Resources */,
+				AD427F8124E5FF9500446DFC /* cat_basic2.mp3 in Resources */,
 				ADF47DDB24E47A5100CFD4A7 /* trumpet1.mp3 in Resources */,
 				ADF47DDD24E47A5100CFD4A7 /* drumsnare1.mp3 in Resources */,
 				ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */,
@@ -521,7 +534,6 @@
 				ADCAFDA6249E061600428C70 /* intermediate1.mp3 in Resources */,
 				AD9395B024747CD10037E307 /* Main.storyboard in Resources */,
 				ADCAFDA7249E061600428C70 /* coltrane1.mp3 in Resources */,
-				ADFC5CED247893DE00225610 /* piano1.mp3 in Resources */,
 				AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */,
 				AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */,
 			);

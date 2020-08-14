@@ -13,12 +13,13 @@ import AudioKit
 extension MusicScene {
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
-            editNotes(touch: firstTouch)
+            let location = firstTouch.location(in: self)
+            editNotes(location: location)
         }
     }
     
-    func editNotes(touch: UITouch) {
-        var location = touch.location(in: self)
+    func editNotes(location: CGPoint) {
+        //var location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
         
         switch currentMode {
@@ -29,10 +30,11 @@ extension MusicScene {
                 }
             }
             if barsNode.contains(location) {
-                location = touch.location(in: barsNode) // going to barsNode coords
+                let barLocation = convert(location, to: barsNode)
+                //location = touch.location(in: barsNode) // going to barsNode coords
                 let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
-                if location.x >= CGFloat(LevelSetup.indentLength) && location.x < maxX {
-                    addNote(noteType: selectedNote, notePosition: location)
+                if barLocation.x >= CGFloat(LevelSetup.indentLength) && barLocation.x < maxX {
+                    addNote(noteType: selectedNote, notePosition: barLocation)
                 }
             }
         case "eraseMode": // if in eraseMode

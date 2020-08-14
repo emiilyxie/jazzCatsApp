@@ -12,7 +12,7 @@ import AudioKit
 
 public class Freestyle: MusicScene {
     
-    weak var viewController: UIViewController?
+    //weak var viewController: UIViewController?
 
     public var oldNumOfMeasures: Int!
     public var oldBpm: Int!

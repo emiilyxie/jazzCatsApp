@@ -55,6 +55,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func setUpValues() {
         let screenSize = UIScreen.main.bounds.size
+        //let screenSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - header.bounds.height)
         let cellWidth = floor(screenSize.width * 0.6)
         let cellHeight = floor(screenSize.height * 0.6)
         let insetX = (view.bounds.width - cellWidth) / 2.0
@@ -67,6 +68,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func setUpGraphics() {
+        self.view.backgroundColor = ColorPalette.brightManuscript
         collectionView.backgroundColor = ColorPalette.brightManuscript
         
         UIStyling.setHeader(header: header)

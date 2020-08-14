@@ -22,6 +22,7 @@ struct GameUser {
     //static var soundsArr: Array<String> = ["cat_basic1"]
     
     static func setSounds() {
+        sounds = []
         let soundsRef = Firestore.firestore().collection("/sounds")
         
         soundsRef.getDocuments { (querySnapshot, err) in
@@ -39,6 +40,7 @@ struct GameUser {
                 self.sounds = Sounds.sortSounds(sounds: sounds)
                 let ids = self.sounds.map { $0.id }
                 self.unlockedSoundNames = ids
+                print("unlocked sound names 1: \(self.unlockedSoundNames)")
             }
             else {
                 print("cant get sound query snapshot")
@@ -90,12 +92,24 @@ struct GameUser {
         return false
     }
     
+    static func levelAlreadyCompleted(levelGroup: String, currentLevel: Int) -> Bool {
+        print("current level: \(currentLevel)")
+        if let maxUnlockedLevel = self.levelProgress[levelGroup] {
+            print("maxunlocked: \(maxUnlockedLevel)")
+            if maxUnlockedLevel > currentLevel {
+                return true
+            }
+        }
+        return false
+    }
+    
     static func updateLevelProgress(levelGroup: String, currentLevel: Int, reward: Dictionary<String, Any>) -> String {
         guard let uid = uid else {
             return ""
         }
         let userRef = getFIRUserDoc(uid: uid)
         
+        /*
         if let maxUnlockedLevel = self.levelProgress[levelGroup] {
             if maxUnlockedLevel > currentLevel {
                 print("you've already completed this level, no update")
@@ -103,13 +117,13 @@ struct GameUser {
                 return rewardMessage
             }
             else {
+                */
                 self.levelProgress[levelGroup] = currentLevel + 1
                 userRef.setData([
                     "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
                 let rewardMessage = self.claimReward(reward: reward)
                 return rewardMessage
-                //_ = self.updateField(field: "game-currency", count: 100)
-                //_ = self.updateField(field: "hints", count: 1)
+        /*
             }
         }
         else {
@@ -120,9 +134,8 @@ struct GameUser {
                 "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
             let rewardMessage = self.claimReward(reward: reward)
             return rewardMessage
-            //_ = self.updateField(field: "game-currency", count: 100)
-            //_ = self.updateField(field: "hints", count: 1)
         }
+ */
     }
     
     static func enoughValue(field: String, count: Int) -> Bool {
@@ -137,7 +150,7 @@ struct GameUser {
         }
     }
     
-    static func updateSounds(newSound: String) {
+    static func updateSounds(newSound: String, completion: @escaping () -> ()) {
         guard let uid = uid else {
             return
         }
@@ -148,6 +161,7 @@ struct GameUser {
             let soundsRef = Firestore.firestore().collection("/sounds").document(newSound)
             
             self.unlockedSoundNames.append(newSound)
+            print("new unlocked sound names: \(unlockedSoundNames)")
             userRef.setData(["unlocked-sounds" : self.unlockedSoundNames], merge: true)
             // getting index of the sound so that it can be sorted
             
@@ -161,32 +175,44 @@ struct GameUser {
                         let sound = Sound(data: soundData, unlocked: true)
                         sounds.append(sound)
                         self.sounds = Sounds.sortSounds(sounds: sounds)
+                        self.unlockedSoundNames = sounds.map { $0.id }
+                        completion()
                     }
-                    else {
-                        print("cant get sound doc data")
-                        return
-                    }
-                }
-                else {
-                    print("cant get sound document")
-                    return
-                    /*
-                    let soundIndex = document?.get("index") as! Int
-                    self.sounds[newSound] = soundIndex
-                    self.sortSounds()
-                    userRef.setData(["sounds" : self.sounds], merge: true) { (err) in
-                        if err != nil {
-                            print(err!.localizedDescription)
-                            return
-                        }
-                    }
-     */
                 }
             }
+        }
+        else {
+            completion()
         }
     }
     
     static func claimReward(reward: Dictionary<String, Any>) -> String {
+        var rewardMessage = ""
+            for (field, value) in reward {
+                switch field {
+                case "hints":
+                    if let amount = value as? Int {
+                        _ = self.updateField(field: field, count: amount)
+                        rewardMessage = "\(rewardMessage)\n+\(value) hints"
+                    }
+                case "game-currency":
+                    if let amount = value as? Int {
+                        _ = self.updateField(field: field, count: amount)
+                        rewardMessage = "\(rewardMessage)\n+\(value) currency"
+                    }
+                case "sound":
+                    if let sound = Sounds.getSound(sounds: self.sounds, with: value as! String) {
+                        rewardMessage = "\(rewardMessage)\nnew sound: \(sound.name)"
+                    }
+                default:
+                    print("dont recognize field")
+                }
+            }
+            return rewardMessage
+    }
+    
+    /*
+    static func claimReward(reward: Dictionary<String, Any>, with soundName: String) -> String {
         var rewardMessage = ""
         for (field, value) in reward {
             switch field {
@@ -201,30 +227,17 @@ struct GameUser {
                 rewardMessage = "\(rewardMessage)\n+\(value) currency"
             }
             case "sound":
-                if let sound = value as? String {
-                    _ = self.updateSounds(newSound: sound)
-                    let soundName = self.sounds.last?.name
-                    rewardMessage = "\(rewardMessage)\nnew sound: \(soundName ?? "error")"
-                }
+                rewardMessage = "\(rewardMessage)\nnew sound: \(soundName)"
             default:
                 print("dont recognize field")
             }
         }
         return rewardMessage
     }
+ */
     
     static func getFIRUserDoc(uid: String) -> DocumentReference {
         let userRef = Firestore.firestore().collection("/users").document(uid)
         return userRef
     }
-    
-    /*
-    static func sortSounds() {
-        var sortedSounds: Array<String> = []
-        for (sound, _) in (Array(self.sounds).sorted {$0.1 < $1.1}) {
-            sortedSounds.append(sound)
-        }
-        self.soundsArr = sortedSounds
-    }
- */
 }

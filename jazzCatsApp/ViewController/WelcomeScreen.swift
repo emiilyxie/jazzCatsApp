@@ -165,8 +165,7 @@ class WelcomeScreen: UIViewController {
         let db = Firestore.firestore()
         let docData = // data here
 
-
-        db.document("/level-groups/basics/levels/level1").setData(docData, merge: true) { (err) in
+        db.document("/level-groups/basics/levels/level3").setData(docData, merge: true) { (err) in
             if err != nil {
                 print(err!.localizedDescription)
             }

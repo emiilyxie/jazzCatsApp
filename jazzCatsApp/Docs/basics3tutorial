@@ -1,0 +1,46 @@
+["dialogue" : [
+    ["text" : "Let's get into business. Press the audio button.",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton"
+    ],
+    ["text" : "Ok, so it sounds the same as last level again… except for the last note."
+    ],
+    ["text" : "Let's press that audio button again to hear it one more time.",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton"
+    ],
+    ["text" : "The last note sounds a little higher than the rest of the notes, right?"
+    ],
+    ["text" : "Let’s place the notes. The first three notes are at these places.",
+     "progress-rect" : ["note": [1, 1, 72], "size": 50],
+     "progress-action" : "edit-note"
+    ],
+    ["text" : "Let’s place the notes. The first three notes are at these places.",
+     "progress-rect" : ["note": [1, 2, 72], "size": 50],
+     "progress-action" : "edit-note"
+    ],
+    ["text" : "Let’s place the notes. The first three notes are at these places.",
+     "progress-rect" : ["note": [1, 3, 72], "size": 50],
+     "progress-action" : "edit-note"
+    ],
+    ["text" : "Now, since the last note sounded a little higher, we're going to place it a little higher in the staff.",
+     "progress-rect" : ["note": [1, 4, 74], "size": 50],
+     "progress-action" : "edit-note"
+    ],
+    ["text" : "There it is! The note is at this line, which is above the space where all the other notes are."
+    ],
+    ["text" : "When you look at a staff, you can think of it as this:"
+    ],
+    ["text" : "The left and right tell you WHEN to play the note."
+    ],
+    ["text" : "The up and down tell you the PITCH of the note, or how high or low it sounds."
+    ],
+    ["text" : "Ok, press the play button to hear what you’ve made. Then, submit!",
+     "is-enabled" : ["playButton"],
+     "progress-button" : "playButton"
+    ],
+    ["text" : "Ok, press the play button to hear what you’ve made. Then, submit!",
+     "is-enabled" : ["submitButton"],
+     "progress-button" : "submitButton"
+    ],
+]]

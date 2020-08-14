@@ -65,10 +65,11 @@ class LevelSelect: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         self.collectionView.backgroundView = imageView
  */
+        self.view.backgroundColor = ColorPalette.brightManuscript
         self.collectionView.backgroundColor = ColorPalette.brightManuscript
         
         let flowlayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flowlayout.sectionInset.top = CGFloat(90)
+        flowlayout.sectionInset.top = CGFloat(30)
         flowlayout.sectionInset.left = CGFloat(60)
         flowlayout.sectionInset.right = CGFloat(60)
         

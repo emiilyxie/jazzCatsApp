@@ -48,9 +48,7 @@ class SignInEmailVC: UIViewController {
     
     func setUpKeyboards() {
         dismissKeyboard()
-        emailTextField.keyboardType = .emailAddress
-        emailTextField.returnKeyType = .next
-        passwordTextField.returnKeyType = .done
+        tempTextField.returnKeyType = .done
     }
     
     
@@ -59,7 +57,7 @@ class SignInEmailVC: UIViewController {
         emailTextField.isHidden = true
         passwordTextField.isHidden = true
         
-        //tempPressed(self)
+        tempTextField.keyboardType = .emailAddress
         DispatchQueue.main.async {
             self.tempTextField.becomeFirstResponder()
         }
@@ -73,6 +71,7 @@ class SignInEmailVC: UIViewController {
         emailTextField.isHidden = true
         passwordTextField.isHidden = true
         
+        tempTextField.keyboardType = .default
         DispatchQueue.main.async {
             self.tempTextField.becomeFirstResponder()
         }
@@ -97,15 +96,18 @@ class SignInEmailVC: UIViewController {
             //errMessage.text = error
         }
         else {
+            UIStyling.showLoading(view: self.view)
             // attempt sign in
             Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, err) in
                 if err != nil {
+                    UIStyling.hideLoading(view: self.view)
                     print(err!.localizedDescription)
                     UIStyling.showAlert(viewController: self, text: err!.localizedDescription)
                     return
                 }
                 else {
-                    self.performSegue(withIdentifier: "fromSignInEmailToWelcomeUSegue", sender: self)
+                    self.performSegue(withIdentifier: Constants.signInEmailToWelcome, sender: self)
+                    UIStyling.hideLoading(view: self.view)
                 }
             }
         }

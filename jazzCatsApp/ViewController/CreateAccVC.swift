@@ -51,10 +51,7 @@ class CreateAccVC: UIViewController {
     
     func setUpKeyboard() {
         dismissKeyboard()
-        nameTextField.returnKeyType = .next
-        emailTextField.keyboardType = .emailAddress
-        emailTextField.returnKeyType = .next
-        passwordTextField.returnKeyType = .done
+        tempTextField.returnKeyType = .continue
     }
     
     @IBAction func namePressed(_ sender: Any) {
@@ -64,6 +61,7 @@ class CreateAccVC: UIViewController {
         passwordTextField.isHidden = true
         
         //tempPressed(self)
+        tempTextField.keyboardType = .default
         DispatchQueue.main.async {
             self.tempTextField.becomeFirstResponder()
         }
@@ -79,6 +77,7 @@ class CreateAccVC: UIViewController {
         passwordTextField.isHidden = true
         
         //tempPressed(self)
+        tempTextField.keyboardType = .emailAddress
         DispatchQueue.main.async {
             self.tempTextField.becomeFirstResponder()
         }
@@ -94,6 +93,7 @@ class CreateAccVC: UIViewController {
         passwordTextField.isHidden = true
         
         //tempPressed(self)
+        tempTextField.keyboardType = .default
         DispatchQueue.main.async {
             self.tempTextField.becomeFirstResponder()
         }
@@ -120,12 +120,13 @@ class CreateAccVC: UIViewController {
         }
         else {
             // continue with login
-            
+            UIStyling.showLoading(view: self.view)
             let email = emailTextField.text!
             let password = passwordTextField.text!
             Auth.auth().createUser(withEmail: email, password: password) { (authResult, err) in
                 
                 if err != nil {
+                    UIStyling.hideLoading(view: self.view)
                     print(err!.localizedDescription)
                     UIStyling.showAlert(viewController: self, text: err!.localizedDescription)
                     return
@@ -135,7 +136,9 @@ class CreateAccVC: UIViewController {
                     // sign in the user
                     Auth.auth().signIn(withEmail: email, password: password) { (authResult, err) in
                         if err != nil {
+                            UIStyling.hideLoading(view: self.view)
                             print(err!.localizedDescription)
+                            UIStyling.showAlert(viewController: self, text: err!.localizedDescription)
                             return
                         }
                     }
@@ -173,7 +176,7 @@ class CreateAccVC: UIViewController {
         let user = Auth.auth().currentUser
         let uid = user?.uid
         let usersRef = Firestore.firestore().collection("users")
-        usersRef.document(uid!).setData(["email" : email, "nickname" : self.nameTextField.text!, "uid" : uid!, "level-progress" : [:], "game-currency" : 100, "hints" : 10], merge: true)
+        usersRef.document(uid!).setData(["email" : email, "nickname" : self.nameTextField.text!, "uid" : uid!, "level-progress" : [:], "game-currency" : 100, "hints" : 10, "sounds" : ["cat_basic1"]], merge: true)
     }
     
     func dismissKeyboard() {
@@ -184,6 +187,7 @@ class CreateAccVC: UIViewController {
     // unwind segues
     @IBAction func unwindFromCreateAccToWelcome(_ sender: Any) {
         performSegue(withIdentifier: Constants.createAccToWelcome, sender: self)
+        UIStyling.hideLoading(view: self.view)
     }
     
     @IBAction func unwindFromCreateAccToSignIn(_ sender: Any) {

@@ -14,19 +14,21 @@ extension LevelTemplate {
     
     override func setUpSound() {
         setUpSamples()
-        setUpPlayer()
+        //setUpPlayer()
         
         var AKNodeArray: [AKNode] = []
         for sample in samplers {
             AKNodeArray.append(sample)
         }
         
+        /*
         guard let songPlayer = ansSongPlayer else {
             print("song player nonexistent...")
             return
         }
+ */
         
-        AKNodeArray.append(songPlayer)
+        //AKNodeArray.append(songPlayer)
         
         mixer = AKMixer(AKNodeArray)
         //AudioKit.output = answerSong

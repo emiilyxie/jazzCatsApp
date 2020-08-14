@@ -127,7 +127,7 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         //location is relative to the current view
         // do something with the touched point
         if touch?.view != bgView {
-            self.view.removeFromSuperview()
+            self.cancelButton(UIButton())
         }
     }
 }

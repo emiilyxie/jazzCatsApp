@@ -78,25 +78,7 @@ extension Freestyle {
     }
         
     func returnToWelcomeScreen() {
-        do {
-            //mixer.stop()
-            //mixer.detach()
-            AudioKit.disconnectAllInputs()
-            try AudioKit.shutdown()
-            AudioKit.output = nil
-        }
-        catch {
-            print(error)
-        }
-
-        for child in self.children {
-            child.removeAllActions()
-            child.removeFromParent()
-        }
-        self.scene!.removeAllActions()
-        self.scene!.removeAllChildren()
-        self.scene!.removeFromParent()
-        self.view?.presentScene(nil)
+        self.destruct()
         
         guard let gameVC = self.viewController as! GameViewController? else {
             return

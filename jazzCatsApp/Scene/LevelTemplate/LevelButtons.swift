@@ -164,17 +164,40 @@ extension LevelTemplate {
     func submitAns(sender: Button?, index: Int) {
         if noteData == lvlAns {
             
-            //display the "yay!"
-            //yayYouDidIt.zPosition = 100
-            //yayYouDidIt.run(SKAction.fadeIn(withDuration: 0.5))
-            
             // update level progress
             guard let gameVC = self.viewController as? GameViewController else {
                 return
             }
-            //gameVC.showLevelCompletePopover(self)
-            let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
-            gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
+            
+            if GameUser.levelAlreadyCompleted(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel) {
+                let rewardMessage = "Nothing, because you've already completed this level"
+                gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
+            }
+            else {
+                if reward.keys.contains("sound") {
+                    GameUser.updateSounds(newSound: reward["sound"] as! String) {
+                        let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: self.reward)
+                        gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
+                    }
+                }
+                else {
+                    let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
+                    gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
+                }
+            }
+            
+            
+            /*
+            if reward.keys.contains("sound") {
+                GameUser.updateSounds(newSound: reward["sound"] as! String) {
+                    let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: self.reward)
+                    gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
+                }
+            }
+            else {
+                let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
+                gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
+            }*/
             do {
                 try AudioKit.shutdown()
             }
@@ -234,26 +257,8 @@ extension LevelTemplate {
     func returnToMainMenu() {
         
         // bye bye audiokit
-        do {
-            ansSongPlayer?.stop()
-            AudioKit.disconnectAllInputs()
-            try AudioKit.stop()
-            try AudioKit.shutdown()
-            AudioKit.output = nil
-            print(AudioKit.engine.isRunning)
-        }
-        catch {
-            print(error)
-        }
-        
-        // killing the kids
-        for child in self.children {
-            child.removeAllActions()
-        }
-        self.removeAllActions()
-        self.removeAllChildren()
-        self.removeFromParent()
-        self.view?.presentScene(nil)
+        ansSongPlayer?.stop()
+        self.destruct()
 
         // calling the segue func
         guard let gameVC = self.viewController as! GameViewController? else {

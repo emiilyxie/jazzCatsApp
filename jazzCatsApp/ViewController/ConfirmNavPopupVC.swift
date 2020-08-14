@@ -14,6 +14,17 @@ class ConfirmNavPopupVC: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard let parentVC = self.parent as! GameViewController? else {
+            return
+        }
+        
+        parentVC.currentScene?.isUserInteractionEnabled = false
+        parentVC.currentScene?.isPaused = true
+        self.view.isUserInteractionEnabled = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,6 +62,12 @@ class ConfirmNavPopupVC: UIViewController {
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        guard let parentVC = self.parent as! GameViewController? else {
+            print("cant get parentvc")
+            return
+        }
+        parentVC.currentScene?.isPaused = false
+        parentVC.currentScene?.isUserInteractionEnabled = true
         self.view.removeFromSuperview()
     }
     
@@ -59,7 +76,7 @@ class ConfirmNavPopupVC: UIViewController {
         //location is relative to the current view
         // do something with the touched point
         if touch?.view != bgView {
-            self.view.removeFromSuperview()
+            self.cancelButtonPressed(UIButton())
         }
     }
 

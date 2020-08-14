@@ -52,7 +52,7 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
             
-            UIStyling.hideLoading(view: self.view)
+            //UIStyling.hideLoading(view: self.view)
         }
     }
     
@@ -72,7 +72,7 @@ class GameViewController: UIViewController {
         view.showsFPS = true
         view.showsNodeCount = true
         
-        UIStyling.hideLoading(view: self.view)
+        //UIStyling.hideLoading(view: self.view)
     }
     
     func setupLevel(levelGroup: String, levelNum: Int, showScene: @escaping (LevelTemplate) -> ()) {

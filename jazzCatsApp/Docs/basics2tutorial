@@ -1,0 +1,56 @@
+[
+"dialogue" : [
+    ["text" : "Hey, you just finished your first level! Congrats I guess."],
+    ["text" : "Press the audio button to hear this level’s song to transcribe.",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton"
+    ],
+    ["text" : "Ok, this is the exact same as last level. Let's place our notes.",
+     "progress-rect": ["note": [1, 1, 72], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Ok, this is the exact same as last level. Let's place our notes.",
+     "progress-rect": ["note": [1, 2, 72], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Ok, this is the exact same as last level. Let's place our notes.",
+     "progress-rect": ["note": [1, 3, 72], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Ok, this is the exact same as last level. Let's place our notes.",
+     "progress-rect": ["note": [1, 4, 74], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Now, press submit.",
+     "is-enabled" : ["submitButton"],
+     "progress-button": "submitButton"
+    ],
+    ["text" : "Hold up!!! We got it wrong! The last note seems off."
+    ],
+    ["text" : "Don’t worry. We got the handy eraser tool to help. Click on the eraser down to enter into \"erase mode\".",
+     "is-enabled" : ["eraseButton"],
+     "progress-button": "eraseButton",
+     "text-position": "bottom"
+    ],
+    ["text" : "Now, click on that problem note. All your problems will vanish.",
+     "progress-rect": ["note": [1, 4, 74], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Enter \"add mode\" again and place the correct note.",
+     "is-enabled" : ["addNotesButton"],
+     "progress-button": "addNotesButton",
+     "text-position": "bottom"
+    ],
+    ["text" : "Enter \"add mode\" again and place the correct note.",
+     "progress-rect": ["note": [1, 4, 72], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Let's play our transcription and submit it!.",
+     "is-enabled" : ["playButton"],
+     "progress-button": "playButton"
+    ],
+    ["text" : "Let's play our transcription and submit it.",
+     "is-enabled" : ["submitButton"],
+     "progress-button": "submitButton"
+    ],
+]]
