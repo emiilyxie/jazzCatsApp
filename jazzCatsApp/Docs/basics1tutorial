@@ -1,6 +1,6 @@
 [
 "dialogue" : [
-    ["text" : "Hi! Nice to meet you, I'm Toto. Welcome to the jazz world. I'll show you how things work around here."],
+    ["text" : "Hi! Nice to meet you, I'm Meowmo. Welcome to the jazz world. I'll show you how things work around here."],
     ["text" : "So, there's only one goal to each level: transcribe the music."],
     ["text" : "Oh, what's transcribing? Well, basically, you listen to an audio sample, and you transfer what you hear in the recording onto a music staff."],
     ["text": "The music staff contains notes, and each note, based on its position, gives you information about what to play and when to play it."],
@@ -35,7 +35,5 @@
         "game-currency": 100,
         "hints": 3
         ]
-    ],
-    ["text": "Well, I gotta catch a gig with my friend Charlie now. Nice meeting you, and I'll be seeing you around."],
-    ["progress-action": "dismiss"]
+    ]
 ]]

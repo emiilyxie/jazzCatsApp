@@ -1,0 +1,24 @@
+["dialogue" : [
+    ["text": "Let's check out the audio.",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton"
+    ],
+    ["text": "Hmm, this sounds the same as last level, but… slower."
+    ],
+    ["text": "In music, tempo tells us how fast or slow to play music."
+    ],
+    ["text": "Tempo is measured in beats per minute. Last level, the tempo was 100. Now, it's 60."
+    ],
+    ["text": "The larger the tempo value, the faster the beats are."
+    ],
+    ["text": "When you click on play, the line that goes across the screen is also going to be slower because it moves according to the tempo.",
+     "is-enabled" : ["playButton"],
+     "progress-button" : "playButton",
+    ],
+    ["text": "Basically, what you put as the answer on this level is gonna be exactly the same as the last level. The music is just played at a different tempo."
+    ],
+    ["text": "Why is the tempo different? I don’t know. Ask the developer. Gotta go now.",
+     "meowmo-expression" : "mischevious"
+     "progress-action" : "dismiss"
+    ]
+]]

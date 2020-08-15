@@ -29,19 +29,21 @@ extension LevelTemplate {
         //_ = addButton(buttonImage: "pause", buttonAction: enterMode, buttonIndex: 4, name: "pauseButton", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         addButton(buttonImage: UIImage(named: "stop"), buttonAction: enterMode, buttonIndex: 5, name: "stopButton", label: "Stop", buttonPosition: CGPoint(x: rightX*0.3, y: topY))
         
-        addButton(buttonImage: UIImage(named: "sharp"), buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", label: "Sharp", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
-        addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", label: "Flat", buttonPosition: CGPoint(x: rightX*0.3, y: bottomY))
+        addButton(buttonImage: UIImage(named: "sharp"), buttonAction: enterMode, buttonIndex: 7, name: "sharpButton", label: "Sharp", buttonPosition: CGPoint(x: rightX*0.1, y: bottomY))
+        addButton(buttonImage: UIImage(named: "flat"), buttonAction: enterMode, buttonIndex: 8, name: "flatButton", label: "Flat", buttonPosition: CGPoint(x: rightX*0.2, y: bottomY))
         //_ = addButton(buttonImage: "piano1", buttonAction: selectNoteType, buttonIndex: 0, name: "pianoButton", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
-        addButton(buttonImage: UIImage(named: "select"), buttonAction: displayPopup, buttonIndex: 0, name: "selectNoteButton", label: "Select", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
-        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: enterMode, buttonIndex: 0, name: "addNotesButton", label: "Add", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
-        addButton(buttonImage: UIImage(named: "erase"), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", label: "Erase", buttonPosition: CGPoint(x: rightX*0.7, y: bottomY))
+        addButton(buttonImage: UIImage(named: "select"), buttonAction: displayPopup, buttonIndex: 0, name: "selectNoteButton", label: "Select", buttonPosition: CGPoint(x: rightX*0.4, y: bottomY))
+        addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: enterMode, buttonIndex: 0, name: "addNotesButton", label: "Add", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
+        addButton(buttonImage: UIImage(named: "erase"), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", label: "Erase", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
         
         addButton(buttonImage: UIImage(named: "audio"), buttonAction: playSample, buttonIndex: 0, name: "audioSampleButton", label: "Audio", buttonPosition: CGPoint(x: rightX*0.5, y: topY))
-        addButton(buttonImage:  UIImage(named: "hint"), buttonAction: generateHint, buttonIndex: 0, name: "hintButton", label: "Hint", buttonPosition: CGPoint(x: rightX*0.6, y: topY))
-        addButton(buttonImage: UIImage(named: "submit"), buttonAction: submitAns, buttonIndex: 0, name: "submitButton", label: "Submit", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
+        addButton(buttonImage:  UIImage(named: "hint"), buttonAction: generateHint, buttonIndex: 0, name: "hintButton", label: "Hint", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
+        addButton(buttonImage: UIImage(named: "submit"), buttonAction: submitAns, buttonIndex: 0, name: "submitButton", label: "Submit", buttonPosition: CGPoint(x: rightX*0.8, y: topY))
         
         addButton(buttonImage: UIImage(named: "prev"), buttonAction: prevPage, buttonIndex: 0, name: "prevPage", label: "Prev", buttonPosition: CGPoint(x: rightX*0.8, y: bottomY))
         addButton(buttonImage: UIImage(named: "next"), buttonAction: nextPage, buttonIndex: 0, name: "nextPage", label: "Next", buttonPosition: CGPoint(x: rightX*0.9, y: bottomY))
+        
+        //buttons.object(forKey: "homeButton")?.bkgdShape.fillColor = ColorPalette.softAlert
         
         pgCountLabel = SKLabelNode(text: "page: \(pageIndex+1)/\(maxPages)")
         pgCountLabel.fontColor = UIColor.black
@@ -65,8 +67,13 @@ extension LevelTemplate {
     
     func playSample(sender: Button?, index: Int) {
         //ansSongPlayer?.play()
-        let soundIndex = GameUser.unlockedSoundNames.firstIndex(of: selectedNote)
-        sequencer.tracks[0].setMIDIOutput(samplers[soundIndex ?? 0].midiIn)
+        if let soundIndex = GameUser.unlockedSoundNames.firstIndex(of: selectedNote) {
+            sequencer.tracks[0].setMIDIOutput(samplers[soundIndex].midiIn)
+        }
+        else {
+            print("couldnt get soundindex")
+            sequencer.tracks[0].setMIDIOutput(samplers[0].midiIn)
+        }
         if sequencer.isPlaying {
             self.sequencer.stop()
             self.sequencer.rewind()
@@ -91,30 +98,47 @@ extension LevelTemplate {
     }
     
     func generateHint(sender: Button?, index: Int) {
-
+        
         if lvlAns.isEmpty || lvlAns.isSubset(of: noteData) {
-            print("no more hints")
+            if let gameVc = viewController as? GameViewController {
+                UIStyling.showAlert(viewController: gameVc, text: "No more hints.")
+            }
             return
         }
+        
+        if !GameUser.enoughValue(field: "hints", count: -1) {
+            if let gameVc = viewController as? GameViewController {
+                UIStyling.showAlert(viewController: gameVc, text: "You don't have enough hints.")
+            }
+            return
+        }
+        /*
         if !GameUser.updateField(field: "hints", count: -1) {
-            print("you're too broke in hints")
+            if let gameVc = viewController as? GameViewController {
+                UIStyling.showAlert(viewController: gameVc, text: "You don't have enough hints.")
+            }
             return
         }
+ */
         
         let measuresOnPage = pageIndex * numberOfMeasures...pageIndex * numberOfMeasures + numberOfMeasures
         for noteAnswer in lvlAns {
             if !noteData.contains(noteAnswer){
-            if measuresOnPage.contains(Int(noteAnswer[0])) {
-                
-                print("note ans: \(noteAnswer)")
-                addNote(with: noteAnswer, on: pageIndex, soundID: selectedNote)
-                hintCount.text = String(GameUser.hints)
-                return
-                
-            }
+                if measuresOnPage.contains(Int(noteAnswer[0])) {
+                    
+                    print("note ans: \(noteAnswer)")
+                    addNote(with: noteAnswer, on: pageIndex, soundID: selectedNote)
+                    _ = GameUser.updateField(field: "hints", count: -1)
+                    hintCount.text = String(GameUser.hints)
+                    timedUnselectButton(sender: sender)
+                    return
+                    
+                }
             }
         }
-        
+        if let gameVc = viewController as? GameViewController {
+            UIStyling.showAlert(viewController: gameVc, text: "No more hints for this page.")
+        }
         timedUnselectButton(sender: sender)
     }
     
@@ -162,6 +186,12 @@ extension LevelTemplate {
     }
     
     func submitAns(sender: Button?, index: Int) {
+        /*
+        if let button = sender {
+            button.isUserInteractionEnabled = false
+        }
+ */
+        
         if noteData == lvlAns {
             
             // update level progress
@@ -208,17 +238,31 @@ extension LevelTemplate {
         else {
             
             // display the "nah"
+            if let gameVc = viewController as? GameViewController {
+                UIStyling.showAlert(viewController: gameVc, text: "Try Again.")
+            }
+            /*
             sorryTryAgain.zPosition = 100
             let fadeInOut = SKAction.sequence([SKAction.fadeIn(withDuration: 0.5), SKAction.fadeOut(withDuration: 0.5)])
             sorryTryAgain.run(fadeInOut) {
                 self.sorryTryAgain.zPosition = -100
-            }
+             }
+ */
         }
         timedUnselectButton(sender: sender)
+        
+        /*
+        if let button = sender {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                button.isUserInteractionEnabled = true
+            }
+        }
+ */
     }
-    
+    /*
     override func nextPage(sender: Button?, index: Int) {
         if pageIndex < maxPages - 1 {
+            enterMode(sender: nil, index: 5)
             for note in pages[pageIndex] {
                 note.isHidden = true
                 note.physicsBody?.categoryBitMask = PhysicsCategories.none
@@ -239,6 +283,7 @@ extension LevelTemplate {
         
         //has the same sort of logic as nextPage func
         if pageIndex >= 1 {
+            enterMode(sender: nil, index: 5)
             for note in pages[pageIndex] {
                 note.isHidden = true
                 note.physicsBody?.categoryBitMask = PhysicsCategories.none
@@ -252,7 +297,7 @@ extension LevelTemplate {
             updatePgCount()
         }
         timedUnselectButton(sender: sender)
-    }
+    }*/
     
     func returnToMainMenu() {
         

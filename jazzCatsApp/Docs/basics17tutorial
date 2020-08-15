@@ -1,0 +1,18 @@
+["dialogue" : [
+   ["text": "For this level, I'm gonna describe what measures are."
+   ],
+   ["text": "A measure is a collection of beats. Right here in this level, we have two measures."
+   ],
+   ["text": "The start of a measure is shown with a thicker black line. From left to right, the first and fifth lines are the thicker black lines, or measure bar lines."
+   ],
+   ["text": "Both of these measures have 4 beats: the measure bar line and the 3 beats after it."
+   ],
+   ["text": "In most music, each measure has 4 beats. However, some musicians like having different amounts of beats for each measure, like 3, 9, or even 27."
+   ],
+   ["text": "When you click on play, the line on the screen is still going to move according to the tempo. It will move at a rate of 100 beats per minute, in this case."
+   ],
+   ["text": "Ok, enough talking. Let's get to transcribing.",
+    "progress-action" : "dismiss",
+    "meowmo-expression" : "mischevious"
+   ]
+]]

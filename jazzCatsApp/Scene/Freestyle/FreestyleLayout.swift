@@ -33,11 +33,14 @@ extension Freestyle {
             return
         }
         
+        //let currentNoteData = noteData
+        let currentNoteSoundData = noteSoundData
+        
         var newNoteData = Set<[CGFloat]>()
         var newNoteSoundData = Array<Set<[CGFloat]>>(repeating: [], count: (GameUser.sounds.last?.index ?? 20) + 1)
         
-        for instrumentIndex in 0..<noteSoundData.count {
-            for noteInfo in noteSoundData[instrumentIndex] {
+        for instrumentIndex in 0..<currentNoteSoundData.count {
+            for noteInfo in currentNoteSoundData[instrumentIndex] {
                 
                 let noteMeasure = noteInfo[0]
                 let noteBeat = noteInfo[1]

@@ -78,7 +78,7 @@ extension MusicScene {
         timedUnselectButton(sender: sender)
     }
     
-    @objc func nextPage(sender: Button?, index: Int) {
+    func nextPage(sender: Button?, index: Int) {
         if pageIndex < maxPages - 1 {
             for note in pages[pageIndex] {
                 note.isHidden = true
@@ -90,11 +90,14 @@ extension MusicScene {
                 note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
             }
         }
+        if sender != nil {
+            enterMode(sender: nil, index: 5)
+        }
         updatePgCount()
         timedUnselectButton(sender: sender)
     }
     
-    @objc func prevPage(sender: Button?, index: Int) {
+    func prevPage(sender: Button?, index: Int) {
         if pageIndex >= 1 {
             for note in pages[pageIndex] {
                 note.isHidden = true
@@ -105,6 +108,9 @@ extension MusicScene {
                 note.isHidden = false
                 note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
             }
+        }
+        if sender != nil {
+            enterMode(sender: nil, index: 5)
         }
         updatePgCount()
         timedUnselectButton(sender: sender)
@@ -131,8 +137,9 @@ extension MusicScene {
     }
     
     func timedUnselectButton(sender: Button?) {
+        
         if let button = sender {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.unselectCurrentButton(button: button)
             }
         }

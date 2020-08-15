@@ -1,0 +1,33 @@
+["dialogue" : [
+   ["text": "What's up, \(GameUser.nickname ?? "mate")? I'm learning how to play the banjo right now."
+   ],
+   ["text": "You're gonna learn what the pages buttons are, though.",
+   "meowmo-expression" : "mischevious"
+   ],
+   ["text": "Sometimes, if it gets a little crowded putting 2 measures on the same screen, we can use pages."
+   ],
+   ["text": "Let's place a note on this page.",
+    "progress-rect" : ["note": [1, 1, 71], "size": 50],
+    "progress-action" : "edit-note"
+   ],
+   ["text": "Now, let's move to the next page, which shows the next measure.",
+    "text-position" : "bottom",
+    "is-enabled" : ["nextPage"],
+    "progress-button" : "nextPage"
+   ],
+   ["text": "Let's place another note.",
+    "progress-rect" : ["note": [2, 4, 69], "size": 50],
+    "progress-action" : "edit-note"
+   ],
+   ["text": "You can navigate back to the first page.",
+   "text-position" : "bottom",
+    "is-enabled" : ["prevPage"],
+    "progress-button" : "prevPage"
+   ],
+   ["text": "And that's basically it. You can specify the measures per page to your preference in freestyle mode."
+   ],
+   ["text": "Well, time to shed on my banjo. Bonus points if you can name this level's song.",
+   "meowmo-expression" : "surprised",
+    "progress-action" : "dismiss"
+   ]
+]]

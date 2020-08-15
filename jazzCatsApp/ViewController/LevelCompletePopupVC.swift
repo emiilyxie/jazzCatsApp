@@ -11,9 +11,21 @@ import UIKit
 class LevelCompletePopupVC: UIViewController {
 
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var nextLevelButton: UIButton!
     @IBOutlet weak var earnLabel: UILabel!
     var rewardMessage: String?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard let parentVC = self.parent as! GameViewController? else {
+            return
+        }
+        
+        parentVC.currentScene?.isUserInteractionEnabled = false
+        parentVC.currentScene?.isPaused = true
+        self.view.isUserInteractionEnabled = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +39,25 @@ class LevelCompletePopupVC: UIViewController {
         DispatchQueue.main.async {
             self.view.backgroundColor = .clear
             UIStyling.setPopupBackground(popupView: self.bgView)
+            UIStyling.setButtonStyle(button: self.menuButton)
             UIStyling.setButtonStyle(button: self.nextLevelButton)
         }
     }
     
     func displayRewards() {
         earnLabel.text = rewardMessage
+    }
+    
+    
+    @IBAction func menuButtonPressed(_ sender: UIButton) {
+        guard let gameVC = self.parent as? GameViewController,
+            let levelScene = gameVC.currentScene as? LevelTemplate else {
+            print("cant get parent")
+            return
+        }
+        gameVC.view.subviews.forEach({$0.removeFromSuperview()})
+        levelScene.returnToMainMenu()
+        
     }
     
     @IBAction func nextLevelPressed(_ sender: UIButton) {
@@ -50,7 +75,6 @@ class LevelCompletePopupVC: UIViewController {
         }
         else {
             levelScene.returnToMainMenu()
-            gameVC.unwindFromGameToLevelSelect(self)
         }
         gameVC.view.subviews.forEach({$0.removeFromSuperview()})
     }

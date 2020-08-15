@@ -1,0 +1,12 @@
+["dialogue" : [
+    ["text": "Oh, hi again. I was just having a little gig with Charlie, but I'm back. I'm a busy cat, y'know."
+    ],
+    ["text": "Alright, you know what to do.",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton",
+     "meowmo-expression" : "mischevious"
+    ],
+    ["text" : "Hmmm, that second note sounds different. It's a little lower than the others."],
+    ["text" : "Ok, that's all I'm gonna tell you. I gotta catch another gig with Miles now. See ya.",
+     "progress-action" : "dismiss"]
+]]

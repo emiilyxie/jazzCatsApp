@@ -1,7 +1,8 @@
 ["dialogue" : [
     ["text" : "Let's get into business. Press the audio button.",
      "is-enabled" : ["audioSampleButton"],
-     "progress-button" : "audioSampleButton"
+     "progress-button" : "audioSampleButton",
+     "meowmo-expression" : "mischevious"
     ],
     ["text" : "Ok, so it sounds the same as last level again… except for the last note."
     ],
@@ -11,15 +12,15 @@
     ],
     ["text" : "The last note sounds a little higher than the rest of the notes, right?"
     ],
-    ["text" : "Let’s place the notes. The first three notes are at these places.",
+    ["text" : "Let's place the notes. The first three notes are at these places.",
      "progress-rect" : ["note": [1, 1, 72], "size": 50],
      "progress-action" : "edit-note"
     ],
-    ["text" : "Let’s place the notes. The first three notes are at these places.",
+    ["text" : "Let's place the notes. The first three notes are at these places.",
      "progress-rect" : ["note": [1, 2, 72], "size": 50],
      "progress-action" : "edit-note"
     ],
-    ["text" : "Let’s place the notes. The first three notes are at these places.",
+    ["text" : "Let's place the notes. The first three notes are at these places.",
      "progress-rect" : ["note": [1, 3, 72], "size": 50],
      "progress-action" : "edit-note"
     ],
@@ -35,11 +36,11 @@
     ],
     ["text" : "The up and down tell you the PITCH of the note, or how high or low it sounds."
     ],
-    ["text" : "Ok, press the play button to hear what you’ve made. Then, submit!",
+    ["text" : "Ok, press the play button to hear what you've made. Then, submit!",
      "is-enabled" : ["playButton"],
      "progress-button" : "playButton"
     ],
-    ["text" : "Ok, press the play button to hear what you’ve made. Then, submit!",
+    ["text" : "Ok, press the play button to hear what you've made. Then, submit!",
      "is-enabled" : ["submitButton"],
      "progress-button" : "submitButton"
     ],

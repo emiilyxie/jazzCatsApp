@@ -24,65 +24,75 @@ extension MusicScene {
         
         switch currentMode {
         case "addMode": // if in addMode
-            for node in touchedNodes {
-                if let _ = node as? Note {
-                    return
-                }
-            }
-            if barsNode.contains(location) {
-                let barLocation = convert(location, to: barsNode)
-                //location = touch.location(in: barsNode) // going to barsNode coords
-                let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
-                if barLocation.x >= CGFloat(LevelSetup.indentLength) && barLocation.x < maxX {
-                    addNote(noteType: selectedNote, notePosition: barLocation)
-                }
-            }
+            editNotesAdd(location: location, touchedNodes: touchedNodes)
         case "eraseMode": // if in eraseMode
-            for node in touchedNodes {
-                if let noteNode = node as? Note {
-                    noteNode.removeFromParent()
-                    noteData.remove(noteNode.getNoteInfo())
-                    let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
-                    noteSoundData[soundIndex].remove(noteNode.getNoteInfo())
-                    pages[pageIndex].removeAll { $0 == noteNode }
-                }
-            }
+            editNotesErase(location: location, touchedNodes: touchedNodes)
         case "sharpMode":
-            let topNode = touchedNodes.first
-            if let noteNode = topNode as? Note {
-                let prevNoteAns = noteNode.getNoteInfo()
-                if !noteNode.isSharp {
-                    editAccidental(accidental: "sharp", note: noteNode)
-                }
-                else {
-                    editAccidental(accidental: "natural", note: noteNode)
-                }
-                noteData.insert(noteNode.getNoteInfo())
-                noteData.remove(prevNoteAns)
-                let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
-                noteSoundData[soundIndex].insert(noteNode.getNoteInfo())
-                noteSoundData[soundIndex].remove(prevNoteAns)
-                playNoteSound(note: noteNode)
-            }
+            editNotesSharp(location: location, touchedNodes: touchedNodes)
         case "flatMode":
-            let topNode = touchedNodes.first
-            if let noteNode = topNode as? Note {
-                let prevNoteAns = noteNode.getNoteInfo()
-                if !noteNode.isFlat {
-                    editAccidental(accidental: "flat", note: noteNode)
-                }
-                else {
-                    editAccidental(accidental: "natural", note: noteNode)
-                }
-                noteData.insert(noteNode.getNoteInfo())
-                noteData.remove(prevNoteAns)
-                let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
-                noteSoundData[soundIndex].insert(noteNode.getNoteInfo())
-                noteSoundData[soundIndex].remove(prevNoteAns)
-                playNoteSound(note: noteNode)
-            }
+            editNotesFlat(location: location, touchedNodes: touchedNodes)
         default: // not selected or navigateMode
             return
+        }
+    }
+    
+    @objc func editNotesAdd(location: CGPoint, touchedNodes: [SKNode]) {
+        if barsNode.contains(location) {
+            let barLocation = convert(location, to: barsNode)
+            //location = touch.location(in: barsNode) // going to barsNode coords
+            let maxX = CGFloat(LevelSetup.indentLength + resultWidth - divisionWidth/2)
+            if barLocation.x >= CGFloat(LevelSetup.indentLength)/2 && barLocation.x < maxX {
+            //if barLocation.x < maxX {
+                addNote(noteType: selectedNote, notePosition: barLocation)
+            }
+        }
+    }
+    
+    @objc func editNotesErase(location: CGPoint, touchedNodes: [SKNode]) {
+        if let noteNode = atPoint(location) as? Note {
+            noteNode.removeFromParent()
+            noteData.remove(noteNode.getNoteInfo())
+            let soundIndex = Sounds.getSound(from: GameUser.sounds, id: noteNode.noteType)?.index ?? 0
+            noteSoundData[soundIndex].remove(noteNode.getNoteInfo())
+            pages[pageIndex].removeAll { $0 == noteNode }
+        }
+    }
+    
+    func editNotesSharp(location: CGPoint, touchedNodes: [SKNode]) {
+        let topNode = touchedNodes.first
+        if let noteNode = topNode as? Note {
+            let prevNoteAns = noteNode.getNoteInfo()
+            if !noteNode.isSharp {
+                editAccidental(accidental: "sharp", note: noteNode)
+            }
+            else {
+                editAccidental(accidental: "natural", note: noteNode)
+            }
+            noteData.insert(noteNode.getNoteInfo())
+            noteData.remove(prevNoteAns)
+            let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
+            noteSoundData[soundIndex].insert(noteNode.getNoteInfo())
+            noteSoundData[soundIndex].remove(prevNoteAns)
+            playNoteSound(note: noteNode)
+        }
+    }
+    
+    func editNotesFlat(location: CGPoint, touchedNodes: [SKNode]) {
+        let topNode = touchedNodes.first
+        if let noteNode = topNode as? Note {
+            let prevNoteAns = noteNode.getNoteInfo()
+            if !noteNode.isFlat {
+                editAccidental(accidental: "flat", note: noteNode)
+            }
+            else {
+                editAccidental(accidental: "natural", note: noteNode)
+            }
+            noteData.insert(noteNode.getNoteInfo())
+            noteData.remove(prevNoteAns)
+            let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
+            noteSoundData[soundIndex].insert(noteNode.getNoteInfo())
+            noteSoundData[soundIndex].remove(prevNoteAns)
+            playNoteSound(note: noteNode)
         }
     }
     
@@ -99,7 +109,7 @@ extension MusicScene {
         noteData.insert(note.getNoteInfo())
         let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
         noteSoundData[soundIndex].insert(note.getNoteInfo())
-        //print(noteData)
+        print(noteData)
         pages[pageIndex].append(note)
         
         playNoteSound(note: note)
@@ -176,7 +186,8 @@ extension MusicScene {
     
     func getNoteBeat(noteXPos: CGFloat, noteMeasure: Int) -> CGFloat {
         let longDecimal = (noteXPos/beatWidth)
-        let rounded = Double(String(format: "%.2f", longDecimal))!
+        let rounded = Double(round(100 * Double(longDecimal)) / 100)
+        //let rounded = Double(String(format: "%.2f", longDecimal))!
         //return CGFloat(rounded)
         let measureOnPage = (noteMeasure - 1) % numberOfMeasures
         let beatInMeasure = Double(rounded) - Double((measureOnPage) * bpm) + 1

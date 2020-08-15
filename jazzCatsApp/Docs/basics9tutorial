@@ -1,0 +1,31 @@
+["dialogue" : [
+    ["text": "Hey, I'm back. Did you miss me?"
+    ],
+    ["text": "Of course you missed me. If you said no, you're wrong.",
+     "meowmo-expression" : "mischevious"
+    ],
+    ["text": "Let's hear what we're gonna transcribe today…",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton"
+    ],
+    ["text" : "Woah! That's a lot of notes!",
+     "meowmo-expression" : "surprised"],
+    ["text" : "Well, let me explain. You see the vertical lines on the staff? Let's call them beats."],
+    ["text" : "So far, all of our notes have fallen exactly on a beat."],
+    ["text" : "However, to spice things up, some people like to place multiple notes in between two beats. As a result, one beat may have multiple notes."],
+    ["text" : "In this case, for each beat, there are two notes: the note on the beat, and the note after the beat but before the next beat."],
+    ["text" : "For example, this is beat 1.",
+     "progress-rect" : ["note": [1, 1, 72], "size": 50],
+     "progress-action" : "edit-note",
+     "meowmo-position" : "right"],
+    ["text" : "Now, this is beat 1.5.",
+     "progress-rect" : ["note": [1, 1.5, 72], "size": 50],
+    "progress-action" : "edit-note",
+    "meowmo-position" : "right"],
+    ["text" : "The next beat is beat 2.",
+     "progress-rect" : ["note": [1, 2, 72], "size": 50],
+    "progress-action" : "edit-note",
+    "meowmo-position" : "right"],
+    ["text" : "I think you can figure out the rest. Bye bye.",
+     "progress-action" : "dismiss"]
+]]

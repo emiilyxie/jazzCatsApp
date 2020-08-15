@@ -1,0 +1,13 @@
+["dialogue" : [
+   ["text": "Hey, nice job. After you complete this level, you've completed the basics."
+   ],
+   ["text": "It was nice meeting you. I'll see you again in the Intermediate levels, or you can go straight to the other level groups."
+   ],
+   ["text": "In the Intermediate group, I'll be going over note names, syncopation, chords, and more. Fun stuff.",
+   "meowmo-expression" : "mischevious"
+   ],
+   ["text": "Oh, one last thing - you'll get a fun little reward at the end of this level. Ok bye.",
+    "progress-action" : "dismiss",
+    "meowmo-expression" : "surprised"
+   ]
+]]

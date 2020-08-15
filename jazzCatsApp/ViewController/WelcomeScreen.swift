@@ -55,7 +55,7 @@ class WelcomeScreen: UIViewController {
     func setUpUser() {
         guard let uid = Auth.auth().currentUser?.uid
         else {
-            print("no current user uh oh")
+            goToSignIn(self)
             return
         }
         let userRef = Firestore.firestore().collection("/users").document(uid)
@@ -77,7 +77,7 @@ class WelcomeScreen: UIViewController {
                 //self.userIDLabel.text = "Hi \(GameUser.nickname ?? "")!"
             }
             else {
-                print("user doc doesn't exist")
+                self.goToSignIn(self)
             }
             UIStyling.hideLoading(view: self.view)
         }
@@ -160,18 +160,28 @@ class WelcomeScreen: UIViewController {
     
     // for exporting documents
     
-    /*
+
     func exportData() {
         let db = Firestore.firestore()
-        let docData = // data here
+        let docData = ["dialogue" : [
+           ["text": "Hey, nice job. After you complete this level, you've completed the basics."
+           ],
+           ["text": "It was nice meeting you. I'll see you again in the Intermediate levels, or you can go straight to the other level groups."
+           ],
+           ["text": "In the Intermediate group, I'll be going over note names, syncopation, chords, and more. Fun stuff.",
+           "meowmo-expression" : "mischevious"
+           ],
+           ["text": "Oh, one last thing - you'll get a fun little reward at the end of this level. Ok bye.",
+            "progress-action" : "dismiss",
+            "meowmo-expression" : "surprised"
+           ]
+        ]]
 
-        db.document("/level-groups/basics/levels/level3").setData(docData, merge: true) { (err) in
+        db.document("/level-groups/basics/levels/level20").setData(docData, merge: true) { (err) in
             if err != nil {
                 print(err!.localizedDescription)
             }
         }
     }
- */
      
- 
 }

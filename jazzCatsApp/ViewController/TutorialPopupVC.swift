@@ -23,6 +23,9 @@ class TutorialPopupVC: UIViewController {
     @IBOutlet weak var dialogueView: UIView!
     @IBOutlet weak var dialogueBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var dialogueTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var meowmoImg: UIImageView!
+    @IBOutlet weak var meowmoLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var meowmoTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonFrame: UIButton!
     @IBOutlet weak var dialogueBox: UILabel!
     @IBOutlet weak var tapToContinue: UILabel!
@@ -32,7 +35,7 @@ class TutorialPopupVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UIStyling.showLoading(view: self.view)
         // Do any additional setup after loading the view.
         setUpGraphics()
         
@@ -47,6 +50,8 @@ class TutorialPopupVC: UIViewController {
         
         self.parentVC = parentVC
         self.currentScene = currentScene
+        resetUserInteraction()
+        UIStyling.hideLoading(view: self.view)
     }
     
     func setUpGraphics() {
@@ -80,6 +85,15 @@ class TutorialPopupVC: UIViewController {
     func nextPage() {
         NSLayoutConstraint.deactivate([dialogueTopConstraint])
         NSLayoutConstraint.activate([dialogueBottomConstraint])
+        NSLayoutConstraint.deactivate([meowmoTrailingConstraint])
+        NSLayoutConstraint.activate([meowmoLeadingConstraint])
+        
+        if let expressionImg = UIImage(named: "meowmo") {
+            DispatchQueue.main.async {
+                self.meowmoImg.image = expressionImg
+            }
+        }
+        
         canContinue = true
         continueLoc = nil
         progressAction = { (optPoint: CGPoint?) -> () in  }
@@ -121,6 +135,8 @@ class TutorialPopupVC: UIViewController {
             musicScene.addChild(whereToPress)
             
             let action = {(_: CGPoint?) -> () in
+                self.currentScene?.sequencer.stop()
+                self.currentScene?.sequencer.rewind()
                 button.action(button, button.index)
             }
             progressAction = action
@@ -163,6 +179,10 @@ class TutorialPopupVC: UIViewController {
         
         case ("progress-action", "dismiss" as String):
             progressAction = { (_: CGPoint?) -> () in
+                musicScene.isUserInteractionEnabled = true
+                for button in musicScene.buttons.dictionaryRepresentation().values {
+                    button.isUserInteractionEnabled = true
+                }
                 self.view.removeFromSuperview()
             }
             
@@ -179,6 +199,19 @@ class TutorialPopupVC: UIViewController {
             NSLayoutConstraint.deactivate([dialogueBottomConstraint])
             if position as? String == "top" {
                 NSLayoutConstraint.activate([dialogueTopConstraint])
+            }
+        
+        case ("meowmo-position", let position):
+            NSLayoutConstraint.deactivate([meowmoLeadingConstraint])
+            if position as? String == "right" {
+                NSLayoutConstraint.activate([meowmoTrailingConstraint])
+            }
+        
+        case ("meowmo-expression", let expression):
+            if let expressionImg = UIImage(named: "meowmo_\(expression)") {
+                DispatchQueue.main.async {
+                    self.meowmoImg.image = expressionImg
+                }
             }
             
         default:

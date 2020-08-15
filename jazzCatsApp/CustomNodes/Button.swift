@@ -43,6 +43,10 @@ public class Button: SKSpriteNode {
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.isUserInteractionEnabled = true
+        }
         let scene = self.scene as? MusicScene
         scene?.selectButton(button: self)
         action(self, index)

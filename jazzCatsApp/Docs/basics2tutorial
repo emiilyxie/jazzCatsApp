@@ -1,7 +1,7 @@
 [
 "dialogue" : [
     ["text" : "Hey, you just finished your first level! Congrats I guess."],
-    ["text" : "Press the audio button to hear this level’s song to transcribe.",
+    ["text" : "Press the audio button to hear this level's song to transcribe.",
      "is-enabled" : ["audioSampleButton"],
      "progress-button" : "audioSampleButton"
     ],
@@ -25,9 +25,10 @@
      "is-enabled" : ["submitButton"],
      "progress-button": "submitButton"
     ],
-    ["text" : "Hold up!!! We got it wrong! The last note seems off."
+    ["text" : "Hold up!!! We got it wrong! The last note seems off.",
+     "meowmo-expression" : "surprised"
     ],
-    ["text" : "Don’t worry. We got the handy eraser tool to help. Click on the eraser down to enter into \"erase mode\".",
+    ["text" : "Don't worry. We got the handy eraser tool to help. Click on the eraser down to enter into \"erase mode\".",
      "is-enabled" : ["eraseButton"],
      "progress-button": "eraseButton",
      "text-position": "bottom"
@@ -45,7 +46,7 @@
      "progress-rect": ["note": [1, 4, 72], "size": 50],
      "progress-action": "edit-note"
     ],
-    ["text" : "Let's play our transcription and submit it!.",
+    ["text" : "Let's play our transcription and submit it.",
      "is-enabled" : ["playButton"],
      "progress-button": "playButton"
     ],
