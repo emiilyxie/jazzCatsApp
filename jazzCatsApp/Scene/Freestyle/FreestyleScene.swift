@@ -14,9 +14,6 @@ public class Freestyle: MusicScene {
     
     //weak var viewController: UIViewController?
 
-    public var oldNumOfMeasures: Int!
-    public var oldBpm: Int!
-    public var oldSubdivision: Int!
     
     init(size: CGSize) {
         super.init(size: size, tempo: nil, numberOfMeasures: nil, bpm: nil, subdivision: nil, maxPages: nil)

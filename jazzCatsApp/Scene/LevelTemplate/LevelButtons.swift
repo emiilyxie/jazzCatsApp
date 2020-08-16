@@ -36,7 +36,8 @@ extension LevelTemplate {
         addButton(buttonImage: UIImage(named: "cat_basic1"), buttonAction: enterMode, buttonIndex: 0, name: "addNotesButton", label: "Add", buttonPosition: CGPoint(x: rightX*0.5, y: bottomY))
         addButton(buttonImage: UIImage(named: "erase"), buttonAction: enterMode, buttonIndex: 1, name: "eraseButton", label: "Erase", buttonPosition: CGPoint(x: rightX*0.6, y: bottomY))
         
-        addButton(buttonImage: UIImage(named: "audio"), buttonAction: playSample, buttonIndex: 0, name: "audioSampleButton", label: "Audio", buttonPosition: CGPoint(x: rightX*0.5, y: topY))
+        addButton(buttonImage: UIImage(named: "settings"), buttonAction: displayPopup, buttonIndex: 1, name: "displaySettingsButton", label: "Settings", buttonPosition: CGPoint(x: rightX*0.5, y: topY))
+        addButton(buttonImage: UIImage(named: "audio"), buttonAction: playSample, buttonIndex: 0, name: "audioSampleButton", label: "Audio", buttonPosition: CGPoint(x: rightX*0.6, y: topY))
         addButton(buttonImage:  UIImage(named: "hint"), buttonAction: generateHint, buttonIndex: 0, name: "hintButton", label: "Hint", buttonPosition: CGPoint(x: rightX*0.7, y: topY))
         addButton(buttonImage: UIImage(named: "submit"), buttonAction: submitAns, buttonIndex: 0, name: "submitButton", label: "Submit", buttonPosition: CGPoint(x: rightX*0.8, y: topY))
         
@@ -67,16 +68,26 @@ extension LevelTemplate {
     
     func playSample(sender: Button?, index: Int) {
         //ansSongPlayer?.play()
-        if let soundIndex = GameUser.unlockedSoundNames.firstIndex(of: selectedNote) {
-            sequencer.tracks[0].setMIDIOutput(samplers[soundIndex].midiIn)
+        
+        guard let sequencer = GameUser.conductor?.sequencer, let samplers = GameUser.conductor?.samplers else {
+            print("cant get sequencer or sampler")
+            return
         }
+        
+        if let soundIndex = GameUser.unlockedSoundNames.firstIndex(of: selectedNote) {
+            
+            //let sampler = samplers.object(forKey: selectedNote as NSString)
+            sequencer.tracks[0].setMIDIOutput(samplers[soundIndex].midiIn ?? 0)
+                    }
         else {
             print("couldnt get soundindex")
+            //let sampler = samplers.object(forKey: selectedNote as NSString)
+            //sequencer.tracks[0].setMIDIOutput(sampler?.midiIn ?? 0)
             sequencer.tracks[0].setMIDIOutput(samplers[0].midiIn)
         }
         if sequencer.isPlaying {
-            self.sequencer.stop()
-            self.sequencer.rewind()
+            sequencer.stop()
+            sequencer.rewind()
             if let button = sender {
                 unselectCurrentButton(button: button)
             }
@@ -86,9 +97,9 @@ extension LevelTemplate {
             
             let sequenceTime = AKDuration(beats: maxPages * numberOfMeasures * bpm, tempo: BPM(tempo))
             DispatchQueue.main.asyncAfter(deadline: .now() + sequenceTime.seconds) {
-                if self.sequencer.currentPosition >= AKDuration(beats: self.maxPages * self.numberOfMeasures * self.bpm - 1.0) {
-                    self.sequencer.stop()
-                    self.sequencer.rewind()
+                if sequencer.currentPosition >= AKDuration(beats: self.maxPages * self.numberOfMeasures * self.bpm - 1.0) {
+                    sequencer.stop()
+                    sequencer.rewind()
                     if let button = sender {
                         self.unselectCurrentButton(button: button)
                     }
@@ -174,7 +185,7 @@ extension LevelTemplate {
             gameVC.showPopover(gameVC, popupID: Constants.noteSelectID)
         case 1:
             //gameVC.showSettingsPopover(gameVC)
-            gameVC.showPopover(gameVC, popupID: Constants.settingsID)
+            gameVC.showPopover(gameVC, popupID: Constants.settingsID, disabledSettings: ["pgs", "mpp", "bpm"])
         case 2:
             //gameVC.showConfirmNavPopover(gameVC)
             gameVC.showPopover(gameVC, popupID: Constants.confirmNavID)
@@ -183,6 +194,14 @@ extension LevelTemplate {
         }
         super.displayPopup(sender: sender, index: index)
         timedUnselectButton(sender: sender)
+    }
+    
+    func hideButtons(buttons: [String]) {
+        for buttonName in buttons {
+            if let button = self.buttons.object(forKey: buttonName as NSString) {
+                button.isHidden = true
+            }
+        }
     }
     
     func submitAns(sender: Button?, index: Int) {
@@ -228,12 +247,14 @@ extension LevelTemplate {
                 let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
                 gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
             }*/
+            /*
             do {
                 try AudioKit.shutdown()
             }
             catch {
                 print(error)
             }
+ */
         }
         else {
             
@@ -302,7 +323,7 @@ extension LevelTemplate {
     func returnToMainMenu() {
         
         // bye bye audiokit
-        ansSongPlayer?.stop()
+        //ansSongPlayer?.stop()
         self.destruct()
 
         // calling the segue func

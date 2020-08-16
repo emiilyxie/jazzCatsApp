@@ -74,7 +74,6 @@ class WelcomeScreen: UIViewController {
                 GameUser.unlockedSoundNames = document.get("unlocked-sounds") as? [String] ?? ["cat_basic1"]
                 GameUser.setSounds()
                 //GameUser.sortSounds()
-                //self.userIDLabel.text = "Hi \(GameUser.nickname ?? "")!"
             }
             else {
                 self.goToSignIn(self)
@@ -126,6 +125,7 @@ class WelcomeScreen: UIViewController {
     
     
     func goToSignIn(_ sender: Any) {
+        GameUser.conductor?.stopAudioKit()
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
@@ -160,22 +160,10 @@ class WelcomeScreen: UIViewController {
     
     // for exporting documents
     
-
+/*
     func exportData() {
         let db = Firestore.firestore()
-        let docData = ["dialogue" : [
-           ["text": "Hey, nice job. After you complete this level, you've completed the basics."
-           ],
-           ["text": "It was nice meeting you. I'll see you again in the Intermediate levels, or you can go straight to the other level groups."
-           ],
-           ["text": "In the Intermediate group, I'll be going over note names, syncopation, chords, and more. Fun stuff.",
-           "meowmo-expression" : "mischevious"
-           ],
-           ["text": "Oh, one last thing - you'll get a fun little reward at the end of this level. Ok bye.",
-            "progress-action" : "dismiss",
-            "meowmo-expression" : "surprised"
-           ]
-        ]]
+        let docData = //data here
 
         db.document("/level-groups/basics/levels/level20").setData(docData, merge: true) { (err) in
             if err != nil {
@@ -183,5 +171,6 @@ class WelcomeScreen: UIViewController {
             }
         }
     }
+ */
      
 }

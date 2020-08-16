@@ -73,7 +73,7 @@ extension MusicScene {
             let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
             noteSoundData[soundIndex].insert(noteNode.getNoteInfo())
             noteSoundData[soundIndex].remove(prevNoteAns)
-            playNoteSound(note: noteNode)
+            GameUser.conductor?.playNoteSound(note: noteNode)
         }
     }
     
@@ -92,7 +92,7 @@ extension MusicScene {
             let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
             noteSoundData[soundIndex].insert(noteNode.getNoteInfo())
             noteSoundData[soundIndex].remove(prevNoteAns)
-            playNoteSound(note: noteNode)
+            GameUser.conductor?.playNoteSound(note: noteNode)
         }
     }
     
@@ -112,7 +112,7 @@ extension MusicScene {
         print(noteData)
         pages[pageIndex].append(note)
         
-        playNoteSound(note: note)
+        GameUser.conductor?.playNoteSound(note: note)
     }
     
     func addNote(with info: [CGFloat], on page: Int, soundID: String) {

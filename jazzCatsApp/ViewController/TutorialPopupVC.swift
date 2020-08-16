@@ -135,8 +135,8 @@ class TutorialPopupVC: UIViewController {
             musicScene.addChild(whereToPress)
             
             let action = {(_: CGPoint?) -> () in
-                self.currentScene?.sequencer.stop()
-                self.currentScene?.sequencer.rewind()
+                GameUser.conductor?.sequencer?.stop()
+                GameUser.conductor?.sequencer?.rewind()
                 button.action(button, button.index)
             }
             progressAction = action
@@ -184,6 +184,7 @@ class TutorialPopupVC: UIViewController {
                     button.isUserInteractionEnabled = true
                 }
                 self.view.removeFromSuperview()
+                self.removeFromParent()
             }
             
         case ("is-enabled", let buttons):

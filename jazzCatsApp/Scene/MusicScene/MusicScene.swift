@@ -19,9 +19,14 @@ public class MusicScene: SKScene {
     var staffTotalHeight: CGFloat
 
     var tempo: Int = LevelSetup.defaultTempo
+    var metronomeToggle = false
     var numberOfMeasures: Int = LevelSetup.defaultNumberOfMeasures
     var bpm: Int = LevelSetup.defaultBpm
+    var oldNumOfMeasures: Int!
+    var oldBpm: Int!
+    var oldSubdivision: Int!
     var subdivision: Int = LevelSetup.defaultSubdivision
+    
     var totalDivision: Int
     var totalBeats: Int
     var resultWidth: CGFloat
@@ -46,9 +51,10 @@ public class MusicScene: SKScene {
     
     var currentSounds = GameUser.sounds
     //var samplers: Array<AKAppleSampler> = []
-    var samplers: Array<AKMIDISampler> = []
-    var mixer = AKMixer()
-    var sequencer = AKAppleSequencer()
+    //var samplers: Array<AKMIDISampler?> = []
+    //var samplers = NSMapTable<NSString, AKMIDISampler>.init(keyOptions: .copyIn, valueOptions: .weakMemory)
+    //var mixer = AKMixer()
+    //var sequencer = AKAppleSequencer()
     //let conductor = Conductor()
 
     public init(size: CGSize, tempo: Int?, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?) {

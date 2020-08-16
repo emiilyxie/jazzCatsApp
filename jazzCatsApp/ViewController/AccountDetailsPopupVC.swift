@@ -84,6 +84,11 @@ class AccountDetailsPopupVC: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.removeFromParent()
+        self.dismiss(animated: animated, completion: nil)
+    }
     
     /*
     // MARK: - Navigation

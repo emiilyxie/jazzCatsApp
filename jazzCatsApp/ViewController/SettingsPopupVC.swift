@@ -11,6 +11,7 @@ import UIKit
 class SettingsPopupVC: UIViewController {
     
     public var currentTempo: Int = LevelSetup.defaultTempo
+    public var currentMetronome = false
     public var currentPgs: Int = LevelSetup.defaultMaxPages
     public var currentMPP: Int = LevelSetup.defaultNumberOfMeasures
     public var currentBPM: Int = LevelSetup.defaultBpm
@@ -26,7 +27,16 @@ class SettingsPopupVC: UIViewController {
     @IBOutlet weak var scrollContentView: UIView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
+    
+    @IBOutlet weak var tempoLabel: UILabel!
+    @IBOutlet weak var tempoPlaceholder: UILabel!
     @IBOutlet weak var tempoTextField: UITextField!
+    
+    @IBOutlet weak var metronomeLabel: UILabel!
+    @IBOutlet weak var metronomePlaceholder: UILabel!
+    @IBOutlet weak var metronomeControl: UISegmentedControl!
+    
+    @IBOutlet var settingLabels: [UILabel]!
     @IBOutlet var settingValues: [UILabel]!
     @IBOutlet var settingSteppers: [UIStepper]!
     
@@ -47,7 +57,7 @@ class SettingsPopupVC: UIViewController {
         guard let parentVC = self.parent as! GameViewController? else {
             return
         }
-        guard let freestyleScene = parentVC.currentScene as! Freestyle? else {
+        guard let musicScene = parentVC.currentScene as! MusicScene? else {
             return
         }
         
@@ -58,17 +68,19 @@ class SettingsPopupVC: UIViewController {
         self.tempoTextField.keyboardType = .numberPad
         dismissKeyboard()
         
-        currentTempo = freestyleScene.tempo
-        currentPgs = freestyleScene.maxPages
-        currentMPP = freestyleScene.numberOfMeasures
-        currentBPM = freestyleScene.bpm
-        currentSPB = freestyleScene.subdivision
-        newTempo = freestyleScene.tempo
-        newPgs = freestyleScene.maxPages
-        newMPP = freestyleScene.numberOfMeasures
-        newBPM = freestyleScene.bpm
-        newSPB = freestyleScene.subdivision
+        currentTempo = musicScene.tempo
+        currentMetronome = musicScene.metronomeToggle
+        currentPgs = musicScene.maxPages
+        currentMPP = musicScene.numberOfMeasures
+        currentBPM = musicScene.bpm
+        currentSPB = musicScene.subdivision
+        newTempo = musicScene.tempo
+        newPgs = musicScene.maxPages
+        newMPP = musicScene.numberOfMeasures
+        newBPM = musicScene.bpm
+        newSPB = musicScene.subdivision
         currentSettings()
+        
     }
     
     func setUpGraphics() {
@@ -87,6 +99,13 @@ class SettingsPopupVC: UIViewController {
     
     func currentSettings() {
         tempoTextField.text = String(currentTempo)
+        
+        if currentMetronome {
+            metronomeControl.selectedSegmentIndex = 1
+        } else {
+            metronomeControl.selectedSegmentIndex = 0
+        }
+        
         settingValues[0].text = String(currentPgs)
         settingValues[1].text = String(currentMPP)
         settingValues[2].text = String(currentBPM)
@@ -96,6 +115,46 @@ class SettingsPopupVC: UIViewController {
         settingSteppers[1].value = Double(currentMPP)
         settingSteppers[2].value = Double(currentBPM)
         settingSteppers[3].value = Double(currentSPB)
+    }
+    
+    func processDisabled(disabled: [String]?) {
+        guard let disabledCategories = disabled else {
+            print("no categories to disable")
+            return
+        }
+        
+        for disabledCategory in disabledCategories {
+            
+            switch disabledCategory {
+            case "tempo":
+                tempoLabel.isHidden = true
+                tempoPlaceholder.isHidden = true
+                tempoTextField.isHidden = true
+            case "metronome":
+                metronomeLabel.isHidden = true
+                metronomePlaceholder.isHidden = true
+                metronomeControl.isHidden = true
+            case "pgs":
+                settingLabels[0].isHidden = true
+                settingValues[0].isHidden = true
+                settingSteppers[0].isHidden = true
+            case "mpp":
+                settingLabels[1].isHidden = true
+                settingValues[1].isHidden = true
+                settingSteppers[1].isHidden = true
+            case "bpm":
+                settingLabels[2].isHidden = true
+                settingValues[2].isHidden = true
+                settingSteppers[2].isHidden = true
+            case "spb":
+                settingLabels[3].isHidden = true
+                settingValues[3].isHidden = true
+                settingSteppers[3].isHidden = true
+            default:
+                print("cant recognize disabled category")
+            }
+            
+        }
     }
     
     @IBAction func editTempo(_ sender: Any) {
@@ -117,7 +176,6 @@ class SettingsPopupVC: UIViewController {
             return
         }
     }
-    
     
     @IBAction func editPgs(_ sender: UIStepper) {
         settingValues[0].text = String(Int(settingSteppers[0].value))
@@ -154,18 +212,27 @@ class SettingsPopupVC: UIViewController {
         guard let parentVC = self.parent as! GameViewController? else {
             return
         }
-        guard let freestyleScene = parentVC.currentScene as! Freestyle? else {
+        guard let musicScene = parentVC.currentScene as! MusicScene? else {
             return
         }
-        freestyleScene.tempo = newTempo
-        freestyleScene.maxPages = newPgs
-        freestyleScene.numberOfMeasures = newMPP
-        freestyleScene.bpm = newBPM
-        freestyleScene.subdivision = newSPB
-        freestyleScene.oldNumOfMeasures = currentMPP
-        freestyleScene.oldBpm = currentBPM
-        freestyleScene.oldSubdivision = currentSPB
-        freestyleScene.reloadLayout()
+        musicScene.tempo = newTempo
+        GameUser.conductor?.sequencer?.setTempo(Double(newTempo))
+        
+        if metronomeControl.selectedSegmentIndex == 1 {
+            musicScene.metronomeToggle = true
+        }
+        else {
+            musicScene.metronomeToggle = false
+        }
+        
+        musicScene.maxPages = newPgs
+        musicScene.numberOfMeasures = newMPP
+        musicScene.bpm = newBPM
+        musicScene.subdivision = newSPB
+        musicScene.oldNumOfMeasures = currentMPP
+        musicScene.oldBpm = currentBPM
+        musicScene.oldSubdivision = currentSPB
+        musicScene.reloadLayout()
         
         self.view.removeFromSuperview()
         parentVC.currentScene?.isPaused = false

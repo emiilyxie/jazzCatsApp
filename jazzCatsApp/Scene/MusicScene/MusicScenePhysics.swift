@@ -23,7 +23,7 @@ extension MusicScene: SKPhysicsContactDelegate {
            
            if contactMask == PhysicsCategories.noteCategory | PhysicsCategories.measureBarCategory {
                if let hitInstrument = contact.bodyA.node?.name != nil ? contact.bodyA.node as? Note : contact.bodyB.node as? Note {
-                    playNoteSound(note: hitInstrument)
+                GameUser.conductor?.playNoteSound(note: hitInstrument)
                 
                 /*
                    let whichInstrument = hitInstrument.noteType

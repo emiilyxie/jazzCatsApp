@@ -14,7 +14,6 @@ struct PhysicsCategories {
     static let noteCategory: UInt32 = 0x1
     static let measureBarCategory: UInt32 = 0x1 << 1
     public static let finalBarCategory: UInt32 = 0x1 << 2
-
 }
 
 struct ColorPalette {

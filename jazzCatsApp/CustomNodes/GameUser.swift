@@ -18,6 +18,7 @@ struct GameUser {
     static var hints = 10
     static var sounds: [Sound] = []
     static var unlockedSoundNames: [String] = ["cat_basic1"]
+    static var conductor: Conductor?
     //static var sounds: Dictionary<String, Int> = ["cat_basic1" : 0]
     //static var soundsArr: Array<String> = ["cat_basic1"]
     
@@ -40,7 +41,8 @@ struct GameUser {
                 self.sounds = Sounds.sortSounds(sounds: sounds)
                 let ids = self.sounds.map { $0.id }
                 self.unlockedSoundNames = ids
-                print("unlocked sound names 1: \(self.unlockedSoundNames)")
+                //print("unlocked sound names 1: \(self.unlockedSoundNames)")
+                self.conductor = Conductor(sounds: self.sounds)
             }
             else {
                 print("cant get sound query snapshot")
@@ -176,6 +178,8 @@ struct GameUser {
                         sounds.append(sound)
                         self.sounds = Sounds.sortSounds(sounds: sounds)
                         self.unlockedSoundNames = sounds.map { $0.id }
+                        self.conductor?.stopAudioKit()
+                        self.conductor?.startAudioKit(sounds: self.sounds)
                         completion()
                     }
                 }

@@ -15,6 +15,7 @@ class LevelCompletePopupVC: UIViewController {
     @IBOutlet weak var nextLevelButton: UIButton!
     @IBOutlet weak var earnLabel: UILabel!
     var rewardMessage: String?
+    weak var gameVC: GameViewController?
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -50,32 +51,41 @@ class LevelCompletePopupVC: UIViewController {
     
     
     @IBAction func menuButtonPressed(_ sender: UIButton) {
-        guard let gameVC = self.parent as? GameViewController,
-            let levelScene = gameVC.currentScene as? LevelTemplate else {
+        guard let _ = gameVC,
+            let levelScene = gameVC!.currentScene as? LevelTemplate else {
             print("cant get parent")
             return
         }
-        gameVC.view.subviews.forEach({$0.removeFromSuperview()})
+        //gameVC.view.subviews.forEach({$0.removeFromSuperview()})
+        self.view.removeFromSuperview()
         levelScene.returnToMainMenu()
         
     }
     
     @IBAction func nextLevelPressed(_ sender: UIButton) {
-        guard let gameVC = self.parent as? GameViewController,
-            let levelScene = gameVC.currentScene as? LevelTemplate else {
+        guard let _ = gameVC,
+            let levelScene = gameVC!.currentScene as? LevelTemplate else {
             print("cant get parent")
             return
         }
         
-        gameVC.selectedLevel += 1
-        if gameVC.selectedLevel <= gameVC.maxlevel {
-            UIStyling.showLoading(view: gameVC.view)
+        gameVC!.selectedLevel += 1
+        if gameVC!.selectedLevel <= gameVC!.maxlevel {
+            UIStyling.showLoading(view: gameVC!.view)
+            self.view.removeFromSuperview()
             levelScene.destruct()
-            gameVC.showLevel()
+            gameVC!.showLevel()
         }
         else {
+            self.view.removeFromSuperview()
             levelScene.returnToMainMenu()
         }
-        gameVC.view.subviews.forEach({$0.removeFromSuperview()})
+        //gameVC.view.subviews.forEach({$0.removeFromSuperview()})
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.removeFromParent()
+        self.dismiss(animated: animated, completion: nil)
     }
 }

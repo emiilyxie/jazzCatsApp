@@ -146,8 +146,16 @@ extension MusicScene {
     }
     
     func destruct() {
+        
+        /*
         do {
             AudioKit.disconnectAllInputs()
+            
+            /*
+            for sampleIndex in 0..<samplers.count {
+                samplers[sampleIndex] = nil
+            }
+            */
             try AudioKit.stop()
             try AudioKit.shutdown()
             AudioKit.output = nil
@@ -156,6 +164,8 @@ extension MusicScene {
         catch {
             print(error)
         }
+ */
+        GameUser.conductor?.clearSequence()
         
         // killing the kids
         for child in self.children {

@@ -66,6 +66,7 @@ class ConfirmNavPopupVC: UIViewController {
             print("cant get parentvc")
             return
         }
+        
         parentVC.currentScene?.isPaused = false
         parentVC.currentScene?.isUserInteractionEnabled = true
         self.view.removeFromSuperview()
@@ -78,6 +79,12 @@ class ConfirmNavPopupVC: UIViewController {
         if touch?.view != bgView {
             self.cancelButtonPressed(UIButton())
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.removeFromParent()
+        self.dismiss(animated: animated, completion: nil)
     }
 
 }

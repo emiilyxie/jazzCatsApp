@@ -14,34 +14,59 @@ extension MusicScene {
     
     @objc func setUpSound() {
         
+        
+        
+        /*
+        
         do {
            try AVAudioSession.sharedInstance().setCategory(.playback)
         }
         catch(let error) {
             print(error.localizedDescription)
         }
-        
-        var akSampleFile: AKAudioFile!
-        //var akSampleSampler = AKAppleSampler()
-        var akSampleSampler: AKMIDISampler!
-        //samplers = [AKAppleSampler](repeating: AKAppleSampler(), count: currentSounds.count)
-        samplers = [AKMIDISampler](repeating: AKMIDISampler(), count: currentSounds.count)
+
         do {
             for i in 0...currentSounds.count-1 {
-                //akSampleSampler = AKAppleSampler()
+                var akSampleSampler: AKMIDISampler?
                 akSampleSampler = AKMIDISampler()
+                var akSampleFile: AKAudioFile?
                 akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i].id).mp3")
-                //akSampleFile = try AKAudioFile(readFileName: "kitten-meow.wav")
-                try akSampleSampler.loadAudioFile(akSampleFile!)
-                samplers[i] = akSampleSampler
+                try akSampleSampler!.loadAudioFile(akSampleFile!)
+                samplers.setObject(akSampleSampler, forKey: currentSounds[i].id as NSString)
+                akSampleSampler = nil
+                akSampleFile = nil
             }
         }
         catch {
             print(error)
             return
         }
+        */
+        /*
+        samplers = [AKMIDISampler](repeating: AKMIDISampler(), count: currentSounds.count)
+        do {
+            for i in 0...currentSounds.count-1 {
+                var akSampleSampler: AKMIDISampler?
+                akSampleSampler = AKMIDISampler()
+                var akSampleFile: AKAudioFile?
+                akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i].id).mp3")
+                try akSampleSampler!.loadAudioFile(akSampleFile!)
+                samplers[i] = akSampleSampler!
+                akSampleSampler = nil
+                akSampleFile = nil
+            }
+        }
+        catch {
+            print(error)
+            return
+        }
+        */
+        //var akNodes = samplers.map { $0! }
         
-        mixer = AKMixer(samplers)
+        
+        /*
+        var akNodes = samplers.objectEnumerator()?.allObjects as! [AKMIDISampler]
+        mixer = AKMixer(akNodes)
         AudioKit.output = mixer
         do {
             try AudioKit.start()
@@ -49,13 +74,18 @@ extension MusicScene {
         catch {
             print(error)
         }
+ 
+ */
     }
     
+    /*
     func setUpSequencer(noteData: Set<[CGFloat]>) {
+        
         _ = sequencer.newTrack()
         let sequenceLength = AKDuration(beats: numberOfMeasures * bpm, tempo: 100)
         sequencer.setLength(sequenceLength)
-        sequencer.tracks[0].setMIDIOutput(samplers[0].midiIn)
+        let sampler = samplers.object(forKey: selectedNote as NSString)
+        sequencer.tracks[0].setMIDIOutput(sampler?.midiIn ?? 0)
         generateSequence(noteData: noteData)
 
         //sequencer.enableLooping()
@@ -63,6 +93,7 @@ extension MusicScene {
     }
     
     func generateSequence(noteData: Set<[CGFloat]>) {
+        
         let duration = AKDuration(beats: maxPages * numberOfMeasures * bpm)
         
         sequencer.setLength(duration)
@@ -84,7 +115,8 @@ extension MusicScene {
         sequencer.tracks[0].add(noteNumber: 63, velocity: 127, position: AKDuration(beats: 3.0), duration: AKDuration(beats: 1.0))
  */
     }
-    
+ */
+    /*
     func playNoteSound(note: Note) {
         let whichInstrument = note.noteType
         let whichNote = note.getMidiVal()
@@ -94,11 +126,16 @@ extension MusicScene {
             return
         }
         do {
-            try samplers[index].play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
+            let sampler = samplers.object(forKey: whichInstrument as NSString)
+            try sampler?.play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
         }
         catch {
             print(error)
         }
     }
+    
+    func playMetronomeSound() {
+        
+    }*/
     
 }

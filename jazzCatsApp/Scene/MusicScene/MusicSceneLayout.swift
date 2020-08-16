@@ -104,4 +104,54 @@ extension MusicScene {
         barsNode.addChild(trebleClef)
  */
     }
+    
+    func reloadLayout() {
+        totalDivision = numberOfMeasures * bpm * subdivision
+        totalBeats = numberOfMeasures * bpm
+        divisionWidth = resultWidth / CGFloat(totalDivision)
+        beatWidth = resultWidth / CGFloat(totalBeats)
+        pages = [[Note]](repeating: [], count: maxPages)
+        barsNode.removeAllChildren()
+        barsNode.removeFromParent()
+        barVelocity = CGFloat(tempo) / 60 * beatWidth
+        setUpStaff()
+        pageIndex = 0
+        updatePgCount()
+        repositionNotes()
+    }
+    
+    func repositionNotes() {
+        guard let prevBpm = oldBpm else {
+            print("cant get old values")
+            return
+        }
+        
+        //let currentNoteData = noteData
+        let currentNoteSoundData = noteSoundData
+        
+        var newNoteData = Set<[CGFloat]>()
+        var newNoteSoundData = Array<Set<[CGFloat]>>(repeating: [], count: (GameUser.sounds.last?.index ?? 20) + 1)
+        
+        for instrumentIndex in 0..<currentNoteSoundData.count {
+            for noteInfo in currentNoteSoundData[instrumentIndex] {
+                
+                let noteMeasure = noteInfo[0]
+                let noteBeat = noteInfo[1]
+                let measurelessBeat = (noteMeasure - 1) * CGFloat(prevBpm) + noteBeat
+                let newPage = ((measurelessBeat - 1) / CGFloat(totalBeats)).rounded(.down)
+                let newMeasure = ((measurelessBeat - 1) / CGFloat(bpm)).rounded(.down) + 1
+                let newBeat = measurelessBeat - ((newMeasure - 1) * CGFloat(bpm))
+                let newNote = [newMeasure, newBeat, noteInfo[2]]
+                
+                newNoteData.insert(newNote)
+                newNoteSoundData[instrumentIndex].insert(newNote)
+                if Int(newPage) < maxPages {
+                    let sound = Sounds.getSound(from: GameUser.sounds, index: instrumentIndex) ?? GameUser.sounds[0]
+                    addNote(with: newNote, on: Int(newPage), soundID: sound.id)
+                }
+            }
+        }
+        noteData = newNoteData
+        noteSoundData = newNoteSoundData
+    }
 }

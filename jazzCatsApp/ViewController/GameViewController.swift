@@ -42,6 +42,9 @@ class GameViewController: UIViewController {
             return
         }
         
+        self.children.forEach({ $0.view.removeFromSuperview() })
+        self.children.forEach({ $0.removeFromParent() })
+        
         setupLevel(levelGroup: levelGroup, levelNum: selectedLevel) { (scene) in
             scene.viewController = self
             scene.scaleMode = .aspectFill
@@ -61,6 +64,10 @@ class GameViewController: UIViewController {
             print("cant get view")
             return
         }
+        
+        self.children.forEach({ $0.view.removeFromSuperview() })
+        self.children.forEach({ $0.removeFromParent() })
+        
         let scene = Freestyle(size: LevelSetup.sceneSize)
         scene.viewController = self
     
@@ -69,9 +76,9 @@ class GameViewController: UIViewController {
         view.presentScene(scene)
         self.currentScene = scene
         view.ignoresSiblingOrder = true
-        view.showsFPS = true
-        view.showsNodeCount = true
-        
+        //view.showsFPS = true
+        //view.showsNodeCount = true
+        //view.showsPhysics = true
         //UIStyling.hideLoading(view: self.view)
     }
     
@@ -94,12 +101,18 @@ class GameViewController: UIViewController {
                 let reward = document.get("reward") as? Dictionary<String, Any>
                 let hasTutorial = document.get("tutorial") as? Bool
                 let tutorialData = document.get("dialogue") as? Array<Dictionary<String, Any>>
+                let hiddenButtons = document.get("hidden-buttons") as? Array<String>
                 
                 if let lvlAnsString = document.get("answer") as? String {
                     let level = LevelTemplate(size: LevelSetup.sceneSize, levelGroup: levelGroup, levelNum: levelNum, tempo: tempo, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: [], reward: reward)
                     let lvlAns = LevelSetup.parseLvlAns(json: lvlAnsString, maxPages: level.maxPages)
                     level.lvlAns = lvlAns
                     showScene(level)
+                    
+                    if let _ = hiddenButtons {
+                        level.hideButtons(buttons: hiddenButtons!)
+                    }
+                    
                     if hasTutorial == true && tutorialData != nil {
                         self.showTutorialPopover(self, tutorialData: tutorialData!)
                     }
@@ -108,7 +121,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    func showPopover(_ sender: Any, popupID: String, rewardMessage: String? = nil) {
+    func showPopover(_ sender: Any, popupID: String, disabledSettings: [String]? = nil, rewardMessage: String? = nil) {
         
         switch popupID {
             
@@ -124,6 +137,7 @@ class GameViewController: UIViewController {
             self.addChild(popoverVC)
             popoverVC.view.frame = self.view.frame
             self.view.addSubview(popoverVC.view)
+            popoverVC.processDisabled(disabled: disabledSettings)
             popoverVC.didMove(toParent: self)
         
         case Constants.confirmNavID:
@@ -135,6 +149,7 @@ class GameViewController: UIViewController {
             
         case Constants.levelCompleteID:
             let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.levelCompleteID) as! LevelCompletePopupVC
+            popoverVC.gameVC = self
             popoverVC.rewardMessage = rewardMessage
             self.addChild(popoverVC)
             popoverVC.view.frame = self.view.frame
@@ -174,5 +189,10 @@ class GameViewController: UIViewController {
         performSegue(withIdentifier: "fromGameToLevelSelectUSegue", sender: self)
     }
     
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.children.forEach { $0.dismiss(animated: animated, completion: nil) }
+        super.viewDidDisappear(animated)
+    }
 }
 

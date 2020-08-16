@@ -12,13 +12,15 @@ import AudioKit
 
 extension LevelTemplate {
     
+    
     override func setUpSound() {
+        /*
         setUpSamples()
         //setUpPlayer()
         
         var AKNodeArray: [AKNode] = []
         for sample in samplers {
-            AKNodeArray.append(sample)
+            AKNodeArray.append(sample!)
         }
         
         /*
@@ -39,31 +41,35 @@ extension LevelTemplate {
         catch {
             print(error)
         }
+        */
         
-        setUpSequencer(noteData: lvlAns)
+        super.setUpSound()
+        //GameUser.conductor?.setUpSequencer()
+        GameUser.conductor?.generateSequence(noteData: lvlAns, tempo: tempo, maxPages: maxPages, numberOfMeasures: numberOfMeasures, bpm: bpm)
     }
     
+    /*
     func setUpSamples() {
         
-        var akSampleFile: AKAudioFile!
-        //var akSampleSampler: AKAppleSampler!
-        var akSampleSampler = AKMIDISampler()
-        //samplers = [AKAppleSampler](repeating: AKAppleSampler(), count: currentSounds.count)
         samplers = [AKMIDISampler](repeating: AKMIDISampler(), count: currentSounds.count)
         do {
             for i in 0...currentSounds.count-1 {
-                //akSampleSampler = AKAppleSampler()
+                var akSampleSampler: AKMIDISampler?
                 akSampleSampler = AKMIDISampler()
+                var akSampleFile: AKAudioFile?
                 akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i].id).mp3")
-                try akSampleSampler.loadAudioFile(akSampleFile!)
-                samplers[i] = akSampleSampler
+                try akSampleSampler!.loadAudioFile(akSampleFile!)
+                samplers[i] = akSampleSampler!
+                akSampleSampler = nil
+                akSampleFile = nil
             }
         }
         catch {
             print(error)
         }
     }
-    
+    */
+    /*
     func setUpPlayer() {
         print(lvlAnsSong)
         var sampleSong: AKAudioFile!
@@ -76,4 +82,6 @@ extension LevelTemplate {
         }
         ansSongPlayer?.looping = false
     }
+ */
 }
+ 

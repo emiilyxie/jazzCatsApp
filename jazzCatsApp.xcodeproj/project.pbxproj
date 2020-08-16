@@ -35,6 +35,7 @@
 		AD427F8224E5FF9500446DFC /* cat_basic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */; };
 		AD427F8424E6012D00446DFC /* piano1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F8324E6012C00446DFC /* piano1.mp3 */; };
 		AD700CD224AB08E000881EBE /* buttonLocations in Resources */ = {isa = PBXBuildFile; fileRef = AD700CD124AB08E000881EBE /* buttonLocations */; };
+		AD7D9D7A24E8B835003E25FB /* metronomeClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */; };
 		AD7EF23724B12CB7009875CA /* AccountDetailsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */; };
 		AD7EF23924B165C9009875CA /* Gaegu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */; };
 		AD92D0FE247F0BC500F8F807 /* SignInEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FD247F0BC500F8F807 /* SignInEmailVC.swift */; };
@@ -142,6 +143,7 @@
 		AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic1.mp3; sourceTree = "<group>"; };
 		AD427F8324E6012C00446DFC /* piano1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano1.mp3; sourceTree = "<group>"; };
 		AD700CD124AB08E000881EBE /* buttonLocations */ = {isa = PBXFileReference; lastKnownFileType = text; path = buttonLocations; sourceTree = "<group>"; };
+		AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = metronomeClick.mp3; sourceTree = "<group>"; };
 		AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsPopupVC.swift; sourceTree = "<group>"; };
 		AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Bold.ttf"; sourceTree = "<group>"; };
 		AD92D0FD247F0BC500F8F807 /* SignInEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailVC.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 		AD3826DA245D0FC60027849D /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */,
 				ADCAFDA0249E05D800428C70 /* basics1.mp3 */,
 				ADCAFDA2249E061300428C70 /* basics2.mp3 */,
 				ADCAFDA4249E061600428C70 /* coltrane1.mp3 */,
@@ -309,13 +312,13 @@
 			isa = PBXGroup;
 			children = (
 				AD3826E1245D104E0027849D /* GameCamera.swift */,
+				ADC59C9C248824D6007D99A9 /* GameUser.swift */,
 				AD3826E3245D106A0027849D /* Note.swift */,
-				ADCC4F6624DBA78400140E7F /* Sounds.swift */,
 				AD242BA924E3A6F800CAD3A0 /* Conductor.swift */,
+				ADCC4F6624DBA78400140E7F /* Sounds.swift */,
+				AD9395AD247478250037E307 /* LevelSetup.swift */,
 				AD3826E5245D10930027849D /* Button.swift */,
 				AD08F56124732A0300863204 /* StaffBar.swift */,
-				AD9395AD247478250037E307 /* LevelSetup.swift */,
-				ADC59C9C248824D6007D99A9 /* GameUser.swift */,
 			);
 			path = CustomNodes;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				AD700CD224AB08E000881EBE /* buttonLocations in Resources */,
 				ADD04A7E24E708B900458B44 /* basics5tutorial in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
+				AD7D9D7A24E8B835003E25FB /* metronomeClick.mp3 in Resources */,
 				ADD04A8E24E7439F00458B44 /* basics15tutorial in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
 				ADD04A8824E70D4500458B44 /* trumpet1.mp3 in Resources */,
