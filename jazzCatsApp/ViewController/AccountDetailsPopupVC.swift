@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import SafariServices
 
 class AccountDetailsPopupVC: UIViewController {
 
@@ -51,7 +52,19 @@ class AccountDetailsPopupVC: UIViewController {
     }
 
     @IBAction func guideButtonPressed(_ sender: Any) {
-        UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+        //show tutorial
+        if let url = URL(string: "http://emily.xie.fm/activities/jazzcats.html") {
+            //let config = SFSafariViewController.Configuration()
+            //config.entersReaderIfAvailable = true
+
+            UIApplication.shared.open(url)
+            //let vc = SFSafariViewController(url: url)
+            //vc.delegate = self
+            //present(vc, animated: true)
+        }
+        else {
+            UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+        }
     }
     
     @IBAction func followButtonPressed(_ sender: Any) {
@@ -100,4 +113,12 @@ class AccountDetailsPopupVC: UIViewController {
     }
     */
 
+}
+
+extension AccountDetailsPopupVC: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true) {
+            self.backButtonPressed(UIButton())
+        }
+    }
 }
