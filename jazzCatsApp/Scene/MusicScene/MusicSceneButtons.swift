@@ -81,12 +81,16 @@ extension MusicScene {
     func nextPage(sender: Button?, index: Int) {
         if pageIndex < maxPages - 1 {
             for note in pages[pageIndex] {
-                note.isHidden = true
+                //note.isHidden = true
+                //note.isUserInteractionEnabled = false
+                note.alpha = 0
                 note.physicsBody?.categoryBitMask = PhysicsCategories.none
             }
             pageIndex += 1
             for note in pages[pageIndex] {
-                note.isHidden = false
+                //note.isHidden = false
+                //note.isUserInteractionEnabled = true
+                note.alpha = 1
                 note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
             }
         }
@@ -100,12 +104,16 @@ extension MusicScene {
     func prevPage(sender: Button?, index: Int) {
         if pageIndex >= 1 {
             for note in pages[pageIndex] {
-                note.isHidden = true
+                //note.isHidden = true
+                //note.isUserInteractionEnabled = false
+                note.alpha = 0
                 note.physicsBody?.categoryBitMask = PhysicsCategories.none
             }
             pageIndex -= 1
             for note in pages[pageIndex] {
-                note.isHidden = false
+                //note.isHidden = false
+                //note.isUserInteractionEnabled = true
+                note.alpha = 1
                 note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
             }
         }

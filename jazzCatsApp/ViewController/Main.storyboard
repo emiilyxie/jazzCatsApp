@@ -774,7 +774,7 @@
                                     <constraint firstAttribute="width" constant="200" id="Chv-fC-n0n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="24"/>
-                                <state key="normal" title="Level Groups"/>
+                                <state key="normal" title="Play!"/>
                                 <connections>
                                     <action selector="goToLevelGroups:" destination="dec-BY-2yf" eventType="touchUpInside" id="6J9-36-Pst"/>
                                 </connections>
@@ -1235,10 +1235,10 @@
                                         <rect key="frame" x="0.0" y="60" width="608" height="234"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sr0-0f-ucm" userLabel="Scroll Content View">
-                                                <rect key="frame" x="0.0" y="0.0" width="608" height="359"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="608" height="307"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1q-Kk-Bvu">
-                                                        <rect key="frame" x="70" y="317" width="54" height="32"/>
+                                                        <rect key="frame" x="70" y="265" width="54" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <state key="normal" title="Cancel">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1248,7 +1248,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-sn-dv8">
-                                                        <rect key="frame" x="499" y="317" width="39" height="32"/>
+                                                        <rect key="frame" x="499" y="265" width="39" height="32"/>
                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                         <state key="normal" title="Okay">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1258,10 +1258,10 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-Am-W3J">
-                                                        <rect key="frame" x="106.5" y="5" width="395.5" height="292"/>
+                                                        <rect key="frame" x="106.5" y="5" width="395.5" height="240"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XvD-Dn-TjV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="181.5" height="292"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="181.5" height="240"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tempo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J83-C8-um5" userLabel="tempo:">
                                                                         <rect key="frame" x="0.0" y="0.0" width="181.5" height="32"/>
@@ -1269,32 +1269,26 @@
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="metronome:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-ys-JDL">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pages:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aL1-DA-hoP">
                                                                         <rect key="frame" x="0.0" y="52" width="181.5" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pages:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aL1-DA-hoP">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="measures per page:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6va-sF-vjo">
                                                                         <rect key="frame" x="0.0" y="104" width="181.5" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="measures per page:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6va-sF-vjo">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="beats per measure:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llm-wy-DXa">
                                                                         <rect key="frame" x="0.0" y="156" width="181.5" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="beats per measure:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llm-wy-DXa">
-                                                                        <rect key="frame" x="0.0" y="208" width="181.5" height="32"/>
-                                                                        <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
-                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subdivisions per beat:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQb-LJ-p5N">
-                                                                        <rect key="frame" x="0.0" y="260" width="181.5" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="208" width="181.5" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1302,7 +1296,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-2w-2Py">
-                                                                <rect key="frame" x="211.5" y="0.0" width="60" height="292"/>
+                                                                <rect key="frame" x="211.5" y="0.0" width="60" height="240"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jQF-Ho-dS2">
                                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
@@ -1312,32 +1306,26 @@
                                                                             <action selector="editTempo:" destination="Jrb-Pv-5VO" eventType="editingDidEnd" id="kld-pS-gzM"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-s8-7aD">
-                                                                        <rect key="frame" x="0.0" y="52" width="60" height="32"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViK-SW-aOX">
-                                                                        <rect key="frame" x="0.0" y="104" width="60" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="52" width="60" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkW-D2-kyF">
-                                                                        <rect key="frame" x="0.0" y="156" width="60" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="104" width="60" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0E-c9-HmT">
-                                                                        <rect key="frame" x="0.0" y="208" width="60" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="156" width="60" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzj-YP-XCu">
-                                                                        <rect key="frame" x="0.0" y="260" width="60" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="208" width="60" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1345,7 +1333,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-N1-syo">
-                                                                <rect key="frame" x="301.5" y="0.0" width="94" height="292"/>
+                                                                <rect key="frame" x="301.5" y="0.0" width="94" height="240"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OkB-i1-1uq" userLabel="placeholder">
                                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
@@ -1353,33 +1341,26 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ywa-JS-26M">
-                                                                        <rect key="frame" x="0.0" y="52" width="94" height="33"/>
-                                                                        <segments>
-                                                                            <segment title="Off"/>
-                                                                            <segment title="On"/>
-                                                                        </segments>
-                                                                    </segmentedControl>
                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="32" translatesAutoresizingMaskIntoConstraints="NO" id="w0s-0e-blw">
-                                                                        <rect key="frame" x="0.0" y="104" width="94" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="52" width="94" height="32"/>
                                                                         <connections>
                                                                             <action selector="editPgs:" destination="Jrb-Pv-5VO" eventType="valueChanged" id="Oax-Us-i98"/>
                                                                         </connections>
                                                                     </stepper>
                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="5gj-fS-e1N">
-                                                                        <rect key="frame" x="0.0" y="156" width="94" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="104" width="94" height="32"/>
                                                                         <connections>
                                                                             <action selector="editMPP:" destination="Jrb-Pv-5VO" eventType="valueChanged" id="EiA-nM-Nhm"/>
                                                                         </connections>
                                                                     </stepper>
                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="cIX-Vy-Lh7">
-                                                                        <rect key="frame" x="0.0" y="208" width="94" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="156" width="94" height="32"/>
                                                                         <connections>
                                                                             <action selector="editBPM:" destination="Jrb-Pv-5VO" eventType="valueChanged" id="f6q-QB-Kdo"/>
                                                                         </connections>
                                                                     </stepper>
                                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-Ed-DiB">
-                                                                        <rect key="frame" x="0.0" y="260" width="94" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="208" width="94" height="32"/>
                                                                         <connections>
                                                                             <action selector="editSPB:" destination="Jrb-Pv-5VO" eventType="valueChanged" id="erx-Q9-fnZ"/>
                                                                         </connections>
@@ -1482,9 +1463,6 @@
                     <connections>
                         <outlet property="bgView" destination="zWm-5I-Tvi" id="hhi-JB-raW"/>
                         <outlet property="cancelButton" destination="v1q-Kk-Bvu" id="2Ib-GW-l8C"/>
-                        <outlet property="metronomeControl" destination="Ywa-JS-26M" id="MZf-hC-p8n"/>
-                        <outlet property="metronomeLabel" destination="4eC-ys-JDL" id="QE6-My-NPL"/>
-                        <outlet property="metronomePlaceholder" destination="zd8-s8-7aD" id="ofd-Fy-TcE"/>
                         <outlet property="scrollContentView" destination="sr0-0f-ucm" id="2Vr-hU-4g8"/>
                         <outlet property="submitButton" destination="oFa-sn-dv8" id="shV-fb-h6v"/>
                         <outlet property="tempoLabel" destination="J83-C8-um5" id="HZ9-7t-iZT"/>
@@ -1892,13 +1870,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You earned:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UT-Pu-4f0">
-                                        <rect key="frame" x="254.5" y="110" width="99" height="20"/>
+                                        <rect key="frame" x="254.5" y="80" width="99" height="20"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7b-6I-pRX">
-                                        <rect key="frame" x="154" y="140" width="300" height="0.0"/>
+                                        <rect key="frame" x="154" y="110" width="300" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="KGa-91-Yki"/>
                                         </constraints>
@@ -1930,7 +1908,7 @@
                                     <constraint firstItem="r7b-6I-pRX" firstAttribute="centerX" secondItem="99h-Y4-TJR" secondAttribute="centerX" id="GNS-7y-QS0"/>
                                     <constraint firstItem="EBX-fw-bmn" firstAttribute="centerX" secondItem="99h-Y4-TJR" secondAttribute="centerX" id="Khw-Ww-2Qp"/>
                                     <constraint firstItem="EBX-fw-bmn" firstAttribute="top" secondItem="99h-Y4-TJR" secondAttribute="top" constant="50" id="NM1-aG-mZj"/>
-                                    <constraint firstItem="1UT-Pu-4f0" firstAttribute="top" secondItem="EBX-fw-bmn" secondAttribute="bottom" constant="40" id="dLf-5J-Jbk"/>
+                                    <constraint firstItem="1UT-Pu-4f0" firstAttribute="top" secondItem="EBX-fw-bmn" secondAttribute="bottom" constant="10" id="dLf-5J-Jbk"/>
                                     <constraint firstAttribute="trailing" secondItem="ggn-oN-m2f" secondAttribute="trailing" constant="60" id="iIi-w0-a27"/>
                                     <constraint firstItem="1UT-Pu-4f0" firstAttribute="centerX" secondItem="99h-Y4-TJR" secondAttribute="centerX" id="omN-Rh-Gvz"/>
                                     <constraint firstAttribute="height" constant="350" id="rRH-p6-8Tl"/>
@@ -1995,7 +1973,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Lga-rB-OrQ"/>
+        <segue reference="GLW-ER-AVP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="30" height="30"/>

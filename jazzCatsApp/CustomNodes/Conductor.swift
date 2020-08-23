@@ -86,7 +86,7 @@ public class Conductor {
             let noteNumber = Int(noteInfo[2])
             let measurelessBeat = Double((noteMeasure - 1) * CGFloat(bpm) + noteBeat - 1)
             
-            sequencer!.tracks[0].add(noteNumber: MIDINoteNumber(noteNumber), velocity: 127, position: AKDuration(beats: measurelessBeat), duration: AKDuration(beats: 0.9))
+            sequencer!.tracks[0].add(noteNumber: MIDINoteNumber(noteNumber), velocity: 100, position: AKDuration(beats: measurelessBeat), duration: AKDuration(beats: 8.0))
         }
     }
     
@@ -108,7 +108,7 @@ public class Conductor {
         }
         do {
             let sampler = samplers[index]
-            try sampler.play(noteNumber: UInt8(whichNote), velocity: 127, channel: 0)
+            try sampler.play(noteNumber: UInt8(whichNote), velocity: 100, channel: 0)
         }
         catch {
             print(error)

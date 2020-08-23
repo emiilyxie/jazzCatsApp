@@ -19,7 +19,6 @@ public class MusicScene: SKScene {
     var staffTotalHeight: CGFloat
 
     var tempo: Int = LevelSetup.defaultTempo
-    var metronomeToggle = false
     var numberOfMeasures: Int = LevelSetup.defaultNumberOfMeasures
     var bpm: Int = LevelSetup.defaultBpm
     var oldNumOfMeasures: Int!

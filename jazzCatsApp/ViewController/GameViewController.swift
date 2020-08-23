@@ -102,6 +102,7 @@ class GameViewController: UIViewController {
                 let hasTutorial = document.get("tutorial") as? Bool
                 let tutorialData = document.get("dialogue") as? Array<Dictionary<String, Any>>
                 let hiddenButtons = document.get("hidden-buttons") as? Array<String>
+                let firstNote = document.get("display-first-note") as? Array<Double>
                 
                 if let lvlAnsString = document.get("answer") as? String {
                     let level = LevelTemplate(size: LevelSetup.sceneSize, levelGroup: levelGroup, levelNum: levelNum, tempo: tempo, numberOfMeasures: numberOfMeasures, bpm: bpm, subdivision: subdivision, maxPages: maxPages, lvlAns: [], reward: reward)
@@ -115,6 +116,12 @@ class GameViewController: UIViewController {
                     
                     if hasTutorial == true && tutorialData != nil {
                         self.showTutorialPopover(self, tutorialData: tutorialData!)
+                    }
+                    
+                    if firstNote != nil {
+                        let firstNoteData = firstNote!.map{CGFloat($0)}
+                        level.addNote(with: firstNoteData, on: 0, soundID: level.selectedNote)
+                        //UIStyling.showAlert(viewController: self, text: "First note is on beat \(firstNote![1]).")
                     }
                 }
             }

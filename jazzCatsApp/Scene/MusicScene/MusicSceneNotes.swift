@@ -34,6 +34,7 @@ extension MusicScene {
         default: // not selected or navigateMode
             return
         }
+        print(noteData)
     }
     
     @objc func editNotesAdd(location: CGPoint, touchedNodes: [SKNode]) {
@@ -105,11 +106,12 @@ extension MusicScene {
         note.measure = getNoteMeasure(noteXPos: note.position.x - LevelSetup.indentLength)
         note.beat = getNoteBeat(noteXPos: note.position.x - LevelSetup.indentLength, noteMeasure: note.measure)
         note.staffLine = getNoteStaffLine(noteYPos: note.position.y)
+        //note.isUserInteractionEnabled = true
 
         noteData.insert(note.getNoteInfo())
         let soundIndex = Sounds.getSound(from: GameUser.sounds, id: selectedNote)?.index ?? 0
         noteSoundData[soundIndex].insert(note.getNoteInfo())
-        print(noteData)
+        //print(noteData)
         pages[pageIndex].append(note)
         
         GameUser.conductor?.playNoteSound(note: note)
@@ -123,9 +125,12 @@ extension MusicScene {
         //note.position = snapNoteLocation(touchedPoint: notePosition)
         
         barsNode.addChild(note)
-        note.measure = getNoteMeasure(noteXPos: note.position.x - LevelSetup.indentLength)
+        //note.measure = getNoteMeasure(noteXPos: note.position.x - LevelSetup.indentLength)
+        note.measure = Int(info[0])
         note.beat = getNoteBeat(noteXPos: note.position.x - LevelSetup.indentLength, noteMeasure: note.measure)
         note.staffLine = getNoteStaffLine(noteYPos: note.position.y)
+        //note.isUserInteractionEnabled = true
+        note.alpha = 1
         
         // add a flat if it should be flatted
         if shouldBeFlatted(midiVal: Int(info[2])) {
@@ -137,8 +142,11 @@ extension MusicScene {
         noteSoundData[soundIndex].insert(note.getNoteInfo())
         //print(noteData)
         pages[page].append(note)
+        
         if page != pageIndex {
-            note.isHidden = true
+            //note.isHidden = true
+            note.alpha = 0
+            //note.isUserInteractionEnabled = false
             note.physicsBody?.categoryBitMask = PhysicsCategories.none
         }
         
@@ -185,12 +193,14 @@ extension MusicScene {
     }
     
     func getNoteBeat(noteXPos: CGFloat, noteMeasure: Int) -> CGFloat {
-        let longDecimal = (noteXPos/beatWidth)
-        let rounded = Double(round(100 * Double(longDecimal)) / 100)
+        let longDecimal = Double(noteXPos/beatWidth)
+        let decimalStr = String(String(longDecimal).prefix(5))
+        let rounded = Double(round(100 * Double(decimalStr)!) / 100)
+        //rounded = Double(round(100 * rounded) / 100)
         //let rounded = Double(String(format: "%.2f", longDecimal))!
         //return CGFloat(rounded)
         let measureOnPage = (noteMeasure - 1) % numberOfMeasures
-        let beatInMeasure = Double(rounded) - Double((measureOnPage) * bpm) + 1
+        let beatInMeasure = Double(rounded) - Double(measureOnPage * bpm) + 1
         return CGFloat(beatInMeasure)
     }
     

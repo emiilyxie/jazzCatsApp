@@ -206,7 +206,7 @@ struct GameUser {
                     }
                 case "sound":
                     if let sound = Sounds.getSound(from: self.sounds, id: value as! String) {
-                        rewardMessage = "\(rewardMessage)\nnew sound: \(sound.name)"
+                        rewardMessage = "\(rewardMessage)\nnew sound: \(sound.name)\nNew Sounds can be viewed when you press the \"Select\" button."
                     }
                 default:
                     print("dont recognize field")

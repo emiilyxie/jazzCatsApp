@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var levelGroupNames = ["basics", "intermediate", "coltrane"]
+    var levelGroupNames = ["basics", "intermediate", "saxophone", "trumpet", "trombone", "piano", "bass"]
     var levelGroupDict: Dictionary<String, Int> = [:]
     
     var selectedLevelGroup: String?
@@ -38,7 +38,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
             levelGroupsRef.document(levelGroupName).getDocument { (document, err) in
                 if let err = err {
                     print(err.localizedDescription)
-                    return
+                    self.levelGroupDict[levelGroupName] = 0
                 }
                 if let document = document, document.exists {
                     if let numberOfLevels = document.get("number-of-levels") as? Int {
@@ -46,6 +46,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
                         refresh()
                     }
                     else {
+                        self.levelGroupDict[levelGroupName] = 0
                         print("cant get number of levels")
                     }
                 }
@@ -111,7 +112,12 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         selectedLevelGroup = levelGroupNames[indexPath.row]
         levelGroupNumOfLevels = levelGroupDict[selectedLevelGroup!]
         
-        performSegue(withIdentifier: Constants.levelGroupsToLevelSelect, sender: self)
+        if levelGroupNumOfLevels == 0 {
+            UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+        }
+        else {
+            performSegue(withIdentifier: Constants.levelGroupsToLevelSelect, sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

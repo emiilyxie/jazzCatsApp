@@ -11,7 +11,6 @@ import UIKit
 class SettingsPopupVC: UIViewController {
     
     public var currentTempo: Int = LevelSetup.defaultTempo
-    public var currentMetronome = false
     public var currentPgs: Int = LevelSetup.defaultMaxPages
     public var currentMPP: Int = LevelSetup.defaultNumberOfMeasures
     public var currentBPM: Int = LevelSetup.defaultBpm
@@ -31,10 +30,6 @@ class SettingsPopupVC: UIViewController {
     @IBOutlet weak var tempoLabel: UILabel!
     @IBOutlet weak var tempoPlaceholder: UILabel!
     @IBOutlet weak var tempoTextField: UITextField!
-    
-    @IBOutlet weak var metronomeLabel: UILabel!
-    @IBOutlet weak var metronomePlaceholder: UILabel!
-    @IBOutlet weak var metronomeControl: UISegmentedControl!
     
     @IBOutlet var settingLabels: [UILabel]!
     @IBOutlet var settingValues: [UILabel]!
@@ -69,7 +64,6 @@ class SettingsPopupVC: UIViewController {
         dismissKeyboard()
         
         currentTempo = musicScene.tempo
-        currentMetronome = musicScene.metronomeToggle
         currentPgs = musicScene.maxPages
         currentMPP = musicScene.numberOfMeasures
         currentBPM = musicScene.bpm
@@ -100,12 +94,6 @@ class SettingsPopupVC: UIViewController {
     func currentSettings() {
         tempoTextField.text = String(currentTempo)
         
-        if currentMetronome {
-            metronomeControl.selectedSegmentIndex = 1
-        } else {
-            metronomeControl.selectedSegmentIndex = 0
-        }
-        
         settingValues[0].text = String(currentPgs)
         settingValues[1].text = String(currentMPP)
         settingValues[2].text = String(currentBPM)
@@ -130,10 +118,6 @@ class SettingsPopupVC: UIViewController {
                 tempoLabel.isHidden = true
                 tempoPlaceholder.isHidden = true
                 tempoTextField.isHidden = true
-            case "metronome":
-                metronomeLabel.isHidden = true
-                metronomePlaceholder.isHidden = true
-                metronomeControl.isHidden = true
             case "pgs":
                 settingLabels[0].isHidden = true
                 settingValues[0].isHidden = true
@@ -217,13 +201,6 @@ class SettingsPopupVC: UIViewController {
         }
         musicScene.tempo = newTempo
         GameUser.conductor?.sequencer?.setTempo(Double(newTempo))
-        
-        if metronomeControl.selectedSegmentIndex == 1 {
-            musicScene.metronomeToggle = true
-        }
-        else {
-            musicScene.metronomeToggle = false
-        }
         
         musicScene.maxPages = newPgs
         musicScene.numberOfMeasures = newMPP
