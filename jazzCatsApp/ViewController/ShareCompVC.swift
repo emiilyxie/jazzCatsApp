@@ -106,21 +106,29 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
         }
         
         for note in musicScene.pages[musicScene.pageIndex] {
-            note.isHidden = true
+            note.alpha = 0
             note.physicsBody?.categoryBitMask = PhysicsCategories.none
         }
         musicScene.pageIndex = 0
         for note in musicScene.pages[0] {
-            note.isHidden = false
+            note.alpha = 1
             note.physicsBody?.categoryBitMask = PhysicsCategories.noteCategory
         }
-        
+        musicScene.updatePgCount()
+        musicScene.isPaused = false
         musicScene.enterMode(sender: musicScene.buttons.object(forKey: "stopButton"), index: 5) // stop & reset
         musicScene.enterMode(sender: musicScene.buttons.object(forKey: "playButton"), index: 3) // play
     }
     
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         dismiss(animated: true)
+        
+        guard let parentVC = self.parent as! GameViewController? else {
+            return
+        }
+        
+        parentVC.currentScene?.isUserInteractionEnabled = true
+        parentVC.currentScene?.isPaused = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

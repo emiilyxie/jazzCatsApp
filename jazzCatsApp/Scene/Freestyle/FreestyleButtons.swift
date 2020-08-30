@@ -20,10 +20,12 @@ extension Freestyle {
         let rightX = self.size.width
         //let topY = self.size.height*0.15
         //let bottomY = self.size.height*0.85
-        let topYinView = CGPoint(x: 0, y: view.bounds.size.height*0.15)
-        let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height*0.85)
-        let topY = convertPoint(fromView: topYinView).y
-        let bottomY = convertPoint(fromView: bottomYinView).y
+        //let topYinView = CGPoint(x: 0, y: view.bounds.size.height*0.1)
+        //let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height*0.9)
+        let topYinView = CGPoint(x: 0, y: 0)
+        let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height)
+        let topY = convertPoint(fromView: topYinView).y - CGFloat(100)
+        let bottomY = convertPoint(fromView: bottomYinView).y + CGFloat(100)
         
         addButton(buttonImage: UIImage(named: "home"), buttonAction: displayPopup, buttonIndex: 2, name: "homeButton", label: "Home", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         addButton(buttonImage: UIImage(named: "play"), buttonAction: enterMode, buttonIndex: 3, name: "playButton", label: "Play", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
@@ -47,7 +49,7 @@ extension Freestyle {
         pgCountLabel.fontColor = UIColor.black
         pgCountLabel.fontSize = 30
         pgCountLabel.fontName = "Gaegu"
-        pgCountLabel.position = CGPoint(x: rightX*0.75, y: bottomY - 80)
+        pgCountLabel.position = CGPoint(x: rightX*0.85, y: bottomY - 80)
         addChild(pgCountLabel)
         
         super.setUpButtons()

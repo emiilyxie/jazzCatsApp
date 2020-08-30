@@ -68,7 +68,7 @@ public class MusicScene: SKScene {
         self.staffTotalHeight = self.staffBarHeight*CGFloat(self.staffBarNumber)
         self.totalDivision = self.numberOfMeasures * self.bpm * self.subdivision
         self.totalBeats = self.numberOfMeasures * self.bpm
-        self.resultWidth = size.width - LevelSetup.indentLength
+        self.resultWidth = size.width - (LevelSetup.indentLength * 2)
         self.measureWidth = self.resultWidth/CGFloat(self.numberOfMeasures)
         self.beatWidth = self.resultWidth/CGFloat(self.totalBeats)
         self.divisionWidth = self.resultWidth/CGFloat(self.totalDivision)

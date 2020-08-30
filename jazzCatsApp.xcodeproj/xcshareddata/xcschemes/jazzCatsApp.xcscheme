@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AD3826BE245D0F610027849D"
-               BuildableName = "jazzCatsApp.app"
+               BuildableName = "Jazzcats.app"
                BlueprintName = "jazzCatsApp"
                ReferencedContainer = "container:jazzCatsApp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AD3826BE245D0F610027849D"
-            BuildableName = "jazzCatsApp.app"
+            BuildableName = "Jazzcats.app"
             BlueprintName = "jazzCatsApp"
             ReferencedContainer = "container:jazzCatsApp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AD3826BE245D0F610027849D"
-            BuildableName = "jazzCatsApp.app"
+            BuildableName = "Jazzcats.app"
             BlueprintName = "jazzCatsApp"
             ReferencedContainer = "container:jazzCatsApp.xcodeproj">
          </BuildableReference>

@@ -193,19 +193,23 @@ extension MusicScene {
     }
     
     func getNoteBeat(noteXPos: CGFloat, noteMeasure: Int) -> CGFloat {
-        let longDecimal = Double(noteXPos/beatWidth)
-        let decimalStr = String(String(longDecimal).prefix(5))
-        let rounded = Double(round(100 * Double(decimalStr)!) / 100)
+        let longDecimal = CGFloat(noteXPos/beatWidth)
+        let rounded = UsefulFuncs.roundTwoDecimals(float: longDecimal)
+        //let decimalStr = String(String(longDecimal).prefix(5))
+        //let rounded = round(100 * Double(decimalStr)!) / 100
+        //print(rounded)
+        //let roundedStr = String(String(rounded).prefix(4))
         //rounded = Double(round(100 * rounded) / 100)
         //let rounded = Double(String(format: "%.2f", longDecimal))!
         //return CGFloat(rounded)
         let measureOnPage = (noteMeasure - 1) % numberOfMeasures
-        let beatInMeasure = Double(rounded) - Double(measureOnPage * bpm) + 1
-        return CGFloat(beatInMeasure)
+        let beatInMeasure = rounded - CGFloat(measureOnPage * bpm) + 1
+        print(beatInMeasure)
+        return beatInMeasure
     }
     
     func getNoteStaffLine(noteYPos: CGFloat) -> Int {
-        return Int(noteYPos/staffBarHeight)
+        return Int((noteYPos + 1)/staffBarHeight)
     }
     
     func midiValToStaffLine(midiVal: Int) -> Int {

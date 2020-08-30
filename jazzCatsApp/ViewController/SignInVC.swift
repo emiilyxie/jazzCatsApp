@@ -60,8 +60,11 @@ class SignInVC: UIViewController {
     
     @IBAction func continueWarning(_ sender: UIButton) {
         Auth.auth().signInAnonymously { (authResult, error) in
+            if let err = error {
+                UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)
+                return
+            }
             guard let user = authResult?.user else { return }
-            // isAnonymous = user.isAnonymous
             let uid = user.uid
             print("user id: \(uid)")
             let usersRef = Firestore.firestore().collection("users")

@@ -22,6 +22,20 @@ extension MusicScene {
     }
     
     func setUpStaff() {
+        
+        guard let view = self.view else {
+            return
+        }
+        
+        //let topYinView = CGPoint(x: 0, y: view.bounds.size.height*0.1)
+        //let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height*0.9)
+        let topYinView = CGPoint(x: 0, y: 0)
+        let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height)
+        let topY = convertPoint(fromView: topYinView).y - CGFloat(200)
+        let bottomY = convertPoint(fromView: bottomYinView).y + CGFloat(200)
+        staffBarHeight = (topY - bottomY) / CGFloat(staffBarNumber + 1)
+        staffTotalHeight = staffBarHeight * CGFloat(staffBarNumber + 1)
+        
         let halfHeight = self.size.height/2
         let halfStaffHeight = staffTotalHeight/2
         let staffHeightFromGround = halfHeight - halfStaffHeight
@@ -39,6 +53,7 @@ extension MusicScene {
                 
             else if i % 2 == 0 {
                 staffBar.drawLineThru()
+                //staffBar.colorDebug(i: i)
             }
 
             barsNode.addChild(staffBar)
@@ -137,10 +152,12 @@ extension MusicScene {
                 
                 let noteMeasure = noteInfo[0]
                 let noteBeat = noteInfo[1]
-                let measurelessBeat = (noteMeasure - 1) * CGFloat(prevBpm) + noteBeat
+                var measurelessBeat = CGFloat(Int(noteMeasure - 1) * prevBpm) + noteBeat
+                measurelessBeat = UsefulFuncs.roundTwoDecimals(float: measurelessBeat)
                 let newPage = ((measurelessBeat - 1) / CGFloat(totalBeats)).rounded(.down)
                 let newMeasure = ((measurelessBeat - 1) / CGFloat(bpm)).rounded(.down) + 1
-                let newBeat = measurelessBeat - ((newMeasure - 1) * CGFloat(bpm))
+                var newBeat = measurelessBeat - CGFloat(Int(newMeasure - 1) * bpm)
+                newBeat = UsefulFuncs.roundTwoDecimals(float: newBeat)
                 let newNote = [newMeasure, newBeat, noteInfo[2]]
                 
                 newNoteData.insert(newNote)

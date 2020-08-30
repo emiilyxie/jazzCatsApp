@@ -49,8 +49,8 @@ class SignInEmailVC: UIViewController {
     func setUpKeyboards() {
         dismissKeyboard()
         tempTextField.returnKeyType = .done
+        tempTextField.delegate = self
     }
-    
     
     @IBAction func emailPressed(_ sender: Any) {
         tempTextField.isHidden = false
@@ -99,10 +99,17 @@ class SignInEmailVC: UIViewController {
             UIStyling.showLoading(view: self.view)
             // attempt sign in
             Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, err) in
-                if err != nil {
+                if let err = err {
+                    let errCode = AuthErrorCode(rawValue: err._code)
+                    switch errCode {
+                    case .networkError:
+                        UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)
+                    default:
+                        UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription).")
+                    }
                     UIStyling.hideLoading(view: self.view)
-                    print(err!.localizedDescription)
-                    UIStyling.showAlert(viewController: self, text: err!.localizedDescription)
+                    //print(err!.localizedDescription)
+                    
                     return
                 }
                 else {
@@ -140,4 +147,11 @@ class SignInEmailVC: UIViewController {
     }
     
 
+}
+
+extension SignInEmailVC: UITextFieldDelegate{
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
 }

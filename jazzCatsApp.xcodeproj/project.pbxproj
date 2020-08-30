@@ -38,6 +38,7 @@
 		AD7D9D7A24E8B835003E25FB /* metronomeClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */; };
 		AD7EF23724B12CB7009875CA /* AccountDetailsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */; };
 		AD7EF23924B165C9009875CA /* Gaegu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */; };
+		AD823B4924F86C8600CA7674 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD823B4824F86C8600CA7674 /* GoogleService-Info.plist */; };
 		AD92D0FE247F0BC500F8F807 /* SignInEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FD247F0BC500F8F807 /* SignInEmailVC.swift */; };
 		AD92D100247F0BD700F8F807 /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */; };
 		AD9395AE247478250037E307 /* LevelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9395AD247478250037E307 /* LevelSetup.swift */; };
@@ -81,7 +82,6 @@
 		ADD04A9624E770E100458B44 /* cat_basic2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADD04A9524E770E100458B44 /* cat_basic2.mp3 */; };
 		ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */; };
 		ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */; };
-		ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
 		ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */; };
 		ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */; };
@@ -123,7 +123,7 @@
 		AD21FDF624A976830068A729 /* basics1tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics1tutorial; sourceTree = "<group>"; };
 		AD21FDF824A98A030068A729 /* TutorialPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPopupVC.swift; sourceTree = "<group>"; };
 		AD242BA924E3A6F800CAD3A0 /* Conductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
-		AD3826BF245D0F610027849D /* jazzCatsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jazzCatsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD3826BF245D0F610027849D /* Jazzcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jazzcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3826C2245D0F610027849D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD3826CA245D0F610027849D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AD3826CD245D0F610027849D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,6 +146,7 @@
 		AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = metronomeClick.mp3; sourceTree = "<group>"; };
 		AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsPopupVC.swift; sourceTree = "<group>"; };
 		AD7EF23824B165C9009875CA /* Gaegu-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Bold.ttf"; sourceTree = "<group>"; };
+		AD823B4824F86C8600CA7674 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AD92D0FD247F0BC500F8F807 /* SignInEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailVC.swift; sourceTree = "<group>"; };
 		AD92D0FF247F0BD700F8F807 /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
 		AD9395AD247478250037E307 /* LevelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSetup.swift; sourceTree = "<group>"; };
@@ -189,7 +190,6 @@
 		ADD04A9524E770E100458B44 /* cat_basic2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic2.mp3; sourceTree = "<group>"; };
 		ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzText_Regular.ttf; sourceTree = "<group>"; };
 		ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Regular.ttf"; sourceTree = "<group>"; };
-		ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleRecordingFails.swift; sourceTree = "<group>"; };
 		ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupsVC.swift; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 		AD3826C0245D0F610027849D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD3826BF245D0F610027849D /* jazzCatsApp.app */,
+				AD3826BF245D0F610027849D /* Jazzcats.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 		AD3826C1245D0F610027849D /* jazzCatsApp */ = {
 			isa = PBXGroup;
 			children = (
-				ADE7781A247B569100EF4A69 /* GoogleService-Info.plist */,
+				AD823B4824F86C8600CA7674 /* GoogleService-Info.plist */,
 				AD3826D4245D0F630027849D /* Info.plist */,
 				AD3826DF245D0FF40027849D /* Template */,
 				AD3826DE245D0FE70027849D /* Scene */,
@@ -485,7 +485,7 @@
 			);
 			name = jazzCatsApp;
 			productName = jazzCatsApp;
-			productReference = AD3826BF245D0F610027849D /* jazzCatsApp.app */;
+			productReference = AD3826BF245D0F610027849D /* Jazzcats.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -527,7 +527,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCAFDA1249E05D800428C70 /* basics1.mp3 in Resources */,
-				ADE7781B247B569100EF4A69 /* GoogleService-Info.plist in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD427F8424E6012D00446DFC /* piano1.mp3 in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
@@ -552,6 +551,7 @@
 				AD21FDF724A976830068A729 /* basics1tutorial in Resources */,
 				ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */,
 				ADD04A8624E70D4500458B44 /* drumsnare1.mp3 in Resources */,
+				AD823B4924F86C8600CA7674 /* GoogleService-Info.plist in Resources */,
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
 				ADD04A9024E7478F00458B44 /* basics17tutorial in Resources */,
 				ADD04A8C24E71CD500458B44 /* basics9tutorial in Resources */,
@@ -809,8 +809,9 @@
 			baseConfigurationReference = CED5AB26DDBF3FB455552657 /* Pods-jazzCatsApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89QV5N66V7;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Xie (P8NN53WY7G)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 449RX798BR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/emilyxie/Projects/udemy/AudioKit-iOS",
 					"$(inherited)",
@@ -825,8 +826,9 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.exie.jazzcats.jazzCatsApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exie.jazzcats;
+				PRODUCT_NAME = Jazzcats;
+				PROVISIONING_PROFILE_SPECIFIER = JazzcatsDevProfile1;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -837,8 +839,9 @@
 			baseConfigurationReference = B4D4512561694B850C9F9BD4 /* Pods-jazzCatsApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89QV5N66V7;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Xie (P8NN53WY7G)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 449RX798BR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/emilyxie/Projects/udemy/AudioKit-iOS",
 					"$(inherited)",
@@ -853,8 +856,9 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.exie.jazzcats.jazzCatsApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exie.jazzcats;
+				PRODUCT_NAME = Jazzcats;
+				PROVISIONING_PROFILE_SPECIFIER = JazzcatsDevProfile1;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -12,5 +12,6 @@ target 'jazzCatsApp' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Storage'
+  pod 'Google-Mobile-Ads-SDK'
 
 end

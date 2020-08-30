@@ -39,6 +39,7 @@ class GameViewController: UIViewController {
     func showLevel() {
         guard let view = self.view as? SKView else {
             print("cant get view")
+            UIStyling.showAlert(viewController: self, text: "Error: please restart the app and try again.")
             return
         }
         
@@ -52,8 +53,8 @@ class GameViewController: UIViewController {
             view.presentScene(scene)
             self.currentScene = scene
             view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
+            //view.showsFPS = true
+            //view.showsNodeCount = true
             
             //UIStyling.hideLoading(view: self.view)
         }
@@ -61,7 +62,7 @@ class GameViewController: UIViewController {
     
     func showFreestyle() {
         guard let view = self.view as? SKView else {
-            print("cant get view")
+            UIStyling.showAlert(viewController: self, text: "Error: please restart the app and try again.")
             return
         }
         
@@ -89,8 +90,12 @@ class GameViewController: UIViewController {
         
         docRef.getDocument { (document, err) in
             if let err = err {
-                print(err.localizedDescription)
-                return
+                UIStyling.hideLoading(view: self.view)
+                UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again.", duration: 7)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                    self.unwindFromGameToLevelSelect(self)
+                    return
+                }
             }
             if let document = document, document.exists {
                 let tempo = document.get("tempo") as? Int

@@ -19,10 +19,12 @@ extension LevelTemplate {
         
         let rightXinView = CGPoint(x: view.bounds.size.width, y: 0)
         let rightX = convertPoint(fromView: rightXinView).x
-        let topYinView = CGPoint(x: 0, y: view.bounds.size.height*0.15)
-        let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height*0.85)
-        let topY = convertPoint(fromView: topYinView).y
-        let bottomY = convertPoint(fromView: bottomYinView).y
+        //let topYinView = CGPoint(x: 0, y: view.bounds.size.height*0.1)
+        //let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height*0.9)
+        let topYinView = CGPoint(x: 0, y: 0)
+        let bottomYinView = CGPoint(x: 0, y: view.bounds.size.height)
+        let topY = convertPoint(fromView: topYinView).y - CGFloat(100)
+        let bottomY = convertPoint(fromView: bottomYinView).y + CGFloat(100)
         
         addButton(buttonImage: UIImage(named: "home"), buttonAction: displayPopup, buttonIndex: 2, name: "homeButton", label: "Home", buttonPosition: CGPoint(x: rightX*0.1, y: topY))
         addButton(buttonImage: UIImage(named: "play"), buttonAction: enterMode, buttonIndex: 3, name: "playButton", label: "Play", buttonPosition: CGPoint(x: rightX*0.2, y: topY))
@@ -132,7 +134,7 @@ extension LevelTemplate {
         }
  */
         
-        let measuresOnPage = pageIndex * numberOfMeasures...pageIndex * numberOfMeasures + numberOfMeasures
+        let measuresOnPage = pageIndex * numberOfMeasures + 1...pageIndex * numberOfMeasures + numberOfMeasures
         for noteAnswer in lvlAns {
             if !noteData.contains(noteAnswer){
                 if measuresOnPage.contains(Int(noteAnswer[0])) {

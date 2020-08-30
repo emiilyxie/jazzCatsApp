@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dec-BY-2yf">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <device id="retina6_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -19,7 +19,7 @@
         <!--Account Details PopupVC-->
         <scene sceneID="ior-Gm-CmX">
             <objects>
-                <viewController storyboardIdentifier="accountDetailsPopoverID" automaticallyAdjustsScrollViewInsets="NO" id="rou-EE-fCa" customClass="AccountDetailsPopupVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="accountDetailsPopoverID" automaticallyAdjustsScrollViewInsets="NO" id="rou-EE-fCa" customClass="AccountDetailsPopupVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dwe-3M-Kki">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,7 +144,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15x-gd-Ts2">
-                                                        <rect key="frame" x="220.5" y="20" width="167" height="30"/>
+                                                        <rect key="frame" x="220.66666666666669" y="20" width="166.66666666666669" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="3K9-Rx-Ocl"/>
                                                         </constraints>
@@ -270,7 +270,7 @@
         <!--Sign InVC-->
         <scene sceneID="WTh-sw-va7">
             <objects>
-                <viewController id="vuh-eu-cwf" customClass="SignInVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vuh-eu-cwf" customClass="SignInVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d3m-q7-0xM">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,7 +333,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to Jazzcats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBw-DX-rfC">
-                                <rect key="frame" x="292" y="40" width="312.5" height="40"/>
+                                <rect key="frame" x="291.66666666666663" y="40" width="312.66666666666663" height="40"/>
                                 <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -466,7 +466,7 @@
         <!--Sign In EmailVC-->
         <scene sceneID="Pc6-sa-84b">
             <objects>
-                <viewController id="5qc-HS-yo8" customClass="SignInEmailVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5qc-HS-yo8" customClass="SignInEmailVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lSK-Ur-ksn">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -597,7 +597,7 @@
         <!--Create AccVC-->
         <scene sceneID="QMt-fp-E04">
             <objects>
-                <viewController id="wtM-ry-7rg" customClass="CreateAccVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wtM-ry-7rg" customClass="CreateAccVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p4r-CQ-pk1">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -675,7 +675,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mSI-ez-NgK">
-                                <rect key="frame" x="248" y="124.5" width="400" height="45"/>
+                                <rect key="frame" x="248" y="124.66666666666669" width="400" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="OSS-G1-64B"/>
                                     <constraint firstAttribute="height" constant="45" id="RFy-h6-OWs"/>
@@ -740,7 +740,7 @@
         <!--Welcome Screen-->
         <scene sceneID="PMF-k5-oVf">
             <objects>
-                <viewController id="dec-BY-2yf" customClass="WelcomeScreen" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dec-BY-2yf" customClass="WelcomeScreen" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hhp-mo-ldP">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -784,11 +784,11 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xwI-vr-1dK" secondAttribute="height" multiplier="3:1" id="js6-tL-HEO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="70"/>
+                                <fontDescription key="fontDescription" name="Gaegu-Bold" family="Gaegu" pointSize="70"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="130"/>
+                                    <fontDescription key="fontDescription" name="Gaegu-Bold" family="Gaegu" pointSize="160"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -843,7 +843,7 @@
         <!--Level GroupsVC-->
         <scene sceneID="VPB-dH-9Et">
             <objects>
-                <viewController id="eET-rt-TJ4" customClass="LevelGroupsVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eET-rt-TJ4" customClass="LevelGroupsVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bpi-wI-wYJ">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -851,14 +851,14 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-j1-OjF">
                                 <rect key="frame" x="0.0" y="60" width="896" height="294"/>
                                 <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="30" minimumInteritemSpacing="10" id="lof-V2-OjE" customClass="SnapToCenter" customModule="jazzCatsApp" customModuleProvider="target">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="30" minimumInteritemSpacing="10" id="lof-V2-OjE" customClass="SnapToCenter" customModule="Jazzcats" customModuleProvider="target">
                                     <size key="itemSize" width="400" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="levelGroupCell" id="qDg-h5-YOj" customClass="LevelGroupCell" customModule="jazzCatsApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="levelGroupCell" id="qDg-h5-YOj" customClass="LevelGroupCell" customModule="Jazzcats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="47" width="400" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E48-7e-wAi">
@@ -921,7 +921,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5U-G5-Nvo">
-                                <rect key="frame" x="64" y="7.5" width="45" height="45"/>
+                                <rect key="frame" x="64" y="7.6666666666666679" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="U5U-G5-Nvo" secondAttribute="height" id="V8W-vt-6CR"/>
                                 </constraints>
@@ -965,7 +965,7 @@
         <!--Level Select-->
         <scene sceneID="Nn8-A1-Mdv">
             <objects>
-                <viewController storyboardIdentifier="welcome" id="4gq-Lp-7HN" customClass="LevelSelect" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="welcome" id="4gq-Lp-7HN" customClass="LevelSelect" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qH1-D2-I13">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -980,7 +980,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="level" id="hb1-w8-2Tc" customClass="LevelCell" customModule="jazzCatsApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="level" id="hb1-w8-2Tc" customClass="LevelCell" customModule="Jazzcats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7iy-Fn-g1c">
@@ -988,7 +988,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8v-4M-eAH">
-                                                    <rect key="frame" x="42.5" y="54" width="43" height="20"/>
+                                                    <rect key="frame" x="42.666666666666657" y="54" width="43" height="20"/>
                                                     <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1005,7 +1005,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aqh-Ct-lFg">
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="levelSelectBottomPadding" id="aqh-Ct-lFg">
                                     <rect key="frame" x="0.0" y="128" width="896" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
@@ -1036,7 +1036,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Alr-c2-wVp">
-                                <rect key="frame" x="64" y="7.5" width="45" height="45"/>
+                                <rect key="frame" x="64" y="7.6666666666666679" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Alr-c2-wVp" secondAttribute="height" id="mwj-Xo-Sgz"/>
                                 </constraints>
@@ -1080,7 +1080,7 @@
         <!--Share CompVC-->
         <scene sceneID="tXA-9o-dzi">
             <objects>
-                <viewController storyboardIdentifier="shareCompPopoverID" id="xaF-FK-ZCM" customClass="ShareCompVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shareCompPopoverID" id="xaF-FK-ZCM" customClass="ShareCompVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WVR-tE-lYf">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1089,7 +1089,7 @@
                                 <rect key="frame" x="144" y="60" width="608" height="294"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share your composition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-fM-6WO">
-                                        <rect key="frame" x="178.5" y="30" width="251" height="26"/>
+                                        <rect key="frame" x="178.66666666666669" y="30" width="251" height="26"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Bold" family="Gaegu" pointSize="26"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1202,7 +1202,7 @@
         <!--Game View Controller-->
         <scene sceneID="Nob-v2-Xgg">
             <objects>
-                <viewController id="uKC-AO-KPp" customClass="GameViewController" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uKC-AO-KPp" customClass="GameViewController" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eVd-TM-mdS" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1223,7 +1223,7 @@
         <!--Settings PopupVC-->
         <scene sceneID="Jh0-xZ-8Te">
             <objects>
-                <viewController storyboardIdentifier="settingsPopoverID" id="Jrb-Pv-5VO" customClass="SettingsPopupVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsPopoverID" id="Jrb-Pv-5VO" customClass="SettingsPopupVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XVb-Ue-QtR">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1258,37 +1258,37 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-Am-W3J">
-                                                        <rect key="frame" x="106.5" y="5" width="395.5" height="240"/>
+                                                        <rect key="frame" x="106.33333333333334" y="5" width="395.33333333333326" height="240"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XvD-Dn-TjV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="181.5" height="240"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="181.33333333333334" height="240"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tempo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J83-C8-um5" userLabel="tempo:">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="181.5" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="181.33333333333334" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pages:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aL1-DA-hoP">
-                                                                        <rect key="frame" x="0.0" y="52" width="181.5" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="52" width="181.33333333333334" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="measures per page:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6va-sF-vjo">
-                                                                        <rect key="frame" x="0.0" y="104" width="181.5" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="104" width="181.33333333333334" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="beats per measure:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llm-wy-DXa">
-                                                                        <rect key="frame" x="0.0" y="156" width="181.5" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="156" width="181.33333333333334" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subdivisions per beat:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQb-LJ-p5N">
-                                                                        <rect key="frame" x="0.0" y="208" width="181.5" height="32"/>
+                                                                        <rect key="frame" x="0.0" y="208" width="181.33333333333334" height="32"/>
                                                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1296,7 +1296,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-2w-2Py">
-                                                                <rect key="frame" x="211.5" y="0.0" width="60" height="240"/>
+                                                                <rect key="frame" x="211.33333333333334" y="0.0" width="60.000000000000028" height="240"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jQF-Ho-dS2">
                                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
@@ -1333,7 +1333,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-N1-syo">
-                                                                <rect key="frame" x="301.5" y="0.0" width="94" height="240"/>
+                                                                <rect key="frame" x="301.33333333333326" y="0.0" width="94" height="240"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OkB-i1-1uq" userLabel="placeholder">
                                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
@@ -1395,7 +1395,7 @@
                                         <viewLayoutGuide key="frameLayoutGuide" id="dkw-3v-gHJ"/>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFE-f7-ucb">
-                                        <rect key="frame" x="260" y="0.0" width="88" height="60"/>
+                                        <rect key="frame" x="260.33333333333331" y="0.0" width="87.666666666666686" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="0WF-Nh-8m1"/>
                                         </constraints>
@@ -1489,13 +1489,13 @@
         <!--Tutorial PopupVC-->
         <scene sceneID="wKQ-6M-gT2">
             <objects>
-                <viewController storyboardIdentifier="tutorialPopoverID" id="MFc-sL-GKx" customClass="TutorialPopupVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tutorialPopoverID" id="MFc-sL-GKx" customClass="TutorialPopupVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OZQ-u6-XEI">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meowmo" translatesAutoresizingMaskIntoConstraints="NO" id="9vv-BR-ZvM">
-                                <rect key="frame" x="94" y="173" width="150" height="150"/>
+                                <rect key="frame" x="94" y="143" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Iaa-Jz-sgY"/>
                                     <constraint firstAttribute="height" constant="300" id="hkf-JE-iKX"/>
@@ -1531,13 +1531,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUC-ZJ-AFp">
-                                        <rect key="frame" x="35.5" y="30" width="637" height="24"/>
+                                        <rect key="frame" x="35.333333333333314" y="30" width="637.33333333333348" height="24"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to continue..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTD-5l-RtM">
-                                        <rect key="frame" x="581" y="98" width="127" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap dialogue to continue..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTD-5l-RtM">
+                                        <rect key="frame" x="516.66666666666663" y="98" width="191.33333333333337" height="17"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1551,16 +1551,28 @@
                                     <constraint firstItem="nUC-ZJ-AFp" firstAttribute="width" secondItem="etB-X9-Xs7" secondAttribute="width" multiplier="0.9" id="EtY-CP-kWt"/>
                                     <constraint firstItem="nUC-ZJ-AFp" firstAttribute="centerX" secondItem="etB-X9-Xs7" secondAttribute="centerX" id="JHH-Ux-F5B"/>
                                     <constraint firstItem="etB-X9-Xs7" firstAttribute="height" secondItem="kmD-6Q-a3G" secondAttribute="height" constant="-20" id="Kvg-NJ-Voi"/>
+                                    <constraint firstAttribute="height" constant="200" id="NSQ-1Y-qYm"/>
                                     <constraint firstItem="etB-X9-Xs7" firstAttribute="centerX" secondItem="kmD-6Q-a3G" secondAttribute="centerX" id="ZBi-M0-uqL"/>
                                     <constraint firstAttribute="height" constant="120" id="fje-zl-iyS"/>
                                     <constraint firstItem="wTD-5l-RtM" firstAttribute="trailing" secondItem="etB-X9-Xs7" secondAttribute="trailing" id="tc5-wC-xuQ"/>
                                     <constraint firstItem="nUC-ZJ-AFp" firstAttribute="top" secondItem="etB-X9-Xs7" secondAttribute="top" constant="10" id="zBD-wY-VOE"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NSQ-1Y-qYm"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="NSQ-1Y-qYm"/>
+                                        <exclude reference="fje-zl-iyS"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="oBD-D2-OLo" firstAttribute="bottom" secondItem="9vv-BR-ZvM" secondAttribute="bottom" constant="160" id="FN8-Vi-ty2"/>
+                            <constraint firstItem="kmD-6Q-a3G" firstAttribute="top" secondItem="9vv-BR-ZvM" secondAttribute="bottom" constant="-40" id="FN8-Vi-ty2"/>
                             <constraint firstItem="kmD-6Q-a3G" firstAttribute="centerX" secondItem="OZQ-u6-XEI" secondAttribute="centerX" id="Fcl-EH-a1h"/>
                             <constraint firstItem="kmD-6Q-a3G" firstAttribute="top" secondItem="oBD-D2-OLo" secondAttribute="top" constant="20" id="H9y-zt-jf6"/>
                             <constraint firstItem="oBD-D2-OLo" firstAttribute="bottom" secondItem="kmD-6Q-a3G" secondAttribute="bottom" constant="80" id="IJz-Ct-Fw7"/>
@@ -1568,29 +1580,25 @@
                             <constraint firstItem="oBD-D2-OLo" firstAttribute="bottom" secondItem="kmD-6Q-a3G" secondAttribute="bottom" constant="20" id="cVr-Wx-e9g"/>
                             <constraint firstItem="kmD-6Q-a3G" firstAttribute="leading" secondItem="oBD-D2-OLo" secondAttribute="leading" constant="50" id="dXe-sb-8ML"/>
                             <constraint firstItem="oBD-D2-OLo" firstAttribute="trailing" secondItem="9vv-BR-ZvM" secondAttribute="trailing" constant="50" id="hnX-ov-I2g"/>
+                            <constraint firstItem="9vv-BR-ZvM" firstAttribute="bottom" secondItem="kmD-6Q-a3G" secondAttribute="top" constant="80" id="mMs-Pu-S3j"/>
                             <constraint firstItem="kmD-6Q-a3G" firstAttribute="leading" secondItem="oBD-D2-OLo" secondAttribute="leading" constant="100" id="qWv-Lt-vjN"/>
-                            <constraint firstItem="oBD-D2-OLo" firstAttribute="bottom" secondItem="9vv-BR-ZvM" secondAttribute="bottom" constant="70" id="uLR-jG-Iq3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oBD-D2-OLo"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="IJz-Ct-Fw7"/>
                                 <exclude reference="hnX-ov-I2g"/>
-                                <exclude reference="uLR-jG-Iq3"/>
+                                <exclude reference="mMs-Pu-S3j"/>
                                 <exclude reference="H9y-zt-jf6"/>
                                 <exclude reference="qWv-Lt-vjN"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="FN8-Vi-ty2"/>
-                                <include reference="uLR-jG-Iq3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="constraints">
                                 <include reference="IJz-Ct-Fw7"/>
                                 <exclude reference="cVr-Wx-e9g"/>
+                                <include reference="mMs-Pu-S3j"/>
+                                <exclude reference="FN8-Vi-ty2"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1619,7 +1627,7 @@
         <!--Confirm Nav PopupVC-->
         <scene sceneID="JVq-Df-r8e">
             <objects>
-                <viewController storyboardIdentifier="confirmNavPopoverID" id="oHm-uF-DU1" customClass="ConfirmNavPopupVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="confirmNavPopoverID" id="oHm-uF-DU1" customClass="ConfirmNavPopupVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RBU-YP-vHT" customClass="con">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1728,7 +1736,7 @@
         <!--Note Select PopupVC-->
         <scene sceneID="uvy-fh-Q99">
             <objects>
-                <viewController storyboardIdentifier="noteSelectPopoverID" id="Kz6-53-fNS" customClass="NoteSelectPopupVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="noteSelectPopoverID" id="Kz6-53-fNS" customClass="NoteSelectPopupVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kId-nj-0KQ">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1746,7 +1754,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="noteSelection" id="t37-14-O1v" customClass="NoteSelectCell" customModule="jazzCatsApp" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="noteSelection" id="t37-14-O1v" customClass="NoteSelectCell" customModule="Jazzcats" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gcI-1u-Uim">
@@ -1797,7 +1805,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipI-wS-MVf">
-                                        <rect key="frame" x="241.5" y="10" width="125.5" height="26"/>
+                                        <rect key="frame" x="241.66666666666669" y="10" width="125" height="26"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Bold" family="Gaegu" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1855,7 +1863,7 @@
         <!--Level Complete PopupVC-->
         <scene sceneID="lat-tr-GLK">
             <objects>
-                <viewController storyboardIdentifier="levelCompletePopoverID" id="Ufm-uy-MAZ" customClass="LevelCompletePopupVC" customModule="jazzCatsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="levelCompletePopoverID" id="Ufm-uy-MAZ" customClass="LevelCompletePopupVC" customModule="Jazzcats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Td9-Na-WRN">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1864,13 +1872,13 @@
                                 <rect key="frame" x="144" y="60" width="608" height="294"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level Complete!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBX-fw-bmn">
-                                        <rect key="frame" x="236.5" y="50" width="135" height="20"/>
+                                        <rect key="frame" x="236.66666666666669" y="50" width="135" height="20"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You earned:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UT-Pu-4f0">
-                                        <rect key="frame" x="254.5" y="80" width="99" height="20"/>
+                                        <rect key="frame" x="254.66666666666669" y="80" width="99" height="20"/>
                                         <fontDescription key="fontDescription" name="Gaegu-Regular" family="Gaegu" pointSize="20"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1973,7 +1981,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GLW-ER-AVP"/>
+        <segue reference="Lga-rB-OrQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="30" height="30"/>

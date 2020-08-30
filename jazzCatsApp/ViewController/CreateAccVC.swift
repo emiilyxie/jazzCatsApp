@@ -125,10 +125,15 @@ class CreateAccVC: UIViewController {
             let password = passwordTextField.text!
             Auth.auth().createUser(withEmail: email, password: password) { (authResult, err) in
                 
-                if err != nil {
-                    UIStyling.hideLoading(view: self.view)
-                    print(err!.localizedDescription)
-                    UIStyling.showAlert(viewController: self, text: err!.localizedDescription)
+                if let err = err {
+                    let errCode = AuthErrorCode(rawValue: err._code)
+                    switch errCode {
+                    case .networkError:
+                        UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)
+                    default:
+                        UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription).")
+                    }
+                    UIStyling.hideLoading(view: self.view)                    
                     return
                 }
                 else {
@@ -137,8 +142,7 @@ class CreateAccVC: UIViewController {
                     Auth.auth().signIn(withEmail: email, password: password) { (authResult, err) in
                         if err != nil {
                             UIStyling.hideLoading(view: self.view)
-                            print(err!.localizedDescription)
-                            UIStyling.showAlert(viewController: self, text: err!.localizedDescription)
+                            UIStyling.showAlert(viewController: self, text: "Error: \(err!.localizedDescription). Check your network try again.", duration: 7)
                             return
                         }
                     }
@@ -160,7 +164,7 @@ class CreateAccVC: UIViewController {
             return "please fill in everything..."
         }
         if !isValidEmail(emailTextField.text!){
-            return "please put an actually valid email"
+            return "Please put a valid email."
         }
         return nil
     }

@@ -126,7 +126,7 @@ public class Note: SKSpriteNode {
     }
     
     public func getNoteInfo() -> [CGFloat] {        
-        return [CGFloat(measure), beat, CGFloat(getMidiVal())]
+        return [CGFloat(measure), UsefulFuncs.roundTwoDecimals(float: beat), CGFloat(getMidiVal())]
     }
     
 }

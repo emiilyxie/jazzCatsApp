@@ -47,7 +47,7 @@ class WelcomeScreen: UIViewController {
             try firebaseAuth.signOut()
         }
         catch let signOutError as NSError{
-            print(signOutError)
+            UIStyling.showAlert(viewController: self, text: "Error: \(signOutError). Check your network and try again.", duration: 7)
         }
         goToSignIn(self)
     }
@@ -61,7 +61,7 @@ class WelcomeScreen: UIViewController {
         let userRef = Firestore.firestore().collection("/users").document(uid)
         userRef.getDocument { (document, err) in
             if let err = err {
-                print(err.localizedDescription)
+                UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again.", duration: 7)
                 return
             }
             if let document = document, document.exists {
@@ -87,7 +87,7 @@ class WelcomeScreen: UIViewController {
         
         gameNameLabel.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.8))
         gameNameLabel.textColor = .black
-        gameNameLabel.font = UIFont(name: "Gaegu-Bold", size: CGFloat(70))
+        //gameNameLabel.font = UIFont(name: "Gaegu-Bold", size: CGFloat(70))
         
         UIStyling.setButtonStyle(button: accountButton)
         accountButton.layer.cornerRadius = 22
@@ -131,7 +131,7 @@ class WelcomeScreen: UIViewController {
             try firebaseAuth.signOut()
         }
         catch let signOutError as NSError{
-            print(signOutError)
+            UIStyling.showAlert(viewController: self, text: "Error: \(signOutError). Check your network and try again.", duration: 7)
             print("no ones even signed in")
         }
         performSegue(withIdentifier: Constants.welcomeToSignIn, sender: self)

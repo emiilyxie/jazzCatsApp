@@ -84,7 +84,7 @@ struct UIStyling {
         var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        activityIndicator.backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1)
+        activityIndicator.backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:0.3)
         activityIndicator.layer.cornerRadius = 6
         activityIndicator.bringSubviewToFront(view)
         activityIndicator.layer.zPosition = 9999
@@ -105,7 +105,7 @@ struct UIStyling {
         view.isUserInteractionEnabled = true
     }
     
-    static func showAlert(viewController: UIViewController, text: String) {
+    static func showAlert(viewController: UIViewController, text: String, duration: Double = 0.25) {
         let alertView = UILabel(frame: CGRect(width: 200, height: 500))
         alertView.text = text
         alertView.font = UIFont(name: "Gaegu-Bold", size: 20)
@@ -115,12 +115,12 @@ struct UIStyling {
         alertView.textColor = .white
         
         //viewController.addChild(alertView)
+        alertView.numberOfLines = -1
         alertView.sizeThatFits(CGSize(width: 300, height: 500))
         alertView.sizeToFit()
         alertView.frame = CGRect(width: alertView.frame.width + 20, height: alertView.frame.height + 20)
         alertView.textAlignment = .center
-        alertView.numberOfLines = -1
-        UIView.transition(with: viewController.view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+        UIView.transition(with: viewController.view, duration: duration, options: [.transitionCrossDissolve], animations: {
           viewController.view.addSubview(alertView)
         }, completion: nil)
         //viewController.view.addSubview(alertView)
@@ -129,7 +129,7 @@ struct UIStyling {
         
         //alertView.didMove(toParent: viewController)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            UIView.transition(with: viewController.view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+            UIView.transition(with: viewController.view, duration: duration, options: [.transitionCrossDissolve], animations: {
               alertView.removeFromSuperview()
             }, completion: nil)
             //alertView.removeFromSuperview()
@@ -157,6 +157,13 @@ struct MusicValues {
 
 public func scaleNode(size: CGSize, factor: Double) -> CGSize {
     return CGSize(width: size.width * CGFloat(factor), height: size.height * CGFloat(factor))
+}
+
+struct UsefulFuncs {
+    static func roundTwoDecimals(float: CGFloat) -> CGFloat {
+        let rounded = (100 * float).rounded() / 100
+        return rounded
+    }
 }
 
 /*
