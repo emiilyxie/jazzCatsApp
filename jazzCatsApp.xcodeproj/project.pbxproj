@@ -27,8 +27,6 @@
 		AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = AD3826E7245D10C40027849D /* measureBarTileSet.sks */; };
 		AD3826EA245D11920027849D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3826E9245D11920027849D /* Configuration.swift */; };
 		AD3826ED245D20700027849D /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3826EC245D20700027849D /* AudioKit.framework */; };
-		AD3826EE245D20700027849D /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD3826EC245D20700027849D /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F0245D20DC0027849D /* Default-568h@2x.png */; };
 		AD3826F3245D22530027849D /* kitten-meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD3826F2245D22530027849D /* kitten-meow.wav */; };
 		AD427F7C24E5D1AE00446DFC /* basics2tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD427F7B24E5D1AE00446DFC /* basics2tutorial */; };
 		AD427F7E24E5EE3000446DFC /* basics3tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD427F7D24E5EE3000446DFC /* basics3tutorial */; };
@@ -99,20 +97,6 @@
 		D7102F5BAC4B7E69ACB26ECA /* Pods_jazzCatsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83BFB05B4EF07F752EE5CF6 /* Pods_jazzCatsApp.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		AD3826EF245D20710027849D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				AD3826EE245D20700027849D /* AudioKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		AD042DA924819ACD00CB2310 /* LevelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		AD08F56124732A0300863204 /* StaffBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffBar.swift; sourceTree = "<group>"; };
@@ -136,7 +120,6 @@
 		AD3826E7245D10C40027849D /* measureBarTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = measureBarTileSet.sks; sourceTree = "<group>"; };
 		AD3826E9245D11920027849D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		AD3826EC245D20700027849D /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = "../../AudioKit-iOS/AudioKit.framework"; sourceTree = "<group>"; };
-		AD3826F0245D20DC0027849D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AD3826F2245D22530027849D /* kitten-meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kitten-meow.wav"; sourceTree = "<group>"; };
 		AD427F7B24E5D1AE00446DFC /* basics2tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics2tutorial; sourceTree = "<group>"; };
 		AD427F7D24E5EE3000446DFC /* basics3tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics3tutorial; sourceTree = "<group>"; };
@@ -252,7 +235,6 @@
 		AD3826B6245D0F610027849D = {
 			isa = PBXGroup;
 			children = (
-				AD3826F0245D20DC0027849D /* Default-568h@2x.png */,
 				AD3826C1245D0F610027849D /* jazzCatsApp */,
 				AD3826C0245D0F610027849D /* Products */,
 				AD3826EB245D20700027849D /* Frameworks */,
@@ -476,7 +458,6 @@
 				AD3826BB245D0F610027849D /* Sources */,
 				AD3826BC245D0F610027849D /* Frameworks */,
 				AD3826BD245D0F610027849D /* Resources */,
-				AD3826EF245D20710027849D /* Embed Frameworks */,
 				C4A9266A7758926A767EED68 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -563,7 +544,6 @@
 				ADD04A8424E70D4500458B44 /* trombone1.mp3 in Resources */,
 				AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */,
 				ADD04A9224E74E6A00458B44 /* basics18tutorial in Resources */,
-				AD3826F1245D20DC0027849D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

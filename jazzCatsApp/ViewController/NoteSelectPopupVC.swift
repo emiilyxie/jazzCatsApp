@@ -55,27 +55,40 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sounds.count
+        return sounds.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noteSelection", for: indexPath) as! NoteSelectCell
 
-        cell.noteCellLabel.text = sounds[indexPath.row].name
-        cell.noteCellLabel.font = UIFont(name: "Gaegu-Regular", size: CGFloat(16))
-        cell.noteCellLabel.textColor = ColorPalette.lineColor
-        cell.noteCellImage.image = UIImage(named: sounds[indexPath.row].id)
         cell.backgroundColor = ColorPalette.unselectedButton
         cell.layer.masksToBounds = true
         cell.layer.borderColor = ColorPalette.lineColor.cgColor
         cell.layer.borderWidth = CGFloat(2)
         cell.layer.cornerRadius = CGFloat(25)
         
+        if indexPath.item == sounds.count {
+            cell.noteCellLabel.text = ""
+            cell.noteCellImage.image = UIImage(systemName: "plus.app")?.withTintColor(ColorPalette.lineColor, renderingMode: .alwaysOriginal)
+            return cell
+        }
+        
+        cell.noteCellLabel.text = sounds[indexPath.row].name
+        cell.noteCellLabel.font = UIFont(name: "Gaegu-Regular", size: CGFloat(16))
+        cell.noteCellLabel.textColor = ColorPalette.lineColor
+        cell.noteCellImage.image = UIImage(named: sounds[indexPath.row].id)
+        
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(sounds[indexPath.row].id)
+        
+        if indexPath.item == sounds.count {
+            UIStyling.showAlert(viewController: self, text: "Complete levels to unlock more sounds!")
+            return
+        }
+        
         selectedNote = sounds[indexPath.row].id
         
         guard let parentVC = self.parent as! GameViewController?,

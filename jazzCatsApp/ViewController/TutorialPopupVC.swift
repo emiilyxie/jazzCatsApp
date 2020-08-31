@@ -29,6 +29,7 @@ class TutorialPopupVC: UIViewController {
     @IBOutlet weak var buttonFrame: UIButton!
     @IBOutlet weak var dialogueBox: UILabel!
     @IBOutlet weak var tapToContinue: UILabel!
+    @IBOutlet weak var skipButton: UIButton!
     
     
     var whereToPress = SKSpriteNode()
@@ -58,6 +59,11 @@ class TutorialPopupVC: UIViewController {
         self.view.backgroundColor = .clear
         
         UIStyling.setButtonStyle(button: buttonFrame)
+        UIStyling.setButtonStyle(button: skipButton)
+        skipButton.titleLabel?.font = UIFont(name: "Gaegu-Regular", size: 9.0)
+        skipButton.layer.cornerRadius = 2.0
+        skipButton.contentEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        skipButton.layer.borderWidth = 1
         
         dialogueBox.textColor = .black
     }
@@ -226,6 +232,20 @@ class TutorialPopupVC: UIViewController {
             currentTutorialPage += 1
             nextPage()
         }
+    }
+    
+    @IBAction func skipButtonPressed(_ sender: Any) {
+        guard let musicScene = currentScene else {
+            print("current scene weird")
+            return
+        }
+        
+        musicScene.isUserInteractionEnabled = true
+        for button in musicScene.buttons.dictionaryRepresentation().values {
+            button.isUserInteractionEnabled = true
+        }
+        self.view.removeFromSuperview()
+        self.removeFromParent()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

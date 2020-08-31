@@ -1542,9 +1542,18 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdE-TP-poI">
+                                        <rect key="frame" x="604" y="-12" width="94" height="32"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <state key="normal" title="Skip Tutorial"/>
+                                        <connections>
+                                            <action selector="skipButtonPressed:" destination="MFc-sL-GKx" eventType="touchUpInside" id="iPN-xP-kAy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="jdE-TP-poI" firstAttribute="bottom" secondItem="etB-X9-Xs7" secondAttribute="top" id="2lg-Xa-lhc"/>
                                     <constraint firstAttribute="bottom" secondItem="etB-X9-Xs7" secondAttribute="bottom" id="5hc-eU-Rj2"/>
                                     <constraint firstItem="wTD-5l-RtM" firstAttribute="bottom" secondItem="etB-X9-Xs7" secondAttribute="bottom" constant="-5" id="8Lq-C7-nqu"/>
                                     <constraint firstItem="etB-X9-Xs7" firstAttribute="width" secondItem="kmD-6Q-a3G" secondAttribute="width" id="AWG-4U-NXO"/>
@@ -1552,6 +1561,7 @@
                                     <constraint firstItem="nUC-ZJ-AFp" firstAttribute="centerX" secondItem="etB-X9-Xs7" secondAttribute="centerX" id="JHH-Ux-F5B"/>
                                     <constraint firstItem="etB-X9-Xs7" firstAttribute="height" secondItem="kmD-6Q-a3G" secondAttribute="height" constant="-20" id="Kvg-NJ-Voi"/>
                                     <constraint firstAttribute="height" constant="200" id="NSQ-1Y-qYm"/>
+                                    <constraint firstAttribute="trailing" secondItem="jdE-TP-poI" secondAttribute="trailing" constant="10" id="Xlr-mS-8nT"/>
                                     <constraint firstItem="etB-X9-Xs7" firstAttribute="centerX" secondItem="kmD-6Q-a3G" secondAttribute="centerX" id="ZBi-M0-uqL"/>
                                     <constraint firstAttribute="height" constant="120" id="fje-zl-iyS"/>
                                     <constraint firstItem="wTD-5l-RtM" firstAttribute="trailing" secondItem="etB-X9-Xs7" secondAttribute="trailing" id="tc5-wC-xuQ"/>
@@ -1617,6 +1627,7 @@
                         <outlet property="meowmoImg" destination="9vv-BR-ZvM" id="0E0-d3-W2H"/>
                         <outlet property="meowmoLeadingConstraint" destination="TuA-2T-Q8H" id="qUg-YE-0Ry"/>
                         <outlet property="meowmoTrailingConstraint" destination="hnX-ov-I2g" id="xDo-Ec-e8c"/>
+                        <outlet property="skipButton" destination="jdE-TP-poI" id="Bxg-sd-kNW"/>
                         <outlet property="tapToContinue" destination="wTD-5l-RtM" id="8fK-pc-NUx"/>
                     </connections>
                 </viewController>

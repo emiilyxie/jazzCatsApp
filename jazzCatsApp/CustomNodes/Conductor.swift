@@ -53,6 +53,7 @@ public class Conductor {
         AudioKit.output = mixer!
         
         do {
+            AKSettings.playbackWhileMuted = true
             try AudioKit.start()
         }
         catch {
