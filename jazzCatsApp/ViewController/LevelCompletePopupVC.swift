@@ -13,6 +13,7 @@ class LevelCompletePopupVC: UIViewController {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var nextLevelButton: UIButton!
+    @IBOutlet weak var lvlCompleteLabel: UILabel!
     @IBOutlet weak var earnLabel: UILabel!
     var rewardMessage: String?
     weak var gameVC: GameViewController?
@@ -37,12 +38,11 @@ class LevelCompletePopupVC: UIViewController {
     }
     
     func setUpGraphics() {
-        DispatchQueue.main.async {
-            self.view.backgroundColor = .clear
-            UIStyling.setPopupBackground(popupView: self.bgView)
-            UIStyling.setButtonStyle(button: self.menuButton)
-            UIStyling.setButtonStyle(button: self.nextLevelButton)
-        }
+        self.view.backgroundColor = .clear
+        lvlCompleteLabel.font = UIFont(name: "Gaegu-Bold", size: 20)
+        UIStyling.setPopupBackground(popupView: self.bgView)
+        UIStyling.setButtonStyle(button: self.menuButton)
+        UIStyling.setButtonStyle(button: self.nextLevelButton)
     }
     
     func displayRewards() {

@@ -32,6 +32,7 @@
 		AD427F7E24E5EE3000446DFC /* basics3tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD427F7D24E5EE3000446DFC /* basics3tutorial */; };
 		AD427F8224E5FF9500446DFC /* cat_basic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */; };
 		AD427F8424E6012D00446DFC /* piano1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F8324E6012C00446DFC /* piano1.mp3 */; };
+		AD6F961E24FDF45D00227E0A /* vibes1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD6F961D24FDF45D00227E0A /* vibes1.mp3 */; };
 		AD700CD224AB08E000881EBE /* buttonLocations in Resources */ = {isa = PBXBuildFile; fileRef = AD700CD124AB08E000881EBE /* buttonLocations */; };
 		AD7D9D7A24E8B835003E25FB /* metronomeClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */; };
 		AD7EF23724B12CB7009875CA /* AccountDetailsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */; };
@@ -125,6 +126,7 @@
 		AD427F7D24E5EE3000446DFC /* basics3tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics3tutorial; sourceTree = "<group>"; };
 		AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic1.mp3; sourceTree = "<group>"; };
 		AD427F8324E6012C00446DFC /* piano1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano1.mp3; sourceTree = "<group>"; };
+		AD6F961D24FDF45D00227E0A /* vibes1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vibes1.mp3; sourceTree = "<group>"; };
 		AD700CD124AB08E000881EBE /* buttonLocations */ = {isa = PBXFileReference; lastKnownFileType = text; path = buttonLocations; sourceTree = "<group>"; };
 		AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = metronomeClick.mp3; sourceTree = "<group>"; };
 		AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsPopupVC.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				ADCAFDA3249E061500428C70 /* intermediate1.mp3 */,
 				AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */,
 				ADD04A9524E770E100458B44 /* cat_basic2.mp3 */,
+				AD6F961D24FDF45D00227E0A /* vibes1.mp3 */,
 				AD427F8324E6012C00446DFC /* piano1.mp3 */,
 				ADD04A8924E70D8800458B44 /* saxophone1.mp3 */,
 				ADD04A8024E70D4400458B44 /* bass1.mp3 */,
@@ -519,6 +522,7 @@
 				AD427F8224E5FF9500446DFC /* cat_basic1.mp3 in Resources */,
 				AD700CD224AB08E000881EBE /* buttonLocations in Resources */,
 				ADD04A7E24E708B900458B44 /* basics5tutorial in Resources */,
+				AD6F961E24FDF45D00227E0A /* vibes1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
 				AD7D9D7A24E8B835003E25FB /* metronomeClick.mp3 in Resources */,
 				ADD04A8E24E7439F00458B44 /* basics15tutorial in Resources */,
@@ -791,6 +795,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Xie (P8NN53WY7G)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 449RX798BR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/emilyxie/Projects/udemy/AudioKit-iOS",
@@ -802,6 +807,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = (
 					"-lc++",
 					"$(inherited)",
@@ -821,6 +827,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Xie (P8NN53WY7G)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 449RX798BR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/emilyxie/Projects/udemy/AudioKit-iOS",
@@ -832,6 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = (
 					"-lc++",
 					"$(inherited)",

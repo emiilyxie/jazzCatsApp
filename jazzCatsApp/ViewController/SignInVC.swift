@@ -68,7 +68,7 @@ class SignInVC: UIViewController {
             let uid = user.uid
             print("user id: \(uid)")
             let usersRef = Firestore.firestore().collection("users")
-            usersRef.document(uid).setData(["email" : "anonymous", "nickname" : "anonymous", "uid" : uid, "level-progress" : [:], "game-currency" : 100, "hints" : 10], merge: true)
+            usersRef.document(uid).setData(["email" : "anonymous", "nickname" : "anonymous", "uid" : uid, "level-progress" : [:], "game-currency" : 100, "hints" : 10, "unlocked-sounds": ["cat_basic1", "drumsnare1", "vibes1"]], merge: true)
             self.performSegue(withIdentifier: "fromSignInToWelcomeUSegue", sender: self)
         }
     }

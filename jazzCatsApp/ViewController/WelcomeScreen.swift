@@ -71,7 +71,7 @@ class WelcomeScreen: UIViewController {
                 GameUser.levelProgress = document.get("level-progress") as? Dictionary ?? [:]
                 GameUser.gameCurrency = document.get("game-currency") as? Int ?? 100
                 GameUser.hints = document.get("hints") as? Int ?? 10
-                GameUser.unlockedSoundNames = document.get("unlocked-sounds") as? [String] ?? ["cat_basic1"]
+                GameUser.unlockedSoundNames = document.get("unlocked-sounds") as? [String] ?? ["cat_basic1", "drumsnare1", "vibes1"]
                 GameUser.setSounds()
                 //GameUser.sortSounds()
             }

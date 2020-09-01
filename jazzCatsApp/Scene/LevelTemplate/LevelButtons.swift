@@ -79,7 +79,7 @@ extension LevelTemplate {
         if let soundIndex = GameUser.unlockedSoundNames.firstIndex(of: selectedNote) {
             
             //let sampler = samplers.object(forKey: selectedNote as NSString)
-            sequencer.tracks[0].setMIDIOutput(samplers[soundIndex].midiIn ?? 0)
+            sequencer.tracks[0].setMIDIOutput(samplers[soundIndex].midiIn)
                     }
         else {
             print("couldnt get soundindex")
@@ -219,20 +219,25 @@ extension LevelTemplate {
             guard let gameVC = self.viewController as? GameViewController else {
                 return
             }
+            var rewardMessage = ""
+            if let from = from {
+                rewardMessage = "transcription from: \(from)\n\n"
+            }
+            rewardMessage = "\(rewardMessage)You earned:\n"
             
             if GameUser.levelAlreadyCompleted(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel) {
-                let rewardMessage = "Nothing, because you've already completed this level"
+                rewardMessage = "\(rewardMessage)Nothing, because you've already completed this level"
                 gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
             }
             else {
                 if reward.keys.contains("sound") {
                     GameUser.updateSounds(newSound: reward["sound"] as! String) {
-                        let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: self.reward)
+                        rewardMessage = "\(rewardMessage)\(GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: self.reward))"
                         gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
                     }
                 }
                 else {
-                    let rewardMessage = GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward)
+                    rewardMessage = "\(rewardMessage)\(GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: reward))"
                     gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
                 }
             }

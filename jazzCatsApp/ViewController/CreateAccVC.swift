@@ -180,7 +180,7 @@ class CreateAccVC: UIViewController {
         let user = Auth.auth().currentUser
         let uid = user?.uid
         let usersRef = Firestore.firestore().collection("users")
-        usersRef.document(uid!).setData(["email" : email, "nickname" : self.nameTextField.text!, "uid" : uid!, "level-progress" : [:], "game-currency" : 100, "hints" : 10, "unlocked-sounds" : ["cat_basic1"]], merge: true)
+        usersRef.document(uid!).setData(["email" : email, "nickname" : self.nameTextField.text!, "uid" : uid!, "level-progress" : [:], "game-currency" : 100, "hints" : 10, "unlocked-sounds" : ["cat_basic1", "drumsnare1", "vibes1"]], merge: true)
     }
     
     func dismissKeyboard() {

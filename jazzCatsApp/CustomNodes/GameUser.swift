@@ -17,7 +17,7 @@ struct GameUser {
     static var gameCurrency = 100
     static var hints = 10
     static var sounds: [Sound] = []
-    static var unlockedSoundNames: [String] = ["cat_basic1"]
+    static var unlockedSoundNames: [String] = ["cat_basic1", "drumsnare1", "vibes1"]
     static var conductor: Conductor?
     //static var sounds: Dictionary<String, Int> = ["cat_basic1" : 0]
     //static var soundsArr: Array<String> = ["cat_basic1"]
@@ -206,7 +206,7 @@ struct GameUser {
                     }
                 case "sound":
                     if let sound = Sounds.getSound(from: self.sounds, id: value as! String) {
-                        rewardMessage = "\(rewardMessage)\nnew sound: \(sound.name)\nNew Sounds can be viewed when you press the \"Select\" button."
+                        rewardMessage = "\(rewardMessage)\nnew sound: \(sound.name)"
                     }
                 default:
                     print("dont recognize field")

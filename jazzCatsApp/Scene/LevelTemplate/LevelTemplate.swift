@@ -15,6 +15,7 @@ public class LevelTemplate: MusicScene {
     //weak var viewController: UIViewController?
     var levelGroup: String
     var levelNum: Int
+    var from: String?
     
     var hintCount: SKLabelNode = {
         let label = SKLabelNode(text: String(GameUser.hints))
@@ -36,10 +37,11 @@ public class LevelTemplate: MusicScene {
     var hintNum = 0
     var reward: Dictionary<String, Any>
     
-    public init(size: CGSize, levelGroup: String, levelNum: Int, tempo: Int?, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?, lvlAns: Set<[CGFloat]>, reward: Dictionary<String, Any>?) {
+    public init(size: CGSize, levelGroup: String, levelNum: Int, from: String?, tempo: Int?, numberOfMeasures: Int?, bpm: Int?, subdivision: Int?, maxPages: Int?, lvlAns: Set<[CGFloat]>, reward: Dictionary<String, Any>?) {
         
         self.levelGroup = levelGroup
         self.levelNum = levelNum
+        self.from = from
         self.yayYouDidIt = SKSpriteNode(imageNamed: "temp-you-did-it")
         self.sorryTryAgain = SKSpriteNode(imageNamed: "temp-try-again")
         self.lvlAnsSong = "\(levelGroup)\(levelNum).mp3"
