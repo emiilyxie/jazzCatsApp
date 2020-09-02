@@ -1,0 +1,11 @@
+[
+"dialogue" : [
+    ["text" : "Well, fellow Jazzcat, our learning journey ends here. You've been a good student, all thanks to Meowmo the jazz legend."],
+    ["text" : "After this level, you're well equipped to transcribe anything. You now have the skills to listen to some music and put in on a music staff."],
+    ["text" : "Yay! You should be proud. Now that you have a pretty intuitive understanding of music, you can go out in the world and meet other Jazzcats.",
+    "meowmo-expression": "mischevious"],
+    ["text" : "If you need anything, I'll still be in the tutorials, and maybe I'll show up somewhere else in the future if the developer feels like it."],
+    ["text" : "Ok, I gotta leave for a performance at Birdland with my quintet. See you around.",
+    "progress-action" : "dismiss",
+    "meowmo-expression": "mischevious"],
+]]

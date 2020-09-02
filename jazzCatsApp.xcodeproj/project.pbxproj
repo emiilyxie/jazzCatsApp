@@ -32,7 +32,16 @@
 		AD427F7E24E5EE3000446DFC /* basics3tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD427F7D24E5EE3000446DFC /* basics3tutorial */; };
 		AD427F8224E5FF9500446DFC /* cat_basic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */; };
 		AD427F8424E6012D00446DFC /* piano1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD427F8324E6012C00446DFC /* piano1.mp3 */; };
-		AD6F961E24FDF45D00227E0A /* vibes1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD6F961D24FDF45D00227E0A /* vibes1.mp3 */; };
+		AD6F962024FE01A300227E0A /* vibes1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD6F961F24FE01A300227E0A /* vibes1.mp3 */; };
+		AD6F962224FF524A00227E0A /* intermediate1tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F962124FF524A00227E0A /* intermediate1tutorial */; };
+		AD6F962424FF564500227E0A /* intermediate2tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F962324FF564500227E0A /* intermediate2tutorial */; };
+		AD6F962624FF582300227E0A /* intermediate3tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F962524FF582300227E0A /* intermediate3tutorial */; };
+		AD6F962824FF5B6400227E0A /* intermediate5tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F962724FF5B6400227E0A /* intermediate5tutorial */; };
+		AD6F962A24FF5F0200227E0A /* intermediate7tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F962924FF5F0200227E0A /* intermediate7tutorial */; };
+		AD6F962C24FF61BC00227E0A /* intermediate10tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F962B24FF61BC00227E0A /* intermediate10tutorial */; };
+		AD6F962E24FF651600227E0A /* intermediate12tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F962D24FF651600227E0A /* intermediate12tutorial */; };
+		AD6F963024FF65A200227E0A /* intermediate14tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F962F24FF65A200227E0A /* intermediate14tutorial */; };
+		AD6F963224FF679300227E0A /* intermediate15tutorial in Resources */ = {isa = PBXBuildFile; fileRef = AD6F963124FF679300227E0A /* intermediate15tutorial */; };
 		AD700CD224AB08E000881EBE /* buttonLocations in Resources */ = {isa = PBXBuildFile; fileRef = AD700CD124AB08E000881EBE /* buttonLocations */; };
 		AD7D9D7A24E8B835003E25FB /* metronomeClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */; };
 		AD7EF23724B12CB7009875CA /* AccountDetailsPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */; };
@@ -126,7 +135,16 @@
 		AD427F7D24E5EE3000446DFC /* basics3tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics3tutorial; sourceTree = "<group>"; };
 		AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic1.mp3; sourceTree = "<group>"; };
 		AD427F8324E6012C00446DFC /* piano1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano1.mp3; sourceTree = "<group>"; };
-		AD6F961D24FDF45D00227E0A /* vibes1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vibes1.mp3; sourceTree = "<group>"; };
+		AD6F961F24FE01A300227E0A /* vibes1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vibes1.mp3; sourceTree = "<group>"; };
+		AD6F962124FF524A00227E0A /* intermediate1tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate1tutorial; sourceTree = "<group>"; };
+		AD6F962324FF564500227E0A /* intermediate2tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate2tutorial; sourceTree = "<group>"; };
+		AD6F962524FF582300227E0A /* intermediate3tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate3tutorial; sourceTree = "<group>"; };
+		AD6F962724FF5B6400227E0A /* intermediate5tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate5tutorial; sourceTree = "<group>"; };
+		AD6F962924FF5F0200227E0A /* intermediate7tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate7tutorial; sourceTree = "<group>"; };
+		AD6F962B24FF61BC00227E0A /* intermediate10tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate10tutorial; sourceTree = "<group>"; };
+		AD6F962D24FF651600227E0A /* intermediate12tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate12tutorial; sourceTree = "<group>"; };
+		AD6F962F24FF65A200227E0A /* intermediate14tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate14tutorial; sourceTree = "<group>"; };
+		AD6F963124FF679300227E0A /* intermediate15tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = intermediate15tutorial; sourceTree = "<group>"; };
 		AD700CD124AB08E000881EBE /* buttonLocations */ = {isa = PBXFileReference; lastKnownFileType = text; path = buttonLocations; sourceTree = "<group>"; };
 		AD7D9D7924E8B835003E25FB /* metronomeClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = metronomeClick.mp3; sourceTree = "<group>"; };
 		AD7EF23624B12CB7009875CA /* AccountDetailsPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsPopupVC.swift; sourceTree = "<group>"; };
@@ -228,6 +246,15 @@
 				ADD04A8F24E7478F00458B44 /* basics17tutorial */,
 				ADD04A9124E74E6A00458B44 /* basics18tutorial */,
 				ADD04A9324E7555F00458B44 /* basics20tutorial */,
+				AD6F962124FF524A00227E0A /* intermediate1tutorial */,
+				AD6F962324FF564500227E0A /* intermediate2tutorial */,
+				AD6F962524FF582300227E0A /* intermediate3tutorial */,
+				AD6F962724FF5B6400227E0A /* intermediate5tutorial */,
+				AD6F962924FF5F0200227E0A /* intermediate7tutorial */,
+				AD6F962B24FF61BC00227E0A /* intermediate10tutorial */,
+				AD6F962D24FF651600227E0A /* intermediate12tutorial */,
+				AD6F962F24FF65A200227E0A /* intermediate14tutorial */,
+				AD6F963124FF679300227E0A /* intermediate15tutorial */,
 				AD700CD124AB08E000881EBE /* buttonLocations */,
 				ADBE499D24BBE289002D5B49 /* coltrane1 */,
 			);
@@ -280,7 +307,7 @@
 				ADCAFDA3249E061500428C70 /* intermediate1.mp3 */,
 				AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */,
 				ADD04A9524E770E100458B44 /* cat_basic2.mp3 */,
-				AD6F961D24FDF45D00227E0A /* vibes1.mp3 */,
+				AD6F961F24FE01A300227E0A /* vibes1.mp3 */,
 				AD427F8324E6012C00446DFC /* piano1.mp3 */,
 				ADD04A8924E70D8800458B44 /* saxophone1.mp3 */,
 				ADD04A8024E70D4400458B44 /* bass1.mp3 */,
@@ -514,18 +541,24 @@
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD427F8424E6012D00446DFC /* piano1.mp3 in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
+				AD6F963024FF65A200227E0A /* intermediate14tutorial in Resources */,
 				ADD04A8524E70D4500458B44 /* bass1.mp3 in Resources */,
+				AD6F962824FF5B6400227E0A /* intermediate5tutorial in Resources */,
 				AD427F7C24E5D1AE00446DFC /* basics2tutorial in Resources */,
 				AD427F7E24E5EE3000446DFC /* basics3tutorial in Resources */,
 				AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */,
 				ADBE499E24BBE289002D5B49 /* coltrane1 in Resources */,
+				AD6F962C24FF61BC00227E0A /* intermediate10tutorial in Resources */,
 				AD427F8224E5FF9500446DFC /* cat_basic1.mp3 in Resources */,
 				AD700CD224AB08E000881EBE /* buttonLocations in Resources */,
 				ADD04A7E24E708B900458B44 /* basics5tutorial in Resources */,
-				AD6F961E24FDF45D00227E0A /* vibes1.mp3 in Resources */,
+				AD6F963224FF679300227E0A /* intermediate15tutorial in Resources */,
+				AD6F962024FE01A300227E0A /* vibes1.mp3 in Resources */,
 				AD3826CE245D0F610027849D /* Main.storyboard in Resources */,
+				AD6F962424FF564500227E0A /* intermediate2tutorial in Resources */,
 				AD7D9D7A24E8B835003E25FB /* metronomeClick.mp3 in Resources */,
 				ADD04A8E24E7439F00458B44 /* basics15tutorial in Resources */,
+				AD6F962E24FF651600227E0A /* intermediate12tutorial in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
 				ADD04A8824E70D4500458B44 /* trumpet1.mp3 in Resources */,
 				ADD04A9624E770E100458B44 /* cat_basic2.mp3 in Resources */,
@@ -533,6 +566,7 @@
 				ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */,
 				ADD04A8A24E70D8800458B44 /* saxophone1.mp3 in Resources */,
 				ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */,
+				AD6F962224FF524A00227E0A /* intermediate1tutorial in Resources */,
 				AD21FDF724A976830068A729 /* basics1tutorial in Resources */,
 				ADCAFDA5249E061600428C70 /* basics2.mp3 in Resources */,
 				ADD04A8624E70D4500458B44 /* drumsnare1.mp3 in Resources */,
@@ -540,12 +574,14 @@
 				AD3826D0245D0F630027849D /* Assets.xcassets in Resources */,
 				ADD04A9024E7478F00458B44 /* basics17tutorial in Resources */,
 				ADD04A8C24E71CD500458B44 /* basics9tutorial in Resources */,
+				AD6F962624FF582300227E0A /* intermediate3tutorial in Resources */,
 				ADD04A9424E7555F00458B44 /* basics20tutorial in Resources */,
 				ADCAFDA6249E061600428C70 /* intermediate1.mp3 in Resources */,
 				AD9395B024747CD10037E307 /* Main.storyboard in Resources */,
 				ADD04A8724E70D4500458B44 /* drumhihat1.mp3 in Resources */,
 				ADCAFDA7249E061600428C70 /* coltrane1.mp3 in Resources */,
 				ADD04A8424E70D4500458B44 /* trombone1.mp3 in Resources */,
+				AD6F962A24FF5F0200227E0A /* intermediate7tutorial in Resources */,
 				AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */,
 				ADD04A9224E74E6A00458B44 /* basics18tutorial in Resources */,
 			);
@@ -795,7 +831,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Xie (P8NN53WY7G)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 449RX798BR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/emilyxie/Projects/udemy/AudioKit-iOS",
@@ -827,7 +863,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Xie (P8NN53WY7G)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 449RX798BR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/emilyxie/Projects/udemy/AudioKit-iOS",

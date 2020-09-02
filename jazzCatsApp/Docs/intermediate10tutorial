@@ -1,0 +1,10 @@
+[
+"dialogue" : [
+    ["text" : "Oooh, do I see an answer here??",
+    "meowmo-expression": "mischevious"],
+    ["text" : "Ok, I'll explain. Sometimes, melodies don't start directly at beat 1.0. If they did, music would be too predictable."],
+    ["text" : "Although, it's kind of hard to tell which beat to start on, especially in this game. So, that's why I give you the first note if it's not at the beginning."],
+    ["text" : "Now, get to work. Or, as true Jazzcats like to call it, woodshed the music.",
+    "progress-action" : "dismiss",
+    "meowmo-expression": "mischevious"],
+]]

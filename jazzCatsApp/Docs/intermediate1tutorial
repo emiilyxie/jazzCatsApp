@@ -1,0 +1,7 @@
+
+[
+"dialogue" : [
+    ["text" : "I see you've completed the Basics. One step closer to being a jazz legend."],
+    ["text" : "Let's start with a quick warm-up…",
+    "progress-action" : "dismiss"],
+]]

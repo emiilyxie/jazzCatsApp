@@ -1,0 +1,17 @@
+[
+"dialogue" : [
+    ["text": "Each level is filled with surprises. Let's see what this one offers.",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton",
+    ],
+    ["text" : "Woah. Cool!",
+    "meowmo-expression": "surprised"],
+    ["text" : "Did you know that you can have more than one note on the same beat? (Ok, yeah, you probably did, but this is cool.)"],
+    ["text" : "Fun fact: if there are 2 notes on the same beat, it's an interval. If there are 3 or more, it's called a chord. Betcha didn't know that.",
+    "meowmo-expression": "mischevious"],
+    ["text" : "The transcription process is the same for multiple notes on one beat. Listen, find the note, and place the note."],
+    ["text" : "I like intervals and chords because they sound nice (most of the time), but they're a lot harder to transcribe. Good luck I guess.",
+    "progress-action" : "dismiss",
+    "meowmo-expression": "mischevious"],
+]]
+

@@ -60,8 +60,8 @@ extension MusicScene {
     }
     
     func editNotesSharp(location: CGPoint, touchedNodes: [SKNode]) {
-        let topNode = touchedNodes.first
-        if let noteNode = topNode as? Note {
+        //let topNode = touchedNodes.first
+        if let noteNode = atPoint(location) as? Note {
             let prevNoteAns = noteNode.getNoteInfo()
             if !noteNode.isSharp {
                 editAccidental(accidental: "sharp", note: noteNode)
@@ -79,8 +79,8 @@ extension MusicScene {
     }
     
     func editNotesFlat(location: CGPoint, touchedNodes: [SKNode]) {
-        let topNode = touchedNodes.first
-        if let noteNode = topNode as? Note {
+        //let topNode = touchedNodes.first
+        if let noteNode = atPoint(location) as? Note {
             let prevNoteAns = noteNode.getNoteInfo()
             if !noteNode.isFlat {
                 editAccidental(accidental: "flat", note: noteNode)

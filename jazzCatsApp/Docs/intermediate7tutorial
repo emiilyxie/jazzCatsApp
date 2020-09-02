@@ -1,0 +1,46 @@
+[
+"dialogue" : [
+    ["text": "Let's see what we have…",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton",
+    ],
+    ["text" : "So in this level, the subdivision for each beat is 3."],
+    ["text" : "To make things easier to hear in this level, the notes exactly on the beat are higher."],
+    ["text" : "Let's fill in beat 1.0…",
+     "progress-rect": ["note": [1, 1, 72], "size": 50],
+     "progress-action": "edit-note",
+     "text-position": "top"
+    ],
+    ["text" : "Let's fill in beat 1.33…",
+     "progress-rect": ["note": [1, 1.33, 67], "size": 50],
+     "progress-action": "edit-note",
+     "text-position": "top"
+    ],
+    ["text" : "Let's fill in beat 1.67.",
+     "progress-rect": ["note": [1, 1.67, 67], "size": 50],
+     "progress-action": "edit-note",
+     "text-position": "top"
+    ],
+    ["text" : "Now, this 2nd beat has two notes. However, the subdivision isn't 2!",
+    "meowmo-expression": "surprised"],
+    ["text" : "Look at it this way: we split the beat into 3 equal parts. It just happens that the note on beat 2.33 is just not there."],
+    ["text" : "Essentially, the subdivision is still 3."],
+    ["text" : "Let's fill in beat 2.0…",
+     "progress-rect": ["note": [1, 2, 72], "size": 50],
+     "progress-action": "edit-note",
+     "text-position": "top"
+    ],
+    ["text" : "Let's NOT fill in beat 2.33…",
+    "meowmo-expression": "mischevious",
+    "text-position": "top"],
+    ["text" : "Let's fill in beat 2.67.",
+     "progress-rect": ["note": [1, 2.67, 67], "size": 50],
+     "progress-action": "edit-note",
+     "text-position": "top"
+    ],
+    ["text" : "Sometimes, not all the notes in a subdivision will be played. Amazing.",
+    "meowmo-expression": "surprised",
+    "progress-action" : "dismiss"],
+]]
+
+

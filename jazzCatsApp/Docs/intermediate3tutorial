@@ -1,0 +1,69 @@
+[
+"dialogue" : [
+    ["text" : "Let's see what we'll transcribe.",
+    "is-enabled" : ["audioSampleButton"],
+    "progress-button" : "audioSampleButton",],
+    ["text" : "Hey, this sounds pretty familiar. Let's place some notes.",
+     "progress-rect": ["note": [1, 1, 72], "size": 50],
+     "progress-action": "edit-note",
+     "meowmo-expression": "mischevious"
+    ],
+    ["text" : "Hey, this sounds pretty familiar. Let's place some notes.",
+     "progress-rect": ["note": [1, 2, 72], "size": 50],
+     "progress-action": "edit-note",
+     "meowmo-expression": "mischevious"
+    ],
+    ["text": "Now, let's check to see how we're doing.",
+     "is-enabled" : ["playButton"],
+     "progress-button" : "playButton",
+    ],
+    ["text": "Now, let's check to see how we're doing.",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton",
+    ],
+    ["text" : "Ok, we're a little low, so let's try the note above.",
+     "progress-rect": ["note": [1, 3, 74], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Ok, we're a little low, so let's try the note above.",
+     "progress-rect": ["note": [1, 4, 74], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "The notes are too high now. What's going on??",
+    "meowmo-expression": "surprised"],
+    ["text" : "Oh, right, I forgot. Let me introduce you to sharps and flats."],
+    ["text" : "If you sharp a note, it becomes a little higher. If you flat a note, it becomes a little lower."],
+    ["text": "Let's enter into sharp mode and sharp these Cs. The note is called C-sharp now.",
+     "is-enabled" : ["sharpButton"],
+     "progress-button" : "sharpButton",
+     "text-position" : "top"
+    ],
+    ["text" : "Let's enter into sharp mode and sharp these Cs. The note is called C-sharp now.",
+     "progress-rect": ["note": [1, 1, 72], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Let's enter into sharp mode and sharp these Cs. The note is called C-sharp now.",
+     "progress-rect": ["note": [1, 2, 72], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text": "Ok, now let's enter into flat mode and flat these Ds. The note is called D-flat.",
+     "is-enabled" : ["flatButton"],
+     "progress-button" : "flatButton",
+     "text-position": "top"
+    ],
+    ["text" : "Ok, now let's enter into flat mode and flat these Ds. The note is called D-flat.",
+     "progress-rect": ["note": [1, 3, 74], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Ok, now let's enter into flat mode and flat these Ds. The note is called D-flat.",
+     "progress-rect": ["note": [1, 4, 74], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "(Okay, actually, the sharps and flats aren't working in the tutorial. The developer will fix that, though.)"],
+    ["text" : "If you notice, C-sharp and D-flat sound exactly the same, and they are. The only difference is how they're named."],
+    ["text" : "In these transcriptions, it doesn't matter whether you put C-sharp or D-flat. If the result sounds exactly the same as the audio, you're correct.",
+    "meowmo-expression": "mischevious"],
+    ["text" : "Now you know sharps and flats though. They're the black keys if you've ever seen the piano, and they're pretty handy for getting the weird in-between notes.",
+    "progress-action" : "dismiss"],
+]]
+

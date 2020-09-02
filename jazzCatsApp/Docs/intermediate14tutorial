@@ -1,0 +1,12 @@
+[
+"dialogue" : [
+    ["text" : "Hey, you're two levels to being done. Before you leave, I'll just give you some pro tips if you haven't figured them out yet.",
+    "meowmo-expression": "mischevious"],
+    ["text" : "First, if the recording is too fast, click on the Settings button and you can change the tempo."],
+    ["text" : "Second, if the audio sample is playing, you can stop it while it's playing by pressing on the Audio button again."],
+    ["text" : "Third, if you have a favorite sound, you can play the levels with that sound by selecting in after you press the Select button."],
+    ["text" : "Ok, that's all. See you in the next level.",
+    "progress-action" : "dismiss"],
+]]
+
+

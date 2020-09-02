@@ -89,11 +89,15 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
         recorder.stopRecording { [unowned self] (preview, error) in
             print("Stopped recording")
             self.isRecording = false
-            self.view.removeFromSuperview()
+            //self.view.removeFromSuperview()
             
             if let unwrappedPreview = preview {
                 unwrappedPreview.previewControllerDelegate = self
+                unwrappedPreview.preferredContentSize = UIScreen.main.bounds.size
+                unwrappedPreview.popoverPresentationController?.sourceView = self.view
+                unwrappedPreview.popoverPresentationController?.permittedArrowDirections = .init(rawValue: 0)
                 self.present(unwrappedPreview, animated: true)
+                self.view.removeFromSuperview()
             }
         }
     }

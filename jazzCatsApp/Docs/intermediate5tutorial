@@ -1,0 +1,32 @@
+[
+"dialogue" : [
+    ["text" : "Remember in the Basics when I said that a beat can have multiple notes?"],
+    ["text": "Let's talk more about that. First, hear the audio.",
+     "is-enabled" : ["audioSampleButton"],
+     "progress-button" : "audioSampleButton",
+    ],
+    ["text" : "Ok, now let's place the first note. We heard that this beat only had one note.",
+     "progress-rect": ["note": [1, 1, 67], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "Let's place the next note on the start of beat 2.",
+     "progress-rect": ["note": [1, 2, 67], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "We heard that in beat 2, there were 2 notes."],
+    ["text": "To place 2 notes, first click on the Settings button. Tap the + on the subdivision row so that the subdivision row reads 2 and click \"Okay.\"",
+     "is-enabled" : ["displaySettingsButton"],
+     "progress-button" : "displaySettingsButton",
+    ],
+    ["text" : "What's subdivision? Well, when we changed subdivision to 2, the staff allowed each beat to have 2 notes."],
+    ["text" : "Important to know -- when the subdivision is 2, the 2 notes are spaced EQUALLY APART.",
+    "meowmo-expression": "surprised"],
+    ["text" : "Let's add the second note of this beat.",
+     "progress-rect": ["note": [1, 2.5, 69], "size": 50],
+     "progress-action": "edit-note"
+    ],
+    ["text" : "You got the rest. The beat 3's subdivision is 3, and beat 4's is 4. Remember to use the Settings button. Bye, catching a flight to Kansas now.",
+    "progress-action" : "dismiss",
+    "meowmo-expression": "mischevious"],
+]]
+
