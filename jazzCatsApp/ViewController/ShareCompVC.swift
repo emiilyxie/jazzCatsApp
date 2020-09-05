@@ -18,6 +18,7 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
+    @IBOutlet weak var jazzcatsLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -39,14 +40,20 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
     }
     
     func setUpGraphics() {
-        DispatchQueue.main.async {
-            self.view.backgroundColor = .clear
-            UIStyling.setPopupBackground(popupView: self.bgView)
-            UIStyling.setButtonStyle(button: self.cancelButton)
-            UIStyling.setButtonStyle(button: self.recordButton)
-            UIStyling.setButtonStyle(button: self.stopRecordingButton)
-
-        }
+        //DispatchQueue.main.async {
+        self.view.backgroundColor = .clear
+        jazzcatsLabel.textColor = ColorPalette.lineColor
+        jazzcatsLabel.font = UIFont(name: "Gaegu-Bold", size: 40)
+        UIStyling.setPopupBackground(popupView: self.bgView)
+        UIStyling.setButtonStyle(button: self.cancelButton)
+        UIStyling.setButtonStyle(button: self.recordButton)
+        UIStyling.setButtonStyle(button: self.stopRecordingButton)
+        self.stopRecordingButton.backgroundColor = ColorPalette.softAlert
+        self.stopRecordingButton.titleLabel?.textColor = .white
+        self.stopRecordingButton.titleLabel?.font = UIFont(name: "Gaegu-Regular", size: 9)
+        self.stopRecordingButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        self.stopRecordingButton.layer.cornerRadius = CGFloat(2)
+        //}
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
@@ -78,6 +85,7 @@ class ShareCompVC: UIViewController, RPPreviewViewControllerDelegate {
             
             self.bgView.removeFromSuperview()
             self.stopRecordingButton.isHidden = false
+            self.jazzcatsLabel.isHidden = false
             self.rewindToBeginning()
         }
     }

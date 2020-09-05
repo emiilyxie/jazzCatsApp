@@ -35,14 +35,6 @@ class SignInVC: UIViewController {
         UIStyling.setButtonStyle(button: continueButton)
     }
 
-    @IBAction func signInWithApple(_ sender: UIButton) {
-        print("cant signin w apple yet")
-        UIStyling.showAlert(viewController: self, text: "Sign In with Apple Coming Soon!")
-    }
-    @IBAction func signInWithGoogle(_ sender: UIButton) {
-        print("cant signin w google yet")
-        UIStyling.showAlert(viewController: self, text: "Sign In with Google Coming Soon!")
-    }
     @IBAction func signInWithEmail(_ sender: UIButton) {
         performSegue(withIdentifier: Constants.signInToSignInEmail, sender: self)
     }
