@@ -76,7 +76,8 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         cell.noteCellLabel.text = sounds[indexPath.row].name
         cell.noteCellLabel.font = UIFont(name: "Gaegu-Regular", size: CGFloat(16))
         cell.noteCellLabel.textColor = ColorPalette.lineColor
-        cell.noteCellImage.image = UIImage(named: sounds[indexPath.row].id)
+        cell.noteCellImage.image = Sounds.getSoundImg(soundID: sounds[indexPath.row].id)
+        //cell.noteCellImage.image = UIImage(named: sounds[indexPath.row].id)
         
         
         return cell

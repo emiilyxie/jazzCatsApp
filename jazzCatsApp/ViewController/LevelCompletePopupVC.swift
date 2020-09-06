@@ -71,7 +71,7 @@ class LevelCompletePopupVC: UIViewController {
         
         gameVC!.selectedLevel += 1
         if gameVC!.selectedLevel <= gameVC!.maxlevel {
-            UIStyling.showLoading(view: gameVC!.view)
+            UIStyling.showLoading(viewController: gameVC!)
             self.view.removeFromSuperview()
             levelScene.destruct()
             gameVC!.showLevel()

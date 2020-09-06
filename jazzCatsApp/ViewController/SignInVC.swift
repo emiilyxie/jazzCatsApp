@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 class SignInVC: UIViewController {
 
+    var offlineMode = false
     @IBOutlet var signInOptions: [UIButton]!
     @IBOutlet weak var warningPopup: UIView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -52,15 +53,16 @@ class SignInVC: UIViewController {
     
     @IBAction func continueWarning(_ sender: UIButton) {
         Auth.auth().signInAnonymously { (authResult, error) in
-            if let err = error {
-                UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)
+            if let _ = error {
+                self.offlineMode = true
+                self.performSegue(withIdentifier: "fromSignInToWelcomeUSegue", sender: self)
                 return
             }
             guard let user = authResult?.user else { return }
             let uid = user.uid
             print("user id: \(uid)")
             let usersRef = Firestore.firestore().collection("users")
-            usersRef.document(uid).setData(["email" : "anonymous", "nickname" : "anonymous", "uid" : uid, "level-progress" : [:], "game-currency" : 100, "hints" : 10, "unlocked-sounds": ["cat_basic1", "drumsnare1", "vibes1"]], merge: true)
+            usersRef.document(uid).setData(["email" : "anonymous", "nickname" : "anonymous", "uid" : uid, "level-progress" : GameUser.defaultLevelProgress, "game-currency" : GameUser.defaultGameCurrency, "hints": GameUser.defaultHints, "unlocked-sounds": ["cat_basic1", "drumsnare1", "vibes1"]], merge: true)
             self.performSegue(withIdentifier: "fromSignInToWelcomeUSegue", sender: self)
         }
     }
@@ -68,5 +70,11 @@ class SignInVC: UIViewController {
     @IBAction func backToSignInFromSignInEmail(sender: UIStoryboardSegue) {}
     
     @IBAction func backToSignInFromCreateAcc(sender: UIStoryboardSegue) {}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let welcomeScreen = segue.destination as? WelcomeScreen {
+            welcomeScreen.offlineMode = offlineMode
+        }
+    }
     
 }

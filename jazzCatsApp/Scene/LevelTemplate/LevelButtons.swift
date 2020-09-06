@@ -231,9 +231,13 @@ extension LevelTemplate {
             }
             else {
                 if reward.keys.contains("sound") {
+                    
+                    UIStyling.showLoading(viewController: gameVC)
+                    UIStyling.showAlert(viewController: gameVC, text: "Downloading a new Jazzcat! Please stay connected to the internet.", duration: 5)
                     GameUser.updateSounds(newSound: reward["sound"] as! String) {
                         rewardMessage = "\(rewardMessage)\(GameUser.updateLevelProgress(levelGroup: gameVC.levelGroup, currentLevel: gameVC.selectedLevel, reward: self.reward))"
                         gameVC.showPopover(gameVC, popupID: Constants.levelCompleteID, rewardMessage: rewardMessage)
+                        UIStyling.hideLoading(view: gameVC.view)
                     }
                 }
                 else {

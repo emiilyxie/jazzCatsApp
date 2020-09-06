@@ -13,6 +13,7 @@ import FirebaseFirestore
 class WelcomeScreen: UIViewController {
     
     var goingToFreestyle = false
+    var offlineMode = false
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var accountButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -20,25 +21,36 @@ class WelcomeScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIStyling.showLoading(view: self.view)
+        //clearAllFiles()
+        saveInitialSounds()
+        UIStyling.showLoading(viewController: self)
         isSignedInResponse()
         setUpGraphics()
     }
     
     func isSignedInResponse() {
-        let signInHandler = Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                // if user is signed in, then cool
-                // set data for the user struct
-                self.setUpUser()
+        
+        if !offlineMode {
+            let signInHandler = Auth.auth().addStateDidChangeListener { (auth, user) in
+                if user != nil {
+                    // if user is signed in, then cool
+                    // set data for the user struct
+                    self.setUpUser()
+                }
+                else {
+                    self.goToSignIn(self)
+                    UIStyling.hideLoading(view: self.view)
+                }
             }
-            else {
-                self.goToSignIn(self)
+            Auth.auth().removeStateDidChangeListener(signInHandler)
+        }
+        else {
+            UIStyling.showAlert(viewController: self, text: "You are not connected to the internet. You will play in offline guest mode. Connect to the internet and restart to play online.", duration: 7)
+            GameUser.unlockedSoundNames = GameUser.defaultUnlockedSoundNames
+            GameUser.setSounds {
                 UIStyling.hideLoading(view: self.view)
             }
         }
-        
-        Auth.auth().removeStateDidChangeListener(signInHandler)
     }
     
     func signOut(_ sender: Any) {
@@ -53,32 +65,25 @@ class WelcomeScreen: UIViewController {
     }
     
     func setUpUser() {
-        guard let uid = Auth.auth().currentUser?.uid
-        else {
-            goToSignIn(self)
-            return
-        }
-        let userRef = Firestore.firestore().collection("/users").document(uid)
-        userRef.getDocument { (document, err) in
-            if let err = err {
-                UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again.", duration: 7)
+        if !offlineMode {
+        
+            guard let uid = Auth.auth().currentUser?.uid
+            else {
+                goToSignIn(self)
                 return
             }
-            if let document = document, document.exists {
-                GameUser.uid = document.get("uid") as? String ?? nil
-                GameUser.email = document.get("email") as? String ?? nil
-                GameUser.nickname = document.get("nickname") as? String ?? nil
-                GameUser.levelProgress = document.get("level-progress") as? Dictionary ?? [:]
-                GameUser.gameCurrency = document.get("game-currency") as? Int ?? 100
-                GameUser.hints = document.get("hints") as? Int ?? 10
-                GameUser.unlockedSoundNames = document.get("unlocked-sounds") as? [String] ?? ["cat_basic1", "drumsnare1", "vibes1"]
-                GameUser.setSounds()
-                //GameUser.sortSounds()
+            //UserDefaults.standard.set("nothing", forKey: "uid")
+            if let defaultsUID = UserDefaults.standard.string(forKey: "uid") {
+                if uid == defaultsUID {
+                    GameUser.getUserDefaults()
+                    GameUser.setSounds() {
+                        UIStyling.hideLoading(view: self.view)
+                    }
+                    return
+                }
             }
-            else {
-                self.goToSignIn(self)
-            }
-            UIStyling.hideLoading(view: self.view)
+            
+            setUpUserFIR()
         }
     }
     
@@ -101,6 +106,37 @@ class WelcomeScreen: UIViewController {
         freestyleButton.layer.cornerRadius = 24
     }
     
+    func setUpUserFIR() {
+        guard let uid = Auth.auth().currentUser?.uid
+        else {
+            goToSignIn(self)
+            return
+        }
+        let userRef = Firestore.firestore().collection("/users").document(uid)
+        userRef.getDocument { (document, err) in
+            if let err = err {
+                UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again.", duration: 7)
+                return
+            }
+            if let document = document, document.exists {
+                GameUser.uid = document.get("uid") as? String ?? nil
+                GameUser.email = document.get("email") as? String ?? nil
+                GameUser.nickname = document.get("nickname") as? String ?? nil
+                GameUser.levelProgress = document.get("level-progress") as? Dictionary ?? [:]
+                GameUser.gameCurrency = document.get("game-currency") as? Int ?? 100
+                GameUser.hints = document.get("hints") as? Int ?? 10
+                GameUser.unlockedSoundNames = document.get("unlocked-sounds") as? [String] ?? ["cat_basic1", "drumsnare1", "vibes1"]
+                GameUser.updateUserDefaults()
+                GameUser.setSounds() {
+                    UIStyling.hideLoading(view: self.view)
+                }
+            }
+            else {
+                self.goToSignIn(self)
+            }
+        }
+    }
+    
     // segue code
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //exportData()
@@ -116,11 +152,16 @@ class WelcomeScreen: UIViewController {
     }
     
     @IBAction func accountButtonPressed(_ sender: UIButton) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.accountDetailsID) as! AccountDetailsPopupVC
-        self.addChild(popoverVC)
-        popoverVC.view.frame = self.view.frame
-        self.view.addSubview(popoverVC.view)
-        popoverVC.didMove(toParent: self)
+        if !offlineMode {
+            let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.accountDetailsID) as! AccountDetailsPopupVC
+            self.addChild(popoverVC)
+            popoverVC.view.frame = self.view.frame
+            self.view.addSubview(popoverVC.view)
+            popoverVC.didMove(toParent: self)
+        }
+        else {
+            UIStyling.showAlert(viewController: self, text: "You can't view this in offline mode.")
+        }
     }
     
     
@@ -138,12 +179,17 @@ class WelcomeScreen: UIViewController {
     }
     
     @IBAction func goToLevelGroups(_ sender: Any) {
-        performSegue(withIdentifier: Constants.welcomeToLevelGroups, sender: self)
+        if !offlineMode {
+            performSegue(withIdentifier: Constants.welcomeToLevelGroups, sender: self)
+        }
+        else {
+            UIStyling.showAlert(viewController: self, text: "You can't view this in offline mode.")
+        }
     }
     
     @IBAction func goToFreestyle(_ sender: Any) {
         goingToFreestyle = true
-        UIStyling.showLoading(view: self.view)
+        UIStyling.showLoading(viewController: self)
         performSegue(withIdentifier: Constants.welcomeToFreestyle, sender: self)
     }
     
@@ -152,9 +198,11 @@ class WelcomeScreen: UIViewController {
     @IBAction func backToWelcomeFromGame(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromCreateAcc(segue: UIStoryboardSegue) {
         isSignedInResponse()
+        UIStyling.showLoading(viewController: self)
     }
     @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {
         isSignedInResponse()
+        UIStyling.showLoading(viewController: self)
     }
     @IBAction func backToWelcomeFromLevelGroups(segue: UIStoryboardSegue) {}
     
@@ -172,5 +220,55 @@ class WelcomeScreen: UIViewController {
         }
     }
  */
-     
+    
+    func saveInitialSounds() {
+        let initialSounds = GameUser.defaultUnlockedSoundNames
+        
+        for soundID in initialSounds {
+            
+            guard let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                print("cant get doc dir")
+                return
+            }
+            let dirURL = docDirURL.appendingPathComponent("sounds/\(soundID)")
+            let fileURL = dirURL.appendingPathComponent("\(soundID).json")
+            let audioURL = dirURL.appendingPathComponent("\(soundID).mp3")
+            let imgURL = dirURL.appendingPathComponent("\(soundID).png")
+            
+            if !FileManager.default.fileExists(atPath: fileURL.path) || !FileManager.default.fileExists(atPath: audioURL.path) || !FileManager.default.fileExists(atPath: imgURL.path) {
+                
+                
+                guard let jsonFile = Bundle.main.url(forResource: soundID, withExtension: "json"),
+                    let audioFile = Bundle.main.url(forResource: soundID, withExtension: "mp3"),
+                    let imgFile = Bundle.main.url(forResource: soundID, withExtension: "png") else {
+                        print("cant get files")
+                        return
+                }
+                
+                do {
+                    try FileManager.default.createDirectory(at: dirURL, withIntermediateDirectories: true, attributes: nil)
+                    let jsonData = try Data(contentsOf: jsonFile)
+                    let audioData = try Data(contentsOf: audioFile)
+                    let imgData = try Data(contentsOf: imgFile)
+                    
+                    try jsonData.write(to: fileURL)
+                    try audioData.write(to: audioURL)
+                    try imgData.write(to: imgURL)
+                } catch {
+                    print(error)
+                }
+                
+            }
+        }
+    }
+    
+    func clearAllFiles() {
+        let fileManager = FileManager.default
+        let myDocuments = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        do {
+            try fileManager.removeItem(at: myDocuments)
+        } catch {
+            return
+        }
+    }
 }

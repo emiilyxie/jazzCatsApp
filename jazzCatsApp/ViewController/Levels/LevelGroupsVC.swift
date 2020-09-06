@@ -22,7 +22,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
-        UIStyling.showLoading(view: self.view)
+        UIStyling.showLoading(viewController: self)
         super.viewDidLoad()
         setUpValues()
         setUpGraphics()

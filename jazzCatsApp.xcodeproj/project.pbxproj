@@ -74,6 +74,12 @@
 		ADCAFDAD249E08DB00428C70 /* MusicSceneNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */; };
 		ADCAFDAF249E08E600428C70 /* MusicSceneSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */; };
 		ADCAFDB1249E08F300428C70 /* MusicScenePhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */; };
+		ADCB4A0C25056C8000C387E2 /* cat_basic1.json in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4A0B25056C8000C387E2 /* cat_basic1.json */; };
+		ADCB4A0E25056CFD00C387E2 /* drumsnare1.json in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4A0D25056CFD00C387E2 /* drumsnare1.json */; };
+		ADCB4A1025056D1F00C387E2 /* vibes1.json in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4A0F25056D1F00C387E2 /* vibes1.json */; };
+		ADCB4A122505730C00C387E2 /* cat_basic1.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4A112505730C00C387E2 /* cat_basic1.png */; };
+		ADCB4A142505731400C387E2 /* drumsnare1.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4A132505731400C387E2 /* drumsnare1.png */; };
+		ADCB4A162505731E00C387E2 /* vibes1.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4A152505731E00C387E2 /* vibes1.png */; };
 		ADCC4F6724DBA78400140E7F /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCC4F6624DBA78400140E7F /* Sounds.swift */; };
 		ADD04A7E24E708B900458B44 /* basics5tutorial in Resources */ = {isa = PBXBuildFile; fileRef = ADD04A7D24E708B900458B44 /* basics5tutorial */; };
 		ADD04A8424E70D4500458B44 /* trombone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADD04A7F24E70D4400458B44 /* trombone1.mp3 */; };
@@ -177,6 +183,12 @@
 		ADCAFDAC249E08DB00428C70 /* MusicSceneNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneNotes.swift; sourceTree = "<group>"; };
 		ADCAFDAE249E08E600428C70 /* MusicSceneSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSceneSound.swift; sourceTree = "<group>"; };
 		ADCAFDB0249E08F300428C70 /* MusicScenePhysics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicScenePhysics.swift; sourceTree = "<group>"; };
+		ADCB4A0B25056C8000C387E2 /* cat_basic1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cat_basic1.json; sourceTree = "<group>"; };
+		ADCB4A0D25056CFD00C387E2 /* drumsnare1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = drumsnare1.json; sourceTree = "<group>"; };
+		ADCB4A0F25056D1F00C387E2 /* vibes1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vibes1.json; sourceTree = "<group>"; };
+		ADCB4A112505730C00C387E2 /* cat_basic1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat_basic1.png; sourceTree = "<group>"; };
+		ADCB4A132505731400C387E2 /* drumsnare1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drumsnare1.png; sourceTree = "<group>"; };
+		ADCB4A152505731E00C387E2 /* vibes1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vibes1.png; sourceTree = "<group>"; };
 		ADCC4F6624DBA78400140E7F /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		ADD04A7D24E708B900458B44 /* basics5tutorial */ = {isa = PBXFileReference; lastKnownFileType = text; path = basics5tutorial; sourceTree = "<group>"; };
 		ADD04A7F24E70D4400458B44 /* trombone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trombone1.mp3; sourceTree = "<group>"; };
@@ -306,13 +318,19 @@
 				ADCAFDA4249E061600428C70 /* coltrane1.mp3 */,
 				ADCAFDA3249E061500428C70 /* intermediate1.mp3 */,
 				AD427F8024E5FF9500446DFC /* cat_basic1.mp3 */,
+				ADCB4A0B25056C8000C387E2 /* cat_basic1.json */,
+				ADCB4A112505730C00C387E2 /* cat_basic1.png */,
 				ADD04A9524E770E100458B44 /* cat_basic2.mp3 */,
 				AD6F961F24FE01A300227E0A /* vibes1.mp3 */,
+				ADCB4A0F25056D1F00C387E2 /* vibes1.json */,
+				ADCB4A152505731E00C387E2 /* vibes1.png */,
 				AD427F8324E6012C00446DFC /* piano1.mp3 */,
 				ADD04A8924E70D8800458B44 /* saxophone1.mp3 */,
 				ADD04A8024E70D4400458B44 /* bass1.mp3 */,
 				ADD04A8224E70D4500458B44 /* drumhihat1.mp3 */,
 				ADD04A8124E70D4400458B44 /* drumsnare1.mp3 */,
+				ADCB4A0D25056CFD00C387E2 /* drumsnare1.json */,
+				ADCB4A132505731400C387E2 /* drumsnare1.png */,
 				ADD04A7F24E70D4400458B44 /* trombone1.mp3 */,
 				ADD04A8324E70D4500458B44 /* trumpet1.mp3 */,
 				AD3826F2245D22530027849D /* kitten-meow.wav */,
@@ -538,13 +556,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCAFDA1249E05D800428C70 /* basics1.mp3 in Resources */,
+				ADCB4A0C25056C8000C387E2 /* cat_basic1.json in Resources */,
 				AD3826F3245D22530027849D /* kitten-meow.wav in Resources */,
 				AD427F8424E6012D00446DFC /* piano1.mp3 in Resources */,
 				AD3826E8245D10C40027849D /* measureBarTileSet.sks in Resources */,
 				AD6F963024FF65A200227E0A /* intermediate14tutorial in Resources */,
 				ADD04A8524E70D4500458B44 /* bass1.mp3 in Resources */,
+				ADCB4A162505731E00C387E2 /* vibes1.png in Resources */,
 				AD6F962824FF5B6400227E0A /* intermediate5tutorial in Resources */,
 				AD427F7C24E5D1AE00446DFC /* basics2tutorial in Resources */,
+				ADCB4A0E25056CFD00C387E2 /* drumsnare1.json in Resources */,
 				AD427F7E24E5EE3000446DFC /* basics3tutorial in Resources */,
 				AD9DF62724A6653D00187636 /* ShadowsIntoLight-Regular.ttf in Resources */,
 				ADBE499E24BBE289002D5B49 /* coltrane1 in Resources */,
@@ -561,6 +582,7 @@
 				AD6F962E24FF651600227E0A /* intermediate12tutorial in Resources */,
 				AD08F56C24734F5200863204 /* LevelTemplate.sks in Resources */,
 				ADD04A8824E70D4500458B44 /* trumpet1.mp3 in Resources */,
+				ADCB4A122505730C00C387E2 /* cat_basic1.png in Resources */,
 				ADD04A9624E770E100458B44 /* cat_basic2.mp3 in Resources */,
 				AD7EF23924B165C9009875CA /* Gaegu-Bold.ttf in Resources */,
 				ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */,
@@ -578,8 +600,10 @@
 				ADD04A9424E7555F00458B44 /* basics20tutorial in Resources */,
 				ADCAFDA6249E061600428C70 /* intermediate1.mp3 in Resources */,
 				AD9395B024747CD10037E307 /* Main.storyboard in Resources */,
+				ADCB4A1025056D1F00C387E2 /* vibes1.json in Resources */,
 				ADD04A8724E70D4500458B44 /* drumhihat1.mp3 in Resources */,
 				ADCAFDA7249E061600428C70 /* coltrane1.mp3 in Resources */,
+				ADCB4A142505731400C387E2 /* drumsnare1.png in Resources */,
 				ADD04A8424E70D4500458B44 /* trombone1.mp3 in Resources */,
 				AD6F962A24FF5F0200227E0A /* intermediate7tutorial in Resources */,
 				AD3826D3245D0F630027849D /* LaunchScreen.storyboard in Resources */,

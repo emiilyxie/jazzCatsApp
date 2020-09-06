@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIStyling.showLoading(view: self.view)
+        UIStyling.showLoading(viewController: self)
         
         if let source = sourceVC {
             UIStyling.hideLoading(view: source.view)

@@ -15,10 +15,11 @@ public class Note: SKSpriteNode {
     
     public init(type: String) {
         noteType = type
-        
-        let noteTexture = SKTexture(imageNamed: type)
+        let img = Sounds.getSoundImg(soundID: noteType)
+        let audio = Sounds.getSoundAudio(soundID: noteType)
+        let noteTexture = SKTexture(image: img ?? UIImage())
         soundBase = type
-        audioFile = "\(type).mp3"
+        audioFile = audio?.path ?? "cat_basic1.mp3"
         
         super.init(texture: noteTexture, color: UIColor.clear, size: CGSize(width: 50, height: 50))
         
@@ -34,6 +35,7 @@ public class Note: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /*
     public func getAudioFile() -> String {
         let noteVal = getNoteName()
         
@@ -42,6 +44,7 @@ public class Note: SKSpriteNode {
         }
         return "\(soundBase)/\(soundBase)\(noteVal).mp3"
     }
+ */
     
     // MUST place note in staff before calling
     public func setPositions() {

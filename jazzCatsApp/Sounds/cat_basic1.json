@@ -1,0 +1,9 @@
+{
+    "id": "cat_basic1",
+    "name": "Cat #1",
+    "index": 0,
+    "group": "cat",
+    "instrument": "cat",
+    "description": "Welcome to Jazzcats. You get a cat.",
+    "cost": 0
+}

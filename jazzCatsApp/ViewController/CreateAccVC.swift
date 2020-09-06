@@ -120,7 +120,7 @@ class CreateAccVC: UIViewController {
         }
         else {
             // continue with login
-            UIStyling.showLoading(view: self.view)
+            UIStyling.showLoading(viewController: self)
             let email = emailTextField.text!
             let password = passwordTextField.text!
             Auth.auth().createUser(withEmail: email, password: password) { (authResult, err) in

@@ -36,7 +36,7 @@ class TutorialPopupVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIStyling.showLoading(view: self.view)
+        UIStyling.showLoading(viewController: self)
         // Do any additional setup after loading the view.
         setUpGraphics()
         

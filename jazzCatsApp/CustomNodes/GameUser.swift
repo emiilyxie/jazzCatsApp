@@ -10,6 +10,13 @@ import Foundation
 import FirebaseFirestore
 
 struct GameUser {
+    static var defaultEmail: String? = nil
+    static var defaultNickname: String? = nil
+    static var defaultLevelProgress: Dictionary<String, Int> = [:]
+    static var defaultGameCurrency = 100
+    static var defaultHints = 10
+    static var defaultUnlockedSoundNames: [String] = ["cat_basic1", "drumsnare1", "vibes1"]
+    
     static var uid: String?
     static var email: String?
     static var nickname: String?
@@ -22,8 +29,94 @@ struct GameUser {
     //static var sounds: Dictionary<String, Int> = ["cat_basic1" : 0]
     //static var soundsArr: Array<String> = ["cat_basic1"]
     
-    static func setSounds() {
+    static func getUserDefaults() {
+        uid = UserDefaults.standard.string(forKey: "uid")
+        email = UserDefaults.standard.string(forKey: "email")
+        nickname = UserDefaults.standard.string(forKey: "nickname")
+        levelProgress = UserDefaults.standard.dictionary(forKey: "levelProgress") as? [String: Int] ?? [:]
+        gameCurrency = UserDefaults.standard.integer(forKey: "gameCurrency")
+        hints = UserDefaults.standard.integer(forKey: "hints")
+        unlockedSoundNames = Sounds.getSoundArray() ?? defaultUnlockedSoundNames
+    }
+    
+    static func updateUserDefaults(uid: String, email: String, nickname: String, levelProgress: Dictionary<String, Int>, gameCurrency: Int, hints: Int) {
+        UserDefaults.standard.set(uid, forKey: "uid")
+        UserDefaults.standard.set(email, forKey: "email")
+        UserDefaults.standard.set(nickname, forKey: "nickname")
+        UserDefaults.standard.set(levelProgress, forKey: "levelProgress")
+        UserDefaults.standard.set(gameCurrency, forKey: "gameCurrency")
+        UserDefaults.standard.set(hints, forKey: "hints")
+    }
+    
+    static func updateUserDefaults() {
+        UserDefaults.standard.set(uid, forKey: "uid")
+        UserDefaults.standard.set(email, forKey: "email")
+        UserDefaults.standard.set(nickname, forKey: "nickname")
+        UserDefaults.standard.set(levelProgress, forKey: "levelProgress")
+        UserDefaults.standard.set(gameCurrency, forKey: "gameCurrency")
+        UserDefaults.standard.set(hints, forKey: "hints")
+        Sounds.saveSoundArray(soundArray: unlockedSoundNames)
+    }
+    
+    static func setSounds(completion: @escaping () -> ()) {
         sounds = []
+        guard let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            print("cant get doc dir")
+            return
+        }
+        
+        for soundID in self.unlockedSoundNames {
+            var isDirectory = ObjCBool(true)
+            let soundURL = docDirURL.appendingPathComponent("sounds/\(soundID)")
+            let audioURL = soundURL.appendingPathComponent("\(soundID).mp3")
+            let imgURL = soundURL.appendingPathComponent("\(soundID).png")
+            if FileManager.default.fileExists(atPath: soundURL.path, isDirectory: &isDirectory), FileManager.default.fileExists(atPath: audioURL.path), FileManager.default.fileExists(atPath: imgURL.path) {
+                if let sound = Sounds.getSoundFromFiles(soundID: soundID) {
+                    sounds.append(sound)
+                }
+                else {
+                    print("couldnt get sound from files")
+                }
+            }
+            else {
+                if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
+                    UIStyling.showAlert(viewController: topVC, text: "Downloading resources. Please stay connected to the internet.", duration: 5)
+                }
+                Sounds.getSoundFromFirebase(soundID: soundID) { (sound) in
+                    sounds.append(sound)
+                    Sounds.saveSound(sound: sound) {
+                        if sounds.count == unlockedSoundNames.count {
+                            sounds = Sounds.sortSounds(sounds: sounds)
+                            unlockedSoundNames = sounds.map { $0.id }
+                            if self.conductor == nil {
+                                self.conductor = Conductor(sounds: self.sounds)
+                            }
+                            else {
+                                self.conductor?.stopAudioKit()
+                                self.conductor?.startAudioKit(sounds: self.sounds)
+                            }
+                            completion()
+                        }
+                    }
+                }
+            }
+            if sounds.count == unlockedSoundNames.count {
+                sounds = Sounds.sortSounds(sounds: sounds)
+                unlockedSoundNames = sounds.map { $0.id }
+                if self.conductor == nil {
+                    self.conductor = Conductor(sounds: self.sounds)
+                }
+                else {
+                    self.conductor?.stopAudioKit()
+                    self.conductor?.startAudioKit(sounds: self.sounds)
+                }
+                completion()
+            }
+        }
+        
+    }
+        
+        /*
         let soundsRef = Firestore.firestore().collection("/sounds")
         
         soundsRef.getDocuments { (querySnapshot, err) in
@@ -34,7 +127,10 @@ struct GameUser {
             if let querySnapshot = querySnapshot {
                 for document in querySnapshot.documents {
                     if self.unlockedSoundNames.contains(document.documentID) {
-                        let sound = Sound(data: document.data(), unlocked: true)
+                        let decoder = JSONDecoder()
+                        let data = document.data().map(String.init(describing:)) ?? "nil"
+                        let sound = decoder.decode(Sound.self, from: document.)
+                        //let sound = Sound(data: document.data(), unlocked: true)
                         self.sounds.append(sound)
                     }
                 }
@@ -49,7 +145,7 @@ struct GameUser {
                 return
             }
         }
-    }
+ */
     
     static func updateField(field: String, text: String) -> Bool {
         guard let uid = uid else {
@@ -61,6 +157,7 @@ struct GameUser {
         case "nickname":
             self.nickname = text
             userRef.setData(["nickname" : text], merge: true)
+            UserDefaults.standard.set(nickname, forKey: "nickname")
             return true
         default:
             print("that field doesn't exist or it cant be mutated")
@@ -79,12 +176,14 @@ struct GameUser {
             if enoughValue(field: field, count: count) {
                 self.gameCurrency = gameCurrency + count
                 userRef.setData(["game-currency" : self.gameCurrency], merge: true)
+                UserDefaults.standard.set(gameCurrency, forKey: "gameCurrency")
                 return true
             }
         case "hints":
             if enoughValue(field: field, count: count) {
                 self.hints = hints + count
                 userRef.setData(["hints" : self.hints], merge: true)
+                UserDefaults.standard.set(hints, forKey: "hints")
                 return true
             }
         default:
@@ -110,34 +209,11 @@ struct GameUser {
             return ""
         }
         let userRef = getFIRUserDoc(uid: uid)
-        
-        /*
-        if let maxUnlockedLevel = self.levelProgress[levelGroup] {
-            if maxUnlockedLevel > currentLevel {
-                print("you've already completed this level, no update")
-                let rewardMessage = "Nothing, because this level was already completed before."
-                return rewardMessage
-            }
-            else {
-                */
-                self.levelProgress[levelGroup] = currentLevel + 1
-                userRef.setData([
-                    "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
-                let rewardMessage = self.claimReward(reward: reward)
-                return rewardMessage
-        /*
-            }
-        }
-        else {
-            print("no data for that level group yet")
-            // still set the data
-            self.levelProgress[levelGroup] = currentLevel + 1
-            userRef.setData([
-                "level-progress" : [levelGroup : currentLevel + 1]], merge: true)
-            let rewardMessage = self.claimReward(reward: reward)
-            return rewardMessage
-        }
- */
+        self.levelProgress[levelGroup] = currentLevel + 1
+        userRef.setData(["level-progress" : [levelGroup : currentLevel + 1]], merge: true)
+        UserDefaults.standard.set(levelProgress, forKey: "levelProgress")
+        let rewardMessage = self.claimReward(reward: reward)
+        return rewardMessage
     }
     
     static func enoughValue(field: String, count: Int) -> Bool {
@@ -156,28 +232,28 @@ struct GameUser {
         guard let uid = uid else {
             return
         }
-        
+                
         if !(self.unlockedSoundNames.contains(newSound)) {
-        
+            
             let userRef = getFIRUserDoc(uid: uid)
             let soundsRef = Firestore.firestore().collection("/sounds").document(newSound)
             
-            self.unlockedSoundNames.append(newSound)
-            print("new unlocked sound names: \(unlockedSoundNames)")
-            userRef.setData(["unlocked-sounds" : self.unlockedSoundNames], merge: true)
-            // getting index of the sound so that it can be sorted
+            let unlockedSounds = self.unlockedSoundNames + [newSound]
+            Sounds.saveSoundArray(soundArray: unlockedSounds)
+            userRef.setData(["unlocked-sounds" : unlockedSounds], merge: true)
             
             soundsRef.getDocument { (document, err) in
-                if err != nil {
-                    print(err!.localizedDescription)
+                if let err = err {
+                    print("get sound doc error: \(err.localizedDescription)")
                     return
                 }
-                if let document = document, document.exists {
-                    if let soundData = document.data() {
-                        let sound = Sound(data: soundData, unlocked: true)
-                        sounds.append(sound)
+                if let document = document, document.exists, let data = document.data() {
+                    let sound = Sound(data: data)
+                    sounds.append(sound)
+                    Sounds.saveSound(sound: sound) {
                         self.sounds = Sounds.sortSounds(sounds: sounds)
                         self.unlockedSoundNames = sounds.map { $0.id }
+                        Sounds.saveSoundArray(soundArray: self.unlockedSoundNames)
                         self.conductor?.stopAudioKit()
                         self.conductor?.startAudioKit(sounds: self.sounds)
                         completion()

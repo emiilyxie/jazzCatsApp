@@ -38,10 +38,13 @@ public class Conductor {
                 var akSampleSampler: AKMIDISampler?
                 akSampleSampler = AKMIDISampler()
                 var akSampleFile: AKAudioFile?
-                akSampleFile = try AKAudioFile(readFileName: "\(currentSounds[i].id).mp3")
                 
-                try akSampleSampler!.loadAudioFile(akSampleFile!)
-                samplers[i] = (akSampleSampler!)
+                if let audioFile = Sounds.getSoundAudio(soundID: currentSounds[i].id) {
+                    //print(audioFile)
+                    akSampleFile = try AKAudioFile(forReading: audioFile)
+                    try akSampleSampler!.loadAudioFile(akSampleFile!)
+                    samplers[i] = (akSampleSampler!)
+                }
             }
         }
         catch {
@@ -95,8 +98,9 @@ public class Conductor {
         guard let _ = sequencer else {
             return
         }
-        
-        sequencer?.tracks[0].clear()
+        if sequencer!.tracks.count > 0 {
+            sequencer!.tracks[0].clear()
+        }
     }
     
     func playNoteSound(note: Note) {

@@ -1,0 +1,9 @@
+{
+    "id": "drumsnare1",
+    "name": "Buddy",
+    "index": 2,
+    "group": "percussion",
+    "instrument": "snare drum",
+    "description": "Welcome to Jazzcats. You get a cat.",
+    "cost": 50
+}
