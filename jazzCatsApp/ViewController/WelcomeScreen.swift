@@ -197,12 +197,12 @@ class WelcomeScreen: UIViewController {
     @IBAction func backToWelcomeFromLevelSelect(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromGame(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromCreateAcc(segue: UIStoryboardSegue) {
-        isSignedInResponse()
         UIStyling.showLoading(viewController: self)
+        isSignedInResponse()
     }
     @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {
-        isSignedInResponse()
         UIStyling.showLoading(viewController: self)
+        isSignedInResponse()
     }
     @IBAction func backToWelcomeFromLevelGroups(segue: UIStoryboardSegue) {}
     

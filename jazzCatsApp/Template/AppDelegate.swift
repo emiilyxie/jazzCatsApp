@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import AudioKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

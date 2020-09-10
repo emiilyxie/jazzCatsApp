@@ -26,8 +26,7 @@ struct GameUser {
     static var sounds: [Sound] = []
     static var unlockedSoundNames: [String] = ["cat_basic1", "drumsnare1", "vibes1"]
     static var conductor: Conductor?
-    //static var sounds: Dictionary<String, Int> = ["cat_basic1" : 0]
-    //static var soundsArr: Array<String> = ["cat_basic1"]
+    //static var imgCache = Cache<String, UIImage>()
     
     static func getUserDefaults() {
         uid = UserDefaults.standard.string(forKey: "uid")
@@ -66,10 +65,12 @@ struct GameUser {
         }
         
         for soundID in self.unlockedSoundNames {
+            
             var isDirectory = ObjCBool(true)
             let soundURL = docDirURL.appendingPathComponent("sounds/\(soundID)")
             let audioURL = soundURL.appendingPathComponent("\(soundID).mp3")
             let imgURL = soundURL.appendingPathComponent("\(soundID).png")
+            
             if FileManager.default.fileExists(atPath: soundURL.path, isDirectory: &isDirectory), FileManager.default.fileExists(atPath: audioURL.path), FileManager.default.fileExists(atPath: imgURL.path) {
                 if let sound = Sounds.getSoundFromFiles(soundID: soundID) {
                     sounds.append(sound)
@@ -78,6 +79,7 @@ struct GameUser {
                     print("couldnt get sound from files")
                 }
             }
+                
             else {
                 if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
                     UIStyling.showAlert(viewController: topVC, text: "Downloading resources. Please stay connected to the internet.", duration: 5)
@@ -93,13 +95,14 @@ struct GameUser {
                             }
                             else {
                                 self.conductor?.stopAudioKit()
-                                self.conductor?.startAudioKit(sounds: self.sounds)
+                                self.conductor?.setUpAudioKit(sounds: self.sounds)
                             }
                             completion()
                         }
                     }
                 }
             }
+            
             if sounds.count == unlockedSoundNames.count {
                 sounds = Sounds.sortSounds(sounds: sounds)
                 unlockedSoundNames = sounds.map { $0.id }
@@ -108,43 +111,20 @@ struct GameUser {
                 }
                 else {
                     self.conductor?.stopAudioKit()
-                    self.conductor?.startAudioKit(sounds: self.sounds)
+                    self.conductor?.setUpAudioKit(sounds: self.sounds)
                 }
                 completion()
             }
         }
         
     }
-        
-        /*
-        let soundsRef = Firestore.firestore().collection("/sounds")
-        
-        soundsRef.getDocuments { (querySnapshot, err) in
-            if err != nil {
-                print("cant get sound ref docs")
-                return
-            }
-            if let querySnapshot = querySnapshot {
-                for document in querySnapshot.documents {
-                    if self.unlockedSoundNames.contains(document.documentID) {
-                        let decoder = JSONDecoder()
-                        let data = document.data().map(String.init(describing:)) ?? "nil"
-                        let sound = decoder.decode(Sound.self, from: document.)
-                        //let sound = Sound(data: document.data(), unlocked: true)
-                        self.sounds.append(sound)
-                    }
-                }
-                self.sounds = Sounds.sortSounds(sounds: sounds)
-                let ids = self.sounds.map { $0.id }
-                self.unlockedSoundNames = ids
-                //print("unlocked sound names 1: \(self.unlockedSoundNames)")
-                self.conductor = Conductor(sounds: self.sounds)
-            }
-            else {
-                print("cant get sound query snapshot")
-                return
-            }
+
+    /*
+    static func cacheImg(soundID: String) {
+        if let img = Sounds.getSoundImg(soundID: soundID) {
+            imgCache[soundID] = img
         }
+    }
  */
     
     static func updateField(field: String, text: String) -> Bool {
@@ -255,7 +235,7 @@ struct GameUser {
                         self.unlockedSoundNames = sounds.map { $0.id }
                         Sounds.saveSoundArray(soundArray: self.unlockedSoundNames)
                         self.conductor?.stopAudioKit()
-                        self.conductor?.startAudioKit(sounds: self.sounds)
+                        self.conductor?.setUpAudioKit(sounds: self.sounds)
                         completion()
                     }
                 }
@@ -290,31 +270,6 @@ struct GameUser {
             }
             return rewardMessage
     }
-    
-    /*
-    static func claimReward(reward: Dictionary<String, Any>, with soundName: String) -> String {
-        var rewardMessage = ""
-        for (field, value) in reward {
-            switch field {
-            case "hints":
-                if let amount = value as? Int {
-                    _ = self.updateField(field: field, count: amount)
-                    rewardMessage = "\(rewardMessage)\n+\(value) hints"
-                }
-            case "game-currency":
-            if let amount = value as? Int {
-                _ = self.updateField(field: field, count: amount)
-                rewardMessage = "\(rewardMessage)\n+\(value) currency"
-            }
-            case "sound":
-                rewardMessage = "\(rewardMessage)\nnew sound: \(soundName)"
-            default:
-                print("dont recognize field")
-            }
-        }
-        return rewardMessage
-    }
- */
     
     static func getFIRUserDoc(uid: String) -> DocumentReference {
         let userRef = Firestore.firestore().collection("/users").document(uid)

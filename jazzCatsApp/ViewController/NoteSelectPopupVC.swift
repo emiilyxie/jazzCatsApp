@@ -76,9 +76,17 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         cell.noteCellLabel.text = sounds[indexPath.row].name
         cell.noteCellLabel.font = UIFont(name: "Gaegu-Regular", size: CGFloat(16))
         cell.noteCellLabel.textColor = ColorPalette.lineColor
+        //cell.noteCellImage.image = Sounds.getSoundImg(soundID: sounds[indexPath.row].id)
+        /*
+        if GameUser.imgCache[sounds[indexPath.row].id] != nil {
+            cell.noteCellImage.image = GameUser.imgCache[sounds[indexPath.row].id]
+        }
+        else {
+            cell.noteCellImage.image = Sounds.getSoundImg(soundID: sounds[indexPath.row].id)
+        }
+ */
         cell.noteCellImage.image = Sounds.getSoundImg(soundID: sounds[indexPath.row].id)
         //cell.noteCellImage.image = UIImage(named: sounds[indexPath.row].id)
-        
         
         return cell
     }
@@ -107,6 +115,8 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         musicScene.currentMode = "addMode"
         
         self.view.removeFromSuperview()
+        self.removeFromParent()
+        self.dismiss(animated: false, completion: nil)
         parentVC.currentScene?.isPaused = false
         parentVC.currentScene?.isUserInteractionEnabled = true
     }
@@ -134,6 +144,8 @@ class NoteSelectPopupVC: UIViewController, UICollectionViewDelegate, UICollectio
         parentVC.currentScene?.isPaused = false
         parentVC.currentScene?.isUserInteractionEnabled = true
         self.view.removeFromSuperview()
+        self.removeFromParent()
+        self.dismiss(animated: false, completion: nil)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

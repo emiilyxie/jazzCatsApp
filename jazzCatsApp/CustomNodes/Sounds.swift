@@ -58,6 +58,9 @@ struct Sounds {
             try data.write(to: fileUrl, options: [])
         } catch {
             print(error)
+            if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
+                UIStyling.showAlert(viewController: topVC, text: error.localizedDescription)
+            }
         }
     }
     
@@ -72,6 +75,9 @@ struct Sounds {
             return soundArray
         } catch {
             print(error)
+            if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
+                UIStyling.showAlert(viewController: topVC, text: error.localizedDescription)
+            }
         }
         return nil
     }
@@ -132,6 +138,9 @@ struct Sounds {
             try encoded.write(to: fileUrl, options: [])
         } catch {
             print(error)
+            if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
+                UIStyling.showAlert(viewController: topVC, text: error.localizedDescription)
+            }
         }
         
         saveSoundMedia(sound: sound, completion: completion)
@@ -165,6 +174,7 @@ struct Sounds {
         }
         
         let imgDownload = imgRef.write(toFile: imgFileUrl) { (url, err) in
+            //GameUser.cacheImg(soundID: sound.id)
             if let err = err {
                 print("img download error: \(err.localizedDescription)")
                 if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
@@ -192,28 +202,30 @@ struct Sounds {
         guard let documentsDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
         let fileUrl = documentsDirectoryUrl.appendingPathComponent("sounds/\(soundID)/\(soundID).json")
 
-        // Read data from .json file and transform data into an array
         do {
             let data = try Data(contentsOf: fileUrl, options: [])
             let decoder = JSONDecoder()
             let sound = try decoder.decode(Sound.self, from: data)
+            //GameUser.cacheImg(soundID: soundID)
             return sound
         } catch {
             print("couldn't decode sound: \(error)")
+            if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController {
+                UIStyling.showAlert(viewController: topVC, text: error.localizedDescription)
+            }
+            return nil
         }
-        return nil
     }
     
-    static func getSoundImg(soundID: String) -> UIImage? {
+    static func getSoundImg(soundID: String, downsample: Bool = false) -> UIImage? {
         guard let documentsDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
         let fileUrl = documentsDirectoryUrl.appendingPathComponent("sounds/\(soundID)/\(soundID).png")
-        do {
-            let imgData = try Data(contentsOf: fileUrl)
-            return UIImage(data: imgData)
-        } catch {
-            print("couldnt get sound img: \(error)")
-            return nil
-            
+        if downsample {
+            let image = UIStyling.downsample(imageAt: fileUrl, to: CGSize(width: 75, height: 75), scale: 1)
+            return image
+        }
+        else {
+            return UIImage(contentsOfFile: fileUrl.path)
         }
     }
     

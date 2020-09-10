@@ -13,7 +13,6 @@ import AudioKit
 extension MusicScene {
     
     @objc func setUpButtons() {
-        //preconditionFailure("must override setupbuttons")
         
         if let addNoteButton = self.buttons.object(forKey: "addNotesButton") {
             selectButton(button: addNoteButton)
@@ -173,7 +172,7 @@ extension MusicScene {
             print(error)
         }
  */
-        GameUser.conductor?.clearSequence()
+        
         
         // killing the kids
         for child in self.children {
@@ -183,5 +182,7 @@ extension MusicScene {
         self.removeAllChildren()
         self.removeFromParent()
         self.view?.presentScene(nil)
+        
+        GameUser.conductor?.clearSequence()
     }
 }

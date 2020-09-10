@@ -96,6 +96,7 @@
 		ADD04A9624E770E100458B44 /* cat_basic2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADD04A9524E770E100458B44 /* cat_basic2.mp3 */; };
 		ADD5F2E324A66DDA004609F9 /* JazzText_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */; };
 		ADD5F2E524A66F1F004609F9 /* Gaegu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */; };
+		ADE9F35B2506F9C60016447D /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9F35A2506F9C60016447D /* Cache.swift */; };
 		ADFA240C247646DD008BC384 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA240B247646DD008BC384 /* WelcomeScreen.swift */; };
 		ADFA243024779C04008BC384 /* FreestyleRecordingFails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */; };
 		ADFAD4A1248312F600C3779C /* LevelGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */; };
@@ -205,6 +206,7 @@
 		ADD04A9524E770E100458B44 /* cat_basic2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat_basic2.mp3; sourceTree = "<group>"; };
 		ADD5F2E224A66DDA004609F9 /* JazzText_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzText_Regular.ttf; sourceTree = "<group>"; };
 		ADD5F2E424A66F1F004609F9 /* Gaegu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Regular.ttf"; sourceTree = "<group>"; };
+		ADE9F35A2506F9C60016447D /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		ADFA240B247646DD008BC384 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		ADFA242F24779C03008BC384 /* FreestyleRecordingFails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreestyleRecordingFails.swift; sourceTree = "<group>"; };
 		ADFAD4A0248312F600C3779C /* LevelGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGroupsVC.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				AD9395AD247478250037E307 /* LevelSetup.swift */,
 				AD3826E5245D10930027849D /* Button.swift */,
 				AD08F56124732A0300863204 /* StaffBar.swift */,
+				ADE9F35A2506F9C60016447D /* Cache.swift */,
 			);
 			path = CustomNodes;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				ADFC5CD82478352700225610 /* LevelPhysics.swift in Sources */,
 				AD08F5682473371A00863204 /* FreestyleScene.swift in Sources */,
 				AD3826C3245D0F610027849D /* AppDelegate.swift in Sources */,
+				ADE9F35B2506F9C60016447D /* Cache.swift in Sources */,
 				AD7EF23724B12CB7009875CA /* AccountDetailsPopupVC.swift in Sources */,
 				ADFC5CE3247852BF00225610 /* FreestylePhysics.swift in Sources */,
 				AD0D2D4924ADB59E0098E744 /* SignInVC.swift in Sources */,

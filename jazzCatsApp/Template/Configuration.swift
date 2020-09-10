@@ -143,6 +143,21 @@ struct UIStyling {
             //alertView.removeFromSuperview()
         }
     }
+    
+    static func downsample(imageAt imageURL: URL, to pointSize: CGSize, scale: CGFloat) -> UIImage {
+       let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+       let imageSource = CGImageSourceCreateWithURL(imageURL as CFURL, imageSourceOptions)!
+     
+       let maxDimentionInPixels = max(pointSize.width, pointSize.height) * scale
+     
+       let downsampledOptions = [kCGImageSourceCreateThumbnailFromImageAlways: true,
+     kCGImageSourceShouldCacheImmediately: true,
+     kCGImageSourceCreateThumbnailWithTransform: true,
+     kCGImageSourceThumbnailMaxPixelSize: maxDimentionInPixels] as CFDictionary
+      let downsampledImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downsampledOptions)!
+     
+       return UIImage(cgImage: downsampledImage)
+    }
 }
 
 enum ButtonType: String {

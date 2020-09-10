@@ -15,7 +15,17 @@ public class Note: SKSpriteNode {
     
     public init(type: String) {
         noteType = type
-        let img = Sounds.getSoundImg(soundID: noteType)
+        var img: UIImage?
+        /*
+        if GameUser.imgCache[noteType] != nil {
+            img = GameUser.imgCache[noteType]
+        }
+        else {
+            img = Sounds.getSoundImg(soundID: noteType)
+        }
+ */
+        img = Sounds.getSoundImg(soundID: noteType, downsample: true)
+        //img = UIImage(named: noteType)
         let audio = Sounds.getSoundAudio(soundID: noteType)
         let noteTexture = SKTexture(image: img ?? UIImage())
         soundBase = type
@@ -33,31 +43,6 @@ public class Note: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    /*
-    public func getAudioFile() -> String {
-        let noteVal = getNoteName()
-        
-        if soundBase == "snare" {
-            return "\(soundBase)/\(soundBase).mp3"
-        }
-        return "\(soundBase)/\(soundBase)\(noteVal).mp3"
-    }
- */
-    
-    // MUST place note in staff before calling
-    public func setPositions() {
-        
-        //print(self.parent?.parent)
-        
-        /*
-        if let scene = self.scene as? MusicScene {
-            self.positionInStaff = scene.getStaffPosition(notePosition: self.position)
-            let conversion = CGFloat(scene.subdivision / (scene.pageIndex + 1))
-            self.beat = CGFloat(self.positionInStaff[0]) / conversion
-        }
- */
     }
     
     public func toggleSharp() {

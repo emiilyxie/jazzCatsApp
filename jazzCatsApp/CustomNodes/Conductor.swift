@@ -24,10 +24,10 @@ public class Conductor {
             print(error.localizedDescription)
         }
         
-        startAudioKit(sounds: sounds)
+        setUpAudioKit(sounds: sounds)
     }
     
-    func startAudioKit(sounds: [Sound]) {
+    func setUpAudioKit(sounds: [Sound]) {
         sequencer = AKAppleSequencer()
         mixer = AKMixer()
         samplers = [AKMIDISampler](repeating: AKMIDISampler(), count: GameUser.sounds.count)
@@ -123,7 +123,6 @@ public class Conductor {
     func stopAudioKit() {
         do {
             try AudioKit.stop()
-            try AudioKit.shutdown()
         } catch  {
             print(error)
         }
