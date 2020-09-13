@@ -22,7 +22,7 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
-        UIStyling.showLoading(view: self.view)
+        UIStyling.showLoading(viewController: self)
         super.viewDidLoad()
         setUpValues()
         setUpGraphics()
@@ -38,18 +38,18 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
             levelGroupsRef.document(levelGroupName).getDocument { (document, err) in
                 if let err = err {
                     print(err.localizedDescription)
-                    self.levelGroupDict[levelGroupName] = 0
+                    self.levelGroupDict[levelGroupName] = -1
                 }
                 if let document = document, document.exists {
                     if let numberOfLevels = document.get("number-of-levels") as? Int {
                         self.levelGroupDict[levelGroupName] = numberOfLevels
-                        refresh()
                     }
                     else {
                         self.levelGroupDict[levelGroupName] = 0
                         print("cant get number of levels")
                     }
                 }
+                refresh()
             }
         }
     }
@@ -114,6 +114,9 @@ class LevelGroupsVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         
         if levelGroupNumOfLevels == 0 {
             UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+        }
+        else if levelGroupNumOfLevels == -1 {
+            UIStyling.showAlert(viewController: self, text: "You need an internet connection to play.", duration: 1.5)
         }
         else {
             performSegue(withIdentifier: Constants.levelGroupsToLevelSelect, sender: self)

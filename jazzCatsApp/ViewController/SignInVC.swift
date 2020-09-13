@@ -51,7 +51,7 @@ class SignInVC: UIViewController {
     }
     
     @IBAction func continueWarning(_ sender: UIButton) {
-        UIStyling.showLoading(view: self.view)
+        UIStyling.showLoading(viewController: self)
         Auth.auth().signInAnonymously { (authResult, error) in
             if let err = error {
                 UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)

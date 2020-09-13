@@ -80,21 +80,28 @@ struct UIStyling {
         textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
     }
     
-    static func showLoading(view: UIView) {
+    static func showLoading(viewController: UIViewController) {
         var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         activityIndicator.backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:0.3)
         activityIndicator.layer.cornerRadius = 6
-        activityIndicator.bringSubviewToFront(view)
+        activityIndicator.bringSubviewToFront(viewController.view)
         activityIndicator.layer.zPosition = 9999
-        activityIndicator.center = view.center
+        activityIndicator.center = viewController.view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = UIActivityIndicatorView.Style.large
         activityIndicator.tag = -738264
-        view.addSubview(activityIndicator)
+        viewController.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-        view.isUserInteractionEnabled = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+            if activityIndicator.isAnimating {
+                UIStyling.showAlert(viewController: viewController, text: "Your network seems to be weak or offline. Please connect to the internet and try again.", duration: 30)
+            }
+        }
+        
+        viewController.view.isUserInteractionEnabled = false
     }
     
     static func hideLoading(view: UIView) {
@@ -120,7 +127,7 @@ struct UIStyling {
         alertView.sizeToFit()
         alertView.frame = CGRect(width: alertView.frame.width + 20, height: alertView.frame.height + 20)
         alertView.textAlignment = .center
-        UIView.transition(with: viewController.view, duration: duration, options: [.transitionCrossDissolve], animations: {
+        UIView.transition(with: viewController.view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
           viewController.view.addSubview(alertView)
         }, completion: nil)
         //viewController.view.addSubview(alertView)
@@ -128,8 +135,8 @@ struct UIStyling {
         alertView.center = viewController.view.center
         
         //alertView.didMove(toParent: viewController)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            UIView.transition(with: viewController.view, duration: duration, options: [.transitionCrossDissolve], animations: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            UIView.transition(with: viewController.view, duration: 1.0, options: [.transitionCrossDissolve], animations: {
               alertView.removeFromSuperview()
             }, completion: nil)
             //alertView.removeFromSuperview()

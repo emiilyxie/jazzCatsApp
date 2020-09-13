@@ -21,7 +21,7 @@ class WelcomeScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIStyling.showLoading(view: self.view)
+        UIStyling.showLoading(viewController: self)
         isSignedInResponse()
         setUpGraphics()
     }
@@ -150,7 +150,7 @@ class WelcomeScreen: UIViewController {
     
     @IBAction func goToFreestyle(_ sender: Any) {
         goingToFreestyle = true
-        UIStyling.showLoading(view: self.view)
+        UIStyling.showLoading(viewController: self)
         performSegue(withIdentifier: Constants.welcomeToFreestyle, sender: self)
     }
     

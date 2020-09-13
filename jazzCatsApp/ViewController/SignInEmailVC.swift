@@ -96,7 +96,7 @@ class SignInEmailVC: UIViewController {
             //errMessage.text = error
         }
         else {
-            UIStyling.showLoading(view: self.view)
+            UIStyling.showLoading(viewController: self)
             // attempt sign in
             Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, err) in
                 if let err = err {
