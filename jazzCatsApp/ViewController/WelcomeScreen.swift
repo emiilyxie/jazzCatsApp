@@ -12,11 +12,12 @@ import FirebaseFirestore
 
 class WelcomeScreen: UIViewController {
     
-    var goingToFreestyle = false
     @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var accountButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var freestyleButton: UIButton!
+    
+    var goingToFreestyle = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,16 +107,22 @@ class WelcomeScreen: UIViewController {
         //exportData()
         if let gameVC = segue.destination as? GameViewController {
             gameVC.sourceVC = self
+            gameVC.freestyleMode = goingToFreestyle
+            return
         }
-        if goingToFreestyle == true {
-            print("pressed freestyle segue")
-            if let gameVC = segue.destination as? GameViewController {
-                gameVC.freestyleMode = true
-            }
+        
+        if let createAccVC = segue.destination as? CreateAccVC {
+            createAccVC.mergingAnon = Auth.auth().currentUser!.isAnonymous
+            return
         }
     }
     
     @IBAction func accountButtonPressed(_ sender: UIButton) {
+        if let isAnon = Auth.auth().currentUser?.isAnonymous, isAnon {
+            performSegue(withIdentifier: Constants.welcomeToCreateAccount, sender: self)
+            return
+        }
+        
         let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: Constants.accountDetailsID) as! AccountDetailsPopupVC
         self.addChild(popoverVC)
         popoverVC.view.frame = self.view.frame
@@ -151,7 +158,10 @@ class WelcomeScreen: UIViewController {
     @IBAction func backToWelcomeFromLevelSelect(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromGame(segue: UIStoryboardSegue) {}
     @IBAction func backToWelcomeFromCreateAcc(segue: UIStoryboardSegue) {
-        isSignedInResponse()
+        if let createAccVC = segue.source as? CreateAccVC, createAccVC.mergingAnon == true {}
+        else {
+            isSignedInResponse()
+        }
     }
     @IBAction func backToWelcomeFromSignIn(segue: UIStoryboardSegue) {
         isSignedInResponse()

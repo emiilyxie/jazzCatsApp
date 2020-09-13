@@ -19,6 +19,7 @@ struct Constants {
     static let welcomeToSignIn: String = "fromWelcomeToSignInSegue"
     static let welcomeToFreestyle: String = "fromWelcomeToFreestyleSegue"
     static let welcomeToLevelGroups: String = "fromWelcomeToLevelGroupsSegue"
+    static let welcomeToCreateAccount: String = "fromWelcomeToCreateAccountSegue"
     static let signInToSignInEmail: String = "fromSignInToSignInEmailSegue"
     static let signInToCreateAcc: String = "fromSignInToCreateAccSegue"
     static let signInEmailToSignIn: String = "fromSignInEmailToSignInUSegue"

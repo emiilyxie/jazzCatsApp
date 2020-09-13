@@ -69,7 +69,6 @@ extension LevelTemplate {
     }
     
     func playSample(sender: Button?, index: Int) {
-        //ansSongPlayer?.play()
         
         guard let sequencer = GameUser.conductor?.sequencer, let samplers = GameUser.conductor?.samplers else {
             print("cant get sequencer or sampler")

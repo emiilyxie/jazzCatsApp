@@ -14,6 +14,7 @@ public class Conductor {
     var sequencer: AKAppleSequencer?
     var sequenceLength: AKDuration?
     var mixer: AKMixer?
+    var sequencerPlaying = false
     
     init(sounds: [Sound]) {
         
@@ -89,7 +90,31 @@ public class Conductor {
             
             sequencer!.tracks[0].add(noteNumber: MIDINoteNumber(noteNumber), velocity: 100, position: AKDuration(beats: measurelessBeat), duration: AKDuration(beats: 8.0))
         }
+        
     }
+    
+    /*
+    func playManualSequence(noteData: Set<[CGFloat]>, noteSample: Int, tempo: Int, maxPages: Int, numberOfMeasures: Int, bpm: Int) {
+        
+        sequencerPlaying = true
+        
+        let totalLength = AKDuration(beats: maxPages * numberOfMeasures * bpm).seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + totalLength) {
+            self.sequencerPlaying = false
+        }
+        
+        for noteInfo in noteData {
+            let noteMeasure = noteInfo[0]
+            let noteBeat = noteInfo[1]
+            let noteNumber = Int(noteInfo[2])
+            let measurelessBeat = Double((noteMeasure - 1) * CGFloat(bpm) + noteBeat - 1)
+            let time = AKDuration(beats: measurelessBeat, tempo: BPM(tempo)).seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+                try? self.samplers[noteSample].play(noteNumber: UInt8(noteNumber), velocity: 100, channel: 0)
+            }
+        }
+    }
+ */
     
     func clearSequence() {
         guard let _ = sequencer else {

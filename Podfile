@@ -6,7 +6,7 @@ target 'jazzCatsApp' do
   use_frameworks!
 
   # Pods for jazzCatsApp
-
+  
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'

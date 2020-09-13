@@ -53,7 +53,7 @@ class AccountDetailsPopupVC: UIViewController {
 
     @IBAction func guideButtonPressed(_ sender: Any) {
         //show tutorial
-        if let url = URL(string: "http://emily.xie.fm/activities/jazzcats.html") {
+        if let url = URL(string: "http://emily.xie.fm/activities/jazzcats/main.html") {
             //let config = SFSafariViewController.Configuration()
             //config.entersReaderIfAvailable = true
 
@@ -68,11 +68,12 @@ class AccountDetailsPopupVC: UIViewController {
     }
     
     @IBAction func followButtonPressed(_ sender: Any) {
-        UIStyling.showAlert(viewController: self, text: "Coming Soon!")
-    }
-    
-    @IBAction func restoreButtonPressed(_ sender: Any) {
-        UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+        if let url = URL(string: "https://www.instagram.com/jazz.cats/") {
+            UIApplication.shared.open(url)
+        }
+        else {
+            UIStyling.showAlert(viewController: self, text: "Coming Soon!")
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

@@ -21,6 +21,7 @@ class CreateAccVC: UIViewController {
     @IBOutlet weak var jamButton: UIButton!
     
     var currentlyEditing: UITextField?
+    var mergingAnon = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,9 @@ class CreateAccVC: UIViewController {
     func setUpGraphics() {
         self.view.backgroundColor = ColorPalette.brightManuscript
         UIStyling.setHeader(header: header)
+        if mergingAnon {
+            header.text = "Link your game progress with an account"
+        }
         
         UIStyling.setButtonStyle(button: backButton)
         backButton.layer.cornerRadius = 5
@@ -123,40 +127,90 @@ class CreateAccVC: UIViewController {
             UIStyling.showLoading(view: self.view)
             let email = emailTextField.text!
             let password = passwordTextField.text!
-            Auth.auth().createUser(withEmail: email, password: password) { (authResult, err) in
-                
-                if let err = err {
-                    let errCode = AuthErrorCode(rawValue: err._code)
-                    switch errCode {
-                    case .networkError:
-                        UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)
-                    default:
-                        UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription).")
-                    }
-                    UIStyling.hideLoading(view: self.view)                    
-                    return
-                }
-                else {
-                    
-                    // sign in the user
-                    Auth.auth().signIn(withEmail: email, password: password) { (authResult, err) in
-                        if err != nil {
-                            UIStyling.hideLoading(view: self.view)
-                            UIStyling.showAlert(viewController: self, text: "Error: \(err!.localizedDescription). Check your network try again.", duration: 7)
-                            return
-                        }
-                    }
-                    
-                    // create database entry
-                    self.newDbEntry(email: email, password: password)
-                    
-                    // go to welcome screen
-                    self.unwindFromCreateAccToWelcome(self)
-                }
+            
+            if self.mergingAnon {
+                self.mergeAnon()
             }
             
+            else {
+                Auth.auth().createUser(withEmail: email, password: password) { (authResult, err) in
+                    
+                    if let err = err {
+                        let errCode = AuthErrorCode(rawValue: err._code)
+                        switch errCode {
+                        case .networkError:
+                            UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)
+                        default:
+                            UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription).")
+                        }
+                        UIStyling.hideLoading(view: self.view)
+                        return
+                    }
+                    else {
+                        
+                        // sign in the user
+                        Auth.auth().signIn(withEmail: email, password: password) { (authResult, err) in
+                            if err != nil {
+                                UIStyling.hideLoading(view: self.view)
+                                UIStyling.showAlert(viewController: self, text: "Error: \(err!.localizedDescription). Check your network try again.", duration: 7)
+                                return
+                            }
+                        }
+                        
+                        // create database entry
+                        self.newDbEntry(email: email, password: password)
+                        
+                        // go to welcome screen
+                        self.unwindFromCreateAccToWelcome(self)
+                    }
+                }
+            }
         }
         
+    }
+    
+    func mergeAnon() {
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        if let user = Auth.auth().currentUser {
+                user.link(with: credential) { (authResult, error) in
+                    
+                    if let err = error {
+                        print(err.localizedDescription)
+                        let errCode = AuthErrorCode(rawValue: err._code)
+                        switch errCode {
+                        case .networkError:
+                            UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)
+                        default:
+                            UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription).")
+                        }
+                        UIStyling.hideLoading(view: self.view)
+                        return
+                    }
+                    
+                    let _ = GameUser.updateField(field: "email", text: email)
+                    let _ = GameUser.updateField(field: "nickname", text: self.nameTextField.text ?? "")
+                    
+                    Auth.auth().signIn(withEmail: email, password: password) { (authData, error) in
+                        if let err = error {
+                            print(err.localizedDescription)
+                            let errCode = AuthErrorCode(rawValue: err._code)
+                            switch errCode {
+                            case .networkError:
+                                UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription). Check your network and try again", duration: 7)
+                            default:
+                                UIStyling.showAlert(viewController: self, text: "Error: \(err.localizedDescription).")
+                            }
+                            UIStyling.hideLoading(view: self.view)
+                            return
+                        }
+                        self.performSegue(withIdentifier: Constants.createAccToWelcome, sender: self)
+                    }
+                    return
+                }
+            //}
+        }
     }
     
     func validateFields() -> String? {
@@ -180,7 +234,7 @@ class CreateAccVC: UIViewController {
         let user = Auth.auth().currentUser
         let uid = user?.uid
         let usersRef = Firestore.firestore().collection("users")
-        usersRef.document(uid!).setData(["email" : email, "nickname" : self.nameTextField.text!, "uid" : uid!, "level-progress" : [:], "game-currency" : 100, "hints" : 10, "unlocked-sounds" : ["cat_basic1", "drumsnare1", "vibes1"]], merge: true)
+        usersRef.document(uid!).setData(["email" : email, "nickname" : self.nameTextField.text ?? "", "uid" : uid!, "level-progress" : [:], "game-currency" : 100, "hints" : 10, "unlocked-sounds" : ["cat_basic1", "drumsnare1", "vibes1"]], merge: true)
     }
     
     func dismissKeyboard() {
@@ -195,7 +249,12 @@ class CreateAccVC: UIViewController {
     }
     
     @IBAction func unwindFromCreateAccToSignIn(_ sender: Any) {
-        performSegue(withIdentifier: Constants.createAccToSignIn, sender: self)
+        if mergingAnon {
+            performSegue(withIdentifier: Constants.createAccToWelcome, sender: self)
+        }
+        else {
+            performSegue(withIdentifier: Constants.createAccToSignIn, sender: self)
+        }
     }
     
 

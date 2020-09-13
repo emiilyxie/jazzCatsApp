@@ -62,6 +62,10 @@ struct GameUser {
             self.nickname = text
             userRef.setData(["nickname" : text], merge: true)
             return true
+        case "email":
+            self.email = text
+            userRef.setData(["email" : text], merge: true)
+            return true
         default:
             print("that field doesn't exist or it cant be mutated")
             return false
